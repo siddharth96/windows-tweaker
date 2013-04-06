@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1F80B6EE-E2DD-496F-8227-7235E7147D02}</ProjectGuid>
+    <ProjectGuid>{24F46AF3-2D60-4C55-846C-942577CEF018}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WindowsTweaker</RootNamespace>
@@ -38,23 +38,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Debug\</OutputPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>WindowsTweaker.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>WindowsTweaker48X48.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,56 +58,39 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFFolderBrowser">
-      <HintPath>D:\MSDN\FolderBrowserWPF\WPFFolderBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>D:\CSharp\WPFToolkit.Extended.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Themes\WindowDictionary.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CheckedListItem.cs" />
-    <Compile Include="ColorPickerDialog.cs" />
-    <Compile Include="ContextMenuShortcutCreator.xaml.cs">
-      <DependentUpon>ContextMenuShortcutCreator.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MoreInformation.xaml.cs">
-      <DependentUpon>MoreInformation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OpenWith.xaml.cs">
-      <DependentUpon>OpenWith.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PasswdInRegsitry.cs" />
-    <Compile Include="PasswordConfig.xaml.cs">
-      <DependentUpon>PasswordConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PasswordPrompt.xaml.cs">
-      <DependentUpon>PasswordPrompt.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RemoveContextMenuItem.xaml.cs">
-      <DependentUpon>RemoveContextMenuItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SendTo.cs" />
-    <Compile Include="ListItem.cs" />
-    <Compile Include="About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StartupManager.xaml.cs">
-      <DependentUpon>StartupManager.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\AeroSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MetroSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,249 +108,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="WindowsTweaker.manifest">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icon.ico" />
-    <Resource Include="icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="ContextMenuShortcutCreator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MoreInformation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OpenWith.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PasswordConfig.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PasswordPrompt.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RemoveContextMenuItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StartupManager.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\MetroSkin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\48-DiskDoctor.png" />
-    <Resource Include="Images\addressBuk.ico" />
-    <Resource Include="Images\admin.JPG" />
-    <Resource Include="Images\AutoRun.png" />
-    <Resource Include="Images\auto_logon.png" />
-    <Resource Include="Images\bootdfrg.png" />
-    <Resource Include="Images\cabfile.ico" />
-    <Resource Include="Images\cd.ico" />
-    <Resource Include="Images\charmap.ico" />
-    <Resource Include="Images\cleanmgr.bmp" />
-    <Resource Include="Images\cleanmgr.ico" />
-    <Resource Include="Images\CLSID_16x16.ico" />
-    <Resource Include="Images\cm_weroff.jpg" />
-    <Resource Include="Images\cm_weroff_W7.jpg" />
-    <Resource Include="Images\cnt2.ico" />
-    <Resource Include="Images\compmgmt.bmp" />
-    <Resource Include="Images\compmgmt.ico" />
-    <Resource Include="Images\control.ico" />
-    <Resource Include="Images\copyryt.png" />
-    <Resource Include="Images\CopyUserSettings.png" />
-    <Resource Include="Images\createShareFolder.ico" />
-    <Resource Include="Images\def.ico" />
-    <Resource Include="Images\default_ico.ico" />
-    <Resource Include="Images\denied.png" />
-    <Resource Include="Images\devmgmt.bmp" />
-    <Resource Include="Images\dfrgui.bmp" />
-    <Resource Include="Images\dialer.ico" />
-    <Resource Include="Images\dialogBG.png" />
-    <Resource Include="Images\diskmgmt.ico" />
-    <Resource Include="Images\dll.ico" />
-    <Resource Include="Images\drives.GIF" />
-    <Resource Include="Images\drives.JPG" />
-    <Resource Include="Images\dxdiag.ico" />
-    <Resource Include="Images\Enable-right-click.jpg" />
-    <Resource Include="Images\Encrypt.png" />
-    <Resource Include="Images\error.ico" />
-    <Resource Include="Images\err_dlg_pic.JPG" />
-    <Resource Include="Images\eventvwr.ico" />
-    <Resource Include="Images\exad.png" />
-    <Resource Include="Images\explorer.ico" />
-    <Resource Include="Images\fopen.ico" />
-    <Resource Include="Images\gpedit.bmp" />
-    <Resource Include="Images\gpupdate.ico" />
-    <Resource Include="Images\Header.jpg" />
-    <Resource Include="Images\header_black.png" />
-    <Resource Include="Images\header_new.jpg" />
-    <Resource Include="Images\header_silver.png" />
-    <Resource Include="Images\help.ico" />
-    <Resource Include="Images\hide.png" />
-    <Resource Include="Images\icon-critical.jpg" />
-    <Resource Include="Images\icon-critical.png" />
-    <Resource Include="Images\icon.ico" />
-    <Resource Include="Images\icon.png" />
-    <Resource Include="Images\iconProfil.png" />
-    <Resource Include="Images\ico_alpha_Application_32x32.png" />
-    <Resource Include="Images\ico_alpha_arrowleft_48x48.png" />
-    <Resource Include="Images\ico_alpha_arrowright_48x48.png" />
-    <Resource Include="Images\ico_alpha_AutoLogon_32x32.png" />
-    <Resource Include="Images\ico_alpha_AutoPlay_32x32.png" />
-    <Resource Include="Images\ico_alpha_CompSpeak_32x32.png" />
-    <Resource Include="Images\ico_alpha_ErrorNotify_32x32.png" />
-    <Resource Include="Images\ico_alpha_Failed_72x72.jpg" />
-    <Resource Include="Images\ico_alpha_Failed_72x72.png" />
-    <Resource Include="Images\ico_alpha_FolderBar_24x24.png" />
-    <Resource Include="Images\ico_alpha_GettingStarted_32x32.png" />
-    <Resource Include="Images\ico_alpha_HideUser_32x32.png" />
-    <Resource Include="Images\ico_alpha_inet_conn.ico" />
-    <Resource Include="Images\ico_alpha_Keys_32x32.jpg" />
-    <Resource Include="Images\ico_alpha_Keys_32x32.png" />
-    <Resource Include="Images\ico_alpha_lan_corporate.ico" />
-    <Resource Include="Images\ico_alpha_lan_corporate.png" />
-    <Resource Include="Images\ico_alpha_lan_corporate16.jpg" />
-    <Resource Include="Images\ico_alpha_LiveMsgr_32x32.png" />
-    <Resource Include="Images\ico_alpha_MyComputer_32x32.png" />
-    <Resource Include="Images\Ico_alpha_PCICard_32x32.png" />
-    <Resource Include="Images\ico_alpha_questionMark.ico" />
-    <Resource Include="Images\ico_alpha_RAMDisk_32x32.png" />
-    <Resource Include="Images\ico_alpha_RegistryEditor_24x24.png" />
-    <Resource Include="Images\ico_alpha_Rename_16x16.png" />
-    <Resource Include="Images\ico_alpha_RestartError_16x16.png" />
-    <Resource Include="Images\Ico_alpha_SearchIndex_32x32.png" />
-    <Resource Include="Images\ico_alpha_Settings_32x32.png" />
-    <Resource Include="Images\ico_alpha_Shield_W7_32x32.png" />
-    <Resource Include="Images\ico_alpha_Shutdown_16x16.png" />
-    <Resource Include="Images\ico_alpha_Shutdown_48x48.png" />
-    <Resource Include="Images\ico_alpha_SoftwareSection_32x32.png" />
-    <Resource Include="Images\ico_alpha_Software_32x32.png" />
-    <Resource Include="Images\ico_alpha_Sound_32x32.png" />
-    <Resource Include="Images\ico_alpha_StartMenu_16x16.ico" />
-    <Resource Include="Images\ico_alpha_SysInfo_Unit1_ilimg4_16x16.png" />
-    <Resource Include="Images\ico_alpha_TaskBarButtonFlash_32x32.png" />
-    <Resource Include="Images\ico_alpha_Users_32x32.png" />
-    <Resource Include="Images\iexpress.bmp" />
-    <Resource Include="Images\iexpress.ico" />
-    <Resource Include="Images\iMac.ico" />
-    <Resource Include="Images\lkgd.png" />
-    <Resource Include="Images\loading.gif" />
-    <Resource Include="Images\loading2.gif" />
-    <Resource Include="Images\lock.png" />
-    <Resource Include="Images\locked.png" />
-    <Resource Include="Images\mainIcon.ico" />
-    <Resource Include="Images\mainIcon.png" />
-    <Resource Include="Images\mainIconBig.ico" />
-    <Resource Include="Images\mainIconBig.png" />
-    <Resource Include="Images\maintenance.jpg" />
-    <Resource Include="Images\main_icon.ico" />
-    <Resource Include="Images\me.png" />
-    <Resource Include="Images\miscellaneous.gif" />
-    <Resource Include="Images\monitor_2.ico" />
-    <Resource Include="Images\msconfig.ico" />
-    <Resource Include="Images\msinfo32.bmp" />
-    <Resource Include="Images\msinfo32.ico" />
-    <Resource Include="Images\nav_pane.jpg" />
-    <Resource Include="Images\nav_right.png" />
-    <Resource Include="Images\network.bmp" />
-    <Resource Include="Images\network.ico" />
-    <Resource Include="Images\network2.ico" />
-    <Resource Include="Images\noo.ico" />
-    <Resource Include="Images\NoOverlayShortcutArrow.PNG" />
-    <Resource Include="Images\ok.ico" />
-    <Resource Include="Images\OverlayShortcutArrow.PNG" />
-    <Resource Include="Images\pchedt.ico" />
-    <Resource Include="Images\regsetngs.png" />
-    <Resource Include="Images\remoteDesktop.bmp" />
-    <Resource Include="Images\remoteDesktop.ico" />
-    <Resource Include="Images\scheduleShut.png" />
-    <Resource Include="Images\screensaver.GIF" />
-    <Resource Include="Images\screensaver.JPG" />
-    <Resource Include="Images\selection.jpg" />
-    <Resource Include="Images\shortcut.ico" />
-    <Resource Include="Images\sidebar.jpg" />
-    <Resource Include="Images\sigVerif.bmp" />
-    <Resource Include="Images\sigVerif.ico" />
-    <Resource Include="Images\special.png" />
-    <Resource Include="Images\special_folder_name.ico" />
-    <SplashScreen Include="Images\Splash.jpg" />
-    <Resource Include="Images\style_startmenu_32x32.png" />
-    <Resource Include="Images\syskey.bmp" />
-    <Resource Include="Images\syskey.ico" />
-    <Resource Include="Images\transfer.ico" />
-    <Resource Include="Images\Untitled.png" />
-    <Resource Include="Images\util.jpg" />
-    <Resource Include="Images\verifier.bmp" />
-    <Resource Include="Images\verifier.ico" />
-    <Resource Include="Images\VistaLogo.png" />
-    <Resource Include="Images\warning.ico" />
-    <Resource Include="Images\warningLowSpace.JPG" />
-    <Resource Include="Images\wizard.ico" />
-    <Resource Include="Images\wizard128.png" />
-    <Resource Include="Images\WizPic-bg.png" />
-    <Resource Include="Images\WizPic-bg2.png" />
-    <Resource Include="Images\yess.ico" />
-    <Resource Include="Images\zip.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="IWshRuntimeLibrary">
-      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\questionmark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Lock.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Power.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Restart.png" />
-    <Resource Include="Images\shutdown-button-md.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="WindowsTweaker48X48.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Facebook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

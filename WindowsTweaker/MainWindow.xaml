@@ -1,1454 +1,294 @@
 ﻿<Window x:Class="WindowsTweaker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:extended="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolkit.Extended"
-        xmlns:local="clr-namespace:WindowsTweaker"
-        x:Name="Window" MinWidth="980" MinHeight="600" MaxWidth="1024" MaxHeight="650"
-	Title="Windows Tweaker 4.1 (Portable Version)" Loaded="Window_Loaded"
-    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="980" Height="600" Icon="Images/mainIconBig.png" Background="{StaticResource WindowBackgroundBrush}">
-    <Window.Resources>
-        <DataTemplate x:Key="TileView">
-            <Grid Margin="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Source="{Binding Path=IconAssociated}" Margin="0" Width="16" Height="16"></Image>
-                <TextBlock Grid.Column="1" Text="{Binding Path=Name}"></TextBlock>
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
-    <Grid x:Name="LayoutRoot">
+        Title="Windows Tweaker 4.2"
+    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="980" Height="700" 
+    ResizeMode="CanResizeWithGrip">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource WindowBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
-            <TextBlock Margin="10,10,5,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Windows" 
-                       Foreground="#FF36B5E7" FontSize="18.667"/>
-            <TextBlock Margin="0,10,10,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tweaker 4.1" 
-                       Foreground="#FF84C514" FontSize="18.667"/>
-        </StackPanel>
-        <Grid Grid.Row="1">
-            <TabControl x:Name="mainTab" Grid.Column="0">
-                <TabControl.Resources>
-                    <Style TargetType="{x:Type GroupBox}">
-                        <Setter Property="Margin" Value="20,3,8,3"></Setter>
-                    </Style>
-                </TabControl.Resources>
-                <TabItem Header="SYSTEM" Name="tabSystem" Loaded="tabSystem_Loaded">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <GroupBox Header="Shutdown Configuration" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock TextWrapping="Wrap" Text="Configure whether Windows should wait for Applications to exit or Shutdown immediately" Margin="9,9,8,5"/>
-                                    <StackPanel Grid.Row="1">
-                                        <RadioButton x:Name="rbtnDntWait" Content="Kill applications immediately and shutdown straightaway" Click="enableOkANDapplyBtnsBYRadioBtns" GroupName="shutdownTimer"></RadioButton>
-                                        <StackPanel Orientation="Horizontal" Margin="0">
-                                            <RadioButton x:Name="rbtnWait" Content="Wait for applications to exit for" Click="enableOkANDapplyBtnsBYRadioBtns" GroupName="shutdownTimer" IsChecked="True"></RadioButton>
-                                            <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="20" Maximum="20000" Minimum="20" Value="4000" Name="nudTime" TextAlignment="Left" ValueChanged="enableButtonsByNUD"/>
-                                            <TextBlock Margin="5,3">milliseconds</TextBlock>
-                                        </StackPanel>
-                                    </StackPanel>
+        <Grid>
+            <TabControl Name="mainTab" Margin="2,15,2,2">
+                <TabItem Header="EXPLORER" Name="tabExplorer" Width="80" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="my computer" Width="120">
+                            <Border TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+                            	<Grid>
+                            		<TextBlock HorizontalAlignment="Right" Margin="0,41.52,117.665,0" TextWrapping="Wrap" Text="Drive Letter Display" VerticalAlignment="Top" Style="{DynamicResource h1}"/>
+                            		<TextBlock Height="25.556" Margin="136.223,77.444,311.666,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource h2}"><Run Text="Specify how the drives are displayed in My Computer"/></TextBlock>
+                                    <RadioButton Content="Show the drive letters before the name" Height="24.444" Margin="136.223,119,452.888,0" VerticalAlignment="Top"/>
+                                    <RadioButton Content="Show the drive letters after the name" Height="24.444" Margin="136.223,147.444,452.888,0" VerticalAlignment="Top"/>
+                                    <RadioButton Content="Don't Show the drive letters" Height="24.444" Margin="136.223,175.888,452.888,0" VerticalAlignment="Top"/>
                                 </Grid>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Windows Installer" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkWinInstalr" Content="Disable Windows Installer Service" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkAdminPrev" Content="Always Install with Elevated Privileges" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkSysPntInstlr" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Turn off Creation of System Restore Points when Installing <Run Name="helpSysPntInstlr" Cursor="Hand" MouseDown="helpSysPntInstlr_MouseDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="2" Padding="3" VerticalAlignment="Center" Header="Registration" HorizontalAlignment="Left" Foreground="{StaticResource HeaderTextForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                <GroupBox.Resources>
-                                    <Style TargetType="{x:Type TextBox}">
-                                        <Setter Property="Margin" Value="3"></Setter>
-                                    </Style>
-                                </GroupBox.Resources>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Image Source="Images/iconProfil.png" Stretch="None" Margin="3"></Image>
-                                    <TextBlock Padding="3" TextWrapping="Wrap" Grid.Column="1">Change the name of User &amp; Company to whom this computer is registered</TextBlock>
-                                    <TextBlock Grid.Row="1" Padding="2,3,2,2">Owner Name:</TextBlock>
-                                    <TextBox Name="txtOwnerName" Grid.Row="1" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                    <TextBlock Grid.Row="2">Company Name:</TextBlock>
-                                    <TextBox Name="txtCompanyName" Grid.Row="2" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                    <TextBlock Grid.Row="3" Padding="2,3,2,2">Product ID:</TextBlock>
-                                    <TextBox Name="txtProductID" Grid.Row="3" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                </Grid>
-                            </GroupBox>
-                        </Grid>
-                        <GroupBox Grid.Column="1" Header="Edit Information" VerticalAlignment="Top" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                            <GroupBox.Resources>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Setter Property="Margin" Value="3"></Setter>
-                                </Style>
-                            </GroupBox.Resources>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Information" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,5,5,8">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Padding="2,3,2,2" TextWrapping="Wrap" Grid.ColumnSpan="2">Specify the Support information that is displayed in Computer's Properties</TextBlock>
-                                        <TextBlock Padding="2,3,2,2" TextWrapping="Wrap" Grid.Row="1">Manufacturer:</TextBlock>
-                                        <TextBox Name="txtManufacturer" Grid.Row="1" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                        <TextBlock Padding="2,3,2,2" TextWrapping="Wrap" Grid.Row="2">Model:</TextBlock>
-                                        <TextBox Name="txtModel" Grid.Row="2" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                        <TextBlock Padding="2,3,2,2" TextWrapping="Wrap" Grid.Row="3">Support Phone:</TextBlock>
-                                        <TextBox Name="txtSupportPh" Grid.Row="3" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                        <TextBlock Padding="2,3,2,2" TextWrapping="Wrap" Grid.Row="4">Support URL:</TextBlock>
-                                        <TextBox Name="txtSupportUrl" Grid.Row="4" Grid.Column="1" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                    </Grid>
-                                </GroupBox>
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <GroupBox Header="Logo" Margin="5,5,5,8">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Padding="2,3,2,2" TextWrapping="Wrap">Specify the Image that will be displayed in Computer's Property</TextBlock>
-                                            <Button Name="btnSelectLogo" Grid.Row="1" Click="btnSelectLogo_Click">Select Logo</Button>
-                                            <Button Name="btnDelLogo" IsEnabled="False" Grid.Row="2" Click="btnDelLogo_Click">Delete Logo</Button>
-                                        </Grid>
-                                    </GroupBox>
-                                    <GroupBox Header="Present Image" Margin="5,5,5,8" Grid.Column="1">
-                                        <Image Name="imgProperty" Stretch="Fill" Margin="3"></Image>
-                                    </GroupBox>
-                                </Grid>
-                                <TextBlock HorizontalAlignment="Right" Grid.Row="2"><Hyperlink Name="lnkCompProp" Click="lnkCompProp_Click">Show Computer's Property</Hyperlink></TextBlock>
-                            </Grid>
-                        </GroupBox>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="EXPLORER" Name="tabExplorer" GotFocus="tabExplorer_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <GroupBox Header="My Computer" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <GroupBox Header="Drive Letter Display">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/drives.JPG" Stretch="None" Margin="3"></Image>
-                                                <TextBlock Padding="2,4,0,0" TextWrapping="Wrap" Text="Specify how the drives are displayed in My Computer."/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Row="1">
-                                                <RadioButton x:Name="rbtnDrvLtrB4Name" Content="Show Drive Letters before name." Click="enableOkANDapplyBtnsBYRadioBtns"></RadioButton>
-                                                <RadioButton x:Name="rbtnDrvLtrAftrName" IsChecked="True" Content="Show Drive Letters after the name." Click="enableOkANDapplyBtnsBYRadioBtns"></RadioButton>
-                                                <RadioButton x:Name="rbtnNoDrvLtr" Content="Don't show Drive Letters." Click="enableOkANDapplyBtnsBYRadioBtns"></RadioButton>
-                                            </StackPanel>
-                                        </Grid>
-                                    </GroupBox>
-                                    <GroupBox x:Name="gbLib" Header="Libraries">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Orientation="Horizontal" Margin="5,5,5,2">
-                                                <Image Source="Images/nav_pane.jpg" Margin="3" Stretch="None"></Image>
-                                                <TextBlock Padding="2,8,2,0" TextWrapping="Wrap" Text="Specify whether &quot;Libraries&quot; are shown in the left Navigation Pane "/>
-                                            </StackPanel>
-                                            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                                                <RadioButton x:Name="rbtnShowLib" IsChecked="True" Content="Show &quot;Libraries&quot; in Navigation Pane" Click="enableOkANDapplyBtnsBYRadioBtns"/>
-                                                <RadioButton x:Name="rbtnHideLib" Content="Hide &quot;Libraries&quot; in Navigation Pane" Click="enableOkANDapplyBtnsBYRadioBtns"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Notification Area" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkNotificationArea" Content="Show the Notification Area" Click="enableMainButtonsByCheckboxes" Checked="toggleBalloonTipChkBox" Unchecked="toggleBalloonTipChkBox" />
-                                    <CheckBox x:Name="chkBalloonTip" Content="Show balloon tips in notification area" Click="enableMainButtonsByCheckboxes" Checked="toggleBalloonTipChkBox" Unchecked="toggleBalloonTipChkBox"/>
-                                    <CheckBox x:Name="chkLowDiskSp" Content="Warn When on Low Disk Space [!]" Click="enableMainButtonsByCheckboxes" Checked="toggleBalloonTipChkBox" Unchecked="toggleBalloonTipChkBox">
-                                        <CheckBox.ToolTip>
-                                            <ToolTip Background="LightYellow" Foreground="Black" HasDropShadow="True" ToolTipService.InitialShowDelay="1"
-                                                 ToolTipService.ShowDuration="5000">
-                                                <Border BorderBrush="White" BorderThickness="2" CornerRadius="2">
-                                                    <Image Source="Images/warningLowSpace.JPG" Stretch="None" Margin="3"></Image>
-                                                </Border>
-                                            </ToolTip>
-                                        </CheckBox.ToolTip>
-                                    </CheckBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </Grid>
-                        <Grid Grid.Column="1" VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <GroupBox Header="Advanced" Foreground="{StaticResource HeaderTextForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkMenuBar" Content="Always Show Menubar" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkHidden" Content="Show Hidden Files and Folders" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkFileExt" Content="Hide extensions for known file types" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkCheckBoxes" Content="Use checkboxes to select items" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkPersistBrowsers" Content="Restore previously opened folders at logon" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkShowSysFiles" Content="Show protected operating system files" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkCompColor" Content="Display compressed &amp; encrypted NTFS  files in color" Click="enableMainButtonsByCheckboxes" />
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Properties" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkSecurityTabs" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Hide &quot;Security&quot; in Folders, Files, Shortcuts, &amp; Drives Properties <Run Name="helpSecurtiyTabs" Cursor="Hand" MouseDown="helpSecurtiyTabs_MouseDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                    <CheckBox x:Name="chkCustTab" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Hide &quot;Customize&quot; in Folders, Files, Shortcuts, &amp; Drives Properties <Run Name="helpCustTab" Cursor="Hand" MouseDown="helpCustTab_MouseDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="2" Header="Etcetra" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkRecycleBin">Add Recycle Bin to My Computer</CheckBox>
-                                    <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkRegeditToCP">Add Registry Editor to Control Panel</CheckBox>                                    
-                                    <Border Margin="3" BorderThickness="2" BorderBrush="{StaticResource HeaderTextForegroundBrush}" CornerRadius="2" Name="gridMetroShortcut">
-                                        <Grid Margin="5">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Right">Create shortcut to Shutdown on Metro Start-Screen in Windows 8</TextBlock>
-                                            <Grid Grid.Row="1">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock TextWrapping="Wrap" Padding="2,3,2,2">with the name</TextBlock>
-                                                <TextBox Name="txtShutdownShortcut" Grid.Column="1" Margin="2">Shutdown</TextBox>
-                                                <Button Grid.Column="2" Name="btnCreateShortcut" Click="btnCreateShortcut_Click">Create</Button>
-                                            </Grid>
-                                        </Grid>
-                                    </Border>
-                                </StackPanel>
-                            </GroupBox>
-                        </Grid>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="DISPLAY" Name="tabDisplay" GotFocus="tabDisplay_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="0.75*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <GroupBox Header="Display Settings" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Image VerticalAlignment="Center" HorizontalAlignment="Center" Width="48" Height="48" Margin="15,3" Stretch="Uniform" Source="Images/cm_weroff.jpg"></Image>
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <CheckBox x:Name="chkWindowAnimation" Content="Enable Windows Animation" Click="enableMainButtonsByCheckboxes" />
-                                        <CheckBox x:Name="chkWinDragContnt" Content="Show windows' content while dragging" Click="enableMainButtonsByCheckboxes" />
-                                        <CheckBox x:Name="chkWinVersion" Content="Show Windows' version on the Desktop (In White Text)" Click="enableMainButtonsByCheckboxes" />
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Window Switcher Customization" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextWrapping="Wrap">Number of icons shown in a single row of ALT + Tab switcher (By Default 7)</TextBlock>
-                                            <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="15" Minimum="1" Value="1" Name="nudAltTabIcons" TextAlignment="Left" ValueChanged="enableButtonsByNUD"></extended:IntegerUpDown>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextWrapping="Wrap">Number of rows shown in ALT + Tab switcher (By Default 3)</TextBlock>
-                                            <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="10" Minimum="2" Value="2" Name="nudAltTabRows" TextAlignment="Left" ValueChanged="enableButtonsByNUD"></extended:IntegerUpDown>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <Image Grid.Column="1" VerticalAlignment="Bottom" Source="Images/monitor_2.ico" Stretch="Uniform" Width="32" Height="32" Margin="0,3,0,0" HorizontalAlignment="Right"></Image>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Grid.Column="1" Header="Selection Color" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}" Padding="15,5,0,2">
-                                <StackPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="Images/selection.jpg" Stretch="None" Width="32" Height="32"></Image>
-                                        <TextBlock Grid.Column="1" Margin="10,2,2,2" TextWrapping="Wrap" Text="Specify the color that will be used for the selection rectangle when selecting files or folders in Explorer"></TextBlock>
-                                    </Grid>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Padding="5,8">Current Color:</TextBlock>
-                                        <Rectangle Cursor="Hand" MouseDown="rectSelectionColor_MouseDown" Name="rectSelectionColor" Width="16" Height="16" Stroke="Black" StrokeThickness="1"></Rectangle>
-                                        <Button Name="btnShowColor" Margin="20,5" Click="btnShowColor_Click">Select Color</Button>
-                                    </StackPanel>
-                                    <Button Name="btnDefSelColor" HorizontalAlignment="Right" Click="btnDefSelColor_Click">Use Default Color</Button>
-                                </StackPanel>
-                            </GroupBox>
-                        </Grid>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="RIGHT-CLICK" Width="90" Name="tabRightClick" GotFocus="tabRightClick_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="General" VerticalAlignment="Center" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <StackPanel>
-                                        <CheckBox Name="chkCopyTo" Click="enableMainButtonsByCheckboxes">Add "Copy to Folder" to Right-Click menu of every File and Folder</CheckBox>
-                                        <CheckBox Name="chkMoveTo" Click="enableMainButtonsByCheckboxes">Add "Move to Folder" to Right-Click menu of every File and Folder</CheckBox>
-                                        <CheckBox Name="chkSendTo" Click="enableMainButtonsByCheckboxes">Add "Send To" to Right-Click menu of every File and Folder</CheckBox>
-                                        <CheckBox Name="chkClip" Click="enableMainButtonsByCheckboxes">
-                                            <TextBlock>Add "Copy All Contents" for Right-Click menu of Text Files(.txt) <Run MouseDown="helpClip_MouseDown" Cursor="Hand"  Name="helpClip">[?]</Run></TextBlock>
-                                        </CheckBox>
-                                        <CheckBox Name="chkEncrNDec" Click="enableMainButtonsByCheckboxes">Add "Encrypt" and "Decrypt" to the Right-Click menu of every File &amp; Folder</CheckBox>
-                                        <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkOpenNotepad">Add  Open with Notepad  to the Right-Click Menu for All Files</CheckBox>
-                                        <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkCPcommand">Add Control Panel to the Desktop Right-Click Menu</CheckBox>
-                                        <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkCmdPromp">Make "Open Command Prompt here" Always Display for Folders &amp; Drives</CheckBox>
-                                        <CheckBox Click="enableMainButtonsByCheckboxes" Name="chkDfrg">Add Defragment to the Right-Click Menu for a Drive</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Name="gbContextProg" Header="Add Custom Programs" Grid.Row="1" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <StackPanel>
-                                        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">Add your favourite applications and websites to Right-Click menu.</TextBlock>
-                                        <Button HorizontalAlignment="Stretch" Name="btnAddRightItem" Click="btnAddRightItem_Click">Add New Item...</Button>
-                                        <Button HorizontalAlignment="Stretch" Name="btnRmvCust" Click="btnRmvCust_Click">Remove Custom Items...</Button>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1" VerticalAlignment="Top">
-                                <GroupBox Header="Send To Menu" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <StackPanel>
-                                        <TextBlock TextWrapping="Wrap">Use this list to customize the items in Send To menu</TextBlock>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <ListBox Margin="5" Name="lstSendTo" ItemTemplate="{StaticResource TileView}" MaxHeight="325" SelectionMode="Extended"></ListBox>
-                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                <Button Name="btnInsrtFoldrSendTo" Click="btnInsrtFoldrSendTo_Click">Add Folder</Button>
-                                                <Button Name="btnInsrtFileSendTo" Click="btnInsrtFileSendTo_Click">Add File</Button>
-                                                <Button Name="btnDelSendTo" Click="btnDelSendTo_Click">Delete Item(s)</Button>
-                                                <TextBlock HorizontalAlignment="Right" Margin="5,30,5,5"><Hyperlink Name="lnkSenToEx" Click="lnkSenToEx_Click">Edit in Explorer</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </Grid>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="PLACES" Name="tabPlaces" GotFocus="tabPlaces_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Set Finder (God Mode)" Name="gbFinder" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/cnt2.ico" Stretch="None" Margin="20,3"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Setting a "Finder" allows you to access all Control Panel settings at a Common place, sorted alphabetically. (God Mode)</TextBlock>
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock TextWrapping="Wrap">Click the "Browse" button to set the Name and Location for this folder.</TextBlock>
-                                            <TextBlock TextWrapping="Wrap" Grid.Row="1">In the dialog select "Make new Folder" and enter the desired name.</TextBlock>
-                                            <TextBlock TextWrapping="Wrap" Grid.Row="2" Foreground="{StaticResource TabItem_TextBrush_Selected}">Please don't select any existing folder, you must create a new folder.</TextBlock>
-                                            <Button Grid.Row="3" HorizontalAlignment="Right" Name="btnBrowse" Click="btnBrowse_Click">Browse For Folder
-                                                <Button.ToolTip>
-                                                    <ToolTip Background="LightYellow" Foreground="Black" HasDropShadow="True" ToolTipService.InitialShowDelay="1"
-                                                 ToolTipService.ShowDuration="5000" Content="Please Create a New Folder or select an Empty Folder">
-                                                    </ToolTip>
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </Grid>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="OpenWith" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <TextBlock HorizontalAlignment="Center"><Run Text="Customize the &quot;Open With&quot; List shown in the right-click Menu"/></TextBlock>
-                                        <Border BorderBrush="White" BorderThickness="2" CornerRadius="2" Margin="5">
-                                            <StackPanel>
-                                                <TextBlock><Run Text="Whenever you click the &quot;Open With&quot; Menu, you see a list of items"/></TextBlock>
-                                                <TextBlock><Run Text="Here you can customize the items that that you see in the list"/></TextBlock>
-                                                <Button x:Name="btnOpenWithCustomize" HorizontalAlignment="Right" Padding="5" Content="Customize Open With" Click="btnOpenWithCustomize_Click"/>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="2" Header="Power Button Action" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_Shutdown_48x48.png" Stretch="None" Margin="20,3"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Select the Action of Power Button on Start Menu</TextBlock>
-                                        </Grid>
-                                        <ComboBox Name="comboBxPwrBtn" HorizontalAlignment="Right" SelectedIndex="0" Padding="27,4,4,4" IsReadOnly="True" UseLayoutRounding="True" MouseLeftButtonDown="enableOkAndApplyBtnsByComboBoxes">
-                                            <ComboBoxItem>Shutdown</ComboBoxItem>
-                                            <ComboBoxItem>Hibernate</ComboBoxItem>
-                                            <ComboBoxItem>Sleep</ComboBoxItem>
-                                            <ComboBoxItem>Restart</ComboBoxItem>
-                                            <ComboBoxItem>Lock</ComboBoxItem>
-                                            <ComboBoxItem>Log Off</ComboBoxItem>
-                                            <ComboBoxItem>Switch User</ComboBoxItem>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1" VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Default Open With" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/def.ico" Stretch="None" Margin="20,3"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Use this option to specify how Windows should handle unknown files or files with no ending(or extension).</TextBlock>
-                                        </Grid>
-                                        <GroupBox Header="Default application for file with unknown extensions" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                            <StackPanel>
-                                                <RadioButton Name="rbtnWidEndOpen" GroupName="WithExtension" Click="enableOkANDapplyBtnsBYRadioBtns">Show "Open With" dialog.</RadioButton>
-                                                <StackPanel Orientation="Horizontal" Margin="0,5">
-                                                    <RadioButton Name="rbtnWidEndApp" VerticalAlignment="Center" GroupName="WithExtension" Click="enableOkANDapplyBtnsBYRadioBtns">Use this as default application:</RadioButton>
-                                                    <TextBox Name="txtWidEndApp" Padding="3" MinWidth="120" MaxWidth="120" VerticalAlignment="Center" TextChanged="enableOkAndApplyBtnBYTextBoxes">notepad.exe "%1"</TextBox>
-                                                    <Button Name="btnWidEndApp" Padding="6,0" Click="btnWidEndApp_Click">...</Button>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <GroupBox Header="Default application for files with no extension" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                            <StackPanel>
-                                                <RadioButton Name="rbtnWidNoEndOpen" GroupName="NoExtension" Click="enableOkANDapplyBtnsBYRadioBtns">Show "Open With" dialog.</RadioButton>
-                                                <StackPanel Orientation="Horizontal" Margin="0,5">
-                                                    <RadioButton Name="rbtnWidNoEndApp" VerticalAlignment="Center" GroupName="NoExtension" Click="enableOkANDapplyBtnsBYRadioBtns">Use this as default application:</RadioButton>
-                                                    <TextBox Name="txtWidNoEndApp" Padding="3" MinWidth="120" MaxWidth="120" VerticalAlignment="Center" TextChanged="enableOkAndApplyBtnBYTextBoxes">notepad.exe "%1"</TextBox>
-                                                    <Button Name="btnWidNoEndApp" Padding="6,0" Click="btnWidNoEndApp_Click">...</Button>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Startup Manager" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/AutoRun.png" Width="32" Height="32" Stretch="Uniform"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Turn programs ,that are executed when Windows starts, on or off and also Add/Remove programs from startup.</TextBlock>
-                                        </Grid>
-                                        <Button HorizontalAlignment="Right" Name="btnStartupMgr" Click="btnStartupMgr_Click">Launch Startup Manager</Button>
-                                    </StackPanel>
-                                </GroupBox>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="advanced" Width="100">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+                                
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="properties" Width="100">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="etc" Width="60">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="SYSTEM" Name="tabSystem" Width="60" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="shutdown configuration" Width="220">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="edit information" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="windows installer" Width="160">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="registration" Width="120">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="TASKS" Name="tabTasks" GotFocus="tabTasks_GotFocus" Width="70">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width=".8*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Schedule Shutdown" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap" HorizontalAlignment="Center">Specify the time after which computer should perform the selected action.</TextBlock>
-                                        <GroupBox Header="Action to Perform">
-                                            <StackPanel Orientation="Horizontal">
-                                                <GroupBox Header="Action">
-                                                    <StackPanel>
-                                                        <ComboBox Name="comboBxShutTym" SelectedIndex="0" Margin="5">
-                                                            <ComboBoxItem>Shutdown</ComboBoxItem>
-                                                            <ComboBoxItem>Restart</ComboBoxItem>
-                                                        </ComboBox>
-                                                        <Button Name="btnSchedule" Click="btnSchedule_Click">Schedule</Button>
-                                                        <Button Name="btnCancelShut" Click="btnCancelShut_Click">Cancel Shutdown</Button>
-                                                    </StackPanel>
-                                                </GroupBox>
-                                                <GroupBox Header="Time">
-                                                    <StackPanel>
-                                                        <StackPanel Orientation="Horizontal" Margin="0">
-                                                            <StackPanel>
-                                                                <TextBlock HorizontalAlignment="Center">Hour</TextBlock>
-                                                                <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="23" Minimum="0" Value="0" Name="nudHour" TextAlignment="Left"></extended:IntegerUpDown>
-                                                            </StackPanel>
-                                                            <StackPanel>
-                                                                <TextBlock HorizontalAlignment="Center">Minutes</TextBlock>
-                                                                <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="59" Minimum="0" Value="0" Name="nudMinutes" TextAlignment="Left"></extended:IntegerUpDown>
-                                                            </StackPanel>
-                                                            <StackPanel>
-                                                                <TextBlock HorizontalAlignment="Center">Seconds</TextBlock>
-                                                                <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="59" Minimum="0" Value="0" Name="nudSeconds" TextAlignment="Left"></extended:IntegerUpDown>
-                                                            </StackPanel>
-                                                        </StackPanel>
-                                                        <DatePicker Name="dtPkrShutdown" SelectedDateFormat="Long" IsTodayHighlighted="True"></DatePicker>
-                                                    </StackPanel>
-                                                </GroupBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Special Hiding" Grid.Row="1" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                    <StackPanel>
-                                        <GroupBox Header="Hide">
-                                            <StackPanel Margin="0">
-                                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">Use this option to hide a file/folder with a System File property. 
-                                            <Run Name="helpSysAttribHow" Cursor="Hand" MouseLeftButtonDown="helpSysAttribHow_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
-                                                    <Button Name="btnLnkFoldrHide" Click="btnLnkFoldrHide_Click">Hide a Folder With System Attribute</Button>
-                                                    <Button Name="btnLnkFileHide" Click="btnLnkFileHide_Click">Hide a File With System Attribute</Button>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <GroupBox Header="Unhide">
-                                            <StackPanel Margin="0">
-                                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center">Use this option to un-hide a file/folder with a System File property. 
-                                            <Run Name="helpHow" Cursor="Hand" MouseLeftButtonDown="helpHow_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
-                                                    <Button Name="btnLnkFoldrUnhide" Click="btnLnkFoldrUnhide_Click">Unhide a Folder With System Attribute</Button>
-                                                    <Button Name="btnLnkFileUnhide" Click="btnLnkFileUnhide_Click">Unhide a File With System Attribute</Button>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Special Folder Names" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}" Grid.Column="1">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/special_folder_name.ico" Stretch="None" Width="24" Height="24"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap">Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
-                                                Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.</TextBlock>
-                                        </Grid>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <TextBlock VerticalAlignment="Center">Set the Folder Name</TextBlock>
-                                            <ComboBox Name="comboBxSpclFoldrNm" SelectedIndex="0">
-                                                <ComboBoxItem>CON</ComboBoxItem>
-                                                <ComboBoxItem>PRN</ComboBoxItem>
-                                                <ComboBoxItem>AUX</ComboBoxItem>
-                                                <ComboBoxItem>NUL</ComboBoxItem>
-                                                <ComboBoxItem>COM1</ComboBoxItem>
-                                                <ComboBoxItem>COM2</ComboBoxItem>
-                                                <ComboBoxItem>COM3</ComboBoxItem>
-                                                <ComboBoxItem>COM4</ComboBoxItem>
-                                                <ComboBoxItem>COM5</ComboBoxItem>
-                                                <ComboBoxItem>COM6</ComboBoxItem>
-                                                <ComboBoxItem>COM7</ComboBoxItem>
-                                                <ComboBoxItem>COM8</ComboBoxItem>
-                                                <ComboBoxItem>COM9</ComboBoxItem>
-                                                <ComboBoxItem>LPT1</ComboBoxItem>
-                                                <ComboBoxItem>LPT2</ComboBoxItem>
-                                                <ComboBoxItem>LPT3</ComboBoxItem>
-                                                <ComboBoxItem>LPT4</ComboBoxItem>
-                                                <ComboBoxItem>LPT5</ComboBoxItem>
-                                                <ComboBoxItem>LPT6</ComboBoxItem>
-                                                <ComboBoxItem>LPT7</ComboBoxItem>
-                                                <ComboBoxItem>LPT8</ComboBoxItem>
-                                                <ComboBoxItem>LPT9</ComboBoxItem>
-                                            </ComboBox>
-                                        </StackPanel>
-                                        <Button Name="btnSpclFoldrNm" HorizontalAlignment="Center" Click="btnSpclFoldrNm_Click">Select the Parent Folder to save the Special Folder</Button>
-                                        <GroupBox Header="Delete Special Folder">
-                                            <StackPanel Margin="0">
-                                                <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TabItem_TextBrush_Selected}">Make sure the Folder is empty before you delete it. If its not empty, then you should manually delete its contents and then use this
-                                                    option to delete the folder permanently.</TextBlock>
-                                                <Button Name="btnSpclFoldrNmDel" HorizontalAlignment="Right" Click="btnSpclFoldrNmDel_Click">Browse &amp; Delete</Button>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="DISPLAY" Name="tabDisplay" Width="70" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="display settings" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="selection color" Width="140">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="alt-tab" Width="80">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="shortcut-arrow" Width="140">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="FEATURES" Name="tabFeatures" GotFocus="tabFeatures_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Autoplay" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Stretch="None" Margin="5" Source="Images/ico_alpha_AutoPlay_32x32.png" Width="32" Height="32"></Image>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock TextWrapping="Wrap">Choose what happens when you insert a CD/DVD or a USB device.</TextBlock>
-                                            <RadioButton Name="rbtnEnableAuto" IsChecked="True" Click="enableOkANDapplyBtnsBYRadioBtns">Use Autoplay for all devices.</RadioButton>
-                                            <RadioButton Name="rbtnEnableCDUsbAuto" Click="enableOkANDapplyBtnsBYRadioBtns">Turn-off Autoplay for CD-ROM and removable devices.</RadioButton>
-                                            <RadioButton Name="rbtnOffAuto" Click="enableOkANDapplyBtnsBYRadioBtns">Turn-off Autoplay for all devices.</RadioButton>
-                                        </StackPanel>
-                                        <GroupBox Header="Other Places" Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Name="btnLnkGpEdt" Click="btnLnkGpEdt_Click">Configure Autoplay via Group Policy Editor</Button>
-                                                <TextBlock  Margin="10,2,5,2" VerticalAlignment="Center" HorizontalAlignment="Right"><Hyperlink Name="lnkGP_AutoHow" Click="lnkGP_AutoHow_Click">How?</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Windows Update" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/yess.ico" Width="32" Height="32" Stretch="None" Name="imgWinUpdate"></Image>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock TextWrapping="Wrap">When your computer is online, Windows automatically checks for available updates. You can configure this behaviour from here.</TextBlock>
-                                                <ComboBox Name="comboBoxWinUpdt" Padding="0,4" Margin="2,3,2,2" SelectedIndex="0" SelectionChanged="comboBoxWinUpdt_SelectionChanged" HorizontalAlignment="Stretch" MouseLeftButtonDown="enableOkAndApplyBtnsByComboBoxes">
-                                                    <ComboBoxItem>Install updates automatically. (Recommended)</ComboBoxItem>
-                                                    <ComboBoxItem>Download Updates but let me choose whether to install them.</ComboBoxItem>
-                                                    <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them.</ComboBoxItem>
-                                                    <ComboBoxItem>Never check for updates. (Not Recommended)</ComboBoxItem>
-                                                </ComboBox>
-                                            </StackPanel>
-                                        </Grid>
-                                        <GroupBox Header="Other Options">
-                                            <StackPanel Margin="0">
-                                                <CheckBox Name="chkUpdateReboot" Click="enableMainButtonsByCheckboxes">Prevent Windows Update from forcibly rebooting Windows</CheckBox>
-                                                <CheckBox Name="chkRecomedUpdts" Click="enableMainButtonsByCheckboxes">
-                                                    <CheckBox.Content>
-                                                        <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
-                                                    </CheckBox.Content>
-                                                </CheckBox>
-                                                <CheckBox Name="chkWinUpdtInstalEle" Click="enableMainButtonsByCheckboxes">Allow all users to install updates to this computer.</CheckBox>
-                                                <CheckBox Name="chkDetailNotify" Click="enableMainButtonsByCheckboxes">                                                    
-                                                    <CheckBox.Content>
-                                                        <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
-                                                    </CheckBox.Content>
-                                                </CheckBox>
-                                                <TextBlock Name="lblWinUpdt" TextWrapping="Wrap" HorizontalAlignment="Right"><Hyperlink Name="lnkWinUpdt" Click="lnkWinUpdt_Click">Configure Windows Update in Control Panel</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Administrator Account" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <TextBlock TextWrapping="Wrap">Windows consists of an inbuilt account named "Administrator" which is deactivated by default. You can activate/deactivate this account
-                                            by using the options below.</TextBlock>
-                                        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center"><Hyperlink Name="lnkActivateAdmin" Click="lnkActivateAdmin_Click">Activate the built in Administrator account. (Not recommended)</Hyperlink></TextBlock>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <GroupBox Header="Note">
-                                                <StackPanel>
-                                                    <TextBlock TextWrapping="Wrap">Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
-                                                    Hence, it is recommended to use this account only to perform special tasks and then de-activate it.</TextBlock>
-                                                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center"><Hyperlink Name="lnkDeactivateAdmin" Click="lnkDeactivateAdmin_Click">De-activate the built in Administrator account.</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                            </GroupBox>
-                                            <Image Source="Images/admin.JPG" Width="32" Height="32" Stretch="None" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="2"></Image>
-                                        </Grid>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="System Beeps" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Margin="3" Source="Images/ico_alpha_Sound_32x32.png" Stretch="None"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Use this option to turn on/off System beeps such as sound produced when using the Volume control or sounds produced by error dialogs etc.</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkBeeps" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Turn off System Beeps</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="2" Header="Windows DVD Burning Feature" Foreground="{StaticResource GroupBoxForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/cd.ico" Stretch="None"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkDVDburn" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Use Windows built in DVD Burner</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="general" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="add items" Width="100">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="send-to menu" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="LOGON" Name="tabLogon" GotFocus="tabLogon_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Automatic Login" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}" Margin="2">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_AutoLogon_32x32.png" Stretch="None"></Image>
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">Use this option to Login Automatically into Windows</TextBlock>
-                                                <CheckBox Name="chkAutoLogin" Click="enableMainButtonsByCheckboxes" Checked="chkAutoLogin_StateChanged" Unchecked="chkAutoLogin_StateChanged">Enable Automatic Login</CheckBox>
-                                            </StackPanel>
-                                        </Grid>                                        
-                                        <GroupBox x:Name="gbAutoLogin" Header="Login Details" IsEnabled="False" Margin="2">
-                                            <Grid Margin="1" Name="gridAutoLogin">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"></RowDefinition>
-                                                    <RowDefinition Height="Auto"></RowDefinition>
-                                                    <RowDefinition Height="Auto"></RowDefinition>
-                                                </Grid.RowDefinitions>
-                                                <TextBlock Padding="2,3,2,2">Username:</TextBlock>
-                                                <TextBox Name="txtAutoUsrNm" Grid.Column="1" Margin="2" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                                <TextBlock Grid.Row="1">Password:</TextBlock>
-                                                <PasswordBox Name="txtAutoPaswrd" Grid.Row="1" Grid.Column="1" Margin="2"></PasswordBox>
-                                                <TextBlock Grid.Row="2" Padding="2,3,2,2">Domain Name:</TextBlock>
-                                                <TextBox Name="txtAutoDomain" Grid.Row="2" Grid.Column="1" Margin="2" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                            </Grid>
-                                        </GroupBox>
-                                        <GroupBox Header="Security Options" Margin="2">
-                                            <StackPanel>
-                                                <CheckBox Name="chkShift" Click="enableMainButtonsByCheckboxes">
-                                                    <TextBlock>Prevent Stopping Automatic Logon by Pressing Shift Key. <Run Name="helpShiftDesc" Cursor="Hand" MouseLeftButtonDown="helpShiftDesc_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                                </CheckBox>
-                                                <CheckBox Name="chkLogOffAuto" Click="enableMainButtonsByCheckboxes">
-                                                    <TextBlock>Logon Automatically after LogOff. <Run Name="helpAutoDesc" Cursor="Hand" MouseLeftButtonDown="helpAutoDesc_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                                </CheckBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Startup Sound" Grid.Row="1" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}" Margin="2">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_Sound_32x32.png" Stretch="None" Width="24" Height="24" Margin="6,0"></Image>
-                                            <TextBlock TextWrapping="Wrap" Grid.Column="1">Specify whether Windows should play sound when starting up.</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkStartupSnd" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Play Sound when Windows Starts Up</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Screensaver Lock" Grid.Row="2" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}" Margin="2">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="Images/screensaver.JPG" Stretch="None" Width="35" Height="33" Margin="6,0"></Image>
-                                        <CheckBox Name="chkScreenSvrPol" HorizontalAlignment="Center" Grid.Column="1" Click="enableMainButtonsByCheckboxes">
-                                            <CheckBox.Content>
-                                                <TextBlock TextWrapping="Wrap">Make Screen Saver password protected,  and prevent users from changing this setting.</TextBlock>
-                                            </CheckBox.Content>
-                                        </CheckBox>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Message" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <CheckBox Name="chkLegalNotice" Margin="5" Click="enableMainButtonsByCheckboxes" Unchecked="ToggleLegalNoticeTextBoxes" Checked="ToggleLegalNoticeTextBoxes">Show a Message Before User Logs on</CheckBox>
-                                            <Image x:Name="imgLogOnMsg" Source="Images/warning.ico" Stretch="None" Margin="30,5,0,10" HorizontalAlignment="Right" Visibility="Hidden" Cursor="Hand" MouseLeftButtonDown="imgLogOnMsg_MouseLeftButtonDown"></Image>
-                                        </StackPanel>
-                                        <Grid Name="gridLegalNotice">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Padding="2,3,2,2">Title:</TextBlock>
-                                            <TextBox Name="txtLogHeader" Grid.Column="1" Margin="2" IsEnabled="False" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                            <TextBlock Padding="2,3,2,2" Grid.Row="1">Content:</TextBlock>
-                                            <TextBox Name="txtContent" Grid.Row="1" Grid.Column="1" Margin="2" IsEnabled="False" TextChanged="enableOkAndApplyBtnBYTextBoxes"></TextBox>
-                                        </Grid>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Require Ctrl+Alt+Del" Grid.Row="1" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_RestartError_16x16.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap">As an Additional Security Measure, you can ask users to press Ctrl+Alt+Del before Logging In.</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkCAD" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Require Users to Press Ctrl+Alt+Delete Before Logon</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Don't Show Last User Name" Grid.Row="2" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_Users_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap">It causes names of the last logged in user to be hidden. Hence, the user also has to type the "Username" to Log In.
-                                                Similar to the Classic Logon.</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkLastUsrName" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Restrict Showing the Last Username</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Header="Shutdown Button on Logon Screen" Grid.Row="3" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/ico_alpha_Shutdown_16x16.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap">You can control whether the Shutdown option is available before logon or not. 
-                                                Thus preventing unauthorised shutdown(if neccessary).</TextBlock>
-                                        </Grid>
-                                        <CheckBox Name="chkShutDwnLogOn" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Show the Shutdown Button on Logon Screen</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="god mode" Width="120">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="open with" Width="110">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="power button" Width="130">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="default opening" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="startup manager" Width="160">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="RESTRICTIONS" Width="95" Name="tabRestrictions" GotFocus="tabRestrictions_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <GroupBox Header="Explorer" Foreground="{StaticResource HeaderTextForegroundBrush}" Background="{StaticResource BlueShadeBackgroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkFile" Content="Disable &quot;File&quot; Menu in Windows Explorer" Foreground="{StaticResource TextForegroundBrush}" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkFolderOp" Content="Disable Folder Options" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkContext" Content="Disable Right-Click Menu" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkAppearance" Content="Hide Appearance Option Under Display Menu" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkScreenSvr" Content="Disable Changes to Screen Saver" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkThumbCache" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Disable Thumbnail Caching <Run Name="helpThumbCache" Cursor="Hand" MouseLeftButtonDown="helpThumbCache_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                    <CheckBox x:Name="chkFlip3D" Content="Disable Flip 3D for the current user (Windows Key+Tab)" Click="enableMainButtonsByCheckboxes" />
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="StartMenu" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkShutdown" Content="Disable Shutdown Option" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkRecentDoc" Content="Hide Recent Documents" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkStartChnge" Content="Disable Changes to Start Menu" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkLogOff" Content="Disable Log Off Option" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkControlPanel" Content="Don't Display Control Panel" Click="enableMainButtonsByCheckboxes" />
-                                </StackPanel>
-                            </GroupBox>
-                        </Grid>
-                        <Grid Grid.Column="1" VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <GroupBox Header="System" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkPrinterDel" Content="Disable Deletion of Printers" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkPrinterAdd" Content="Disable Addition of New Printers" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkWinUpdt" Content="Disable Windows Update" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkVirtMem" Content="Disable Changes to Virtual Memory" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkRegedit" Content="Disable Windows' Registry Editing Tools" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkTaskMgr" Content="Disable Windows Task Manager" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkMyCompProp" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Disable Editing of Settings under Computer's Properties <Run Name="helpCompProp" Cursor="Hand" MouseLeftButtonDown="helpCompProp_MouseLeftButtonDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                    <CheckBox x:Name="chkAdminShare" Click="enableMainButtonsByCheckboxes">
-                                        <CheckBox.Content>
-                                            <TextBlock>Disable administrative shares(eg. C$) <Run Name="helpAdminShare" Cursor="Hand" MouseDown="helpAdminShare_MouseDown">[?]</Run></TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Taskbar" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                <StackPanel>
-                                    <CheckBox x:Name="chkTaskbarAnim" Content="Disable Taskbar Animations" Click="enableMainButtonsByCheckboxes" />
-                                    <CheckBox x:Name="chkTaskIconSize" Content="Show small icons on Taskbar" Click="enableMainButtonsByCheckboxes" />
-                                </StackPanel>
-                            </GroupBox>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="schedule shutdown" Width="180">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="special hiding" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="special folder names" Width="190">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="MAINTENANCE" Width="100" Name="tabMaintenance" GotFocus="tabMaintenance_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Startup Tweaks" HorizontalAlignment="Right" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <GroupBox Header="Boot Defragmentation">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="Images/bootdfrg.png" Stretch="None"></Image>
-                                                    <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">Select if you wish to optimize the order in which the files necessary
-                                                    for the boot process are loaded to speed up booting</TextBlock>
-                                                </Grid>
-                                                <CheckBox Name="chkBootDfrg" HorizontalAlignment="Right" Click="enableMainButtonsByCheckboxes">Enable Boot Defragmentation (Recommended)</CheckBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <GroupBox Header="Last Known Good Configuration">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="Images/lkgd.png" Width="32" Height="32" Stretch="Uniform"></Image>
-                                                    <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">After each successful startup, Windows creates a copy of boot
-                                                    configuration called Last Known Good Configuration.</TextBlock>
-                                                </Grid>
-                                                <CheckBox Name="chkLKGC" HorizontalAlignment="Right" Click="enableMainButtonsByCheckboxes">
-                                                    <CheckBox.Content>
-                                                        <TextBlock TextWrapping="Wrap">Disable Creation of Last Known Good Configuration (Not recommended)</TextBlock>
-                                                    </CheckBox.Content>
-                                                </CheckBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <GroupBox Header="Hard Disk Scan Timeout">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="Images/Ico_alpha_SearchIndex_32x32.png" Stretch="None"></Image>
-                                                    <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">A hard disk scan (chkdsk) is performed if the last shutdown had failed.</TextBlock>
-                                                </Grid>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock HorizontalAlignment="Right">Waiting time for Hard Disk Scan</TextBlock>
-                                                    <extended:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="1" Maximum="600" Minimum="1" Value="10" Name="nudHDScnTym" TextAlignment="Left" ValueChanged="enableButtonsByNUD" ></extended:IntegerUpDown>
-                                                    <TextBlock>seconds</TextBlock>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Error-Reporting" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <CheckBox Name="chkErrDialog" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Don't Show Error Dialog</CheckBox>
-                                            <TextBlock Grid.Column="1" HorizontalAlignment="Right"><Hyperlink Name="lnkErrDlgPic" Click="lnkErrDlgPic_Click">Error Dialog's Image</Hyperlink></TextBlock>
-                                            <Popup Name="popErrorDialog" StaysOpen="False" Placement="Mouse" Width="355" Height="201" PopupAnimation="Scroll" AllowsTransparency="True">
-                                                <Border Background="{StaticResource BorderBackgroundBrush}">
-                                                    <Image Source="Images/err_dlg_pic.JPG" Stretch="Fill" Margin="0"></Image>
-                                                </Border>
-                                            </Popup>
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock TextWrapping="Wrap" VerticalAlignment="Center">Type of Report to be send to Microsoft when Error Occurs</TextBlock>
-                                            <ComboBox Grid.Column="1" Name="comboBoxErrType" HorizontalAlignment="Stretch" SelectedIndex="0" MouseLeftButtonDown="enableOkAndApplyBtnsByComboBoxes">
-                                                <ComboBoxItem>Ask at Sending</ComboBoxItem>
-                                                <ComboBoxItem>Send Basic Data</ComboBoxItem>
-                                                <ComboBoxItem>Send Basic and Additional Data</ComboBoxItem>
-                                                <ComboBoxItem>Never Send any Data</ComboBoxItem>
-                                            </ComboBox>
-                                        </Grid>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                            <Grid VerticalAlignment="Top" Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Memory Tweaks" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <GroupBox Header="Unload Unused DLLs">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="Images/dll.ico" Stretch="None"></Image>
-                                                    <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">After an application is closed, Windows leaves the DLLs 
-                                                    used by the application in the memory. However, this hogs precious amount of memory  resources.</TextBlock>
-                                                </Grid>
-                                                <CheckBox Name="chkUnloadDLL" HorizontalAlignment="Right" Click="enableMainButtonsByCheckboxes">Unload Unused DLL after an application is closed</CheckBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                        <GroupBox Header="Group Policy Update">
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="Images/gpupdate.ico" Stretch="None"></Image>
-                                                    <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">A large portion of startup is taken while updating the
-                                                    Group Policies. Use this option to speed up your startup.</TextBlock>
-                                                </Grid>
-                                                <CheckBox Name="chkGPUpdate" HorizontalAlignment="Right" Click="enableMainButtonsByCheckboxes">Disable Group Policy update during startup</CheckBox>
-                                            </StackPanel>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Auto-Reboot" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource GroupBoxForegroundBrush}">
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="Images/error.ico" Width="32" Height="32"></Image>
-                                            <TextBlock Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center">When Windows crashes due to an application, hardware, or system failure, it automatically restarts. However, if the
-                                            crashing is persistent, then you may want to change this option, to troubleshoot the problem.</TextBlock>
-                                        </Grid>
-                                        <ComboBox HorizontalAlignment="Right" Name="comboBxAutoReboot" IsEditable="False" SelectedIndex="0" MouseLeftButtonDown="enableOkAndApplyBtnsByComboBoxes">
-                                            <ComboBoxItem>Automatically Restart</ComboBoxItem>
-                                            <ComboBoxItem>Show Error Message (Blue Screen)</ComboBoxItem>
-                                        </ComboBox>
-                                        <CheckBox Name="chkRecEvent" HorizontalAlignment="Center" Click="enableMainButtonsByCheckboxes">Record Event in System Log</CheckBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="FEATURES" Name="tabFeatures" Width="80" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="autoplay" Width="100">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="windows update" Width="160">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="administrator account" Width="190">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="system beeps" Width="130">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="windows-dvd burner" Width="190">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
-                <TabItem Header="UTILITIES" Name="tabUtilities" GotFocus="tabUtilities_GotFocus">
-                    <Grid Background="{StaticResource TabPanelBackgroundBrush}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid VerticalAlignment="Top">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="System" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/gpedit.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="gpedit.msc">Group Policy Editor</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/CLSID_16x16.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="dcomcnfg.exe">Component Services</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/devmgmt.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="devmgmt.msc">Device Manager</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/eventvwr.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="eventvwr.msc">Event Viewer</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Users_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="lusrmgr.msc">Local Users &amp; Group</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="services.msc">Windows Services</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/msconfig.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="msconfig.exe">System Configuration Utility</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Name="lnkRemoteShutdown" Click="lnkRemoteShutdown_Click">Remote Shutdown Dialog</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/syskey.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="syskey.exe">Windows System Security Tool</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/compmgmt.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="compmgmt.msc">Computer Management</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/dxdiag.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="dxdiag.exe">Direct X Troubleshooter</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="secpol.msc">Local Security Settings</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_RegistryEditor_24x24.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="regedit.exe">Windows Registry Editor</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="sysedit.exe">System Configuration Editor</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/msinfo32.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="msinfo32.exe">System Information</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock TextWrapping="Wrap"><Hyperlink Click="StartProcess" Tag="command.com">Command.COM</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Disk" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/48-DiskDoctor.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="chkdsk.exe">Start Check Disk Utility</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/dfrgui.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="dfrgui.exe">Disk Defragment</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/ico_alpha_Application_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="diskpart.exe">Disk Partition</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/cleanmgr.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Name="lnkAdDskCln" Click="lnkAdDskCln_Click">Advanced Disk Cleanup</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/cleanmgr.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="cleanmgr.exe">Disk Cleanup</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/diskmgmt.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="diskmgmt.msc">Disk Management</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-                            <Grid VerticalAlignment="Top" Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <GroupBox Header="Network" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/createShareFolder.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="shrpubw.exe">Create Shared Folder</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/remoteDesktop.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="mstsc.exe">Remote Desktop</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/dialer.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Name="lnkPhnDlr" Click="StartProcess" Tag="dialer.exe">Phone Dialer</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/transfer.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="migwiz">Windows Easy Transfer</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/createShareFolder.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="fsmgmt.msc">Shared Folder</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/network.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="rasphone.exe">Remote Access Phonebook</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="Images/network2.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                <TextBlock><Hyperlink Click="StartProcess" Tag="ncpa.cpl">Network Connections</Hyperlink></TextBlock>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox Grid.Row="1" Header="Miscellaneous" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/charmap.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="charmap.exe">Character Map</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/verifier.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="verifier.exe">Driver Verifier Utility</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/iexpress.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="iexpress.exe">Installer Creator Wizard</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/addressBuk.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="wab.exe">Windows Address Book</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="1">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/pchedt.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="eudcedit.exe">Private Character Editor</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/sigVerif.bmp" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="sigverif.exe">File Signature Verification Toolkit</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/regsetngs.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="intl.cpl">Regional Settings</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Source="Images/addressBuk.ico" Stretch="Uniform" Width="16" Height="16"></Image>
-                                                    <TextBlock><Hyperlink Click="StartProcess" Tag="wabmig.exe">Address Book Import Utility</Hyperlink></TextBlock>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Grid>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="1">
-                                            <Image Source="Images/ico_alpha_LiveMsgr_32x32.png" Stretch="Uniform" Width="16" Height="16"></Image>
-                                            <TextBlock><Hyperlink Click="StartProcess" Tag="netplwiz.exe">Advanced User Accounts Control Panel</Hyperlink></TextBlock>
-                                        </StackPanel>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <TabItem Header="LOGON" Name="tabLogon" Width="60" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="automatic login" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="startup sound" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="screensaver lock" Width="150">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="message" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="miscellaneous" Width="130">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="100" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="explorer" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="start menu" Width="120">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="system" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="taskbar" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="memory" Width="90">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="error" Width="70">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="startup settings" Width="140">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="UTILITIES" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}">
+                    <TabControl Margin="10,-10">
+                        <TabItem Header="system" Width="80">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="disk" Width="60">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="network" Width="80">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="miscellaneous" Width="130">
+                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
+
+                            </Border>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
             </TabControl>
         </Grid>
-        <Grid Grid.Row="2" HorizontalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource MenuButtons}" Margin="5,15" Name="btnShowPopup" Click="btnShowPopup_Click">_Options</Button>
-            <Popup Name="popOptions" StaysOpen="False" Placement="Top" MaxWidth="150" PopupAnimation="Slide" AllowsTransparency="True">
-                <Border Background="{StaticResource BorderBackgroundBrush}" CornerRadius="3">
-                    <StackPanel>
-                        <Button Style="{StaticResource MenuButtons}" Click="btnAbout_Click"  Name="btnAbout">About</Button>
-                        <Button Style="{StaticResource MenuButtons}" Name="btnUpdateChk" Click="btnUpdateChk_Click">Check for Updates</Button>
-                        <Button Style="{StaticResource MenuButtons}" Name="btnPassword" Click="btnPassword_Click">Password Protection</Button>
-                    </StackPanel>
-                </Border>
-            </Popup>
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="25,0,0,0"><Hyperlink Name="lnkCreateRestorePoint" Click="StartProcess" Tag="SystemPropertiesProtection.exe">Create a System Restore Point</Hyperlink></TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
-                <Button Style="{StaticResource LargeButtons}" Content="_Save" Name="btnApply" Click="btnApply_Click"/>
-                <Button Style="{StaticResource LargeButtons}" Content="Save &amp; _Exit" Name="btnOk" Click="btnOk_Click"/>
-                <Button Style="{StaticResource LargeButtons}" Content="_Don't Save &amp; Exit" Name="btnExit" Click="btnExit_Click"/>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource LargeButtonTemplate}" Name="btnApply">S_ave</Button>
+                <Button Style="{StaticResource LargeButtonTemplate}" Name="btnOk">_Save &amp; Exit</Button>
+                <Button Style="{StaticResource LargeButtonTemplate}" Name="btnCancel">_Don't Save &amp; Exit</Button>
             </StackPanel>
-        </Grid>        
+        </Grid>
     </Grid>
 </Window>

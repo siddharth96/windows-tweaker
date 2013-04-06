@@ -5,8 +5,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/MetroSkin.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Themes/MetroSkin.xaml"></ResourceDictionary>
+				<ResourceDictionary Source="Themes/AeroSkin.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Themes/WindowDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary>         
     </Application.Resources>
 </Application>

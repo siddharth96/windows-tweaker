@@ -1,2 +1,0 @@
-C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\x86\Debug\Interop.IWshRuntimeLibrary.dll
-C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\x86\Debug\WindowsTweaker.csproj.ResolveComReference.cache

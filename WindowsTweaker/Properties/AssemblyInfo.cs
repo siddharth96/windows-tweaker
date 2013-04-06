@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Windows Tweaker 4.1")]
-[assembly: AssemblyDescription("Tweak Your Windows the Expert's Way")]
+[assembly: AssemblyTitle("Windows Tweaker")]
+[assembly: AssemblyDescription("Tweaker Your Windows the Expert's Way")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Siddharth Srivastava")]
-[assembly: AssemblyProduct("Windows Tweaker 4.1")]
-[assembly: AssemblyCopyright("©  Siddharth Srivastava 2012")]
+[assembly: AssemblyCompany("SuRe Softwares")]
+[assembly: AssemblyProduct("WindowsTweaker")]
+[assembly: AssemblyCopyright("Copyright ©  2012, Siddharth Srivastava")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.1.0.0")]
-[assembly: AssemblyFileVersion("4.1.0.0")]
+[assembly: AssemblyVersion("4.5.0.0")]
+[assembly: AssemblyFileVersion("4.5.0.0")]
