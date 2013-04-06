@@ -1,0 +1,32 @@
+﻿<Window x:Class="WindowsTweaker.MoreInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="MoreInfo"
+        Title="More Information"  Icon="Images/mainIconBig.png" Height="128" Width="457" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Foreground="{StaticResource HeaderTextForegroundBrush}" Background="{StaticResource WindowBackgroundBrush}" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Stretch="None" Source="Images/info.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="3"></Setter>
+                </Style>
+            </Grid.Resources>
+            <TextBlock Padding="2,3,2,2">File Name:</TextBlock>
+            <TextBox Name="txtFileName" Grid.Column="1" IsReadOnlyCaretVisible="True" IsReadOnly="True"></TextBox>
+            <TextBlock Grid.Row="1">File Location:</TextBlock>
+            <TextBox Name="txtFileLocation" Grid.Row="1" Grid.Column="1" IsReadOnly="True" IsReadOnlyCaretVisible="True"></TextBox>
+        </Grid>
+    </Grid>
+</Window>

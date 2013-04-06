@@ -1,0 +1,107 @@
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.csproj.ResolveComReference.cache
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\bin\Release\WindowsTweaker.exe
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\bin\Release\WPFFolderBrowser.dll
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\bin\Release\WPFToolkit.Extended.dll
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\bin\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\About.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\Themes\MetroSkin.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\App.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\About.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\App.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.cache
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.lref
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.g.resources
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.Properties.Resources.resources
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.read.1.tlog
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.write.1.tlog
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.exe
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.baml
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.g.cs
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\Interop.IWshRuntimeLibrary.dll
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.csproj.ResolveComReference.cache
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.exe
+D:\projects\WindowsTweaker\WindowsTweaker\bin\Release\WindowsTweaker.exe
+D:\projects\WindowsTweaker\WindowsTweaker\bin\Release\Interop.IWshRuntimeLibrary.dll
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\ResolveAssemblyReference.cache
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\About.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\Donate.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\Themes\MetroSkin.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\App.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\About.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\Donate.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\App.g.cs
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.cache
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.lref
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.baml
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.g.resources
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.Properties.Resources.resources
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.read.1.tlog
+D:\projects\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.write.1.tlog
+C:\Users\Siddharth\Dropbox\WindowsTweaker\WindowsTweaker\bin\Release\WindowsTweaker.exe.config
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WindowsTweaker.exe.config
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\Interop.IWshRuntimeLibrary.dll
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.csproj.ResolveComReference.cache
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.exe
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WindowsTweaker.exe
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WPFFolderBrowser.dll
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WPFToolkit.Extended.dll
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\Interop.IWshRuntimeLibrary.dll
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\ResolveAssemblyReference.cache
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\About.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\Themes\MetroSkin.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\App.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\ContextMenuShortcutCreator.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\About.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\MoreInformation.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\OpenWith.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\PasswordConfig.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\PasswordPrompt.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\RemoveContextMenuItem.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\StartupManager.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\App.g.cs
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.cache
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker_MarkupCompile.lref
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\MainWindow.baml
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.g.resources
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\WindowsTweaker.Properties.Resources.resources
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.read.1.tlog
+D:\CSharp\WPF New\WindowsTweaker\WindowsTweaker\obj\Release\GenerateResource.write.1.tlog

@@ -1,0 +1,30 @@
+﻿<Window x:Class="WindowsTweaker.OpenWith"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{StaticResource WindowBackgroundBrush}"
+        Title="&quot;Open With&quot; Customization"  Icon="Images/mainIconBig.png" Loaded="Window_Loaded" Height="525" Width="517" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Open With" Margin="5" Background="{StaticResource BlueShadeBackgroundBrush}" Foreground="{StaticResource HeaderTextForegroundBrush}">
+            <StackPanel Margin="0">
+                <ListBox Name="lstOpenWith" Height="354" Width="364">
+                    <ListBox.ItemTemplate>
+                        <HierarchicalDataTemplate>
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}" Foreground="Black" Click="CheckBox_Click"/>
+                        </HierarchicalDataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <DockPanel LastChildFill="True" Margin="5">
+                    <Button Name="btnAdd" Click="btnAdd_Click" DockPanel.Dock="Left" HorizontalAlignment="Left">Add New Item</Button>
+                    <Button Name="btnMoreInfo" Click="btnMoreInfo_Click" DockPanel.Dock="Right" HorizontalAlignment="Right">More Information</Button>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="10">
+            <Button Content="_Save &amp; Close" Name="btnOk" Click="btnOk_Click"/>
+            <Button Content="_Cancel" Name="btnCancel" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
