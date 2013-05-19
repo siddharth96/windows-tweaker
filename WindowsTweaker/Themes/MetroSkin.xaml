@@ -32,6 +32,7 @@
     <SolidColorBrush x:Key="HeaderTextForegroundBrush" Color="#FFF8FFE3"/>
     <SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#FF003543"/>
     <SolidColorBrush x:Key="GreenYellowShadeBackgroundBrush" Color="#B198CC3C"/>
+    <SolidColorBrush x:Key="VectorImageBackground" Color="#FFD2D1D1" />
 
     <SolidColorBrush x:Key="TabItem_TextBrush_Unselected" Color="#FF7A8E8F" />
     <SolidColorBrush x:Key="TabItem_TextBrush_Disabled" Color="Brown" />
@@ -81,9 +82,9 @@
 
     <Style TargetType="{x:Type TabItem}" x:Key="MainTabStyle">
         <Setter Property="Margin" Value="5,0,5,0"></Setter>
-        <Setter Property="FontSize" Value="11"></Setter>
-        <Setter Property="FontWeight" Value="500"></Setter>
-        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="FontWeight" Value="400"></Setter>
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto"></Setter>
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -134,7 +135,7 @@
         <Setter Property="FontSize" Value="18"></Setter>
 		<Setter Property="FontWeight" Value="Light"></Setter>
         <Setter Property="Width" Value="200"></Setter>
-        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto"></Setter>
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -319,13 +320,32 @@
     </Style>
     
     <Style TargetType="{x:Type TextBlock}" x:Key="h1">
-        <Setter Property="FontWeight" Value="Light"></Setter>
-        <Setter Property="FontSize" Value="24"></Setter>
+        <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+        <Setter Property="FontSize" Value="29.333"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
 	
 	<Style TargetType="{x:Type TextBlock}" x:Key="h2">
         <Setter Property="FontWeight" Value="Normal"></Setter>
-        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="FontSize" Value="24"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type RadioButton}" x:Key="rbtnStyle">
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="FontSize" Value="21.333"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
 
+    <Style TargetType="{x:Type CheckBox}" x:Key="chkStyle">
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="FontSize" Value="21.333"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="txtStyle">
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="FontSize" Value="21.333"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
+    </Style>
 </ResourceDictionary>

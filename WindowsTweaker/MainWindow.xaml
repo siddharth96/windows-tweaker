@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Windows Tweaker 4.2"
-    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="980" Height="700" 
+    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="700" 
     ResizeMode="CanResizeWithGrip">
     <Grid x:Name="LayoutRoot" Background="{StaticResource WindowBackgroundBrush}">
         <Grid.RowDefinitions>
@@ -11,18 +11,51 @@
         </Grid.RowDefinitions>
         <Grid>
             <TabControl Name="mainTab" Margin="2,15,2,2">
-                <TabItem Header="EXPLORER" Name="tabExplorer" Width="80" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="my computer" Width="120">
-                            <Border TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            	<Grid>
-                            		<TextBlock HorizontalAlignment="Right" Margin="0,41.52,117.665,0" TextWrapping="Wrap" Text="Drive Letter Display" VerticalAlignment="Top" Style="{DynamicResource h1}"/>
-                            		<TextBlock Height="25.556" Margin="136.223,77.444,311.666,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource h2}"><Run Text="Specify how the drives are displayed in My Computer"/></TextBlock>
-                                    <RadioButton Content="Show the drive letters before the name" Height="24.444" Margin="136.223,119,452.888,0" VerticalAlignment="Top"/>
-                                    <RadioButton Content="Show the drive letters after the name" Height="24.444" Margin="136.223,147.444,452.888,0" VerticalAlignment="Top"/>
-                                    <RadioButton Content="Don't Show the drive letters" Height="24.444" Margin="136.223,175.888,452.888,0" VerticalAlignment="Top"/>
-                                </Grid>
-                            </Border>
+                        <TabItem Header="drive letter display" Width="180">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Name="backgroundGrid" Width="256" Height="256" Visibility="Visible">
+                                            <Ellipse Fill="#FFFFFFFF" Name="Fill" Visibility="Visible" />
+                                        </Grid>
+                                        <Path Data="M25.651199,35.762001C28.2346,35.762001 
+                                              30.330999,37.857056 30.330999,40.4403 30.330999,43.024944 
+                                              28.2346,45.119999 25.651199,45.119999 23.0679,45.119999 
+                                              20.973,43.024944 20.973,40.4403 20.973,37.857056 
+                                              23.0679,35.762001 25.651199,35.762001z 
+                                              M36.692558,3.948L31.354021,21.297945 
+                                              30.946058,21.176605C29.203724,20.681831 
+                                              27.364651,20.417 25.463732,20.417 14.405037,20.417 
+                                              5.4400001,29.381855 5.4400005,40.4403 5.4400001,51.500145 
+                                              14.405037,60.465 25.463732,60.465 36.523624,60.465 
+                                              45.490002,51.500145 45.490002,40.4403 45.490002,33.183197
+                                              41.628506,26.827724 35.847942,23.315868L35.499123,23.109674 
+                                              46.986,10.310022z M0,0L50.526001,0 50.526001,64 0,64z" 
+                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166"
+                                              Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock TextWrapping="Wrap" Style="{StaticResource h1}">
+                                        Specify how the drives are displayed in My Computer
+                                    </TextBlock>
+                                    <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name" 
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                    <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                    <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="advanced" Width="100">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -41,7 +74,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="SYSTEM" Name="tabSystem" Width="60" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="shutdown configuration" Width="220">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -65,7 +98,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="DISPLAY" Name="tabDisplay" Width="70" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="display settings" Width="150">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -156,7 +189,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="FEATURES" Name="tabFeatures" Width="80" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="autoplay" Width="100">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -168,12 +201,12 @@
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="administrator account" Width="190">
+                        <TabItem Header="administrator account" Width="200">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="system beeps" Width="130">
+                        <TabItem Header="system beeps" Width="135">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
@@ -185,7 +218,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="LOGON" Name="tabLogon" Width="60" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="automatic login" Width="150">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -197,24 +230,24 @@
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="screensaver lock" Width="150">
+                        <TabItem Header="screensaver lock" Width="155">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="message" Width="90">
+                        <TabItem Header="message" Width="100">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="130">
+                        <TabItem Header="miscellaneous" Width="140">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="100" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="explorer" Width="90">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -250,7 +283,7 @@
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="startup settings" Width="140">
+                        <TabItem Header="startup settings" Width="150">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
@@ -264,17 +297,17 @@
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="disk" Width="60">
+                        <TabItem Header="disk" Width="65">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="network" Width="80">
+                        <TabItem Header="network" Width="95">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="130">
+                        <TabItem Header="miscellaneous" Width="140">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
 
                             </Border>
