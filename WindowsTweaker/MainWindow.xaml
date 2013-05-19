@@ -22,8 +22,8 @@
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                     <Grid>
-                                        <Grid Name="backgroundGrid" Width="256" Height="256" Visibility="Visible">
-                                            <Ellipse Fill="#FFFFFFFF" Name="Fill" Visibility="Visible" />
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
                                         <Path Data="M25.651199,35.762001C28.2346,35.762001 
                                               30.330999,37.857056 30.330999,40.4403 30.330999,43.024944 
@@ -49,37 +49,225 @@
                                         Specify how the drives are displayed in My Computer
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name" 
-                                                    Style="{StaticResource rbtnStyle}"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterBeforeName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
-                                                    Style="{StaticResource rbtnStyle}"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
-                                                    Style="{StaticResource rbtnStyle}"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter"/>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="advanced" Width="100">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                                
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M34.830002,23.177L50.209,33.786633 46.142063,36.551353 
+                                              51.43,43.729195 48.013557,46.244999 42.632095,38.937447 
+                                              38.731636,41.589001z M2.7487221,16.969C2.481751,16.969,2.263
+                                              ,17.185001,2.2630005,17.453302L2.2630005,51.393597C2.263,
+                                              51.661697,2.481751,51.877998,2.7487221,51.877998L61.414398,
+                                              51.877998C61.681198,51.877998,61.900002,51.661697,61.900002,
+                                              51.393597L61.900002,17.453302C61.900002,17.185001,61.681198,
+                                              16.969,61.414398,16.969z M2.8332348,11.555C2.5637019,11.555,
+                                              2.3429999,11.771081,2.3430004,12.039357L2.3430004,
+                                              14.463643C2.3429999,14.731719,2.5637019,14.948,2.8332348,
+                                              14.948L61.489998,14.948C61.762199,14.948,61.980999,14.731719,
+                                              61.980999,14.463643L61.980999,12.039357C61.980999,11.771081,
+                                              61.762199,11.555,61.489998,11.555z M56.727539,3.151C56.057674,
+                                              3.1509998,55.515999,3.6925464,55.515999,4.3644619L55.515999,
+                                              6.5442982C55.515999,7.2162132,56.057674,7.7579999,56.727539,
+                                              7.7579994L58.504757,7.7579994C59.175426,7.7579999,59.718998,
+                                              7.2162132,59.718998,6.5442982L59.718998,4.3644619C59.718998,
+                                              3.6925464,59.175426,3.1509998,58.504757,3.151z M48.970642,
+                                              3.151C48.300774,3.151,47.758999,3.6925464,47.758999,
+                                              4.3644619L47.758999,6.5442982C47.758999,7.2162137,48.300774,
+                                              7.7579999,48.970642,7.7579994L50.747856,7.7579994C51.417824,
+                                              7.7579999,51.961998,7.2162137,51.961998,6.5442982L51.961998,
+                                              4.3644619C51.961998,3.6925464,51.417824,3.151,50.747856,3.151z 
+                                              M41.212669,3.151C40.542786,3.151,40.000999,3.6925464,40.000999,
+                                              4.3644619L40.000999,6.5442982C40.000999,7.2162137,40.542786,
+                                              7.7579999,41.212669,7.7579994L42.989929,7.7579994C43.660515,
+                                              7.7579999,44.203999,7.2162137,44.203999,6.5442982L44.203999,
+                                              4.3644619C44.203999,3.6925464,43.660515,3.151,42.989929,3.151z
+                                              M2.6660194,0L61.334599,0C62.807301,0,64,1.1926299,64,2.66675L64,
+                                              52.283897C64,53.755096,62.807301,54.947998,61.334599,
+                                              54.947998L2.6660194,54.947998C1.19458,54.947998,0,53.755096,
+                                              0,52.283897L0,2.66675C0,1.1926299,1.19458,0,2.6660194,0z" 
+                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" 
+                                              RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="100, 20, 5, 30">
+                                    <TextBlock TextWrapping="Wrap" Style="{StaticResource h1}">
+                                        Advanced Explorer Tweaks
+                                    </TextBlock>
+                                    <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" 
+                                                    Style="{StaticResource chkStyle}" Name="chkShowMenuBar"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders"
+                                                    Style="{StaticResource chkStyle}" Name="chkShowHiddenFilesFolders"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types"
+                                                    Style="{StaticResource chkStyle}" Name="chkHideExtension"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items"
+                                                    Style="{StaticResource chkStyle}" Name="chkSelectItems"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login"
+                                                    Style="{StaticResource chkStyle}" Name="chkRestoreFoldersAtLogin"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files"
+                                                    Style="{StaticResource chkStyle}" Name="chkShowOSfiles"/>
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Display compressed &amp; encrypted NTFS files in colour"
+                                                    Style="{StaticResource chkStyle}" Name="chkShowNtfsInColor"/>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="properties" Width="100">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M32.440571,26.0842C32.482071,27.51,32.500374,30.050999,
+                                              32.500374,33.709198L32.452271,36.999199C32.452271,37.659401 
+                                              32.562874,38.105698 32.784275,38.330299 33.001678,38.553898 
+                                              33.362385,38.702301 33.861088,38.769699 34.430096,38.842999 
+                                              34.714001,39.007 34.714001,39.259998 34.714001,39.5383 34.489998
+                                              ,39.674999 34.043293,39.674999 33.833691,39.674999 33.457485,
+                                              39.6604 32.930077,39.627197 31.807665,39.556801 30.69825,39.521698 
+                                              29.596737,39.521698 29.05633,39.521698 28.504225,39.549 27.944317,
+                                              39.604698 27.609613,39.6506 27.38051,39.674999 27.258209,39.674999 
+                                              26.809004,39.674999 26.585001,39.5383 26.585001,39.259998 26.585001,
+                                              38.994301 26.876604,38.8391 27.466511,38.7873 28.256821,38.715 
+                                              28.695625,38.455299 28.785528,38.002201 28.880529,37.5471 28.92223,
+                                              36.628098 28.92223,35.241398 28.92223,33.447498 28.896229,31.800999 
+                                              28.838827,30.296099 28.782827,28.7932 28.674826,27.935699 28.525124,
+                                              27.721899 28.370022,27.5061 27.976818,27.363501 27.33231,27.291201 
+                                              26.832304,27.2414 26.585001,27.096899 26.585001,26.8479 26.585001,
+                                              26.603701 26.835003,26.4641 27.34671,26.424L27.672215,26.3869z
+                                              M30.026342,18.715C30.622749,18.715 31.142357,18.931801 31.578461,
+                                              19.358601 32.010765,19.7883 32.223068,20.306801 32.223068,20.916201 
+                                              32.223068,21.518801 32.010765,22.0383 31.578461,22.4709 31.142357,
+                                              22.9055 30.622749,23.117399 30.026342,23.117399 29.411835,23.117399 
+                                              28.892328,22.9055 28.466524,22.4709 28.039417,22.0383 27.821915,
+                                              21.518801 27.821915,20.916201 27.821915,20.306801 28.039417,19.7883 
+                                              28.466524,19.358601 28.892328,18.931801 29.411835,18.715 30.026342,
+                                              18.715z M5.2010002,14.814L5.2010002,43.576 56.098,43.576 56.098,
+                                              14.814z M29.868601,3.8870001C28.0261,3.8870001 26.534,5.3791943 
+                                              26.534,7.2209892 26.534,9.0588846 28.0261,10.553999 29.868601,
+                                              10.553999 31.7085,10.553999 33.202,9.0588846 33.202,7.2209892 
+                                              33.202,5.3791943 31.7085,3.8870001 29.868601,3.8870001z M19.200201,
+                                              3.8870001C17.359056,3.8870001 15.867001,5.3791943 15.867001,7.2209892
+                                              15.867001,9.0588846 17.359056,10.553999 19.200201,10.553999 
+                                              21.041346,10.553999 22.536001,9.0588846 22.536001,7.2209892 
+                                              22.536001,5.3791943 21.041346,3.8870001 19.200201,3.8870001z
+                                              M8.5339956,3.8870001C6.6929898,3.8870001 5.2010002,5.3791947
+                                              5.2010002,7.2209892 5.2010002,9.0588856 6.6929898,10.554 8.5339956,
+                                              10.554 10.374949,10.554 11.867,9.0588856 11.867,7.2209892 11.867,
+                                              5.3791947 10.374949,3.8870001 8.5339956,3.8870001z M0,0L64,0 
+                                              64,48.796001 0,48.796001z" Stretch="Uniform" Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="100, 20, 5, 30">
+                                    <TextBlock TextWrapping="Wrap" Style="{StaticResource h1}">
+                                        Hide options in Property Dialog
+                                    </TextBlock>
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Hide &quot;Security&quot; in Folders, Files, Shortcuts &amp; Drives" 
+                                                    Style="{StaticResource chkStyle}" Name="chkHideSecurity"></CheckBox>
+                                    <CheckBox Margin="30, 20, 5, 5" Content="Hide &quot;Customize&quot; in Folders, Files, Shortcuts &amp; Drives"
+                                                    Style="{StaticResource chkStyle}" Name="chkShowHideCustomize"/>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="libraries" Width="90">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M18.698001,56.938L18.698001,59.728001 31.349,59.728001
+                                              31.349,56.938z M1.8610001,56.938L1.8610001,59.727997 
+                                              11.535001,59.727997 11.535001,56.938z M59.898386,55.058998L45.885002,
+                                              57.419712 46.34852,60.171997 60.362001,57.811481z M52.786489,
+                                              12.724999L38.773001,15.086076 39.236515,17.838997 53.250002,15.477921z
+                                              M1.8610001,10.271L1.8610001,13.061001 11.535001,13.061001 11.535001,10.271z
+                                              M54.079065,9.757L62.307001,61.243523 45.055634,64 36.829,12.513545z
+                                              M0,5.21L13.394,5.21 13.394,64 0,64z M18.698001,4.9379997L18.698001,
+                                              7.7279997 31.349,7.7279997 31.349,4.9379997z M17.023001,0L33.023001,
+                                              0 33.023001,64 17.023001,64z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" Width="166"
+                                              Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock TextWrapping="Wrap" Style="{StaticResource h1}">
+                                        Specify whether &quot;Libraries&quot; are shown in the left Navigation Pane
+                                    </TextBlock>
+                                    <RadioButton Margin="30, 30, 5, 5" Content="Show &quot;Libraries&quot; in Navigation Pane" 
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowLibraries"/>
+                                    <RadioButton Margin="30, 30, 5, 5" Content="Hide &quot;Libraries&quot; in Navigation Pane"
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideLibraries"/>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="etc" Width="60">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF"/>
+                                        </Grid>
+                                        <Path Data="M42.526999,2.0220003L41.231428,50.569268 12.752866,64.890996
+                                              11.295999,5.1781473z M31.717268,0L40.941,1.1314702 9.7095088,4.2877798
+                                              11.166618,64.000001 1.9426451,59.144501 0,2.91272z" 
+                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock TextWrapping="Wrap" Style="{StaticResource h1}">
+                                        Extras
+                                    </TextBlock>
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Recycle Bin to My Computer" 
+                                                    Style="{StaticResource chkStyle}" Name="chkAddRecycleBinToMyComputer"/>
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Registry Editor (Regedit) to Control Panel"
+                                                    Style="{StaticResource chkStyle}" Name="chkAddRegeditToControlPanel"/>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
                 <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="shutdown configuration" Width="220">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            
                         </TabItem>
                         <TabItem Header="edit information" Width="150">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
