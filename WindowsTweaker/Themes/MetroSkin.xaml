@@ -209,11 +209,11 @@
                 </ControlTemplate>                
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="5,2"></Setter>
-        <Setter Property="Padding" Value="5,2"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="Padding" Value="20,5"></Setter>
     </Style>
 
-    <Style x:Key="LargeButtonTemplate" TargetType="{x:Type Button}">
+    <Style x:Key="LargeButton" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -239,93 +239,16 @@
         <Setter Property="Margin" Value="5,2"></Setter>
         <Setter Property="Padding" Value="50,5"></Setter>
     </Style>
-
-    <Style x:Key="LargeButtons" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="Border" BorderBrush="{StaticResource BorderColorBrush}" BorderThickness="2" TextBlock.Foreground="White" 
-                            Background="{StaticResource BorderBackgroundBrush}">
-                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"></ContentPresenter>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#AA1C677F"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="Transparent"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="MistyRose"></Setter>
-                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Margin" Value="5,2"></Setter>
-        <Setter Property="Padding" Value="50,5"></Setter>
-    </Style>
-
-    <!--<Style x:Key="GreenButtons" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="Border" BorderBrush="{StaticResource BorderColorBrushGreen}" BorderThickness="2" TextBlock.Foreground="White" 
-                            Background="{StaticResource BorderBackgroundBrushGreen}">
-                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"></ContentPresenter>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#FF98CC3C"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="Transparent"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="MistyRose"></Setter>
-                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>                
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Margin" Value="5,2"></Setter>
-        <Setter Property="Padding" Value="5,2"></Setter>
-        <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
-    </Style>-->
-    
-    <Style x:Key="MenuButtons" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="Border" TextBlock.Foreground="White" Background="{StaticResource BorderBackgroundBrush}" CornerRadius="3">
-                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"></ContentPresenter>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#AA1C677F"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Background" Value="MistyRose"></Setter>
-                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
     
     <Style TargetType="{x:Type TextBlock}" x:Key="h1">
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
         <Setter Property="FontWeight" Value="ExtraLight"></Setter>
         <Setter Property="FontSize" Value="29.333"></Setter>
         <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
 	
 	<Style TargetType="{x:Type TextBlock}" x:Key="h2">
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
         <Setter Property="FontWeight" Value="Normal"></Setter>
         <Setter Property="FontSize" Value="24"></Setter>
         <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
@@ -344,6 +267,12 @@
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="txtStyle">
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="FontSize" Value="21.333"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBox}" x:Key="txtBoxStyle">
         <Setter Property="FontWeight" Value="Light"></Setter>
         <Setter Property="FontSize" Value="21.333"></Setter>
         <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
