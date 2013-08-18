@@ -266,6 +266,10 @@
         <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
 
+    <Style TargetType="{x:Type CheckBox}" x:Key="smallChkStyle" BasedOn="{StaticResource chkStyle}">
+        <Setter Property="FontSize" Value="18"></Setter>
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}" x:Key="txtStyle">
         <Setter Property="TextWrapping" Value="Wrap"></Setter>
         <Setter Property="FontWeight" Value="Light"></Setter>
@@ -273,11 +277,8 @@
         <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
 
-    <Style TargetType="{x:Type TextBlock}" x:Key="smallTxtStyle">
-        <Setter Property="TextWrapping" Value="Wrap"></Setter>
-        <Setter Property="FontWeight" Value="Light"></Setter>
+    <Style TargetType="{x:Type TextBlock}" x:Key="smallTxtStyle" BasedOn="{StaticResource txtStyle}">
         <Setter Property="FontSize" Value="16"></Setter>
-        <Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
     </Style>
     
     <Style TargetType="{x:Type TextBox}" x:Key="txtBoxStyle">

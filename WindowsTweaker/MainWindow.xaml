@@ -14,8 +14,8 @@
             <TextBlock Style="{StaticResource h1}" Margin="10" HorizontalAlignment="Right">TODO</TextBlock>
         </Grid>
         <Grid Grid.Row="1">
-            <TabControl Name="MainTab" Margin="2,15,2,2">
-                <TabItem Header="EXPLORER" Name="TabExplorer" Width="90" Style="{StaticResource MainTabStyle}">
+            <TabControl Name="mainTab" Margin="2,15,2,2">
+                <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="drive letter display" Width="180">
                             <Grid Margin="10, 50, 0, 10">
@@ -53,11 +53,11 @@
                                         Specify how the drives are displayed in My Computer
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name" 
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterBeforeName"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="RbtnShowDriveLetterBeforeName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="RbtnShowDriveLetterAfterName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="RbtnHideDriveLetter"/>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -116,7 +116,7 @@
                                         Advanced Explorer Tweaks
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" 
-                                                    Style="{StaticResource chkStyle}" Name="chkShowMenuBar"/>
+                                                    Style="{StaticResource chkStyle}" Name="ChkShowMenuBar"/>
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders"
                                                     Style="{StaticResource chkStyle}" Name="chkShowHiddenFilesFolders"/>
                                     <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types"
@@ -1330,134 +1330,445 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="special folder names" Width="190">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                                <Grid Margin="10, 50, 0, 10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                        <ColumnDefinition Width="693"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
-                                         Margin="30, 30, 0, 30">
-                                        <Grid>
-                                            <Grid Width="256" Height="256">
-                                                <Ellipse Fill="#FFFFFFFF" />
-                                            </Grid>
-                                            <Path Data="M5.0495757,10.07682C3.1725551,10.153021 2.8230068,12.597839
-                                                  2.8230066,12.597839 2.8230068,16.523008 8.7099828,16.523008
-                                                  8.7099828,16.523008 8.4649839,11.20778 6.2569927,10.308741 
-                                                  6.2569923,10.308741 5.797151,10.129827 5.3971719,10.06271 
-                                                  5.0495757,10.07682z M59.351009,4.4829893C62.875,4.4829903
-                                                  64,4.4829903 64,4.4829893 64,4.4829903 58.179012,6.1749921
-                                                  56.489002,6.9669828 44.947002,12.366994 43.140964,15.405995
-                                                  41.026947,17.168995 38.911953,18.929998 34.488975,23.168995
-                                                  31.01894,23.824986 30.390949,24.086996 29.730976,24.313986
-                                                  29.041948,24.498999 30.708942,25.631994 31.98995,26.708988
-                                                  32.627949,28.759998L16.274963,28.759998C16.911926,26.709995 
-                                                  18.191959,25.635 19.858951,24.500998 16.317665,23.548643 
-                                                  13.51048,21.527451 12.21156,18.988434L12.205785,18.976435 
-                                                  9.3648185,18.976435C4.703628,19.140436 2.3325316,17.341419
-                                                  2.3325319,17.341419 -3.187693,11.944373 2.8225516,8.183341
-                                                  2.8225516,8.183341 7.8117546,5.8533211 10.182851,10.309361 
-                                                  10.182851,10.30936L11.718241,13.848401 11.817514,13.534282C12.380093,
-                                                  11.937213,13.52288,10.504808,15.075926,9.3559923L33.821983,
-                                                  9.3559923 33.941978,9.439992C34.294945,9.6989946 38.184967,
-                                                  12.356999 44.815956,9.4179888 51.775009,6.3329968 56.927967,
-                                                  4.4829903 59.351009,4.4829893z M24.396009,0C25.760023,
-                                                  -4.8532733E-10 26.863033,1.1040004 26.863033,2.4660015 
-                                                  26.863033,2.9767516 26.70792,3.4513614 26.442102,
-                                                  3.8451118L26.37245,3.9383221 26.487484,4.0003986C27.259998,
-                                                  4.4487557 27.957148,5.1382999 28.541023,6.0094204 30.235025,
-                                                  6.4143319 31.769028,7.063189 33.07103,7.8950062L15.719004,
-                                                  7.8950062C17.023006,7.063189 18.560009,6.4153318 20.256012,
-                                                  6.0094204 20.860701,5.1062446 21.586887,4.397615 22.392754,
-                                                  3.9504375L22.419107,3.9369183 22.350447,3.8451118C22.084379,
-                                                  3.4513614 21.928987,2.9767516 21.928987,2.4660015 21.928987,
-                                                  1.1040004 23.033998,-4.8532733E-10 24.396009,0z" Stretch="Uniform" 
-                                              Fill="{StaticResource VectorImageBackground}" 
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                            </Path>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                        Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                    </Viewbox>
-                                    <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                        <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
-                                        Create Special Folders
-                                        </TextBlock>
-                                        <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
-                                            Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
-                                            Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.
-                                        </TextBlock>
-                                        <StackPanel Orientation="Horizontal">
-                                            <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                              SelectedIndex="0">
-                                                <ComboBoxItem>CON</ComboBoxItem>
-                                                <ComboBoxItem>PRN</ComboBoxItem>
-                                                <ComboBoxItem>AUX</ComboBoxItem>
-                                                <ComboBoxItem>NUL</ComboBoxItem>
-                                                <ComboBoxItem>COM1</ComboBoxItem>
-                                                <ComboBoxItem>COM2</ComboBoxItem>
-                                                <ComboBoxItem>COM3</ComboBoxItem>
-                                                <ComboBoxItem>COM4</ComboBoxItem>
-                                                <ComboBoxItem>COM5</ComboBoxItem>
-                                                <ComboBoxItem>COM6</ComboBoxItem>
-                                                <ComboBoxItem>COM7</ComboBoxItem>
-                                                <ComboBoxItem>COM8</ComboBoxItem>
-                                                <ComboBoxItem>COM9</ComboBoxItem>
-                                                <ComboBoxItem>LPT1</ComboBoxItem>
-                                                <ComboBoxItem>LPT2</ComboBoxItem>
-                                                <ComboBoxItem>LPT3</ComboBoxItem>
-                                                <ComboBoxItem>LPT4</ComboBoxItem>
-                                                <ComboBoxItem>LPT5</ComboBoxItem>
-                                                <ComboBoxItem>LPT6</ComboBoxItem>
-                                                <ComboBoxItem>LPT7</ComboBoxItem>
-                                                <ComboBoxItem>LPT8</ComboBoxItem>
-                                                <ComboBoxItem>LPT9</ComboBoxItem>
-                                            </ComboBox>
-                                            <Button Margin="30, 10, 10, 10" 
-                                                HorizontalAlignment="Left"
-                                                >Select the Parent Folder to save the Special Folder
-                                            </Button>
-                                        </StackPanel>
-                                        
-                                        <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 20, 5, 5">
-                                            Use this option to delete a special folder.
-                                            Make sure the Folder is empty before you delete it.
-                                        </TextBlock>
+                                        <Path Data="M5.0495757,10.07682C3.1725551,10.153021 2.8230068,12.597839
+                                                2.8230066,12.597839 2.8230068,16.523008 8.7099828,16.523008
+                                                8.7099828,16.523008 8.4649839,11.20778 6.2569927,10.308741 
+                                                6.2569923,10.308741 5.797151,10.129827 5.3971719,10.06271 
+                                                5.0495757,10.07682z M59.351009,4.4829893C62.875,4.4829903
+                                                64,4.4829903 64,4.4829893 64,4.4829903 58.179012,6.1749921
+                                                56.489002,6.9669828 44.947002,12.366994 43.140964,15.405995
+                                                41.026947,17.168995 38.911953,18.929998 34.488975,23.168995
+                                                31.01894,23.824986 30.390949,24.086996 29.730976,24.313986
+                                                29.041948,24.498999 30.708942,25.631994 31.98995,26.708988
+                                                32.627949,28.759998L16.274963,28.759998C16.911926,26.709995 
+                                                18.191959,25.635 19.858951,24.500998 16.317665,23.548643 
+                                                13.51048,21.527451 12.21156,18.988434L12.205785,18.976435 
+                                                9.3648185,18.976435C4.703628,19.140436 2.3325316,17.341419
+                                                2.3325319,17.341419 -3.187693,11.944373 2.8225516,8.183341
+                                                2.8225516,8.183341 7.8117546,5.8533211 10.182851,10.309361 
+                                                10.182851,10.30936L11.718241,13.848401 11.817514,13.534282C12.380093,
+                                                11.937213,13.52288,10.504808,15.075926,9.3559923L33.821983,
+                                                9.3559923 33.941978,9.439992C34.294945,9.6989946 38.184967,
+                                                12.356999 44.815956,9.4179888 51.775009,6.3329968 56.927967,
+                                                4.4829903 59.351009,4.4829893z M24.396009,0C25.760023,
+                                                -4.8532733E-10 26.863033,1.1040004 26.863033,2.4660015 
+                                                26.863033,2.9767516 26.70792,3.4513614 26.442102,
+                                                3.8451118L26.37245,3.9383221 26.487484,4.0003986C27.259998,
+                                                4.4487557 27.957148,5.1382999 28.541023,6.0094204 30.235025,
+                                                6.4143319 31.769028,7.063189 33.07103,7.8950062L15.719004,
+                                                7.8950062C17.023006,7.063189 18.560009,6.4153318 20.256012,
+                                                6.0094204 20.860701,5.1062446 21.586887,4.397615 22.392754,
+                                                3.9504375L22.419107,3.9369183 22.350447,3.8451118C22.084379,
+                                                3.4513614 21.928987,2.9767516 21.928987,2.4660015 21.928987,
+                                                1.1040004 23.033998,-4.8532733E-10 24.396009,0z" Stretch="Uniform" 
+                                            Fill="{StaticResource VectorImageBackground}" 
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    Create Special Folders
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                        Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
+                                        Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
+                                            SelectedIndex="0">
+                                            <ComboBoxItem>CON</ComboBoxItem>
+                                            <ComboBoxItem>PRN</ComboBoxItem>
+                                            <ComboBoxItem>AUX</ComboBoxItem>
+                                            <ComboBoxItem>NUL</ComboBoxItem>
+                                            <ComboBoxItem>COM1</ComboBoxItem>
+                                            <ComboBoxItem>COM2</ComboBoxItem>
+                                            <ComboBoxItem>COM3</ComboBoxItem>
+                                            <ComboBoxItem>COM4</ComboBoxItem>
+                                            <ComboBoxItem>COM5</ComboBoxItem>
+                                            <ComboBoxItem>COM6</ComboBoxItem>
+                                            <ComboBoxItem>COM7</ComboBoxItem>
+                                            <ComboBoxItem>COM8</ComboBoxItem>
+                                            <ComboBoxItem>COM9</ComboBoxItem>
+                                            <ComboBoxItem>LPT1</ComboBoxItem>
+                                            <ComboBoxItem>LPT2</ComboBoxItem>
+                                            <ComboBoxItem>LPT3</ComboBoxItem>
+                                            <ComboBoxItem>LPT4</ComboBoxItem>
+                                            <ComboBoxItem>LPT5</ComboBoxItem>
+                                            <ComboBoxItem>LPT6</ComboBoxItem>
+                                            <ComboBoxItem>LPT7</ComboBoxItem>
+                                            <ComboBoxItem>LPT8</ComboBoxItem>
+                                            <ComboBoxItem>LPT9</ComboBoxItem>
+                                        </ComboBox>
                                         <Button Margin="30, 10, 10, 10" 
                                             HorizontalAlignment="Left"
-                                            >Browse &amp; Delete
+                                            >Select the Parent Folder to save the Special Folder
                                         </Button>
                                     </StackPanel>
-                                </Grid>
-                            </Border>
+                                        
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 20, 5, 5">
+                                        Use this option to delete a special folder.
+                                        Make sure the Folder is empty before you delete it.
+                                    </TextBlock>
+                                    <Button Margin="30, 10, 10, 10" 
+                                        HorizontalAlignment="Left"
+                                        >Browse &amp; Delete
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
                 <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}">
                     <TabControl Margin="10,-10">
                         <TabItem Header="autoplay" Width="100">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                        Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M28.142726,22.328131C28.647455,22.311525,29.188263,
+                                              22.477322,29.710634,22.845585L41.771735,29.948748C43.257523,
+                                              30.995686,43.278223,32.740551,41.819834,33.82909L29.951632,
+                                              41.197762C29.130039,41.808384 28.213346,41.790985 27.474952,
+                                              41.344269 26.230263,40.595642 26.191262,38.913979 26.179563,
+                                              37.460724L26.088264,26.318514C26.077864,24.899061 26.024564,
+                                              23.203699 27.284954,22.550674 27.550039,22.413719 27.839889,
+                                              22.338093 28.142726,22.328131z M36.769003,0C36.843402,0.0020751697 
+                                              36.915005,-0.0031738567 36.991705,0.0084228518 52.29283,
+                                              2.4069891 63.997303,15.636045 64.000004,31.613964 63.997303,
+                                              47.588585 52.29283,60.821098 36.991705,63.219402 36.915005,
+                                              63.231201 36.843402,63.226002 36.769003,63.228001L36.769003,
+                                              52.909592C36.885105,52.86729 37.000906,52.825493 37.122005,
+                                              52.796387 46.693748,50.483189 53.799353,41.894577 53.820055,
+                                              31.613964 53.799353,21.333351 46.693748,12.744842 37.122005,
+                                              10.432339 37.000906,10.403739 36.885105,10.362039 36.769003,
+                                              10.319139z M27.228002,0L27.228002,10.321038C27.114601,10.362739 
+                                              26.9988,10.403739 26.8804,10.432339 17.308565,12.744842 10.200539,
+                                              21.333351 10.180939,31.613964 10.200539,41.896675 17.308565,
+                                              50.483185 26.8804,52.796391 26.9988,52.825489 27.114601,52.86599
+                                              27.228002,52.908188L27.228002,63.228001C27.155002,63.226002 
+                                              27.083401,63.231201 27.008,63.219402 11.704445,60.821098 
+                                              0.00390625,47.588585 0,31.613964 0.00390625,15.636044 
+                                              11.704445,2.4069891 27.008,0.0084228518 27.083401,-0.0031738567
+                                              27.155002,0.0020751695 27.228002,0z" Stretch="Uniform" 
+                                            Fill="{StaticResource VectorImageBackground}" 
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                        Choose what happens when you insert a CD/DVD or a USB device.
+                                    </TextBlock>
+                                    <RadioButton Margin="30, 20, 5, 5" IsChecked="True" Content="Use Autoplay for all devices." 
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for CD-ROM and removable devices."
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices."
+                                                    Style="{StaticResource rbtnStyle}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="30, 10, 10, 10" 
+                                            HorizontalAlignment="Left"
+                                            >Configure Autoplay via Group Policy Editor
+                                        </Button>
+                                        <Viewbox>
+                                            <Grid>
+                                                <Grid Width="24" Height="24">
+                                                    <Ellipse Fill="#FFFFFFFF" Name="Fill" />
+                                                </Grid>
+                                                <Path Data="F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48 
+                                                      1346.05,1725.67 1346.05,1725.38 1346.05,1722.41 1346.54,
+                                                      1719.96 1347.52,1718.04 1348.51,1716.12 1350.47,1713.96 
+                                                      1353.43,1711.56 1356.38,1709.16 1358.14,1707.58 1358.72,
+                                                      1706.84 1359.61,1705.66 1360.05,1704.37 1360.05,1702.95
+                                                      1360.05,1700.98 1359.27,1699.29 1357.7,1697.89 1356.12,
+                                                      1696.49 1354,1695.78 1351.34,1695.78 1348.77,1695.78 
+                                                      1346.62,1696.52 1344.89,1697.98 1343.16,1699.44 1341.98,
+                                                      1701.68 1341.33,1704.68L1332.04,1703.53C1332.3,1699.23 
+                                                      1334.13,1695.58 1337.53,1692.58 1340.93,1689.58 1345.38,
+                                                      1688.08 1350.91,1688.08 1356.72,1688.08 1361.34,1689.6 
+                                                      1364.77,1692.63 1368.21,1695.67 1369.92,1699.2 1369.92,
+                                                      1703.24 1369.92,1705.47 1369.29,1707.58 1368.03,1709.58 
+                                                      1366.77,1711.57 1364.08,1714.28 1359.95,1717.71 1357.81,
+                                                      1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08 
+                                                      1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,
+                                                      1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z" 
+                                                      Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
+                                                      Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Grid>
+                                        </Viewbox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="windows update" Width="160">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M14.8104,56.694L49.189301,56.694C50.542198,56.694,51.645,57.796978,
+                                              51.645,59.148552L51.645,61.604 12.356,61.604 12.356,59.148552C12.356,
+                                              59.148552,13.458899,56.694,14.8104,56.694z M57.342102,42.635002C56.361603,
+                                              42.635002 55.566002,43.4319 55.566002,44.415001 55.566002,45.398201 
+                                              56.361603,46.195 57.342102,46.195 58.325203,46.195 59.122002,45.398201
+                                              59.122002,44.415001 59.122002,43.4319 58.325203,42.635002 57.342102,
+                                              42.635002z M32.479156,23.643074C34.766884,25.184752,37.113308,
+                                              26.317535,42.496269,24.475061L39.98064,33.215939C34.700481,
+                                              35.403408,32.162754,34.166325,29.871027,32.611649z M26.233898,
+                                              21.035919C28.2913,21.065912,29.740849,21.848202,31.097641,
+                                              22.768085L28.460812,31.834358C26.167887,30.292881,23.673059,
+                                              29.021898,18.384001,31.210867L20.96213,22.242193 20.99213,
+                                              22.227795C23.133944,21.347057,24.826204,21.015396,26.233898,
+                                              21.035919z M35.513092,13.096323C37.798317,14.640701,40.336044,
+                                              15.863383,45.616001,13.683715L43.016972,22.683588C37.951916,
+                                              24.947756,35.193985,23.679674,32.911461,22.130095z M28.943357,
+                                              10.371052C31.17918,10.335974,32.707821,11.183525,34.139275,
+                                              12.151136L31.535147,21.135309C30.158831,20.207123 28.673115,
+                                              19.336035 26.566292,19.321634 25.176975,19.309835 23.520857,
+                                              19.705629 21.419235,20.572817L24.023363,11.552144C26.005785,
+                                              10.73089,27.601864,10.392097,28.943357,10.371052z M7.4437771,
+                                              5.125C6.0909219,5.125,4.9880004,6.22791,4.9880009,7.5808105L4.9880009,
+                                              37.048199C4.9880004,38.400997,6.0909219,39.503998,7.4437771,
+                                              39.503998L56.556274,39.503998C57.909187,39.503998,59.012001,
+                                              38.400997,59.012001,37.048199L59.012001,7.5808105C59.012001,
+                                              6.22791,57.909187,5.125,56.556274,5.125z M2.4557495,0L61.5443,
+                                              0C62.9011,0,64,1.099,64,2.4558105L64,46.811199C64,48.168098,
+                                              62.9011,49.266998,61.5443,49.266998L40.418465,49.266998 40.452675,
+                                              49.323315C40.641663,49.67128,40.749001,50.070225,40.749001,
+                                              50.494598L40.749001,51.2094C40.749001,52.566299,39.649872,
+                                              53.664001,38.293232,53.664001L25.706869,53.664001C24.350031,
+                                              53.664001,23.250999,52.566299,23.250999,51.2094L23.250999,
+                                              50.494598C23.250999,50.070225,23.358326,49.67128,23.54731,
+                                              49.323315L23.581518,49.266998 2.4557495,49.266998C1.0977499,
+                                              49.266998,0,48.168098,0,46.811199L0,2.4558105C0,1.099,1.0977499,
+                                              0,2.4557495,0z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
+                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                        When your computer is online, Windows automatically checks for available updates.
+                                        You can configure this behaviour from here.
+                                    </TextBlock>
+                                    <ComboBox Margin="30, 5, 5, 5" SelectedIndex="0">
+                                        <ComboBoxItem>Install updates automatically. (Recommended)</ComboBoxItem>
+                                        <ComboBoxItem>Download Updates but let me choose whether to install them.</ComboBoxItem>
+                                        <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them.</ComboBoxItem>
+                                    </ComboBox>
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">Other options</TextBlock>
+                                    <CheckBox Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Prevent Windows Update from forcibly rebooting Windows</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer.</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="administrator account" Width="200">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M42.123207,35.952998C42.123207,35.952998,59.814095,
+                                              40.166618,61.498001,57.012999L0,57.012999C-3.5527137E-15,
+                                              57.012999,5.055995,38.480312,20.221399,36.794204L24.326918,
+                                              54.381586 27.344988,54.356802 30.777908,45.354411 27.573,
+                                              39.798999 33.978001,39.798999 30.907883,45.495424
+                                              34.821835,54.295404 37.174583,54.276085z M30.32205,
+                                              0C39.69651,0 47.298,7.5988789 47.298,16.975199 47.298,
+                                              26.351399 39.69651,33.953 30.32205,33.953 20.946487,
+                                              33.953 13.347,26.351399 13.347,16.975199 13.347,7.5988789
+                                              20.946487,0 30.32205,0z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                        Administrator account
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                        Windows consists of an built-in account named "Administrator" which is deactivated by default. Activate/deactivate this account
+                                            by using the options below.
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                        <Hyperlink>Activate the built in Administrator account. (Not recommended)</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                        Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
+                                                    Hence, it is recommended to use this account only to perform special tasks and then de-activate it.
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                        <Hyperlink>De-activate the built in Administrator account.</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="system beeps" Width="135">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M29.123844,22.643209C25.163626,22.643209 21.950611,
+                                              23.338659 21.950611,24.198021 21.950611,25.057482 25.163626,
+                                              25.752932 29.123844,25.752932 33.084763,25.752932 36.297085,
+                                              25.057482 36.297085,24.198021 36.297085,23.338659 33.084763,
+                                              22.643209 29.123844,22.643209z M30.11795,19.702999C46.749531,
+                                              19.702998 60.236,21.580732 60.236,23.895998 60.236,26.211163 
+                                              46.749531,28.088998 30.11795,28.088997 13.486467,28.088998 0,
+                                              26.211163 0,23.895998 0,21.580732 13.486467,19.702998 30.11795,
+                                              19.702999z M5.5215149,0L29.037769,0 32.235073,10.369793 40.618587,
+                                              0 55.050907,0C58.498814,0.49212074 61.321716,1.5469837 62.878319,
+                                              3.7395802 65.131523,6.9166183 63.750721,10.479092 60.860119,
+                                              12.765469 60.005318,13.442461 58.997513,14.018055 57.846413,
+                                              14.499851 55.153709,15.624939 52.747505,15.900936 49.8978,
+                                              15.880137L41.395889,15.814937 43.729191,5.0130081 49.9519,
+                                              5.0130081 48.473999,12.353972C49.3764,12.455572 50.1362,12.421772
+                                              51.095802,12.380172 52.761806,12.304573 54.359409,12.038976 55.685009,
+                                              10.942486 56.11591,10.585991 56.487011,10.164095 56.797012,
+                                              9.6795902 57.934315,7.906168 58.197914,6.1250563 56.49091,
+                                              4.6171417 55.871811,4.0677071 55.075108,3.7395811 54.100307,
+                                              3.6302719L44.334694,3.7161503 30.160872,19.616998 24.542263,
+                                              3.6641407 23.947363,3.7161503C26.310566,8.0649767 22.738361,
+                                              12.137975 18.978556,14.187254 17.035952,15.247343 14.899749,
+                                              15.835937 12.617246,16.075234L1.8920002,15.937235 4.3202229,
+                                              4.9270687 10.370442,4.9270687 8.9010401,12.270673C9.8118715,
+                                              12.382672 10.723343,12.429572 11.634145,12.359172 12.944046,
+                                              12.257773 14.494148,11.833278 15.62765,11.200483 16.503252,
+                                              10.71079 17.173252,10.075296 17.569153,9.2447147 18.127054,
+                                              8.0728569 18.242155,6.2526255 17.360752,5.210886 16.397751,
+                                              4.072897 14.813849,3.6302719 13.386647,3.6275826L4.7435036,
+                                              3.6171513z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                        Disable Windows DVD Burner
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                        You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.
+                                    </TextBlock>
+                                    <CheckBox Style="{StaticResource chkStyle}" Margin="30, 10, 5, 5">
+                                        Use Windows built in DVD Burner
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="windows-dvd burner" Width="190">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
-                            </Border>
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path Data="M59.38105,18.229C62.181122,20.581835 64,24.063789
+                                              64,27.99745 64,31.93631 62.181122,35.419464 59.38105,
+                                              37.767002L54.713001,33.20713C56.411583,32.059914 57.59837,
+                                              30.203083 57.59837,27.99745 57.59837,25.792915 56.411583,
+                                              23.942587 54.713001,22.796869z M42.314293,0.00052067843C43.800713,
+                                              0.030197223,44.798,1.3274824,44.798,3.6379728L44.798,
+                                              54.833298C44.798,58.358093,42.482304,59.358093,39.648911,
+                                              57.270794L23.067049,44.873703C20.237057,42.778603 17.92186,
+                                              40.904907 17.92186,41.093605 17.92186,41.278603 15.039666,
+                                              40.798107 11.522174,40.798107L6.4003754,40.798107C2.8821335,
+                                              40.798107,0,39.194008,0,35.675709L0,21.598919C0,18.078123,
+                                              2.8821335,15.197925,6.4003754,15.197925L11.522174,
+                                              15.197925C15.039666,15.197925 17.92186,15.626224 17.92186,
+                                              16.136623 17.92186,16.661423 20.237057,15.371024 23.067049,
+                                              13.283826L39.648911,1.0338545C40.62289,0.31723268,41.535694,
+                                              -0.015024295,42.314293,0.00052067843z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        </Path>
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                        Manage system beeps
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                        Use this option to turn on/off System beeps such as sound produced 
+                                        when using the Volume control or sounds produced by error dialogs etc.
+                                    </TextBlock>
+                                    <CheckBox Style="{StaticResource chkStyle}" Margin="30, 10, 5, 5">
+                                        Turn off System Beeps
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
