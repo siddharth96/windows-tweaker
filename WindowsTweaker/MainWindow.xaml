@@ -1331,7 +1331,103 @@
                         </TabItem>
                         <TabItem Header="special folder names" Width="190">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-
+                                <Grid Margin="10, 50, 0, 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                                        <ColumnDefinition Width="693"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                        <Grid>
+                                            <Grid Width="256" Height="256">
+                                                <Ellipse Fill="#FFFFFFFF" />
+                                            </Grid>
+                                            <Path Data="M5.0495757,10.07682C3.1725551,10.153021 2.8230068,12.597839
+                                                  2.8230066,12.597839 2.8230068,16.523008 8.7099828,16.523008
+                                                  8.7099828,16.523008 8.4649839,11.20778 6.2569927,10.308741 
+                                                  6.2569923,10.308741 5.797151,10.129827 5.3971719,10.06271 
+                                                  5.0495757,10.07682z M59.351009,4.4829893C62.875,4.4829903
+                                                  64,4.4829903 64,4.4829893 64,4.4829903 58.179012,6.1749921
+                                                  56.489002,6.9669828 44.947002,12.366994 43.140964,15.405995
+                                                  41.026947,17.168995 38.911953,18.929998 34.488975,23.168995
+                                                  31.01894,23.824986 30.390949,24.086996 29.730976,24.313986
+                                                  29.041948,24.498999 30.708942,25.631994 31.98995,26.708988
+                                                  32.627949,28.759998L16.274963,28.759998C16.911926,26.709995 
+                                                  18.191959,25.635 19.858951,24.500998 16.317665,23.548643 
+                                                  13.51048,21.527451 12.21156,18.988434L12.205785,18.976435 
+                                                  9.3648185,18.976435C4.703628,19.140436 2.3325316,17.341419
+                                                  2.3325319,17.341419 -3.187693,11.944373 2.8225516,8.183341
+                                                  2.8225516,8.183341 7.8117546,5.8533211 10.182851,10.309361 
+                                                  10.182851,10.30936L11.718241,13.848401 11.817514,13.534282C12.380093,
+                                                  11.937213,13.52288,10.504808,15.075926,9.3559923L33.821983,
+                                                  9.3559923 33.941978,9.439992C34.294945,9.6989946 38.184967,
+                                                  12.356999 44.815956,9.4179888 51.775009,6.3329968 56.927967,
+                                                  4.4829903 59.351009,4.4829893z M24.396009,0C25.760023,
+                                                  -4.8532733E-10 26.863033,1.1040004 26.863033,2.4660015 
+                                                  26.863033,2.9767516 26.70792,3.4513614 26.442102,
+                                                  3.8451118L26.37245,3.9383221 26.487484,4.0003986C27.259998,
+                                                  4.4487557 27.957148,5.1382999 28.541023,6.0094204 30.235025,
+                                                  6.4143319 31.769028,7.063189 33.07103,7.8950062L15.719004,
+                                                  7.8950062C17.023006,7.063189 18.560009,6.4153318 20.256012,
+                                                  6.0094204 20.860701,5.1062446 21.586887,4.397615 22.392754,
+                                                  3.9504375L22.419107,3.9369183 22.350447,3.8451118C22.084379,
+                                                  3.4513614 21.928987,2.9767516 21.928987,2.4660015 21.928987,
+                                                  1.1040004 23.033998,-4.8532733E-10 24.396009,0z" Stretch="Uniform" 
+                                              Fill="{StaticResource VectorImageBackground}" 
+                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                            </Path>
+                                        </Grid>
+                                    </Viewbox>
+                                    <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                        <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                        Create Special Folders
+                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                            Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
+                                            Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.
+                                        </TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
+                                              SelectedIndex="0">
+                                                <ComboBoxItem>CON</ComboBoxItem>
+                                                <ComboBoxItem>PRN</ComboBoxItem>
+                                                <ComboBoxItem>AUX</ComboBoxItem>
+                                                <ComboBoxItem>NUL</ComboBoxItem>
+                                                <ComboBoxItem>COM1</ComboBoxItem>
+                                                <ComboBoxItem>COM2</ComboBoxItem>
+                                                <ComboBoxItem>COM3</ComboBoxItem>
+                                                <ComboBoxItem>COM4</ComboBoxItem>
+                                                <ComboBoxItem>COM5</ComboBoxItem>
+                                                <ComboBoxItem>COM6</ComboBoxItem>
+                                                <ComboBoxItem>COM7</ComboBoxItem>
+                                                <ComboBoxItem>COM8</ComboBoxItem>
+                                                <ComboBoxItem>COM9</ComboBoxItem>
+                                                <ComboBoxItem>LPT1</ComboBoxItem>
+                                                <ComboBoxItem>LPT2</ComboBoxItem>
+                                                <ComboBoxItem>LPT3</ComboBoxItem>
+                                                <ComboBoxItem>LPT4</ComboBoxItem>
+                                                <ComboBoxItem>LPT5</ComboBoxItem>
+                                                <ComboBoxItem>LPT6</ComboBoxItem>
+                                                <ComboBoxItem>LPT7</ComboBoxItem>
+                                                <ComboBoxItem>LPT8</ComboBoxItem>
+                                                <ComboBoxItem>LPT9</ComboBoxItem>
+                                            </ComboBox>
+                                            <Button Margin="30, 10, 10, 10" 
+                                                HorizontalAlignment="Left"
+                                                >Select the Parent Folder to save the Special Folder
+                                            </Button>
+                                        </StackPanel>
+                                        
+                                        <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 20, 5, 5">
+                                            Use this option to delete a special folder.
+                                            Make sure the Folder is empty before you delete it.
+                                        </TextBlock>
+                                        <Button Margin="30, 10, 10, 10" 
+                                            HorizontalAlignment="Left"
+                                            >Browse &amp; Delete
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
                             </Border>
                         </TabItem>
                     </TabControl>
