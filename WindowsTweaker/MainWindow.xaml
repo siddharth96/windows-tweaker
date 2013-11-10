@@ -15,7 +15,8 @@
         </Grid>
         <Grid Grid.Row="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
-                <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
+                         Tag="explorer" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="drive letter display" Width="180">
                             <Grid Margin="10, 50, 0, 10">
@@ -53,11 +54,11 @@
                                         Specify how the drives are displayed in My Computer
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name" 
-                                                    Style="{StaticResource rbtnStyle}" Name="RbtnShowDriveLetterBeforeName"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterBeforeName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
-                                                    Style="{StaticResource rbtnStyle}" Name="RbtnShowDriveLetterAfterName"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName"/>
                                     <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
-                                                    Style="{StaticResource rbtnStyle}" Name="RbtnHideDriveLetter"/>
+                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter"/>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -116,7 +117,7 @@
                                         Advanced Explorer Tweaks
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" 
-                                                    Style="{StaticResource chkStyle}" Name="ChkShowMenuBar"/>
+                                                    Style="{StaticResource chkStyle}" Name="chkShowMenuBar"/>
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders"
                                                     Style="{StaticResource chkStyle}" Name="chkShowHiddenFilesFolders"/>
                                     <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types"
@@ -197,7 +198,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="libraries" Width="90">
+                        <TabItem Header="libraries" Width="90" Name="tabItemLibrary">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -268,7 +269,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}"
+                         Tag="system" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="shutdown configuration" Width="220">
                             <Grid Margin="10, 50, 0, 10">
@@ -643,7 +645,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}"
+                         Tag="display" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="display settings" Width="150">
                             <Grid Margin="10, 50, 0, 10">
@@ -797,7 +800,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
+                         Tag="rightclick" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="general" Width="90">
                             <Grid Margin="10, 20, 0, 10">
@@ -910,7 +914,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
+                         Tag="places" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="god mode" Width="120">
                             <Grid Margin="10, 50, 0, 10">
@@ -1177,7 +1182,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
+                         Tag="tasks" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="schedule shutdown" Width="180">
                             <Grid Margin="10, 50, 0, 10">
@@ -1430,7 +1436,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
+                         Tag="features" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="autoplay" Width="100">
                             <Grid Margin="10, 50, 0, 10">
@@ -1772,7 +1779,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
+                         Tag="logon" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="automatic login" Width="150">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -1801,7 +1809,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}"
+                         Tag="restrictions" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="explorer" Width="90">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -1825,7 +1834,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}"
+                         Tag="maintenance" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="memory" Width="90">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
@@ -1844,7 +1854,8 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="UTILITIES" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}">
+                <TabItem Header="UTILITIES" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}"
+                         Tag="utilities" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="system" Width="80">
                             <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
