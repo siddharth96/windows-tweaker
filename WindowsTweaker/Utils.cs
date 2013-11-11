@@ -10,6 +10,6 @@ namespace WindowsTweaker
     {
         public static Func<int?, bool> ToBoolean = (int? val) => !(val == 0 || val == null);
 
-        public static Func<bool, int> ToInteger = (bool val) => val ? 1 : 0;
+        public static Func<bool?, int> ToInteger = (bool? val) => val == true ? 1 : 0;
     }
 }
