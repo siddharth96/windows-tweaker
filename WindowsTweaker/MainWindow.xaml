@@ -627,9 +627,10 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel>
-                                            <Button Content="Select Logo" Style="{StaticResource LargeButton}"></Button>
+                                            <Button Content="Select Logo" Style="{StaticResource LargeButton}"
+                                                    Name="btnSelectLogo"></Button>
                                             <Button Content="Delete Logo" Style="{StaticResource LargeButton}" 
-                                                    IsEnabled="False"></Button>
+                                                    Name="btnDeleteLogo" IsEnabled="False"></Button>
                                         </StackPanel>
                                         <Grid Grid.Column="1">
                                             <Grid.RowDefinitions>

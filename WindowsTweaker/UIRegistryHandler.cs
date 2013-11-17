@@ -17,7 +17,7 @@ namespace WindowsTweaker {
         /// <param name="valueName"></param>
         public static void SetUICheckBoxFromRegistryValue(CheckBox chk, RegistryKey registryKey, String valueName) {
             int? val = (int?)registryKey.GetValue(valueName);
-            chk.IsChecked = Utils.ToBoolean(val);
+            chk.IsChecked = Utils.IntToBool(val);
         }
 
         /// <summary>
@@ -33,8 +33,6 @@ namespace WindowsTweaker {
                 chk.IsChecked = true;
                 key.Close();
             }
-            
-            
         }
 
         /// <summary>
@@ -88,8 +86,35 @@ namespace WindowsTweaker {
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         public static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, String keyName) {
-            int intVal = Utils.ToInteger(val);
+            int intVal = Utils.BoolToInt(val);
             registryKey.SetValue(keyName, intVal);
+        }
+
+        /// <summary>
+        /// Updates the text of the <paramref name="txt"/> if the <paramref name="valueName"/> 
+        /// has a some text for the passed in <paramref name="registryKey"/>
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <param name="registryKey"></param>
+        /// <param name="valueName"></param>
+        public static void SetUITextBoxFromRegistryValue(TextBox txt, RegistryKey registryKey, String valueName) {
+            String val = (String)registryKey.GetValue(valueName);
+            if (val != null) {
+                val = val.Trim();
+                txt.Text = val;
+            }
+        }
+
+        /// <summary>
+        /// Updates the value of <paramref name="valueName"/> 
+        /// in <paramref name="registryKey"/> from the text present in <paramref name="txt"/>
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <param name="registryKey"></param>
+        /// <param name="valueName"></param>
+        public static void SetRegistryValueFromUITextBox(TextBox txt, RegistryKey registryKey, String valueName) {
+            String txtVal = txt.Text.Trim();
+            registryKey.SetValue(valueName, txtVal);
         }
     }
 }
