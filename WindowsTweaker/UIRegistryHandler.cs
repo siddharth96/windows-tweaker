@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows.Controls;
-using Microsoft.Win32;
 
 namespace WindowsTweaker {
-    static class UIRegistryHandler {
+
+    internal static class UIRegistryHandler {
+
         /// <summary>
-        /// Updates the checked state of the <paramref name="chk"/> if the <paramref name="valueName"/> 
+        /// Updates the checked state of the <paramref name="chk"/> if the <paramref name="valueName"/>
         /// evaluates to true (i.e., 1) for the passed in <paramref name="registryKey"/>
         /// </summary>
         /// <param name="chk"></param>
@@ -21,8 +19,8 @@ namespace WindowsTweaker {
         }
 
         /// <summary>
-        /// Updates the checked state of the <paramref name="chk"/> if the 
-        /// <paramref name="registryKey"/> has <paramref name="keyName"/> as sub-key 
+        /// Updates the checked state of the <paramref name="chk"/> if the
+        /// <paramref name="registryKey"/> has <paramref name="keyName"/> as sub-key
         /// </summary>
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
@@ -91,7 +89,7 @@ namespace WindowsTweaker {
         }
 
         /// <summary>
-        /// Updates the text of the <paramref name="txt"/> if the <paramref name="valueName"/> 
+        /// Updates the text of the <paramref name="txt"/> if the <paramref name="valueName"/>
         /// has a some text for the passed in <paramref name="registryKey"/>
         /// </summary>
         /// <param name="txt"></param>
@@ -106,7 +104,7 @@ namespace WindowsTweaker {
         }
 
         /// <summary>
-        /// Updates the value of <paramref name="valueName"/> 
+        /// Updates the value of <paramref name="valueName"/>
         /// in <paramref name="registryKey"/> from the text present in <paramref name="txt"/>
         /// </summary>
         /// <param name="txt"></param>

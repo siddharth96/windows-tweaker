@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
 
 namespace WindowsTweaker {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
         public MainWindow() {
             InitializeComponent();
         }
@@ -26,6 +19,7 @@ namespace WindowsTweaker {
         private readonly RegistryKey HKLM = Registry.LocalMachine;
         private readonly RegistryKey HKCR = Registry.ClassesRoot;
         private readonly WindowsVer.Windows windowsOS = WindowsVer.Instance.GetName();
+        public readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
 
         private void OnTabClicked(object sender, RoutedEventArgs e) {
             String tagVal = ((TabItem)sender).Tag.ToString();
@@ -33,31 +27,40 @@ namespace WindowsTweaker {
                 case Constants.EXPLORER:
                     LoadExplorerTab();
                     break;
+
                 case Constants.SYSTEM:
                     break;
+
                 case Constants.DISPLAY:
                     break;
+
                 case Constants.RIGHT_CLICK:
                     break;
+
                 case Constants.PLACES:
                     break;
+
                 case Constants.TASKS:
                     break;
+
                 case Constants.FEATURES:
                     break;
+
                 case Constants.LOGON:
                     break;
+
                 case Constants.RESTRICTIONS:
                     break;
+
                 case Constants.MAINTENANCE:
                     break;
+
                 case Constants.UTILITIES:
                     break;
             }
         }
 
         private void LoadExplorerTab() {
-
             //Drive Letters
             using (RegistryKey hkcuCvExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
                 int showDriveLetterVal = (int)hkcuCvExplorer.GetValue(Constants.SHOW_DRIVE_LETTERS, 0);
@@ -65,12 +68,15 @@ namespace WindowsTweaker {
                     case 0:
                         rbtnShowDriveLetterAfterName.IsChecked = true;
                         break;
+
                     case 2:
                         rbtnHideDriveLetter.IsChecked = true;
                         break;
+
                     case 4:
                         rbtnShowDriveLetterBeforeName.IsChecked = true;
                         break;
+
                     default:
                         rbtnShowDriveLetterAfterName.IsChecked = true;
                         break;
@@ -96,7 +102,6 @@ namespace WindowsTweaker {
             }
 
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
-
                 // Libraries
                 if (windowsOS > WindowsVer.Windows.XP) {
                     RegistryKey key = hklmNamespace.OpenSubKey(Constants.LIBRARY);
@@ -108,7 +113,6 @@ namespace WindowsTweaker {
                 } else {
                     tabItemLibrary.Visibility = Visibility.Collapsed;
                 }
-
             }
 
             // Etc
@@ -166,7 +170,6 @@ namespace WindowsTweaker {
             }
 
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
-
                 // Libraries
                 if (windowsOS > WindowsVer.Windows.XP) {
                     RegistryKey key = hklmNamespace.OpenSubKey(Constants.LIBRARY, true);
@@ -223,7 +226,6 @@ namespace WindowsTweaker {
                     if (rbtnShutdownImmediately.IsChecked != true)
                         rbtnShutdownAfterWaiting.IsChecked = true;
                 }
-
             }
 
             using (RegistryKey hklmWinInstaller = HKLM.CreateSubKey(@"Software\Policies\Microsoft\Windows\Installer")) {
@@ -261,8 +263,7 @@ namespace WindowsTweaker {
         }
 
         private void UpdateRegistryFromSystem() {
-
-            //Shutdown Configuration            
+            //Shutdown Configuration
             if (rbtnShutdownImmediately.Visibility == Visibility.Visible) {
                 using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
                     String val = Utils.BoolToString(rbtnShutdownImmediately.IsChecked);
@@ -313,12 +314,9 @@ namespace WindowsTweaker {
                 UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportPhone, hklmOEM, Constants.SUPPORT_PHONE);
                 UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportUrl, hklmOEM, Constants.SUPPORT_URL);
             }
-
-
         }
 
         private void LoadDisplayTab() {
-
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
                 String val = (String)hkcuWinMet.GetValue(Constants.MIN_ANIMATE);
@@ -343,7 +341,7 @@ namespace WindowsTweaker {
                 if (rgb.Length == 3) {
                     selectionColor = Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2]));
                 } else {
-                    selectionColor = Constants.DEFAULT_SELECTION_COLOR;
+                    selectionColor = DEFAULT_SELECTION_COLOR;
                 }
                 rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
             }

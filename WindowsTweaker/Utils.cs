@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using System;
 
-namespace WindowsTweaker
-{
-    static class Utils
-    {
+namespace WindowsTweaker {
+
+    internal static class Utils {
         public static Func<int?, bool> IntToBool = (int? val) => !(val == 0 || val == null);
 
         public static Func<bool?, int> BoolToInt = (bool? val) => val == true ? 1 : 0;
@@ -22,7 +17,6 @@ namespace WindowsTweaker
             try {
                 regKey.DeleteValue(keyName);
             } catch (ArgumentException) {
-
             }
         }
     }
