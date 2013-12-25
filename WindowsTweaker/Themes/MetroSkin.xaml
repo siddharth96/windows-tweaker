@@ -1,293 +1,301 @@
 ﻿<ResourceDictionary
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<!-- Resource dictionary entries should be defined here. -->
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Resource dictionary entries should be defined here. -->
 
-	<SolidColorBrush x:Key="TitleBarBrush" Color="#FFF0F0F0"></SolidColorBrush>
+    <SolidColorBrush x:Key="TitleBarBrush" Color="#FFF0F0F0" />
 
-	<LinearGradientBrush x:Key="TabItem_TextBrush_Selected" EndPoint="0,1" StartPoint="0,0">
-		<GradientStop Color="#FF498EC5" Offset="0.0"></GradientStop>
-		<GradientStop Color="#FF325C86" Offset="1"></GradientStop>
-	</LinearGradientBrush>
+    <LinearGradientBrush x:Key="TabItem_TextBrush_Selected" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FF498EC5" Offset="0.0" />
+        <GradientStop Color="#FF325C86" Offset="1" />
+    </LinearGradientBrush>
 
-	<LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
-		<GradientStop Color="#FF498EC5" Offset="0.004"></GradientStop>
-		<GradientStop Color="#FF325C86" Offset="0.895"></GradientStop>
-	</LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FF498EC5" Offset="0.004" />
+        <GradientStop Color="#FF325C86" Offset="0.895" />
+    </LinearGradientBrush>
 
-	<LinearGradientBrush x:Key="ButtonBackgroundBrush_Hover" EndPoint="0,1" StartPoint="0,0">
-		<GradientStop Color="#88498EC5" Offset="0.0"></GradientStop>
-		<GradientStop Color="#88498EC5" Offset="0.895"></GradientStop>
-	</LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush_Hover" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#88498EC5" Offset="0.0" />
+        <GradientStop Color="#88498EC5" Offset="0.895" />
+    </LinearGradientBrush>
 
-	<SolidColorBrush x:Key="ButtonBackgroundBrush_Press" Color="#FF325C86"></SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonBackgroundBrush_Press" Color="#FF325C86" />
 
-	<LinearGradientBrush x:Key="WindowBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
-		<GradientStop Color="#FFF0F0F0" Offset="0.2" />
-		<GradientStop Color="#FFD2D1D1" Offset="0.5" />
-	</LinearGradientBrush>
-	<SolidColorBrush x:Key="TabPanelBackgroundBrush" Color="#5A4EBEEC" />
-	<SolidColorBrush x:Key="GroupBoxForegroundBrush" Color="White" />
-	<SolidColorBrush x:Key="TextForegroundBrush" Color="#FFF3FFFF" />
-	<SolidColorBrush x:Key="HeaderTextForegroundBrush" Color="#FFF8FFE3" />
-	<SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#FF003543" />
-	<SolidColorBrush x:Key="GreenYellowShadeBackgroundBrush" Color="#B198CC3C" />
-	<SolidColorBrush x:Key="VectorImageBackground" Color="#FFD2D1D1" />
+    <LinearGradientBrush x:Key="WindowBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FFF0F0F0" Offset="0.2" />
+        <GradientStop Color="#FFD2D1D1" Offset="0.5" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TabPanelBackgroundBrush" Color="#5A4EBEEC" />
+    <SolidColorBrush x:Key="GroupBoxForegroundBrush" Color="White" />
+    <SolidColorBrush x:Key="TextForegroundBrush" Color="#FFF3FFFF" />
+    <SolidColorBrush x:Key="HeaderTextForegroundBrush" Color="#FFF8FFE3" />
+    <SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#FF003543" />
+    <SolidColorBrush x:Key="GreenYellowShadeBackgroundBrush" Color="#B198CC3C" />
+    <SolidColorBrush x:Key="VectorImageBackground" Color="#FFD2D1D1" />
 
-	<SolidColorBrush x:Key="TabItem_TextBrush_Unselected" Color="#FF7A8E8F" />
-	<SolidColorBrush x:Key="TabItem_TextBrush_Disabled" Color="Brown" />
-	<SolidColorBrush x:Key="TabItem_TextBrush_Hover" Color="#887A8E8F" />
-	<SolidColorBrush x:Key="Dark_Selected_Brush" Color="#FF070908"></SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemTextBrushUnselected" Color="#FF7A8E8F" />
+    <SolidColorBrush x:Key="TabItemTextBrushDisabled" Color="Brown" />
+    <SolidColorBrush x:Key="TabItemTextBrushHover" Color="#887A8E8F" />
+    <SolidColorBrush x:Key="DarkSelectedBrush" Color="#FF070908" />
 
-	<Style TargetType="{x:Type Image}">
-		<Setter Property="UseLayoutRounding" Value="True"></Setter>
-		<Setter Property="SnapsToDevicePixels" Value="True"></Setter>
-		<Setter Property="Margin" Value="6,2"></Setter>
-	</Style>
-	<Style TargetType="{x:Type Hyperlink}">
-		<Setter Property="Foreground" Value="LightSteelBlue"></Setter>
-	</Style>
+    <Style TargetType="{x:Type Image}">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Margin" Value="6,2" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}">
+        <Setter Property="Foreground" Value="LightSteelBlue" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBlock}">
-		<Setter Property="Margin" Value="5,2"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="5,2" />
+    </Style>
 
-	<Style TargetType="{x:Type StackPanel}">
-		<Setter Property="Margin" Value="3"></Setter>
-	</Style>
+    <Style TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="3" />
+    </Style>
 
-	<Style TargetType="{x:Type ComboBox}">
-		<Setter Property="Padding" Value="6,4"></Setter>
-	</Style>
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Padding" Value="6,4" />
+    </Style>
 
-	<Style TargetType="{x:Type TabControl}">
-		<Setter Property="SnapsToDevicePixels" Value="true" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="TabControl">
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="*" />
-						</Grid.RowDefinitions>
-						<TabPanel IsItemsHost="True" />
-						<ContentPresenter ContentSource="SelectedContent" Margin="5,10,5,0" Grid.Row="1" />
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TabPanel IsItemsHost="True" />
+                        <ContentPresenter ContentSource="SelectedContent" Margin="5,10,5,0" Grid.Row="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type TabItem}" x:Key="MainTabStyle">
-		<Setter Property="Margin" Value="5,0,5,0"></Setter>
-		<Setter Property="FontSize" Value="13"></Setter>
-		<Setter Property="FontWeight" Value="400"></Setter>
-		<Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto"></Setter>
-		<Setter Property="TextOptions.TextFormattingMode" Value="Ideal"></Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type TabItem}">
-					<Grid Height="35" VerticalAlignment="Bottom">
-						<ContentPresenter x:Name="ContentSite"
-										  VerticalAlignment="Center"
-										  HorizontalAlignment="Center"
-										  ContentSource="Header"
-										  Margin="0"
-										  RecognizesAccessKey="True" />
-					</Grid>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsSelected" Value="False">
-							<Setter Property="Panel.ZIndex" Value="90" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Unselected}" />
-						</Trigger>
+    <Style TargetType="{x:Type TabItem}" x:Key="MainTabStyle">
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="400" />
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid Height="35" VerticalAlignment="Bottom">
+                        <ContentPresenter x:Name="ContentSite"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          ContentSource="Header"
+                                          Margin="0"
+                                          RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Panel.ZIndex" Value="90" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItemTextBrushUnselected}" />
+                        </Trigger>
 
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Panel.ZIndex" Value="80" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Disabled}" />
-						</Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Panel.ZIndex" Value="80" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItemTextBrushDisabled}" />
+                        </Trigger>
 
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="Border.IsMouseOver" Value="True" />
-								<Condition Property="IsSelected" Value="False" />
-							</MultiTrigger.Conditions>
-							<Setter Property="Panel.ZIndex" Value="99" />
-							<Setter Property="TextBlock.Foreground" Value="{StaticResource TabItem_TextBrush_Hover}" />
-						</MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Border.IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="99" />
+                            <Setter Property="TextBlock.Foreground" Value="{StaticResource TabItemTextBrushHover}" />
+                        </MultiTrigger>
 
-						<Trigger Property="IsSelected" Value="True">
-							<Setter Property="Panel.ZIndex" Value="100" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Selected}" />
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItem_TextBrush_Selected}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<Style TargetType="{x:Type TabItem}">
-		<Setter Property="Margin" Value="5,0,5,0"></Setter>
-		<Setter Property="FontSize" Value="18"></Setter>
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="Width" Value="200"></Setter>
-		<Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto"></Setter>
-		<Setter Property="TextOptions.TextFormattingMode" Value="Ideal"></Setter>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type TabItem}">
-					<Grid Height="35" VerticalAlignment="Bottom">
-						<ContentPresenter x:Name="ContentSite"
-										  VerticalAlignment="Center"
-										  HorizontalAlignment="Center"
-										  ContentSource="Header"
-										  Margin="0"
-										  RecognizesAccessKey="True" />
-					</Grid>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsSelected" Value="False">
-							<Setter Property="Panel.ZIndex" Value="90" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Unselected}" />
-						</Trigger>
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Margin" Value="5,0,5,0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid Height="35" VerticalAlignment="Bottom">
+                        <ContentPresenter x:Name="ContentSite"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          ContentSource="Header"
+                                          Margin="0"
+                                          RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="Panel.ZIndex" Value="90" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItemTextBrushUnselected}" />
+                        </Trigger>
 
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Panel.ZIndex" Value="80" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Disabled}" />
-						</Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Panel.ZIndex" Value="80" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItemTextBrushDisabled}" />
+                        </Trigger>
 
-						<MultiTrigger>
-							<MultiTrigger.Conditions>
-								<Condition Property="Border.IsMouseOver" Value="True" />
-								<Condition Property="IsSelected" Value="False" />
-							</MultiTrigger.Conditions>
-							<Setter Property="Panel.ZIndex" Value="99" />
-							<Setter Property="TextBlock.Foreground" Value="{StaticResource TabItem_TextBrush_Hover}" />
-						</MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Border.IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Panel.ZIndex" Value="99" />
+                            <Setter Property="TextBlock.Foreground" Value="{StaticResource TabItemTextBrushHover}" />
+                        </MultiTrigger>
 
-						<Trigger Property="IsSelected" Value="True">
-							<Setter Property="Panel.ZIndex" Value="100" />
-							<Setter Property="TextBlock.Foreground"
-								Value="{StaticResource TabItem_TextBrush_Selected}" />
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="100" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabItem_TextBrush_Selected}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-	<SolidColorBrush x:Key="BorderColorBrush" Color="#FF36B5E7"></SolidColorBrush>
-	<SolidColorBrush x:Key="BorderBackgroundBrush" Color="#FF1C677F"></SolidColorBrush>
-	<SolidColorBrush x:Key="BorderColorBrushGreen" Color="#FFF3FFFF"></SolidColorBrush>
-	<SolidColorBrush x:Key="BorderBackgroundBrushGreen" Color="#D198CC3C"></SolidColorBrush>
+    <SolidColorBrush x:Key="BorderColorBrush" Color="#FF36B5E7" />
+    <SolidColorBrush x:Key="BorderBackgroundBrush" Color="#FF1C677F" />
+    <SolidColorBrush x:Key="BorderColorBrushGreen" Color="#FFF3FFFF" />
+    <SolidColorBrush x:Key="BorderBackgroundBrushGreen" Color="#D198CC3C" />
 
-	<Style TargetType="{x:Type Button}">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Button}">
-					<Border Name="Border" TextBlock.Foreground="White" Background="{StaticResource ButtonBackgroundBrush}">
-						<ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center"
-										  VerticalAlignment="Center"></ContentPresenter>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter TargetName="Border" Property="Background" Value="{StaticResource ButtonBackgroundBrush_Hover}"></Setter>
-						</Trigger>
-						<Trigger Property="IsPressed" Value="True">
-							<Setter TargetName="Border" Property="Background" Value="{StaticResource ButtonBackgroundBrush_Press}"></Setter>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter TargetName="Border" Property="Background" Value="MistyRose"></Setter>
-							<Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray"></Setter>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Margin" Value="5"></Setter>
-		<Setter Property="Padding" Value="20,5"></Setter>
-	</Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="Border" TextBlock.Foreground="White"
+                            Background="{StaticResource ButtonBackgroundBrush}">
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundBrush_Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundBrush_Press}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="20,5" />
+    </Style>
 
-	<Style x:Key="LargeButton" TargetType="{x:Type Button}">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Button}">
-					<Border Name="Border" TextBlock.Foreground="White" Background="{StaticResource ButtonBackgroundBrush}">
-						<ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center"
-										  VerticalAlignment="Center"></ContentPresenter>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter TargetName="Border" Property="Background" Value="{StaticResource ButtonBackgroundBrush_Hover}"></Setter>
-						</Trigger>
-						<Trigger Property="IsPressed" Value="True">
-							<Setter TargetName="Border" Property="Background" Value="{StaticResource ButtonBackgroundBrush_Press}"></Setter>
-						</Trigger>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter TargetName="Border" Property="Background" Value="MistyRose"></Setter>
-							<Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray"></Setter>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="Margin" Value="5,2"></Setter>
-		<Setter Property="Padding" Value="50,5"></Setter>
-	</Style>
+    <Style x:Key="LargeButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="Border" TextBlock.Foreground="White"
+                            Background="{StaticResource ButtonBackgroundBrush}">
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundBrush_Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundBrush_Press}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="5,2" />
+        <Setter Property="Padding" Value="50,5" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBlock}" x:Key="h1">
-		<Setter Property="TextWrapping" Value="Wrap"></Setter>
-		<Setter Property="FontWeight" Value="ExtraLight"></Setter>
-		<Setter Property="FontSize" Value="29.333"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="H1">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="ExtraLight" />
+        <Setter Property="FontSize" Value="29.333" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBlock}" x:Key="h2">
-		<Setter Property="TextWrapping" Value="Wrap"></Setter>
-		<Setter Property="FontWeight" Value="Normal"></Setter>
-		<Setter Property="FontSize" Value="24"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="H2">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 
-	<Style TargetType="{x:Type RadioButton}" x:Key="rbtnStyle">
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="FontSize" Value="21.333"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type RadioButton}" x:Key="rbtnStyle">
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 
-	<Style TargetType="{x:Type CheckBox}" x:Key="chkStyle">
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="FontSize" Value="21.333"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type CheckBox}" x:Key="ChkStyle">
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 
-	<Style TargetType="{x:Type CheckBox}" x:Key="smallChkStyle" BasedOn="{StaticResource chkStyle}">
-		<Setter Property="FontSize" Value="18"></Setter>
-	</Style>
+    <Style TargetType="{x:Type CheckBox}" x:Key="SmallChkStyle" BasedOn="{StaticResource ChkStyle}">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBlock}" x:Key="txtStyle">
-		<Setter Property="TextWrapping" Value="Wrap"></Setter>
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="FontSize" Value="21.333"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="TxtStyle">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBlock}" x:Key="smallTxtStyle" BasedOn="{StaticResource txtStyle}">
-		<Setter Property="FontSize" Value="16"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="SmallTxtStyle" BasedOn="{StaticResource TxtStyle}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
 
-	<Style TargetType="{x:Type PasswordBox}" x:Key="smallPwBxStyle">
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-		<Setter Property="FontSize" Value="16"></Setter>
-	</Style>
+    <Style TargetType="{x:Type PasswordBox}" x:Key="SmallPwBxStyle">
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
 
-	<Style TargetType="{x:Type TextBox}" x:Key="txtBoxStyle">
-		<Setter Property="FontWeight" Value="Light"></Setter>
-		<Setter Property="FontSize" Value="21.333"></Setter>
-		<Setter Property="Foreground" Value="{StaticResource TabItem_TextBrush_Unselected}"></Setter>
-	</Style>
+    <Style TargetType="{x:Type TextBox}" x:Key="TxtBoxStyle">
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
 </ResourceDictionary>

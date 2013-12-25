@@ -38,7 +38,7 @@
 		   TargetType="{x:Type CheckBox}">
 		<Setter Property="Margin" Value="5,2"></Setter>
 		<Setter Property="Foreground"
-				Value="{StaticResource TabItem_TextBrush_Unselected}" />
+				Value="{StaticResource TabItemTextBrushUnselected}" />
 		<Setter Property="Background"
 				Value="{StaticResource CheckBoxFillNormal}" />
 		<Setter Property="BorderBrush"
@@ -90,7 +90,7 @@
 		<Setter Property="Margin" Value="5,2"></Setter>
 		<Setter Property="FontWeight" Value="Normal"></Setter>
 		<Setter Property="Foreground"
-				Value="{StaticResource TabItem_TextBrush_Unselected}" />
+				Value="{StaticResource TabItemTextBrushUnselected}" />
 		<Setter Property="Background"
 				Value="#F4F4F4" />
 		<Setter Property="BorderBrush"

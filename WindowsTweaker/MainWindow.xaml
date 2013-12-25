@@ -2,16 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Windows Tweaker 4.2"
-    WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="700"
-    ResizeMode="CanResizeWithGrip">
+        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="700"
+        ResizeMode="CanResizeWithGrip">
     <Grid x:Name="LayoutRoot" Background="{StaticResource WindowBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock Style="{StaticResource h1}" Margin="10" HorizontalAlignment="Right">TODO</TextBlock>
+            <TextBlock Style="{StaticResource H1}" Margin="10" HorizontalAlignment="Right">TODO</TextBlock>
         </Grid>
         <Grid Grid.Row="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
@@ -21,8 +21,8 @@
                         <TabItem Header="drive letter display" Width="180">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -30,7 +30,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M25.651199,35.762001C28.2346,35.762001
+                                        <Path
+                                            Data="M25.651199,35.762001C28.2346,35.762001
                                               30.330999,37.857056 30.330999,40.4403 30.330999,43.024944
                                               28.2346,45.119999 25.651199,45.119999 23.0679,45.119999
                                               20.973,43.024944 20.973,40.4403 20.973,37.857056
@@ -43,30 +44,30 @@
                                               45.490002,51.500145 45.490002,40.4403 45.490002,33.183197
                                               41.628506,26.827724 35.847942,23.315868L35.499123,23.109674
                                               46.986,10.310022z M0,0L50.526001,0 50.526001,64 0,64z"
-                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166"
-                                              Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166"
+                                            Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify how the drives are displayed in My Computer
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterBeforeName" />
+                                                 Style="{StaticResource rbtnStyle}"
+                                                 Name="rbtnShowDriveLetterBeforeName" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName" />
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter" />
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="advanced" Width="100">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -74,7 +75,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M34.830002,23.177L50.209,33.786633 46.142063,36.551353
+                                        <Path
+                                            Data="M34.830002,23.177L50.209,33.786633 46.142063,36.551353
                                               51.43,43.729195 48.013557,46.244999 42.632095,38.937447
                                               38.731636,41.589001z M2.7487221,16.969C2.481751,16.969,2.263
                                               ,17.185001,2.2630005,17.453302L2.2630005,51.393597C2.263,
@@ -106,38 +108,38 @@
                                               52.283897C64,53.755096,62.807301,54.947998,61.334599,
                                               54.947998L2.6660194,54.947998C1.19458,54.947998,0,53.755096,
                                               0,52.283897L0,2.66675C0,1.1926299,1.19458,0,2.6660194,0z"
-                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0"
-                                              RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0"
+                                            RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="100, 20, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Advanced Explorer Tweaks
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowMenuBar" />
+                                              Style="{StaticResource ChkStyle}" Name="chkShowMenuBar" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowHiddenFilesFolders" />
+                                              Style="{StaticResource ChkStyle}" Name="chkShowHiddenFilesFolders" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types"
-                                                    Style="{StaticResource chkStyle}" Name="chkHideExtension" />
+                                              Style="{StaticResource ChkStyle}" Name="chkHideExtension" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items"
-                                                    Style="{StaticResource chkStyle}" Name="chkSelectItems" />
+                                              Style="{StaticResource ChkStyle}" Name="chkSelectItems" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login"
-                                                    Style="{StaticResource chkStyle}" Name="chkRestoreFoldersAtLogin" />
+                                              Style="{StaticResource ChkStyle}" Name="chkRestoreFoldersAtLogin" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowOSfiles" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Display compressed &amp; encrypted NTFS files in colour"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowNtfsInColor" />
+                                              Style="{StaticResource ChkStyle}" Name="chkShowOSfiles" />
+                                    <CheckBox Margin="30, 5, 5, 5"
+                                              Content="Display compressed &amp; encrypted NTFS files in colour"
+                                              Style="{StaticResource ChkStyle}" Name="chkShowNtfsInColor" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="properties" Width="100">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -145,7 +147,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M32.440571,26.0842C32.482071,27.51,32.500374,30.050999,
+                                        <Path
+                                            Data="M32.440571,26.0842C32.482071,27.51,32.500374,30.050999,
                                               32.500374,33.709198L32.452271,36.999199C32.452271,37.659401
                                               32.562874,38.105698 32.784275,38.330299 33.001678,38.553898
                                               33.362385,38.702301 33.861088,38.769699 34.430096,38.842999
@@ -182,27 +185,29 @@
                                               5.2010002,7.2209892 5.2010002,9.0588856 6.6929898,10.554 8.5339956,
                                               10.554 10.374949,10.554 11.867,9.0588856 11.867,7.2209892 11.867,
                                               5.3791947 10.374949,3.8870001 8.5339956,3.8870001z M0,0L64,0
-                                              64,48.796001 0,48.796001z" Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              64,48.796001 0,48.796001z"
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="100, 20, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Hide options in Property Dialog
                                     </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Hide &quot;Security&quot; in Folders, Files, Shortcuts &amp; Drives"
-                                                    Style="{StaticResource chkStyle}" Name="chkHideSecurity"></CheckBox>
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Hide &quot;Customize&quot; in Folders, Files, Shortcuts &amp; Drives"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowHideCustomize" />
+                                    <CheckBox Margin="30, 30, 5, 5"
+                                              Content="Hide &quot;Security&quot; in Folders, Files, Shortcuts &amp; Drives"
+                                              Style="{StaticResource ChkStyle}" Name="chkHideSecurity" />
+                                    <CheckBox Margin="30, 20, 5, 5"
+                                              Content="Hide &quot;Customize&quot; in Folders, Files, Shortcuts &amp; Drives"
+                                              Style="{StaticResource ChkStyle}" Name="chkShowHideCustomize" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="libraries" Width="90" Name="tabItemLibrary">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -210,7 +215,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M18.698001,56.938L18.698001,59.728001 31.349,59.728001
+                                        <Path
+                                            Data="M18.698001,56.938L18.698001,59.728001 31.349,59.728001
                                               31.349,56.938z M1.8610001,56.938L1.8610001,59.727997
                                               11.535001,59.727997 11.535001,56.938z M59.898386,55.058998L45.885002,
                                               57.419712 46.34852,60.171997 60.362001,57.811481z M52.786489,
@@ -219,28 +225,30 @@
                                               M54.079065,9.757L62.307001,61.243523 45.055634,64 36.829,12.513545z
                                               M0,5.21L13.394,5.21 13.394,64 0,64z M18.698001,4.9379997L18.698001,
                                               7.7279997 31.349,7.7279997 31.349,4.9379997z M17.023001,0L33.023001,
-                                              0 33.023001,64 17.023001,64z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}" Width="166"
-                                              Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              0 33.023001,64 17.023001,64z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}" Width="166"
+                                            Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify whether &quot;Libraries&quot; are shown in the left Navigation Pane
                                     </TextBlock>
-                                    <RadioButton Margin="30, 30, 5, 5" Content="Show &quot;Libraries&quot; in Navigation Pane"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShowLibraries" />
-                                    <RadioButton Margin="30, 30, 5, 5" Content="Hide &quot;Libraries&quot; in Navigation Pane"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnHideLibraries" />
+                                    <RadioButton Margin="30, 30, 5, 5"
+                                                 Content="Show &quot;Libraries&quot; in Navigation Pane"
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShowLibraries" />
+                                    <RadioButton Margin="30, 30, 5, 5"
+                                                 Content="Hide &quot;Libraries&quot; in Navigation Pane"
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnHideLibraries" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="etc" Width="60">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -248,22 +256,23 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M42.526999,2.0220003L41.231428,50.569268 12.752866,64.890996
+                                        <Path
+                                            Data="M42.526999,2.0220003L41.231428,50.569268 12.752866,64.890996
                                               11.295999,5.1781473z M31.717268,0L40.941,1.1314702 9.7095088,4.2877798
                                               11.166618,64.000001 1.9426451,59.144501 0,2.91272z"
-                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Extras
                                     </TextBlock>
                                     <CheckBox Margin="30, 30, 5, 5" Content="Add Recycle Bin to My Computer"
-                                                    Style="{StaticResource chkStyle}" Name="chkAddRecycleBinToMyComputer" />
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Registry Editor (Regedit) to Control Panel"
-                                                    Style="{StaticResource chkStyle}" Name="chkAddRegeditToControlPanel" />
+                                              Style="{StaticResource ChkStyle}" Name="chkAddRecycleBinToMyComputer" />
+                                    <CheckBox Margin="30, 30, 5, 5"
+                                              Content="Add Registry Editor (Regedit) to Control Panel"
+                                              Style="{StaticResource ChkStyle}" Name="chkAddRegeditToControlPanel" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -275,8 +284,8 @@
                         <TabItem Header="shutdown configuration" Width="220">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -284,7 +293,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M39.3438,8.9300013C49.800098,13.179986 57.179001,23.426029
+                                        <Path
+                                            Data="M39.3438,8.9300013C49.800098,13.179986 57.179001,23.426029
                                               57.179001,35.41036 57.179001,51.199272 44.379601,64 28.5898,64
                                               12.8001,64 0,51.199272 0,35.41036 0,23.526329 7.2539101,13.340086
                                               17.5735,9.0250597L17.5735,17.575763C11.5991,21.274941 7.6061401,
@@ -295,28 +305,30 @@
                                               4.1965675L33.049,35.934452C33.049,38.252123,31.169876,40.131001,
                                               28.852026,40.131001L28.064875,40.131001C25.747023,40.131001,23.868,
                                               38.252123,23.868,35.934452L23.868,4.1965675C23.868,1.8788867,
-                                              25.747023,0,28.064875,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              25.747023,0,28.064875,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Configure Windows' behaviour during Shutdown
                                     </TextBlock>
-                                    <RadioButton Margin="30, 30, 5, 5" Content="Kill applications immediately and shutdown straightaway"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShutdownImmediately" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Wait for applications to exit for X milliseconds"
-                                                    Style="{StaticResource rbtnStyle}" Name="rbtnShutdownAfterWaiting" />
+                                    <RadioButton Margin="30, 30, 5, 5"
+                                                 Content="Kill applications immediately and shutdown straightaway"
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShutdownImmediately" />
+                                    <RadioButton Margin="30, 5, 5, 5"
+                                                 Content="Wait for applications to exit for X milliseconds"
+                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShutdownAfterWaiting" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="edit information" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -324,7 +336,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M24.248085,23.509567C24.270756,23.508629 24.293791,23.508857
+                                        <Path
+                                            Data="M24.248085,23.509567C24.270756,23.508629 24.293791,23.508857
                                               24.317156,23.510266 24.487085,23.520519 24.674486,23.593287
                                               24.865677,23.734444L26.201694,24.718844C26.814903,25.172045,
                                               27.817616,25.911446,28.430923,26.366045L29.765642,
@@ -356,43 +369,42 @@
                                               5.05477C31.767,6.382879,30.690094,7.4610004,29.358086,
                                               7.4610002L2.4048049,7.4610002C1.0766668,7.4610004,0,6.382879,
                                               0,5.05477L0,2.4050107C0,1.0781221,1.0766668,0,2.4048049,0z"
-                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166"
-                                              Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166"
+                                            Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify the support information that is displayed in Computer&quot;s Properties
                                     </TextBlock>
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="Manufacturer :" Style="{StaticResource txtStyle}"
-                                                   Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtManufacturer" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Column="1" Margin="5, 10, 10, 10"></TextBox>
-                                        <TextBlock Text="Model :" Style="{StaticResource txtStyle}"
-                                                 Grid.Row="1" Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtModel" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Row="1" Grid.Column="1"  Margin="5, 10, 10, 10"></TextBox>
-                                        <TextBlock Text="Support Phone:" Style="{StaticResource txtStyle}"
-                                                 Grid.Row="2" Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtSupportPhone" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Row="2" Grid.Column="1"  Margin="5, 10, 10, 10"></TextBox>
-                                        <TextBlock Text="Support URL:" Style="{StaticResource txtStyle}"
-                                                 Grid.Row="3" Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtSupportUrl" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Row="3" Grid.Column="1"  Margin="5, 10, 10, 10"></TextBox>
+                                        <TextBlock Text="Manufacturer :" Style="{StaticResource TxtStyle}"
+                                                   Margin="5, 10" />
+                                        <TextBox Name="txtManufacturer" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Column="1" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="Model :" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="1" Margin="5, 10" />
+                                        <TextBox Name="txtModel" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="Support Phone:" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="2" Margin="5, 10" />
+                                        <TextBox Name="txtSupportPhone" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="Support URL:" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="3" Margin="5, 10" />
+                                        <TextBox Name="txtSupportUrl" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Row="3" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
@@ -400,8 +412,8 @@
                         <TabItem Header="windows installer" Width="160">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -409,7 +421,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M27.615902,26.313002C27.903658,26.313,28.191414,26.421704,
+                                        <Path
+                                            Data="M27.615902,26.313002C27.903658,26.313,28.191414,26.421704,
                                               28.408867,26.639109L39.093975,38.540364C39.310081,38.754067
                                               39.424683,39.040371 39.424683,39.33218 39.424683,39.475281
                                               39.39608,39.624985 39.336182,39.764389 39.164276,40.181095
@@ -435,30 +448,31 @@
                                               47.452C55.879799,47.452,56.945,46.385613,56.945,45.078331L56.945,
                                               16.606001 4.7469993,16.606001 4.7469993,45.078331C4.7469997,
                                               46.385613,5.8095698,47.452,7.1194406,47.452L19.575001,47.452
-                                              19.575001,52.199002 0,52.199002z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              19.575001,52.199002 0,52.199002z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Windows Installer Preferences
                                     </TextBlock>
                                     <CheckBox Margin="30, 30, 5, 5" Content="Disable Windows Installer service"
-                                                    Style="{StaticResource chkStyle}" Name="chkDisableWinInstaller" />
+                                              Style="{StaticResource ChkStyle}" Name="chkDisableWinInstaller" />
                                     <CheckBox Margin="30, 20, 5, 5" Content="Always install with elevated privileges"
-                                                    Style="{StaticResource chkStyle}" Name="chkElevatedInstall" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Turn off creation of System Restore points when installing"
-                                                    Style="{StaticResource chkStyle}" Name="chkDisableSysRestoreInstall" />
+                                              Style="{StaticResource ChkStyle}" Name="chkElevatedInstall" />
+                                    <CheckBox Margin="30, 20, 5, 5"
+                                              Content="Turn off creation of System Restore points when installing"
+                                              Style="{StaticResource ChkStyle}" Name="chkDisableSysRestoreInstall" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="registration" Width="120">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -466,7 +480,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M34.92923,36.819001C34.92923,36.819001,49.598801,
+                                        <Path
+                                            Data="M34.92923,36.819001C34.92923,36.819001,49.598801,
                                               40.313198,50.995998,54.282997L0,54.282997C0,54.282997,
                                               4.1939602,38.914761,16.768166,37.516819L20.172159,52.100636
                                               22.675023,52.080128 25.522052,44.61541 22.866,40.009003
@@ -509,38 +524,38 @@
                                               63.442001,6.949808 63.442001,15.522651 63.442001,24.095621
                                               56.492544,31.048001 47.920602,31.048001 39.349356,31.048001
                                               32.397001,24.095621 32.397001,15.522651 32.397001,6.949808
-                                              39.349356,3.3732547E-07 47.920602,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              39.349356,3.3732547E-07 47.920602,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Change the User &amp; Company name to whom this system is registered
                                     </TextBlock>
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="Owner Name :" Style="{StaticResource txtStyle}"
-                                                   Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtOwnerName" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Column="1" Margin="5, 10, 10, 10"></TextBox>
-                                        <TextBlock Text="Company Name :" Style="{StaticResource txtStyle}"
-                                                 Grid.Row="1" Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtCompanyName" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Row="1" Grid.Column="1"  Margin="5, 10, 10, 10"></TextBox>
-                                        <TextBlock Text="Product ID :" Style="{StaticResource txtStyle}"
-                                                 Grid.Row="2" Margin="5, 10"></TextBlock>
-                                        <TextBox Name="txtProductId" Style="{StaticResource txtBoxStyle}"
-                                                 Grid.Row="2" Grid.Column="1"  Margin="5, 10, 10, 10"></TextBox>
+                                        <TextBlock Text="Owner Name :" Style="{StaticResource TxtStyle}"
+                                                   Margin="5, 10" />
+                                        <TextBox Name="txtOwnerName" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Column="1" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="Company Name :" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="1" Margin="5, 10" />
+                                        <TextBox Name="txtCompanyName" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="Product ID :" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="2" Margin="5, 10" />
+                                        <TextBox Name="txtProductId" Style="{StaticResource TxtBoxStyle}"
+                                                 Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
@@ -548,8 +563,8 @@
                         <TabItem Header="logo" Width="80">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -557,7 +572,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M139.007,42.772056C139.08701,42.864753
+                                        <Path
+                                            Data="M139.007,42.772056C139.08701,42.864753
                                               139.16501,42.955653 139.239,43.052256 139.34401,
                                               42.986853 139.46001,42.935153 139.57201,42.876555
                                               139.38101,42.847754 139.19301,42.817954 139.007,
@@ -611,34 +627,34 @@
                                               101.81C113.434,101.81 119.6,96.478995 127.635,93.804702
                                               135.67999,91.128898 148.24899,93.135299 152.92999,93.804702
                                               155.88,94.225097 160.23199,93.578101 163.05,93.040496L163.05,
-                                              13.257799z M0,0L177.94,0 177.94,135.01199 0,135.01199z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              13.257799z M0,0L177.94,0 177.94,135.01199 0,135.01199z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify the image that will be displayed in Computer's Property
                                     </TextBlock>
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <StackPanel>
                                             <Button Content="Select Logo" Style="{StaticResource LargeButton}"
-                                                    Name="btnSelectLogo"></Button>
+                                                    Name="btnSelectLogo" />
                                             <Button Content="Delete Logo" Style="{StaticResource LargeButton}"
-                                                    Name="btnDeleteLogo" IsEnabled="False"></Button>
+                                                    Name="btnDeleteLogo" IsEnabled="False" />
                                         </StackPanel>
                                         <Grid Grid.Column="1">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
                                             <TextBlock HorizontalAlignment="Center"
-                                                       Text="Present image" Style="{StaticResource txtStyle}"></TextBlock>
+                                                       Text="Present image" Style="{StaticResource TxtStyle}" />
                                         </Grid>
                                     </Grid>
                                 </StackPanel>
@@ -652,8 +668,8 @@
                         <TabItem Header="display settings" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -661,7 +677,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M4.3685131,23.127279L4.3685131,47.283243 47.117023,47.283243
+                                        <Path
+                                            Data="M4.3685131,23.127279L4.3685131,47.283243 47.117023,47.283243
                                               47.117023,23.127279z M25.087107,13.948568C23.539013,13.948568
                                               22.286318,15.201555 22.286318,16.74834 22.286318,18.292325
                                               23.539013,19.547214 25.087107,19.547214 26.6327,19.547214
@@ -678,30 +695,31 @@
                                               13.948568 7.1679735,13.948568z M0,10.684L53.755001,10.684
                                               53.755001,51.668001 0,51.668001z M8.5679998,0L58.668022,0
                                               64,0 64,5.6864691 64,45.317999 58.668022,45.317999 58.668022,
-                                              5.6864691 8.5679998,5.6864691z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              5.6864691 8.5679998,5.6864691z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Display Settings
                                     </TextBlock>
                                     <CheckBox Margin="30, 30, 5, 5" Content="Enable Windows Animation"
-                                                    Style="{StaticResource chkStyle}" Name="chkWindowAnim" />
+                                              Style="{StaticResource ChkStyle}" Name="chkWindowAnim" />
                                     <CheckBox Margin="30, 20, 5, 5" Content="Show Windows' content while dragging"
-                                                    Style="{StaticResource chkStyle}" Name="chkShowWindowDrag" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Show Windows' version on the Desktop (In white text)"
-                                                    Style="{StaticResource chkStyle}" Name="chkWindowVersion" />
+                                              Style="{StaticResource ChkStyle}" Name="chkShowWindowDrag" />
+                                    <CheckBox Margin="30, 20, 5, 5"
+                                              Content="Show Windows' version on the Desktop (In white text)"
+                                              Style="{StaticResource ChkStyle}" Name="chkWindowVersion" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="selection color" Width="140">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -709,7 +727,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M8.0289998,24.707999L12.476999,24.707999
+                                        <Path
+                                            Data="M8.0289998,24.707999L12.476999,24.707999
                                               12.476999,26.19 8.0289998,26.19z M0,23.845L1.4821367,
                                               23.845 1.4821367,24.708337 3.5839996,24.708337
                                               3.5839996,26.190001 0,26.190001z M0,14.953L1.4819994,
@@ -724,35 +743,36 @@
                                               1.4819994 17.652,1.4819994z M8.7599998,0L13.206,0 13.206,
                                               1.4819994 8.7599998,1.4819994z M0,0L4.3129997,0 4.3129997,
                                               1.4821482 1.4818506,1.4821482 1.4818506,1.6149998 0,
-                                              1.6149998z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              1.6149998z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify the color for Selection rectangle, used for
                                         selecting files/folders in Windows Explorer
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal" Margin="30, 30, 5, 5">
-                                        <TextBlock Style="{StaticResource txtStyle}" Margin="0, 0, 20, 5">Current Color:</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 0, 20, 5">Current Color:</TextBlock>
                                         <Rectangle Cursor="Hand" Name="rectSelectionColor" Width="16"
                                                    Height="16" Stroke="Black" StrokeThickness="1"
-                                                   Margin="15, 0, 20, 5"></Rectangle>
+                                                   Margin="15, 0, 20, 5" />
                                         <Button Style="{StaticResource LargeButton}">Select Color</Button>
                                     </StackPanel>
                                     <Button Margin="10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Right"
-                                            >Use Default Color</Button>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Right">
+                                        Use Default Color
+                                    </Button>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="alt-tab" Width="80">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -760,7 +780,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M19.382698,7.8979994L42.661303,7.8979994C44.135202,
+                                        <Path
+                                            Data="M19.382698,7.8979994L42.661303,7.8979994C44.135202,
                                               7.8980001,45.328001,9.0920299,45.328001,10.564756L45.328001,
                                               33.845335C45.328001,35.31797,44.135202,36.511999,42.661303,
                                               36.511999L19.382698,36.511999C17.9086,36.511999,16.716,
@@ -778,25 +799,24 @@
                                               19.383254,5.0183511C16.323183,5.0183508,13.836225,7.5066059,
                                               13.836225,10.565249L13.836225,21.292 1.9844265,21.292C0.88795948,
                                               21.292,0,20.402688,0,19.307572L0,1.9844375C0,0.88798285,
-                                              0.88795948,4.7683716E-07,1.9844265,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              0.88795948,4.7683716E-07,1.9844265,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         Specify the color for Selection rectangle, used for
                                         selecting files/folders in Windows Explorer
                                     </TextBlock>
-                                    <TextBlock Margin="10, 20" Style="{StaticResource txtStyle}">Number of icons shown in a single row of ALT + Tab switcher (Default 7)</TextBlock>
-                                    <TextBlock Margin="10, 20" Style="{StaticResource txtStyle}">Number of rows shown in ALT + Tab switcher (Default 3)</TextBlock>
+                                    <TextBlock Margin="10, 20" Style="{StaticResource TxtStyle}">Number of icons shown in a single row of ALT + Tab switcher (Default 7)</TextBlock>
+                                    <TextBlock Margin="10, 20" Style="{StaticResource TxtStyle}">Number of rows shown in ALT + Tab switcher (Default 3)</TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="shortcut-arrow" Width="140">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -806,8 +826,8 @@
                         <TabItem Header="general" Width="90">
                             <Grid Margin="10, 20, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -815,7 +835,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M0,36.6784C11.97918,39.5716,25.988474,37.452402,
+                                        <Path
+                                            Data="M0,36.6784C11.97918,39.5716,25.988474,37.452402,
                                               30.132999,36.7064L30.132999,51.797501C30.132999,58.537102,
                                               24.858166,64,18.351723,64L11.782679,64C5.2748151,64,0,
                                               58.537102,0,51.797501z M17.636818,18.444L18.351723,
@@ -837,78 +858,97 @@
                                               4.0456014,2.2298183 0.88424492,4.1615849L0.10299969,
                                               2.8816376C3.4063251,0.86912727,6.0482793,0.0039291382,
                                               8.2279558,2.2888184E-05z"
-                                              Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0"
-                                              RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0"
+                                            RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 20, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}">
+                                    <TextBlock Style="{StaticResource H1}">
                                         General right-click enhancements
                                     </TextBlock>
-                                    <CheckBox Margin="30, 10, 5, 5" Style="{StaticResource chkStyle}" Name="chkCopyToFolder">
+                                    <CheckBox Margin="30, 10, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkCopyToFolder">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add &quot;Copy to Folder&quot;
-                                                to Right-Click menu of every file &amp; folder</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add &quot;Copy to Folder&quot;
+                                                to Right-Click menu of every file &amp; folder
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkMoveToFolder">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkMoveToFolder">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add &quot;Move to Folder&quot;
-                                                to Right-Click menu of every file &amp; folder</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add &quot;Move to Folder&quot;
+                                                to Right-Click menu of every file &amp; folder
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkSendTo">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Name="chkSendTo">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add &quot;Send To&quot; to Right-Click
-                                                menu of every file &amp; folder</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add &quot;Send To&quot; to Right-Click
+                                                menu of every file &amp; folder
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkCopyContents">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkCopyContents">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add &quot;Copy all Contents&quot;
-                                                to Right-Click menu of all text files</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add &quot;Copy all Contents&quot;
+                                                to Right-Click menu of all text files
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkEncryptAndDecrypt">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkEncryptAndDecrypt">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add &quot;Encrypt&quot; &amp; &quot;Decrypt&quot;
-                                                to Right-Click menu of every file &amp; folder</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add &quot;Encrypt&quot; &amp; &quot;Decrypt&quot;
+                                                to Right-Click menu of every file &amp; folder
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkOpenWithNotepad">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkOpenWithNotepad">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add Open with Notepad
-                                                to Right-Click menu for all files</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add Open with Notepad
+                                                to Right-Click menu for all files
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkControlPanelInDesktopMenu">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkControlPanelInDesktopMenu">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add Control Panel to the Desktop
-                                                Right-Click Menu</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                                Add Control Panel to the Desktop
+                                                Right-Click Menu
+                                            </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkOpenCmdPrompt">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkOpenCmdPrompt">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Make &quot;Open Command Prompt here&quot; always display for folders &amp; drives</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Make &quot;Open Command Prompt here&quot; always display for folders &amp; drives</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource chkStyle}" Name="chkAddDefragInMenu">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                              Name="chkAddDefragInMenu">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}">Add Defragment to the Right-Click menu of drives</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Add Defragment to the Right-Click menu of drives</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="add items" Width="100">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="send-to menu" Width="150">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -918,8 +958,8 @@
                         <TabItem Header="god mode" Width="120">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -927,7 +967,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M40.110691,17.336001L43.787209,19.603006 47.739838,17.851579
+                                        <Path
+                                            Data="M40.110691,17.336001L43.787209,19.603006 47.739838,17.851579
                                               46.722206,22.052104 49.609001,25.26417 45.300961,25.597356
                                               43.13229,29.337 41.485435,25.338367 37.260998,24.432104
                                               40.553104,21.631422z M30.316431,15.311499C30.737907,15.3207,
@@ -943,31 +984,31 @@
                                               14.42,9.1577039 18.53216,5.6602993z M37.014431,0L40.23534,
                                               1.97754 43.692245,0.45019531 42.80167,4.1220703 45.327003,
                                               6.9426298 41.552406,7.2316895 39.658558,10.5 38.221096,
-                                              7.0024395 34.521999,6.2094698 37.39922,3.7629395z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              7.0024395 34.521999,6.2094698 37.39922,3.7629395z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Set up "God-Mode"
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Setting a "God-Mode/Finder" allows you to access all Control Panel settings at a Common place, sorted alphabetically. (God Mode)
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 8, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         Click the "Browse" button to set the Name and Location for this folder.
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 8, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         In the dialog select "Make new Folder" and enter the desired name.
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 8, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         Please don't select any existing folder, you must create a new folder.
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left"
-                                            >Browse &amp; Create New Folder
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
+                                        Browse &amp; Create New Folder
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -975,8 +1016,8 @@
                         <TabItem Header="open with" Width="110">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -984,7 +1025,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M17.362745,37.902803C18.150522,37.902803
+                                        <Path
+                                            Data="M17.362745,37.902803C18.150522,37.902803
                                               18.771196,38.198798 19.224766,38.790788 19.678335,39.382776
                                               19.905119,40.211084 19.905119,41.275709 19.905119,42.297369
                                               19.671173,43.095837 19.203281,43.671118 18.735388,44.246397
@@ -1030,25 +1072,25 @@
                                               10.311764L28.265863,10.221818 21.298567,16.90602 20.000313,
                                               18.988 19.128408,18.988 14.76,18.988 26.71295,7.2894611
                                               26.705667,7.2578945C26.625237,6.8646832 26.583,6.4575558
-                                              26.583,6.0405617 26.583,2.7045078 29.286167,0 32.62225,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              26.583,6.0405617 26.583,2.7045078 29.286167,0 32.62225,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Customize "Open With" shown in Right-Click Menu
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Whenever you click the &quot;Open With&quot; Menu, you see a list of programs to choose
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 8, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         User this option to add another program, that should always appear in the list, so that you don't need to click 'Browse' everytime.
                                     </TextBlock>
                                     <Button Margin="30, 10, 5, 5"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left"
-                                            >Customize Open With
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
+                                        Customize Open With
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -1056,8 +1098,8 @@
                         <TabItem Header="power button" Width="130">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1065,7 +1107,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M26.894,15.797L37.105999,15.797 37.105999,48.205001
+                                        <Path
+                                            Data="M26.894,15.797L37.105999,15.797 37.105999,48.205001
                                               26.894,48.205001z M31.999999,7.1492634C18.274899,7.1492634
                                               7.1486797,18.275585 7.1486797,32.00015 7.1486797,45.725513
                                               18.274899,56.851863 31.999999,56.851863 45.725498,56.851863
@@ -1074,14 +1117,14 @@
                                               0C49.6733,0 63.999998,14.327667 63.999998,32.00015
                                               63.999998,49.67343 49.6733,64.000998 31.999999,64.000998
                                               14.327099,64.000998 0,49.67343 0,32.00015 0,14.327667
-                                              14.327099,0 31.999999,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              14.327099,0 31.999999,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Power Button action on Start Menu
                                     </TextBlock>
                                     <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
@@ -1100,8 +1143,8 @@
                         <TabItem Header="default opening" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1109,7 +1152,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M0,0.97200019L25.77986,0.97200019 25.77986,7.5628812
+                                        <Path
+                                            Data="M0,0.97200019L25.77986,0.97200019 25.77986,7.5628812
                                               45.489002,7.5628812 44.736629,7.965861C40.825729,10.139042,
                                               38.142784,12.815178,36.302338,15.47459L36.25639,15.543001
                                               0,15.543001 0,8.8689334 0,7.5628812z M66.957466,0L81.352005,
@@ -1117,14 +1161,14 @@
                                               20.413857,48.614201,15.393183,39.517807,22.616051L39.322521,
                                               22.779 64,22.779 64,52.046002 0,52.046002 0,22.779 36.663574,
                                               22.779 36.717793,22.595442C38.700813,16.375398,45.36581,
-                                              6.8070728,66.957466,6.8070719z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              6.8070728,66.957466,6.8070719z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Default Open With
                                     </TextBlock>
                                 </StackPanel>
@@ -1133,8 +1177,8 @@
                         <TabItem Header="startup manager" Width="160">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1142,7 +1186,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M49.738201,43.855999C46.587967,43.855999 44.034,46.410523
+                                        <Path
+                                            Data="M49.738201,43.855999C46.587967,43.855999 44.034,46.410523
                                               44.034,49.559899 44.034,52.710777 46.587967,55.264 49.738201,
                                               55.264 52.889034,55.264 55.443001,52.710777 55.443001,49.559899
                                               55.443001,46.410523 52.889034,43.855999 49.738201,43.855999z
@@ -1158,22 +1203,22 @@
                                               0,17.114449 2.2845716E-07,16.966765 0.0018709942,16.819519
                                               0.0055898898,16.67273L0.0089801941,16.583498 14.261974,22.285
                                               19.788,9.0921146 6.6371608,3.5867791 6.8746786,3.4001233C9.7300901,
-                                              1.2646448,13.274566,3.0554376E-07,17.114292,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              1.2646448,13.274566,3.0554376E-07,17.114292,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Startup Manager
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         Manage programs ,that are executed when Windows starts and also Add/Remove programs from startup.
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left"
-                                            >Launch Startup Manager
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
+                                        Launch Startup Manager
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -1186,8 +1231,8 @@
                         <TabItem Header="schedule shutdown" Width="180">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1195,7 +1240,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M43.7528,26.674L45.473999,26.674 45.473999,48.517
+                                        <Path
+                                            Data="M43.7528,26.674L45.473999,26.674 45.473999,48.517
                                               42.802799,48.517 42.802799,31.496315C42.1595,32.1096
                                               41.316502,32.722885 40.2728,33.336172 39.229301,33.949457
                                               38.291801,34.4104 37.461002,34.717045L37.461002,
@@ -1242,21 +1288,20 @@
                                               7.7320004 64,7.7320004 64,58.935999 0,58.935999z
                                               M44.265999,9.5367432E-07L49.602001,9.5367432E-07
                                               49.602001,15.47 44.265999,15.47z M15.469,0L20.802,0
-                                              20.802,15.47 15.469,15.47z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              20.802,15.47 15.469,15.47z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" />
                             </Grid>
                         </TabItem>
                         <TabItem Header="special hiding" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1264,7 +1309,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M18.89044,28.871C18.484223,28.871,18.151,29.19909,18.151,
+                                        <Path
+                                            Data="M18.89044,28.871C18.484223,28.871,18.151,29.19909,18.151,
                                               29.608093L18.151,31.084598C18.151,31.4909 18.484223,
                                               31.819 18.89044,31.819 19.299336,31.819 19.63,31.4909
                                               19.63,31.084598L19.63,29.608093C19.63,29.19909,19.299336,
@@ -1308,26 +1354,26 @@
                                               4.6355203,37.898002,10.329545L37.898002,35.334856C37.898002,
                                               41.028881,33.262563,45.663002,27.569818,45.663002L10.330181,
                                               45.663002C4.6354162,45.663002,0,41.028881,0,35.334856L0,10.329545C0,
-                                              4.6355203,4.6354162,0,10.330181,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              4.6355203,4.6354162,0,10.330181,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Use this option to hide files/folders with System Privileges
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left"
-                                            >Hide
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
+                                        Hide
                                     </Button>
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 20, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5">
                                         Use this option to Un-hide files/folders with System Privileges
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left"
-                                            >Un-hide
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
+                                        Un-hide
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -1335,16 +1381,17 @@
                         <TabItem Header="special folder names" Width="190">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
-                                        Margin="30, 30, 0, 30">
+                                         Margin="30, 30, 0, 30">
                                     <Grid>
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M5.0495757,10.07682C3.1725551,10.153021 2.8230068,12.597839
+                                        <Path
+                                            Data="M5.0495757,10.07682C3.1725551,10.153021 2.8230068,12.597839
                                                 2.8230066,12.597839 2.8230068,16.523008 8.7099828,16.523008
                                                 8.7099828,16.523008 8.4649839,11.20778 6.2569927,10.308741
                                                 6.2569923,10.308741 5.797151,10.129827 5.3971719,10.06271
@@ -1374,23 +1421,23 @@
                                                 6.0094204 20.860701,5.1062446 21.586887,4.397615 22.392754,
                                                 3.9504375L22.419107,3.9369183 22.350447,3.8451118C22.084379,
                                                 3.4513614 21.928987,2.9767516 21.928987,2.4660015 21.928987,
-                                                1.1040004 23.033998,-4.8532733E-10 24.396009,0z" Stretch="Uniform"
+                                                1.1040004 23.033998,-4.8532733E-10 24.396009,0z"
+                                            Stretch="Uniform"
                                             Fill="{StaticResource VectorImageBackground}"
-                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
-                                    Create Special Folders
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                        Create Special Folders
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
                                         Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal">
                                         <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                            SelectedIndex="0">
+                                                  SelectedIndex="0">
                                             <ComboBoxItem>CON</ComboBoxItem>
                                             <ComboBoxItem>PRN</ComboBoxItem>
                                             <ComboBoxItem>AUX</ComboBoxItem>
@@ -1415,18 +1462,18 @@
                                             <ComboBoxItem>LPT9</ComboBoxItem>
                                         </ComboBox>
                                         <Button Margin="30, 10, 10, 10"
-                                            HorizontalAlignment="Left"
-                                            >Select the Parent Folder to save the Special Folder
+                                                HorizontalAlignment="Left">
+                                            Select the Parent Folder to save the Special Folder
                                         </Button>
                                     </StackPanel>
 
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 20, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 20, 5, 5">
                                         Use this option to delete a special folder.
                                         Make sure the Folder is empty before you delete it.
                                     </TextBlock>
                                     <Button Margin="30, 10, 10, 10"
-                                        HorizontalAlignment="Left"
-                                        >Browse &amp; Delete
+                                            HorizontalAlignment="Left">
+                                        Browse &amp; Delete
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -1439,16 +1486,17 @@
                         <TabItem Header="autoplay" Width="100">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
-                                        Margin="30, 30, 0, 30">
+                                         Margin="30, 30, 0, 30">
                                     <Grid>
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M28.142726,22.328131C28.647455,22.311525,29.188263,
+                                        <Path
+                                            Data="M28.142726,22.328131C28.647455,22.311525,29.188263,
                                               22.477322,29.710634,22.845585L41.771735,29.948748C43.257523,
                                               30.995686,43.278223,32.740551,41.819834,33.82909L29.951632,
                                               41.197762C29.130039,41.808384 28.213346,41.790985 27.474952,
@@ -1472,33 +1520,36 @@
                                               27.083401,63.231201 27.008,63.219402 11.704445,60.821098
                                               0.00390625,47.588585 0,31.613964 0.00390625,15.636044
                                               11.704445,2.4069891 27.008,0.0084228518 27.083401,-0.0031738567
-                                              27.155002,0.0020751695 27.228002,0z" Stretch="Uniform"
+                                              27.155002,0.0020751695 27.228002,0z"
+                                            Stretch="Uniform"
                                             Fill="{StaticResource VectorImageBackground}"
-                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Choose what happens when you insert a CD/DVD or a USB device.
                                     </TextBlock>
-                                    <RadioButton Margin="30, 20, 5, 5" IsChecked="True" Content="Use Autoplay for all devices."
-                                                    Style="{StaticResource rbtnStyle}" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for CD-ROM and removable devices."
-                                                    Style="{StaticResource rbtnStyle}" />
+                                    <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
+                                                 Content="Use Autoplay for all devices."
+                                                 Style="{StaticResource rbtnStyle}" />
+                                    <RadioButton Margin="30, 5, 5, 5"
+                                                 Content="Turn-off Autoplay for CD-ROM and removable devices."
+                                                 Style="{StaticResource rbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices."
-                                                    Style="{StaticResource rbtnStyle}" />
+                                                 Style="{StaticResource rbtnStyle}" />
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 10, 10, 10"
-                                            HorizontalAlignment="Left"
-                                            >Configure Autoplay via Group Policy Editor
+                                                HorizontalAlignment="Left">
+                                            Configure Autoplay via Group Policy Editor
                                         </Button>
                                         <Viewbox>
                                             <Grid>
                                                 <Grid Width="24" Height="24">
                                                     <Ellipse Fill="#FFFFFFFF" Name="Fill" />
                                                 </Grid>
-                                                <Path Data="F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48
+                                                <Path
+                                                    Data="F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48
                                                       1346.05,1725.67 1346.05,1725.38 1346.05,1722.41 1346.54,
                                                       1719.96 1347.52,1718.04 1348.51,1716.12 1350.47,1713.96
                                                       1353.43,1711.56 1356.38,1709.16 1358.14,1707.58 1358.72,
@@ -1515,8 +1566,8 @@
                                                       1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08
                                                       1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,
                                                       1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z"
-                                                      Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
-                                                      Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                    Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
+                                                    Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                                                     <Path.RenderTransform>
                                                         <TransformGroup>
                                                             <TransformGroup.Children>
@@ -1535,8 +1586,8 @@
                         <TabItem Header="windows update" Width="160">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1544,7 +1595,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M14.8104,56.694L49.189301,56.694C50.542198,56.694,51.645,57.796978,
+                                        <Path
+                                            Data="M14.8104,56.694L49.189301,56.694C50.542198,56.694,51.645,57.796978,
                                               51.645,59.148552L51.645,61.604 12.356,61.604 12.356,59.148552C12.356,
                                               59.148552,13.458899,56.694,14.8104,56.694z M57.342102,42.635002C56.361603,
                                               42.635002 55.566002,43.4319 55.566002,44.415001 55.566002,45.398201
@@ -1579,14 +1631,14 @@
                                               50.494598C23.250999,50.070225,23.358326,49.67128,23.54731,
                                               49.323315L23.581518,49.266998 2.4557495,49.266998C1.0977499,
                                               49.266998,0,48.168098,0,46.811199L0,2.4558105C0,1.099,1.0977499,
-                                              0,2.4557495,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              0,2.4557495,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
-                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         When your computer is online, Windows automatically checks for available updates.
                                         You can configure this behaviour from here.
                                     </TextBlock>
@@ -1595,23 +1647,23 @@
                                         <ComboBoxItem>Download Updates but let me choose whether to install them.</ComboBoxItem>
                                         <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them.</ComboBoxItem>
                                     </ComboBox>
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">Other options</TextBlock>
-                                    <CheckBox Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">Other options</TextBlock>
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Prevent Windows Update from forcibly rebooting Windows</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
                                         </CheckBox.Content>
@@ -1622,8 +1674,8 @@
                         <TabItem Header="administrator account" Width="200">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1631,7 +1683,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M42.123207,35.952998C42.123207,35.952998,59.814095,
+                                        <Path
+                                            Data="M42.123207,35.952998C42.123207,35.952998,59.814095,
                                               40.166618,61.498001,57.012999L0,57.012999C-3.5527137E-15,
                                               57.012999,5.055995,38.480312,20.221399,36.794204L24.326918,
                                               54.381586 27.344988,54.356802 30.777908,45.354411 27.573,
@@ -1640,28 +1693,28 @@
                                               0C39.69651,0 47.298,7.5988789 47.298,16.975199 47.298,
                                               26.351399 39.69651,33.953 30.32205,33.953 20.946487,
                                               33.953 13.347,26.351399 13.347,16.975199 13.347,7.5988789
-                                              20.946487,0 30.32205,0z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              20.946487,0 30.32205,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Administrator account
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Windows consists of an built-in account named "Administrator" which is deactivated by default. Activate/deactivate this account
-                                            by using the options below.
+                                        by using the options below.
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         <Hyperlink>Activate the built in Administrator account. (Not recommended)</Hyperlink>
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
-                                                    Hence, it is recommended to use this account only to perform special tasks and then de-activate it.
+                                        Hence, it is recommended to use this account only to perform special tasks and then de-activate it.
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource txtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         <Hyperlink>De-activate the built in Administrator account.</Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
@@ -1670,8 +1723,8 @@
                         <TabItem Header="system beeps" Width="135">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1679,7 +1732,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M29.123844,22.643209C25.163626,22.643209 21.950611,
+                                        <Path
+                                            Data="M29.123844,22.643209C25.163626,22.643209 21.950611,
                                               23.338659 21.950611,24.198021 21.950611,25.057482 25.163626,
                                               25.752932 29.123844,25.752932 33.084763,25.752932 36.297085,
                                               25.057482 36.297085,24.198021 36.297085,23.338659 33.084763,
@@ -1708,20 +1762,20 @@
                                               10.71079 17.173252,10.075296 17.569153,9.2447147 18.127054,
                                               8.0728569 18.242155,6.2526255 17.360752,5.210886 16.397751,
                                               4.072897 14.813849,3.6302719 13.386647,3.6275826L4.7435036,
-                                              3.6171513z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              3.6171513z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Disable Windows DVD Burner
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource chkStyle}" Margin="30, 10, 5, 5">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5">
                                         Use Windows built in DVD Burner
                                     </CheckBox>
                                 </StackPanel>
@@ -1730,8 +1784,8 @@
                         <TabItem Header="windows-dvd burner" Width="190">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="693"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="693" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1739,7 +1793,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M59.38105,18.229C62.181122,20.581835 64,24.063789
+                                        <Path
+                                            Data="M59.38105,18.229C62.181122,20.581835 64,24.063789
                                               64,27.99745 64,31.93631 62.181122,35.419464 59.38105,
                                               37.767002L54.713001,33.20713C56.411583,32.059914 57.59837,
                                               30.203083 57.59837,27.99745 57.59837,25.792915 56.411583,
@@ -1754,21 +1809,21 @@
                                               15.197925C15.039666,15.197925 17.92186,15.626224 17.92186,
                                               16.136623 17.92186,16.661423 20.237057,15.371024 23.067049,
                                               13.283826L39.648911,1.0338545C40.62289,0.31723268,41.535694,
-                                              -0.015024295,42.314293,0.00052067843z" Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                              -0.015024295,42.314293,0.00052067843z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Manage system beeps
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource smallTxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Use this option to turn on/off System beeps such as sound produced
                                         when using the Volume control or sounds produced by error dialogs etc.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource chkStyle}" Margin="30, 10, 5, 5">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5">
                                         Turn off System Beeps
                                     </CheckBox>
                                 </StackPanel>
@@ -1782,8 +1837,8 @@
                         <TabItem Header="automatic login" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1791,7 +1846,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M15.930851,36.710608C22.14356,36.647291 30.005098,41.570198
+                                        <Path
+                                            Data="M15.930851,36.710608C22.14356,36.647291 30.005098,41.570198
                                               30.005098,41.570198 38.080673,46.45562 45.657448,38.281082
                                               45.657448,38.281082 48.847534,35.288968 53.432121,42.865801
                                               53.432121,42.865801 59.214702,51.040343 59.414001,64.000004
@@ -1801,48 +1857,54 @@
                                               49.245998,17.644449 49.245998,27.390621 42.015587,35.288998
                                               33.0965,35.288999 24.177311,35.288998 16.947,27.390621
                                               16.947,17.644449 16.947,7.8997269 24.177311,0 33.0965,0z"
-                                              Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 5, 5, 5"
-                                               Name="chkEnableAutoLogin" Content="Enable Automatic Login">
-                                    </CheckBox>
-                                    <Border BorderBrush="{DynamicResource TabItem_TextBrush_Unselected}"
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5"
+                                              Name="chkEnableAutoLogin" Content="Enable Automatic Login" />
+                                    <Border BorderBrush="{DynamicResource TabItemTextBrushUnselected}"
                                             BorderThickness="1" Margin="30,5,5,10" Padding="5" CornerRadius="2">
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center">Username</TextBlock>
-                                            <TextBox Name="txtAutoLoginUserName" Grid.Column="1" Margin="5"></TextBox>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center" Grid.Row="1">Password</TextBlock>
-                                            <PasswordBox Name="txtAutoLoginPasswd" Style="{StaticResource smallPwBxStyle}" Margin="5"
-                                                       VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"></PasswordBox>
-                                            <TextBlock Style="{StaticResource smallTxtStyle}" Grid.Row="2"
-                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center">Domain Name</TextBlock>
-                                            <TextBox Name="txtAutoLoginDomainName" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
+                                                       VerticalAlignment="Center">
+                                                Username
+                                            </TextBlock>
+                                            <TextBox Name="txtAutoLoginUserName" Grid.Column="1" Margin="5" />
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
+                                                       VerticalAlignment="Center" Grid.Row="1">
+                                                Password
+                                            </TextBlock>
+                                            <PasswordBox Name="txtAutoLoginPasswd"
+                                                         Style="{StaticResource SmallPwBxStyle}" Margin="5"
+                                                         VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Grid.Row="2"
+                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center">
+                                                Domain Name
+                                            </TextBlock>
+                                            <TextBox Name="txtAutoLoginDomainName" Grid.Row="2" Grid.Column="1"
+                                                     Margin="5" />
                                         </Grid>
                                     </Border>
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 10, 5, 5"
-                                               Name="chkPreventShiftPress">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5"
+                                              Name="chkPreventShiftPress">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Prevent stopping automatic logon by pressing shift key</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox  Style="{StaticResource smallChkStyle}" Margin="30, 10, 5, 5"
-                                               Name="chkAutoLogonAfterLogoff">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5"
+                                              Name="chkAutoLogonAfterLogoff">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Logon automatically after Logoff</TextBlock>
                                         </CheckBox.Content>
@@ -1853,8 +1915,8 @@
                         <TabItem Header="startup sound" Width="150">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
@@ -1862,7 +1924,8 @@
                                         <Grid Width="256" Height="256">
                                             <Ellipse Fill="#FFFFFFFF" />
                                         </Grid>
-                                        <Path Data="M59.38105,18.229C62.181122,20.581835 64,24.063789 
+                                        <Path
+                                            Data="M59.38105,18.229C62.181122,20.581835 64,24.063789 
                                               64,27.99745 64,31.93631 62.181122,35.419464 59.38105,
                                               37.767002L54.713001,33.20713C56.411583,32.059914 57.59837,
                                               30.203083 57.59837,27.99745 57.59837,25.792915 56.411583,23.942587
@@ -1876,31 +1939,28 @@
                                               17.92186,15.626224 17.92186,16.136623 17.92186,16.661423 20.237057,
                                               15.371024 23.067049,13.283826L39.648911,1.0338545C40.62289,0.31723268,
                                               41.535694,-0.015024295,42.314293,0.00052067843z"
-                                              Stretch="Uniform"
-                                              Fill="{StaticResource VectorImageBackground}"
-                                              Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                        </Path>
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource h1}" Margin="30, 10, 5, 5">
-                                        Specify whether Windows should play sound when starting up</TextBlock>
-                                    <CheckBox Style="{StaticResource chkStyle}" Margin="30, 10, 5, 5" 
-                                              Content="Play a sound when Windows starts up" IsChecked="True"></CheckBox>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                        Specify whether Windows should play sound when starting up
+                                    </TextBlock>
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                              Content="Play a sound when Windows starts up" IsChecked="True" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="screensaver lock" Width="155">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="message" Width="100">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="miscellaneous" Width="140">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -1908,20 +1968,16 @@
                          Tag="restrictions" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="explorer" Width="90">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="start menu" Width="120">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="system" Width="90">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="taskbar" Width="90">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -1929,16 +1985,13 @@
                          Tag="maintenance" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="memory" Width="90">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="error" Width="70">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="startup settings" Width="150">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -1946,20 +1999,16 @@
                          Tag="utilities" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="system" Width="80">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="disk" Width="65">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="network" Width="95">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                         <TabItem Header="miscellaneous" Width="140">
-                            <Border  TextBlock.Foreground="{StaticResource TabItem_TextBrush_Unselected}">
-                            </Border>
+                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>

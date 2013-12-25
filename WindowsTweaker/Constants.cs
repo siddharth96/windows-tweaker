@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace WindowsTweaker {
-
-    internal static class Constants {
+namespace WindowsTweaker
+{
+    internal static class Constants
+    {
         public const String EXPLORER = "explorer";
         public const String SYSTEM = "system";
         public const String DISPLAY = "display";
