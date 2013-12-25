@@ -1863,9 +1863,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                        Automatic Login
+                                    </TextBlock>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5"
                                               Name="chkEnableAutoLogin" Content="Enable Automatic Login" />
-                                    <Border BorderBrush="{DynamicResource TabItemTextBrushUnselected}"
+                                    <Border BorderBrush="{DynamicResource TabItemTextBrushHover}"
                                             BorderThickness="1" Margin="30,5,5,10" Padding="5" CornerRadius="2">
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -1949,18 +1952,158 @@
                                         Specify whether Windows should play sound when starting up
                                     </TextBlock>
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                              Name="chkLoginSound"
                                               Content="Play a sound when Windows starts up" IsChecked="True" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="screensaver lock" Width="155">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M45.681998,21.848L53.518001,21.848 53.518001,29.684999
+                                            45.681998,29.684999z M33.874999,21.848L41.710999,21.848
+                                            41.710999,29.684999 33.874999,29.684999z M21.849,21.848L29.685,
+                                            21.848 29.685,29.684999 21.849,29.684999z M10.042,21.848L17.878,
+                                            21.848 17.878,29.684999 10.042,29.684999z M45.681998,10.151001L53.518001,
+                                            10.151001 53.518001,17.987 45.681998,17.987z M33.874999,
+                                            10.151001L41.710999,10.151001 41.710999,17.987 33.874999,17.987z
+                                            M21.849,10.151001L29.685,10.151001 29.685,17.987 21.849,17.987z 
+                                            M10.042,10.151001L17.878,10.151001 17.878,17.987 10.042,17.987z 
+                                            M3.9726601,4.1926918L3.9726601,35.7513 59.8073,35.7513 59.8073,4.1926918z 
+                                            M0,0L63.999999,0 63.999999,39.944 35.917001,39.944 35.917001,47.021789 
+                                            36.221066,47.026938C54.064746,47.434648 50.647994,53.957998 50.647994,53.957998
+                                            48.330531,53.627337 39.393079,53.295374 39.393079,53.295373L39.393079,51.971223 
+                                            24.165524,51.971223 23.833531,53.957998 12.910508,53.957998C8.9541752,
+                                            48.682416,22.233809,47.40084,27.791899,47.097869L27.971,47.08845 27.971,
+                                            39.944 0,39.944z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                        Screensave Lock
+                                    </TextBlock>
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                              Name="chkScreenSaverLock">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Make screensaver password protected and prevent users from
+                                                changing this setting
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="message" Width="100">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M19.037716,14.756299C16.678312,14.7563,14.756408,16.678199,14.756408,19.0388L14.756408,44.998495C14.756408,47.359098,16.678312,49.280996,19.037716,49.280996L36.882751,49.280996 42.724061,55.568697 49.013074,49.280996 55.434987,49.280996C57.796788,49.280996,59.717492,47.359098,59.717492,44.998495L59.717492,19.0388C59.717492,16.678199,57.796788,14.7563,55.434987,14.756299z M19.037716,10.475L55.434987,10.475C60.165395,10.475,64.000001,14.3083,64.000001,19.0388L64.000001,44.998495C64.000001,49.728895,60.165395,53.562296,55.434987,53.562296L51.976579,53.562296 43.124864,62.526999 34.277247,53.562296 19.037716,53.562296C14.308407,53.562296,10.474,49.728895,10.474,44.998495L10.474,19.0388C10.474,14.3083,14.308407,10.475,19.037716,10.475z M8.5636874,0L45.316232,0C48.631318,0,51.498506,1.8853846,52.923001,4.6380715L9.0989362,4.6380715C6.438786,4.6380715,4.2825441,6.7943265,4.2825441,9.457173L4.2825441,42.021C1.7240534,40.540596,0,37.781389,0,34.613382L0,8.5638605C0,3.8347297,3.8333254,0,8.5636874,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                        Login Message
+                                    </TextBlock>
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                              Name="chkEnableLoginMsg">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Show a message before user logs on
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <Grid Margin="30, 10, 5, 5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
+                                                       VerticalAlignment="Center">Title</TextBlock>
+                                        <TextBox Name="txtLoginMsgTitle" Grid.Column="1" Margin="5" />
+                                        <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
+                                                       VerticalAlignment="Center" Grid.Row="1">Content</TextBlock>
+                                        <PasswordBox Name="txtLoginMsgContent"
+                                                         Style="{StaticResource SmallPwBxStyle}" Margin="5"
+                                                         VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>                            
                         </TabItem>
                         <TabItem Header="miscellaneous" Width="140">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="F1M484.766,361.437C484.766,361.272 484.766,361.044
+                                            484.766,360.702 484.766,354.202 473.334,347.86 463.161,
+                                            344.493 462.697,344.342 459.766,343.021 461.598,337.451L461.572,
+                                            337.451C466.346,332.535 469.995,324.617 469.995,316.825 469.995,
+                                            304.846 462.027,298.566 452.769,298.566 443.505,298.566 435.583,
+                                            304.846 435.583,316.825 435.583,324.647 439.212,332.596 444.014,
+                                            337.502 445.887,342.413 442.538,344.236 441.837,344.493 432.143,
+                                            348 420.766,354.392 420.766,360.702 420.766,361.044 420.766,361.272 
+                                            420.766,361.437L484.766,361.437z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <CheckBox Name="chkRequireCtrlAltDlt" Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Require users to press Ctrl+Alt+Delete before logon</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Name="chkRestrictLastLoginUser" Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Show classic login screen</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Name="chkShowShutdownBtn" Margin="30, 10, 5, 5" IsChecked="True">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Show shutdown button on login screen</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
@@ -1968,16 +2111,346 @@
                          Tag="restrictions" Loaded="OnTabClicked">
                     <TabControl Margin="10,-10">
                         <TabItem Header="explorer" Width="90">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M4.0640081,19.692035C3.297984,19.692035 2.674996,20.279006 
+                                            2.674996,21.001046 2.674996,21.528996 3.0049837,21.968996
+                                            3.4780076,22.182007L3.4780076,23.970994 4.6540063,23.970994 
+                                            4.6540063,22.182007C5.1259926,21.968996 5.4560107,21.526006
+                                            5.4560107,21.001046 5.4560107,20.279006 4.8350065,19.692035 
+                                            4.0640081,19.692035z M24.180999,16.923631C23.9171,16.926307
+                                            23.724839,16.953316 23.713027,16.973004 23.692027,17.005003 
+                                            23.675027,17.340003 23.675027,17.719004 23.675027,18.097004
+                                            23.482026,18.407004 23.247025,18.407003 23.010026,18.407004
+                                            22.514026,18.883004 22.400025,19.063004 22.285025,19.245004
+                                            22.269025,19.770004 22.367026,20.232004L22.591025,21.295004C22.682025,
+                                            21.758004 23.414025,22.685004 23.646025,22.879004 23.882026,
+                                            23.070004 23.933026,23.589005 23.764026,24.029005L22.488025,
+                                            26.980005C22.275025,27.402005 23.204026,27.504005 23.609027,
+                                            27.373005 24.012027,27.242005 24.367026,27.114005 24.376027,
+                                            27.107005 24.383027,27.097005 24.702027,26.859005 25.078027,
+                                            26.573005L26.584027,25.263005C26.924027,24.934005 27.337027,
+                                            24.172005 27.385028,23.981005 27.435027,23.791005 27.955027,
+                                            23.365005 28.117028,23.260005 28.281028,23.152005 28.520028,
+                                            22.694005 28.654029,22.240005L28.980029,20.942004C29.078029,
+                                            20.478004 28.723029,19.872004 28.487029,19.749004 28.250027,
+                                            19.627004 28.002028,19.011004 27.979028,18.813004 27.956029,
+                                            18.613004 27.323027,17.847003 27.050029,17.590003 26.779027,
+                                            17.334003 26.170028,17.088003 25.699027,17.045003L24.639027,
+                                            16.944003C24.521277,16.932003 24.405652,16.925941 24.298167,
+                                            16.924066 24.257861,16.923363 24.218699,16.923248 24.180999,
+                                            16.923631z M3.9230176,14.30497C2.8000174,14.304969,1.8900171,
+                                            15.213975,1.8900173,16.337982L1.8900173,17.411988C1.8900171,
+                                            17.482176,1.8935718,17.551536,1.9005112,17.619897L1.9128865,
+                                            17.701023 5.9341019,17.701023 5.946502,17.619897C5.9534558,
+                                            17.551536,5.9570182,17.482176,5.9570182,17.411988L5.9570182,
+                                            16.337982C5.9570182,15.213975,5.045018,14.304969,3.9230176,
+                                            14.30497z M3.9230176,13.421964C5.4290179,13.421964,6.6530183,
+                                            14.530971,6.6530183,15.893979L6.6530183,17.198987C6.6530183,
+                                            17.369738,6.6338933,17.536426,6.597483,17.6974L6.5915969,17.720472
+                                            6.7022055,17.737367C7.5167359,17.904168,8.1299999,18.625294,
+                                            8.1299999,19.488057L8.1299999,23.119988C8.1299999,24.10698,
+                                            7.3290022,24.907022,6.3419998,24.907022L1.786993,24.907022C0.79898317,
+                                            24.907022,0,24.10698,0,23.119988L0,19.488057C0,18.68692,
+                                            0.52745373,18.007908,1.2551945,17.781444L1.2680947,17.778126 
+                                            1.2475131,17.6974C1.2111263,17.536426,1.1920169,17.369738,
+                                            1.192017,17.198987L1.192017,15.893979C1.1920169,14.530971,
+                                            2.4150172,13.421964,3.9230176,13.421964z M13.126388,3.5753183C12.58513,
+                                            3.5904694 11.754145,3.8776884 11.51202,4.0540009 11.21302,4.2710009
+                                            11.091019,4.644001 11.13502,4.7150011 11.17902,4.7850008 10.93902,
+                                            4.901001 10.83502,4.9260006 10.73102,4.9500008 10.55902,5.2960014
+                                            10.529019,5.4230013 10.499019,5.5480013 10.81302,5.5880013 10.947019,
+                                            5.5680008 11.08102,5.5480013 10.80402,5.9690008 10.675019,6.1460009
+                                            10.54702,6.3220015 10.52602,6.8980017 10.550019,7.0610018 10.57802,
+                                            7.2240019 10.602019,7.3180017 10.39802,7.3110018 10.19502,7.302001 
+                                            9.8120192,7.9710016 9.9730194,8.2330017 10.13602,8.4970016 10.86002,
+                                            7.9090014 11.157019,7.6250019 11.45502,7.3430014 12.18502,6.6970015 
+                                            12.38302,6.5490017 12.582021,6.4000015 13.480021,6.5650015 13.782021,
+                                            6.6860018 14.086021,6.809001 14.518021,7.2220011 14.742021,7.6050014
+                                            14.966021,7.9880018 15.191022,8.3830013 15.191022,8.3830013 15.429022,
+                                            8.7910013 15.531022,10.290002 15.501022,10.755002 15.469022,11.220002 
+                                            15.900022,12.521002 16.084021,12.885003 16.266023,13.248003 16.619023,
+                                            13.876003 16.865023,14.280003L17.744023,15.705003C17.993024,16.108003
+                                            19.311024,16.847003 19.737023,17.008003 20.164025,17.168003 20.512025,
+                                            17.159003 20.512025,16.988003 20.512025,16.816003 20.477025,16.701003 
+                                            20.465024,16.711003 20.451024,16.720003 20.166024,16.328003 20.061024,
+                                            16.176003 19.960025,16.024003 20.129023,15.243003 20.225024,14.993003 
+                                            20.321025,14.742003 21.484025,14.412003 21.886025,14.369003 22.290025,
+                                            14.326003 22.807025,14.834003 22.878026,15.040003 22.947026,15.248003 
+                                            23.275025,15.387003 23.375026,15.377003 23.474027,15.367003 23.563025,
+                                            14.859003 23.565026,14.672003 23.568026,14.484003 24.269027,13.397003 
+                                            24.521025,13.059002 24.772027,12.722003 25.776027,12.080002 26.053027,
+                                            11.953002 26.332028,11.825002 27.421027,11.435002 27.703029,11.346002 
+                                            27.985028,11.260002 28.083028,10.825002 27.923028,10.380002L27.183028,
+                                            8.5480013C26.992028,8.1150017 26.567027,7.8570013 26.461028,7.8950014 
+                                            26.354028,7.9340019 25.966027,7.2880011 25.845027,7.0430012 25.725028,
+                                            6.7990017 25.036027,6.512001 24.803027,6.4830017 24.571027,6.453001 
+                                            24.317027,7.4700012 24.279027,7.9110012 24.243026,8.3490019 23.972026,
+                                            8.7080021 23.879025,8.7080021 23.784026,8.7080021 23.433026,8.4380016 
+                                            23.095025,8.1060019L22.126025,7.1950016C21.772025,6.8820009 21.687026,
+                                            6.210001 21.760026,6.0630016 21.837025,5.9180012 22.913026,5.7440014 
+                                            23.287026,5.736001 23.661027,5.7250013 23.838027,4.8830013 23.786027,
+                                            4.625001 23.732026,4.3650007 23.302026,4.1470013 22.831025,4.1410007L19.628024,
+                                            4.1760006C19.154023,4.1890011 17.591023,3.8600006 17.178023,3.7580004 
+                                            16.763022,3.6540003 15.796022,3.8130007 15.554022,3.9320011 15.312022,
+                                            4.0510006 14.744021,4.0420008 14.290022,3.9130011 13.836021,3.7810011 
+                                            13.444021,3.6130009 13.444021,3.6130009 13.360771,3.5828133 13.251294,
+                                            3.5718212 13.126388,3.5753183z M20.878024,0C29.188029,0 35.925031,6.7350016
+                                            35.925031,15.047003 35.925031,23.358005 29.188029,30.094006 20.878024,
+                                            30.094006 16.397023,30.094006 12.38802,28.126005 9.6310194,25.020005 
+                                            10.152019,24.510005 10.477019,23.801004 10.477019,23.015005L10.477019,
+                                            19.385004C10.477019,17.929003 9.3630188,16.744003 7.9500182,16.601003 
+                                            7.9570182,16.508003 7.9780181,16.422003 7.9780181,16.330003L7.9780181,
+                                            15.024003C7.9780181,13.749003 7.2330178,12.641003 6.1340173,12.031003 
+                                            7.5290178,5.1650009 13.597021,0 20.878024,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable &quot;File&quot; menu in Explorer</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Folder options</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Right-Click</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <!-- TODO Add help description here-->
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Hide Appearance option under Display Menu</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable changes to screensaver</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="start menu" Width="120">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M30.448001,35.630001L53.9897,35.630001C54.726802,
+                                            35.630001,55.323001,36.226425,55.323001,36.963356L55.323001,
+                                            41.489647C55.323001,42.226677,54.726802,42.823002,53.9897,
+                                            42.823002L30.448001,42.823002z M1.3332689,35.630001L28.227001,
+                                            35.630001 28.227001,42.823002 1.3332689,42.823002C0.59619968,
+                                            42.823002,2.1979213E-07,42.226677,0,41.489647L0,36.963356C2.1979213E-07,
+                                            36.226425,0.59619968,35.630001,1.3332689,35.630001z M0.87511574,
+                                            1.1368684E-13L27.840909,1.1368684E-13C28.299102,-2.3010274E-07,
+                                            28.669,0.37109263,28.669,0.82946581L28.669,31.568905C28.669,
+                                            32.025902,28.299102,32.396999,27.840909,32.396999L0.87511574,
+                                            32.396999C0.41662501,32.396999,0.047000217,32.025902,0.047000204,
+                                            31.568905L0.047000204,0.82946581C0.047000217,0.37109263,0.41662501,
+                                            -2.3010274E-07,0.87511574,1.1368684E-13z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Shutdown option</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Hide recent documents</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable changes to start menu</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable log-off option</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Hide Control Panel</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="system" Width="90">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M38.225094,34.127998C38.225094,34.127997,54.279007,
+                                            37.950956,55.806,53.240997L0,53.240997C0,53.240997,4.5888453,
+                                            36.423571,18.3505,34.894889L22.07608,50.853125 24.814144,
+                                            50.830179 27.930876,42.66028 25.022001,37.618999 30.834,
+                                            37.618999 28.046774,42.788393 31.598986,50.773321 33.734516,
+                                            50.755424z M40.369865,3.0977135C40.028358,3.0977135,39.749054,
+                                            3.3750591,39.749054,3.7135639L39.749054,13.61874C39.749054,
+                                            13.959846,40.028358,14.241051,40.369865,14.241051L55.845036,
+                                            14.241051C56.185242,14.241051,56.465847,13.959846,56.465847,
+                                            13.61874L56.465847,3.7135639C56.465847,3.3750591,56.185242,
+                                            3.0977135,55.845036,3.0977135z M27.516737,1.5029984C29.782013,
+                                            1.5029984,31.923891,2.0029831,33.860771,2.8806458L33.860771,
+                                            18.790311 35.854252,18.790311 35.854252,19.829379 35.890049,
+                                            19.829379 35.890049,24.747129 40.75,24.747129C38.069027,29.269091
+                                            33.15538,32.311998 27.516737,32.311998 19.008726,32.311998 12.112,
+                                            25.413809 12.112,16.906269 12.112,8.3973179 19.008726,1.5029984 
+                                            27.516737,1.5029984z M37.274109,0L58.940189,0C59.280697,0,59.560001,
+                                            0.28125381,59.560001,0.62110519L59.560001,16.716496C59.560001,17.057602,
+                                            59.280697,17.334906,58.940189,17.334906L51.706364,17.334906 51.706364,
+                                            19.502945 56.851955,19.502945C57.193459,19.502945,57.470066,19.78025,
+                                            57.470066,20.121456L57.470066,21.922288C57.470066,22.265994,57.193459,
+                                            22.541999,56.851955,22.541999L39.362747,22.541999C39.020943,22.541999,
+                                            38.741936,22.265994,38.741936,21.922288L38.741936,20.121456C38.741936,
+                                            19.78025,39.020943,19.502945,39.362747,19.502945L44.508339,19.502945
+                                            44.508339,17.334906 37.274109,17.334906C36.932606,17.334906,36.654999,
+                                            17.057602,36.654999,16.716496L36.654999,0.62110519C36.654999,0.28125381,
+                                            36.932606,0,37.274109,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable deletion of printers</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable addition of new printers</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Windows update</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable changes to Virtual Memory</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Windows' Registry editing tools</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Task Manager</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable editing of settings under &quot;My Computer&quot;</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable administrative shares</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="taskbar" Width="90">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M30.448001,35.630001L53.9897,35.630001C54.726802,
+                                            35.630001,55.323001,36.226425,55.323001,36.963356L55.323001,
+                                            41.489647C55.323001,42.226677,54.726802,42.823002,53.9897,
+                                            42.823002L30.448001,42.823002z M1.3332689,35.630001L28.227001,
+                                            35.630001 28.227001,42.823002 1.3332689,42.823002C0.59619968,
+                                            42.823002,2.1979213E-07,42.226677,0,41.489647L0,36.963356C2.1979213E-07,
+                                            36.226425,0.59619968,35.630001,1.3332689,35.630001z M0.87511574,
+                                            1.1368684E-13L27.840909,1.1368684E-13C28.299102,-2.3010274E-07,
+                                            28.669,0.37109263,28.669,0.82946581L28.669,31.568905C28.669,
+                                            32.025902,28.299102,32.396999,27.840909,32.396999L0.87511574,
+                                            32.396999C0.41662501,32.396999,0.047000217,32.025902,0.047000204,
+                                            31.568905L0.047000204,0.82946581C0.047000217,0.37109263,0.41662501,
+                                            -2.3010274E-07,0.87511574,1.1368684E-13z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Disable Taskbar animations</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 10, 5, 5">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">Show small icons on TaskBar</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
