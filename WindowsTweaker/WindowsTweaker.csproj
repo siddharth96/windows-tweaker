@@ -88,10 +88,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants.cs" />
+    <Compile Include="HelpCheckBox.xaml.cs">
+      <DependentUpon>HelpCheckBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Themes\WindowDictionary.cs" />
     <Compile Include="UIRegistryHandler.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WindowsVer.cs" />
+    <Page Include="HelpCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

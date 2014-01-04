@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="WindowsTweaker.HelpCheckBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" Name="helpChkControl">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CheckBox>
+            <CheckBox.Content>
+                <TextBlock TextWrapping="Wrap" Name="txtChkBx"></TextBlock>
+            </CheckBox.Content>
+        </CheckBox>
+        <Viewbox Grid.Column="1">
+            <Grid MouseEnter="OnHelpBoxMouseEnter" MouseDown="OnHelpBoxMouseEnter">
+                <Grid Width="24" Height="24">
+                    <Ellipse Fill="#FFFFFFFF" Name="Fill" />
+                </Grid>
+                <Path
+                    Data="F1M1355.27,1727.8L1346.08,1727.8C1346.06,1726.48
+                          1346.05,1725.67 1346.05,1725.38 1346.05,1722.41 1346.54,
+                          1719.96 1347.52,1718.04 1348.51,1716.12 1350.47,1713.96
+                          1353.43,1711.56 1356.38,1709.16 1358.14,1707.58 1358.72,
+                          1706.84 1359.61,1705.66 1360.05,1704.37 1360.05,1702.95
+                          1360.05,1700.98 1359.27,1699.29 1357.7,1697.89 1356.12,
+                          1696.49 1354,1695.78 1351.34,1695.78 1348.77,1695.78
+                          1346.62,1696.52 1344.89,1697.98 1343.16,1699.44 1341.98,
+                          1701.68 1341.33,1704.68L1332.04,1703.53C1332.3,1699.23
+                          1334.13,1695.58 1337.53,1692.58 1340.93,1689.58 1345.38,
+                          1688.08 1350.91,1688.08 1356.72,1688.08 1361.34,1689.6
+                          1364.77,1692.63 1368.21,1695.67 1369.92,1699.2 1369.92,
+                          1703.24 1369.92,1705.47 1369.29,1707.58 1368.03,1709.58
+                          1366.77,1711.57 1364.08,1714.28 1359.95,1717.71 1357.81,
+                          1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08
+                          1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,
+                          1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z"
+                    Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
+                    Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <TransformGroup.Children>
+                                <RotateTransform Angle="0" />
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup.Children>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+        </Viewbox>
+        <Popup Name="popHelp" StaysOpen="False" Placement="Mouse" MaxWidth="450"
+               PopupAnimation="Slide" AllowsTransparency="True" Margin="0, 0, 10, 10">
+            <Border Background="{StaticResource WindowBackgroundBrush}" CornerRadius="4"
+                    BorderBrush="{StaticResource TabItemTextBrushUnselected}" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Margin="10, 10, 0, 10">
+                        <Grid MouseEnter="OnHelpBoxMouseEnter" MouseDown="OnHelpBoxMouseEnter">
+                            <Grid Width="100" Height="100">
+                                <Ellipse Fill="#FFFFFFFF" Name="HelpFill" />
+                            </Grid>
+                            <Path
+                                Data="M26.278166,42.277C25.327509,42.277 24.490215,42.610279 23.79347,43.257442 23.095514,43.871906 22.74,44.664757 22.74,45.612701 22.74,46.542347 23.094173,47.3353 23.792271,47.96656 24.509689,48.602024 25.347132,48.925003 26.278166,48.925003 27.193609,48.925003 28.023182,48.602024 28.743271,47.964161 29.440056,47.3353 29.792999,46.542347 29.792999,45.612701 29.792999,44.664757 29.438656,43.871906 28.745941,43.262543 28.042793,42.610279 27.213223,42.277 26.278166,42.277z M26.772953,15.075C24.08803,15.075 21.459265,15.817193 18.961798,17.279369 18.862875,17.33552 18.803,17.442211 18.803,17.555492L18.803,22.752068C18.803,22.882439 18.881125,22.996948 18.999531,23.047729 19.116734,23.09729 19.256062,23.067259 19.348469,22.980099 21.301645,21.054302 23.375914,20.080173 25.512552,20.080173 26.171368,20.080173 26.797754,20.159765 27.375891,20.317236 27.939608,20.469578 28.450005,20.707859 28.891441,21.020361 29.322439,21.330185 29.664936,21.716908 29.910934,22.170033 30.154434,22.627066 30.278133,23.17004 30.278133,23.787235 30.278133,24.477421 30.106234,25.119287 29.770435,25.697392 29.416138,26.302896 28.97084,26.887602 28.443474,27.434507 27.901888,27.999712 27.312012,28.586817 26.690954,29.177921 26.038559,29.784826 25.427902,30.422832 24.875904,31.072437 24.315908,31.732643 23.83938,32.45525 23.459253,33.216957 23.071106,34.004864 22.875916,34.890373 22.875916,35.847382 22.875916,36.447487 22.930586,37.06469 23.056856,37.747097L23.215633,38.134998C23.265114,38.254902,23.381104,38.333,23.511242,38.333L28.032007,38.333C28.224825,38.333 28.368004,38.189701 28.368004,38.012699 28.368004,37.950199 28.349745,37.890396 28.317215,37.839596L28.270416,37.664997C28.116686,37.17289 28.037216,36.615486 28.037216,36.004883 28.037216,35.304375 28.219616,34.657169 28.575083,34.080265 28.950041,33.474861 29.429237,32.882553 30.002134,32.317348 30.585432,31.740444 31.226128,31.154438 31.910923,30.577833 32.601021,29.977428 33.256016,29.284822 33.852413,28.517715 34.457809,27.747009 34.968205,26.887602 35.369305,25.961794 35.7742,25.024307 35.98,23.944946 35.98,22.752068 35.98,21.491806 35.733803,20.366796 35.248203,19.412197 34.762508,18.45784 34.08931,17.649242 33.244217,17.007387 32.407021,16.371891 31.417427,15.88482 30.305433,15.559379 29.200039,15.237844 28.012537,15.075 26.772953,15.075z M28.082602,0C28.082602,0 37.663319,10.7749 54.53677,10.7749 54.53677,10.7749 56.255554,32.329601 50.629303,44.518299 46.699638,53.017101 38.762207,59.893299 27.389908,64 16.020309,59.893299 8.0840788,52.6824 4.1595841,44.1824 -1.4718359,31.9937 0.24694874,10.7749 0.24694831,10.7749 17.119198,10.7749 28.082602,0 28.082602,0z"
+                                Stretch="Uniform" Fill="{StaticResource VectorImageBackground}" Width="75" Height="75"
+                                Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </Viewbox>
+                    <TextBlock Grid.Column="1" Style="{StaticResource SmallTxtStyle}" Name="txtHelp" VerticalAlignment="Center"
+                               Margin="20, 0, 20, 0"/>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
