@@ -88,8 +88,8 @@
     <Reference Include="WPFFolderBrowser">
       <HintPath>..\..\Dropbox\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WPFFolderBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\..\Dropbox\CSharp\WPF New\WindowsTweaker\WindowsTweaker\bin\Release\WPFToolkit.Extended.dll</HintPath>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>C:\Users\Siddharth\Downloads\Compressed\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

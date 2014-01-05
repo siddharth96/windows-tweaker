@@ -287,6 +287,10 @@
         <Setter Property="FontSize" Value="16" />
     </Style>
 
+    <Style TargetType="{x:Type TextBlock}" x:Key="HelpTxtStyle" BasedOn="{StaticResource TxtStyle}">
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
     <Style TargetType="{x:Type PasswordBox}" x:Key="SmallPwBxStyle">
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />

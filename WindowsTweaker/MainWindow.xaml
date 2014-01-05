@@ -1,7 +1,8 @@
 ﻿<Window x:Class="WindowsTweaker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Windows Tweaker 4.2"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Windows Tweaker 5.0"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="700"
         ResizeMode="CanResizeWithGrip">
     <Grid x:Name="LayoutRoot" Background="{StaticResource WindowBackgroundBrush}">
@@ -945,10 +946,116 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="add items" Width="100">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M2.880352,35.504997L25.563028,35.504997 25.461889,
+                                            35.77055C24.680614,37.90033 24.254,40.199783 24.254,42.596951
+                                            24.254,44.994007 24.680614,47.293259 25.461889,49.422794L25.562908,
+                                            49.688 2.880352,49.688C1.290522,49.688,3.8410201E-07,48.396416,0,
+                                            46.807915L0,38.38258C3.8410201E-07,36.794079,1.290522,35.504997,
+                                            2.880352,35.504997z M41.691601,32.867001L41.691601,40.591217
+                                            33.968002,40.591217 33.968002,45.48729 41.691601,45.48729 41.691601,
+                                            53.211002 46.587406,53.211002 46.587406,45.48729 54.311005,45.48729
+                                            54.311005,40.591217 46.587406,40.591217 46.587406,32.867001z M44.126499,
+                                            27.625C52.394669,27.625 59.098,34.325611 59.098,42.596501 59.098,
+                                            50.859093 52.394669,57.565003 44.126499,57.565003 35.858036,57.565003 
+                                            29.156,50.859093 29.156,42.596501 29.156,34.325611 35.858036,27.625 
+                                            44.126499,27.625z M2.880352,17.594002L43.182121,17.594002C44.771912,
+                                            17.594002,46.061001,18.882946,46.061001,20.471779L46.061001,22.816408 
+                                            45.653107,22.780068C45.149128,22.741593 44.639954,22.722 44.126297,
+                                            22.722 37.278214,22.722 31.227619,26.205 27.652683,31.492657L27.472803,
+                                            31.773003 2.880352,31.773003C1.290522,31.773001,3.8410201E-07,30.484057,
+                                            8.8062882E-07,28.893322L8.8062882E-07,20.471779C3.8410201E-07,18.882946,
+                                            1.290522,17.594002,2.880352,17.594002z M8.4794798,3.8200022C6.678607,
+                                            3.8200022 5.2110004,5.2864023 5.2110014,7.0887662 5.2110004,8.8935586 
+                                            6.678607,10.357 8.4794798,10.357 10.281624,10.357 11.748,8.8935586 
+                                            11.748,7.0887662 11.748,5.2864023 10.281624,3.8200022 8.4794798,3.8200022z 
+                                            M2.880352,0L43.182117,0C44.771912,5.590332E-07,46.061001,1.2890898,46.061001,
+                                            2.8779911L46.061001,11.302441C46.061001,12.893875,44.771912,14.18,43.182117,
+                                            14.18L2.880352,14.18C1.290522,14.18,3.8410201E-07,12.893875,0,11.302441L0,
+                                            2.8779911C3.8410201E-07,1.2890898,1.290522,5.590332E-07,2.880352,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <Grid Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Margin="30, 10, 5, 5" Style="{StaticResource TxtStyle}">Shortcut Name</TextBlock>
+                                    <TextBox Margin="10, 10, 5, 5" Grid.Column="1" Style="{StaticResource TxtBoxStyle}"></TextBox>
+                                    <TextBlock Margin="30, 10, 5, 5" Grid.Row="1" Style="{StaticResource TxtStyle}">Path or URL</TextBlock>
+                                    <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Grid.Column="1" Grid.Row="1" Style="{StaticResource TxtBoxStyle}">
+                                        <toolkit:WatermarkTextBox.Watermark>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Use 'Browse' to specify a file, or type in the URL (or file-path)</TextBlock>
+                                        </toolkit:WatermarkTextBox.Watermark>
+                                    </toolkit:WatermarkTextBox>
+                                    <Button Grid.Row="1" Grid.Column="2" Margin="0, 10, 5, 5">Browse</Button>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource HelpTxtStyle}" 
+                                               Margin="10,0,0,0"></TextBlock>
+                                    <Button Grid.Row="2" Margin="30, 10, 5, 5">Create</Button>
+                                </Grid>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="send-to menu" Width="150">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M33.605999,32.759998L58.428999,32.759998 58.428999,
+                                            57.580997 33.605999,57.580997z M27.359,10.806999L43.906999,
+                                            10.806999 43.906999,30.056999 30.902999,30.056999 30.902999,
+                                            44.413999 10.300999,44.413999 10.300999,27.356998 27.359,
+                                            27.356998z M0,0L24.484999,0 24.484999,24.486999 0,24.486999z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <Grid Grid.Column="1" Margin="30, 30, 5, 30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Rectangle Name="placeholder" VerticalAlignment="Top" Margin="30, 10, 0, 0"
+                                               Fill="White" Height="300" Width="250"></Rectangle>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="30, 10, 0, 0">
+                                        <Button Margin="0, 10, 10, 0">Add Folder</Button>
+                                        <Button Margin="0, 10, 10, 0">Add File</Button>
+                                        <Button Margin="0, 10, 10, 0">Delete Selected</Button>
+                                        <TextBlock HorizontalAlignment="Right" Margin="0, 50, 0, 0"><Hyperlink>Edit in Explorer</Hyperlink></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
