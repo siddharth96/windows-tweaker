@@ -1401,7 +1401,20 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" />
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" >
+                                    <TextBlock Style="{StaticResource H1}">Schedule Action</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
+                                        <ComboBox SelectedIndex="0">
+                                            <ComboBoxItem>ShutDown</ComboBoxItem>
+                                            <ComboBoxItem>Restart</ComboBoxItem>
+                                        </ComboBox>
+                                        <toolkit:DateTimePicker Margin="30, 0, 5, 0"></toolkit:DateTimePicker>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
+                                        <Button>Schedule</Button>
+                                        <Button>Cancel Scheduled Action</Button>
+                                    </StackPanel>
+                                </StackPanel>
                             </Grid>
                         </TabItem>
                         <TabItem Header="special hiding" Width="150">
@@ -2848,7 +2861,7 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <StackPanel Orientation="Horizontal" Margin="30, 10, 5, 5">
-                                        <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center">
+                                        <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center">
                                             Default action to perform, when Windows crashes
                                         </TextBlock>
                                         <ComboBox SelectedIndex="0" Margin="10, 0, 0, 0" FontSize="16">

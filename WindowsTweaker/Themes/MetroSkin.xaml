@@ -30,7 +30,7 @@
     <SolidColorBrush x:Key="GroupBoxForegroundBrush" Color="White" />
     <SolidColorBrush x:Key="TextForegroundBrush" Color="#FFF3FFFF" />
     <SolidColorBrush x:Key="HeaderTextForegroundBrush" Color="#FFF8FFE3" />
-    <SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#FF003543" />
+    <SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#149EC2" />
     <SolidColorBrush x:Key="GreenYellowShadeBackgroundBrush" Color="#B198CC3C" />
     <SolidColorBrush x:Key="VectorImageBackground" Color="#FFD2D1D1" />
 
@@ -43,9 +43,6 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Margin" Value="6,2" />
-    </Style>
-    <Style TargetType="{x:Type Hyperlink}">
-        <Setter Property="Foreground" Value="LightSteelBlue" />
     </Style>
 
     <Style TargetType="{x:Type TextBlock}">
@@ -281,6 +278,10 @@
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="21.333" />
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
+    
+    <Style TargetType="{x:Type Hyperlink}">
+        <Setter Property="Foreground" Value="{StaticResource BlueShadeBackgroundBrush}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="SmallTxtStyle" BasedOn="{StaticResource TxtStyle}">
