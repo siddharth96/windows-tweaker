@@ -108,5 +108,16 @@ namespace WindowsTweaker
         public const String SHELL = "shell";
         public const String TEXT_FILE = "textfile";
         public const String CONTROL_PANEL_CREATE_PATH = "rundll32.exe shell32.dll,Control_RunDLL";
+
+        //Restrictions
+
+        //Explorer
+        public const String NO_FILE_MENU = "NoFileMenu";
+        public const String NO_FOLDER_OPTION = "NoFolderOptions";
+        public const String NO_VIEW_CONTEXT_MENU="NoViewContextMenu";
+        public const String NO_DISP_APPEARANCE_PAGE="NoDispAppearancePage";
+        public const String NO_DISP_SCR_SAV_PAGE = "NoDispScrSavPage";
+        public const String DISABLE_THUMBNAIL_CACHE="DisableThumbnailCache";
+        public const String DIS_ALLOW_FLIP_3D= "DisallowFlip3D";
     }
 }

@@ -2343,38 +2343,38 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFileMenu">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable &quot;File&quot; menu in Explorer</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFolderOpt">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Folder options</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkRightClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Right-Click</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <!-- TODO Add help description here-->
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideAppearanceOpt">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide Appearance option under Display Menu</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangeScreensaver">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to screensaver</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideThumbNailCach">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
                                         </CheckBox.Content>
