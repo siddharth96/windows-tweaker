@@ -63,34 +63,66 @@ namespace WindowsTweaker {
 
         private void LoadRestrictionsTab()
         {
-            // Explorer
+            
             using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"))
             {
+             // Explorer
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFileMenu, hkcuExplorer, Constants.NO_FILE_MENU);
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFolderOpt, hkcuExplorer, Constants.NO_FOLDER_OPTION);
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkRightClick, hkcuExplorer, Constants.NO_VIEW_CONTEXT_MENU);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideAppearanceOpt, hkcuExplorer, Constants.NO_DISP_APPEARANCE_PAGE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangeScreensaver, hkcuExplorer, Constants.NO_DISP_SCR_SAV_PAGE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCach, hkcuExplorer, Constants.DISABLE_THUMBNAIL_CACHE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHide3DFlick, hkcuExplorer, Constants.DIS_ALLOW_FLIP_3D);
-               
+            //START MENU
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideShutDownOpt, hkcuExplorer, Constants.NO_CLOSE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideRecentDocs, hkcuExplorer, Constants.NO_RECENT_DOCS_MENU);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangesStartMenu, hkcuExplorer, Constants.NO_CHANGE_START_MENU);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideLogOff, hkcuExplorer, Constants.NO_LOG_OFF);
+            //System
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableDeletionPrinters, hkcuExplorer, Constants.NO_DELETE_PRINTER);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAddNewPrinter, hkcuExplorer, Constants.NO_ADD_PRINTER);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindUpdate, hkcuExplorer, Constants.NO_WINDOW_UPDATE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindowRegEditTool, hkcuExplorer, Constants.DISBALE_REGISTRY_TOOLS);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableEditSettUnderMyComp, hkcuExplorer, Constants.NO_PROPERTIES_MY_COMPUTER);
             }
+            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
+            {
+                // Explorer
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideAppearanceOpt, hklmSystem, Constants.NO_DISP_APPEARANCE_PAGE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangeScreensaver, hklmSystem, Constants.NO_DISP_SCR_SAV_PAGE);
+                //START MENU
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideControlPanel, hklmSystem, Constants.NO_DISP_CPL);
+                //System
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableChangeToVirtualMem, hklmSystem, Constants.NO_VIRT_MEM_PAGE);
+            }
+            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"))
+            {
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCach, hkcuExAdvanced, Constants.DISABLE_THUMBNAIL_CACHE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkTaskBarAnim, hkcuExAdvanced, Constants.TASK_BAR_ANIMATIONS);
+                //to check 
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TASK_BAR_SMALL_ICONS);
+                
+            }
+            using (RegistryKey hkcuDWM = HKCU.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM"))
+            {
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHide3DFlick, hkcuDWM, Constants.DIS_ALLOW_FLIP_3D);
+            }
+            using (RegistryKey hkcuSystem = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
+            {
+                //system
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableTaskManager, hkcuSystem, Constants.DISABLE_TASK_MGR);
+            }
+            using (RegistryKey hklmParams = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters"))
+            {
+                //TO CHECK System
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAdminShares, hklmParams, Constants.AUTO_SHRE_WKS);
+            }
+
         }
+
+
+
 
         private void UpdateRegistryRestrictions()
         {
-            using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"))
-            {
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFileMenu, hkcuExplorer, Constants.NO_FILE_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFolderOpt, hkcuExplorer, Constants.NO_FOLDER_OPTION);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkRightClick, hkcuExplorer, Constants.NO_VIEW_CONTEXT_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideAppearanceOpt, hkcuExplorer, Constants.NO_DISP_APPEARANCE_PAGE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideChangeScreensaver, hkcuExplorer, Constants.NO_DISP_SCR_SAV_PAGE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideThumbNailCach, hkcuExplorer, Constants.DISABLE_THUMBNAIL_CACHE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHide3DFlick, hkcuExplorer, Constants.DIS_ALLOW_FLIP_3D);
-
-            }
- 
+            
         }
 
         private void LoadExplorerTab() {

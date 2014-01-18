@@ -119,5 +119,26 @@ namespace WindowsTweaker
         public const String NO_DISP_SCR_SAV_PAGE = "NoDispScrSavPage";
         public const String DISABLE_THUMBNAIL_CACHE="DisableThumbnailCache";
         public const String DIS_ALLOW_FLIP_3D= "DisallowFlip3D";
+        //Start Menu
+        public const String NO_CLOSE="NoClose";
+        public const String NO_RECENT_DOCS_MENU="NoRecentDocsMenu";
+        public const String NO_CHANGE_START_MENU="NoChangeStartMenu";
+        public const String NO_LOG_OFF="NoLogoff";
+        public const String NO_DISP_CPL="NoDispCPL";
+        //system
+        public const String NO_DELETE_PRINTER="NoDeletePrinter";
+        public const String NO_ADD_PRINTER="NoAddPrinter";
+        public const String NO_WINDOW_UPDATE="NoWindowsUpdate";
+        public const String NO_VIRT_MEM_PAGE="NoVirtMemPage";
+        public const String DISBALE_REGISTRY_TOOLS="DisableRegistryTools";
+        public const String DISABLE_TASK_MGR="DisableTaskMgr";
+        public const String NO_PROPERTIES_MY_COMPUTER="NoPropertiesMyComputer";
+        //    special case 
+        public const String AUTO_SHRE_WKS = "AutoShareWks";
+
+        //Taskbar
+        public const String TASK_BAR_ANIMATIONS = "TaskbarAnimations";
+        public const String TASK_BAR_SMALL_ICONS="TaskbarSmallIcons";
+
     }
 }
