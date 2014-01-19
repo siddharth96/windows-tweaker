@@ -2374,7 +2374,7 @@
                                             <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlick">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
                                         </CheckBox.Content>

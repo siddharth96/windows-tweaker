@@ -8,14 +8,19 @@ namespace WindowsTweaker {
 
         /// <summary>
         /// Updates the checked state of the <paramref name="chk"/> if the <paramref name="valueName"/>
-        /// evaluates to true (i.e., 1) for the passed in <paramref name="registryKey"/>
+        /// evaluates to true (i.e., 1) for the passed in <paramref name="registryKey"/>. 
+        /// However, if <paramref name="inverse"/> is to true, it updates the reverses the checkbox state, i.e., 
+        /// if the <paramref name="valueName"/> evaluates to true (i.e., 1), checkbox is set to unchecked.
         /// </summary>
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
-        public static void SetUICheckBoxFromRegistryValue(CheckBox chk, RegistryKey registryKey, String valueName) {
+        /// <param name="inverse"></param>
+        public static void SetUICheckBoxFromRegistryValue(CheckBox chk, RegistryKey registryKey, 
+            String valueName, bool inverse=false) {
             int? val = (int?)registryKey.GetValue(valueName);
-            chk.IsChecked = Utils.IntToBool(val);
+            bool result = Utils.IntToBool(val);
+            chk.IsChecked = inverse ? !result : result;
         }
 
         /// <summary>
@@ -36,12 +41,14 @@ namespace WindowsTweaker {
         /// <summary>
         /// Sets the value of <paramref name="keyName"/> in <paramref name="registryKey"/> to 1 if
         /// <paramref name="chk"/>'s IsChecked is equal to true, otherwise sets it to 0.
+        /// This behaviour is reversed if <paramref name="inverse"/> is set to true.
         /// </summary>
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        public static void SetRegistryValueFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName) {
-            SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName);
+        /// <param name="inverse"></param>
+        public static void SetRegistryValueFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName, bool inverse=false) {
+            SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
         }
 
         /// <summary>
@@ -78,13 +85,15 @@ namespace WindowsTweaker {
 
         /// <summary>
         /// Creates a sub-key with name (if it doesn't exists) <paramref name="keyName"/> under <paramref name="registryKey"/> if
-        /// <paramref name="val"/> is equal to true, otherwise it deletes it (if present).
+        /// <paramref name="val"/> is equal to true, otherwise it deletes it (if present). This behaviour is reversed if 
+        /// <paramref name="inverse"/> is true.
         /// </summary>
         /// <param name="val"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        public static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, String keyName) {
-            int intVal = Utils.BoolToInt(val);
+        /// <param name="inverse"></param>
+        public static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, String keyName, bool inverse=false) {
+            int intVal = inverse ? Utils.ReversedBoolToInt(val) : Utils.BoolToInt(val);
             registryKey.SetValue(keyName, intVal);
         }
 

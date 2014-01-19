@@ -8,6 +8,8 @@ namespace WindowsTweaker {
 
         public static Func<bool?, int> BoolToInt = (bool? val) => val == true ? 1 : 0;
 
+        public static Func<bool?, int> ReversedBoolToInt = (bool? val) => val == true ? 0 : 1;
+
         public static Func<string, bool> StringToBool = (String val) => val != null && val.Equals("1");
 
         public static Func<bool?, String> BoolToString = (bool? val) => val == true ? "1" : "0";
