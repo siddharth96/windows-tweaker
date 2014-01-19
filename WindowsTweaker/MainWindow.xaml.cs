@@ -1,8 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
+using System.Linq;
+using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WPFFolderBrowser;
 
 namespace WindowsTweaker {
 
@@ -593,5 +596,41 @@ namespace WindowsTweaker {
         }
 
         private void UpdateRegistryFromRightClick() {}
+
+        private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                String selectedFolderName = folderBrowserDialog.FileName;
+                if (Utils.IsEmptyDirectory(selectedFolderName)) {
+                    if (Directory.GetParent(selectedFolderName) != null) {
+                        String godModeFolderPath = selectedFolderName + Constants.GOD_MODE_KEY;
+                        if (Directory.Exists(godModeFolderPath))
+                            Directory.Delete(godModeFolderPath);
+                            DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
+                            String parentDir = selectedFolderDirectoryInfo.Parent.FullName;
+                            try {
+                                selectedFolderDirectoryInfo.Delete(true);
+                                Directory.CreateDirectory(godModeFolderPath);
+                                MessageBox.Show("God Mode folder has been successfully created in " + parentDir +
+                                                "\n\nPlease note that if on clicking the folder you get an error, " +
+                                                "then you need to refresh that window for changes to be reflected.",
+                                    "Mission Accomplished!!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (UnauthorizedAccessException ex) {
+                                MessageBox.Show("Permission Denied!", "Oh My God!", MessageBoxButton.OK);
+                            }
+                    }
+                    else {
+                        MessageBox.Show("You can't make " + selectedFolderName + " a \'God\' folder. " +
+                                        "\n Please select an empty folder or create a new one", "Hey!!",
+                                MessageBoxButton.OK);
+                    }
+                }
+                else {
+                    MessageBox.Show(selectedFolderName + " is not an empty folder.\n You must create an " +
+                                                  "empty folder, to set God Mode", "Hey!!", MessageBoxButton.OK);
+                }
+            }
+        }
     }
 }

@@ -1113,7 +1113,7 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         Please don't select any existing folder, you must create a new folder.
                                     </TextBlock>
-                                    <Button Margin="30, 20, 10, 10"
+                                    <Button Margin="30, 20, 10, 10" Click="OnButtonSetupGodModeClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
                                         Browse &amp; Create New Folder
                                     </Button>

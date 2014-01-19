@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
+using System.Linq;
+using Microsoft.Win32;
 using System;
 
 namespace WindowsTweaker {
@@ -20,6 +22,10 @@ namespace WindowsTweaker {
                 regKey.DeleteValue(keyName);
             } catch (ArgumentException) {
             }
+        }
+
+        public static bool IsEmptyDirectory(String path) {
+            return !Directory.EnumerateFiles(path).Any();
         }
     }
 }
