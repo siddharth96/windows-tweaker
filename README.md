@@ -10,7 +10,7 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 
 2. Clone the repository
 
-    `git clone git@github.com:siddharth96/windows-tweaker.git`
+    ```git clone git@github.com:siddharth96/windows-tweaker.git```
 
 3. Add references to these three DLLs
     - [Interop.IWshRuntimeLibrary.dll](https://sites.google.com/site/suresoftwares/downloads/Interop.IWshRuntimeLibrary.dll?attredirects=0&d=1 "Interop.IWshRuntimeLibrary.dll")
