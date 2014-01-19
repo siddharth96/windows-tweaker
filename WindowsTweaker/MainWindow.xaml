@@ -2414,27 +2414,27 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideShutDownOpt">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Shutdown option</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideRecentDocs">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide recent documents</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangesStartMenu">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to start menu</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideLogOff">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable log-off option</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideControlPanel">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide Control Panel</TextBlock>
                                         </CheckBox.Content>
@@ -2488,42 +2488,42 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableDeletionPrinters">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable deletion of printers</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAddNewPrinter"> 
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable addition of new printers</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindUpdate">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Windows update</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableChangeToVirtualMem">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to Virtual Memory</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindowRegEditTool">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Windows' Registry editing tools</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableTaskManager">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Task Manager</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableEditSettUnderMyComp">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable editing of settings under &quot;My Computer&quot;</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAdminShares">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable administrative shares</TextBlock>
                                         </CheckBox.Content>
@@ -2563,12 +2563,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarAnim">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Taskbar animations</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show small icons on TaskBar</TextBlock>
                                         </CheckBox.Content>
