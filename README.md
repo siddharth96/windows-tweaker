@@ -6,7 +6,7 @@ The latest version 5.0 is currently under development, and is a complete re-writ
 ## To Build
 Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-i-use-github "Lifehacker") if you don't know how to setup git on Windows.
 
-1. Download [Visual Studio Express 2013 for Windows Desktop](http://wpftoolkit.codeplex.com/), in case you don't have a paid license for Visual Studio 2013. 
+1. Download [Visual Studio Express 2013 for Windows Desktop](http://msdn.microsoft.com/en-us/dn369242), in case you don't have a paid license for Visual Studio 2013. 
 
 2. Clone the repository
 
