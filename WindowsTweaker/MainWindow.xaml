@@ -1235,7 +1235,7 @@
                                         Power Button action on Start Menu
                                     </TextBlock>
                                     <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                              SelectedIndex="0">
+                                              SelectedIndex="0" Name="cmboBxPowerBtnAction">
                                         <ComboBoxItem>Shutdown</ComboBoxItem>
                                         <ComboBoxItem>Hibernate</ComboBoxItem>
                                         <ComboBoxItem>Sleep</ComboBoxItem>
