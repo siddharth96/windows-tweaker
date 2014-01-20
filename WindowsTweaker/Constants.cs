@@ -15,6 +15,10 @@ namespace WindowsTweaker
         public const String Restrictions = "restrictions";
         public const String Maintenance = "maintenance";
         public const String Utilities = "utilities";
+        public const String ErrorMsgTitle = "On My God!!";
+        public const String WarningMsgTitle = "Hey!!";
+        public const String AlertMsgTitle = "Mind You!!";
+        public const String SuccessMsgTitle = "Mission Accomplished!!";
 
         // Explorer Tab Keys/Value
 

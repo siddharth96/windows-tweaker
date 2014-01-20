@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Microsoft.Win32;
 using System;
@@ -26,6 +27,16 @@ namespace WindowsTweaker {
 
         public static bool IsEmptyDirectory(String path) {
             return !Directory.EnumerateFiles(path).Any();
+        }
+
+        public static void ExecuteCmd(String cmd) {
+            ProcessStartInfo hideProc = new ProcessStartInfo("cmd", "/c " + cmd);
+            hideProc.RedirectStandardOutput = true;
+            hideProc.UseShellExecute = false;
+            hideProc.CreateNoWindow = true;
+            Process proc = new Process();
+            proc.StartInfo = hideProc;
+            proc.Start();
         }
     }
 }

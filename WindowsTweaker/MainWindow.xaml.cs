@@ -44,6 +44,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.Tasks:
+                    LoadTaskTab();
                     break;
 
                 case Constants.Features:
@@ -63,7 +64,7 @@ namespace WindowsTweaker {
                     break;
             }
         }
-
+        
         private void LoadRestrictionsTab() {
 
             using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
@@ -642,23 +643,65 @@ namespace WindowsTweaker {
                                 MessageBox.Show("God Mode folder has been successfully created in " + parentDir +
                                                 "\n\nPlease note that if on clicking the folder you get an error, " +
                                                 "then you need to refresh that window for changes to be reflected.",
-                                    "Mission Accomplished!!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                             catch (UnauthorizedAccessException ex) {
-                                MessageBox.Show("Permission Denied!", "Oh My God!", MessageBoxButton.OK);
+                                MessageBox.Show("Permission Denied!", Constants.ErrorMsgTitle, MessageBoxButton.OK, 
+                                    MessageBoxImage.Error);
                             }
                     }
                     else {
                         MessageBox.Show("You can't make " + selectedFolderName + " a \'God\' folder. " +
-                                        "\n Please select an empty folder or create a new one", "Hey!!",
-                                MessageBoxButton.OK);
+                                        "\n Please select an empty folder or create a new one", Constants.WarningMsgTitle,
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else {
                     MessageBox.Show(selectedFolderName + " is not an empty folder.\n You must create an " +
-                                                  "empty folder, to set God Mode", "Hey!!", MessageBoxButton.OK);
+                                                  "empty folder, to set God Mode", Constants.WarningMsgTitle, 
+                                                  MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+        }
+
+
+        private void LoadTaskTab() {
+            dateTimePickerScheduleShutdown.Value = DateTime.Now;
+        }
+
+        private void OnScheduleShutdownButtonClick(object sender, RoutedEventArgs e) {
+            DateTime? selectedDateTime = dateTimePickerScheduleShutdown.Value;
+            if (selectedDateTime.HasValue) {
+                String param = null;
+                switch (cmboBxShutdownAction.SelectedIndex) {
+                    case 0: param = "/s";
+                        break;
+                    case 1: param = "/r";
+                        break;
+                }
+                DateTime nowTime = DateTime.Now;
+                TimeSpan gap = selectedDateTime.Value.Subtract(nowTime);
+                long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
+                if (timeout >= 0) {
+                    String shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
+                    Utils.ExecuteCmd(shutdwnComd);
+                    MessageBox.Show("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") + " at " + selectedDateTime.Value.ToString("h:m tt"),
+                        Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else {
+                    MessageBox.Show("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
+                                    " exceed the limit of 10 years.", Constants.AlertMsgTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else {
+                MessageBox.Show("Please select a date!", Constants.WarningMsgTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+            }
+        }
+
+        private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
+            Utils.ExecuteCmd("shutdown /a");
+            MessageBox.Show("A scheduled shutdown has been cancelled", Constants.SuccessMsgTitle, MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
     }
 }

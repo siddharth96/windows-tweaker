@@ -1404,15 +1404,15 @@
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" >
                                     <TextBlock Style="{StaticResource H1}">Schedule Action</TextBlock>
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <ComboBox SelectedIndex="0">
+                                        <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction">
                                             <ComboBoxItem>ShutDown</ComboBoxItem>
                                             <ComboBoxItem>Restart</ComboBoxItem>
                                         </ComboBox>
-                                        <toolkit:DateTimePicker Margin="30, 0, 5, 0"></toolkit:DateTimePicker>
+                                        <toolkit:DateTimePicker Margin="30, 0, 5, 0" Name="dateTimePickerScheduleShutdown"></toolkit:DateTimePicker>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <Button>Schedule</Button>
-                                        <Button>Cancel Scheduled Action</Button>
+                                        <Button Name="btnScheduleShutdown" Click="OnScheduleShutdownButtonClick">Schedule</Button>
+                                        <Button Name="btnCancelShutdown" Click="OnCancelShutdownButtonClick">Cancel Scheduled Action</Button>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
