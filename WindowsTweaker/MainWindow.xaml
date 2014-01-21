@@ -1557,7 +1557,7 @@
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal">
                                         <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                                  SelectedIndex="0">
+                                                  SelectedIndex="0" Name="cmboBxSpecialFolderNames">
                                             <ComboBoxItem>CON</ComboBoxItem>
                                             <ComboBoxItem>PRN</ComboBoxItem>
                                             <ComboBoxItem>AUX</ComboBoxItem>
@@ -1581,7 +1581,7 @@
                                             <ComboBoxItem>LPT8</ComboBoxItem>
                                             <ComboBoxItem>LPT9</ComboBoxItem>
                                         </ComboBox>
-                                        <Button Margin="30, 10, 10, 10"
+                                        <Button Margin="30, 10, 10, 10" Name="btnCreateSpecialParentFolder" Click="OnButtonBrowseSpecialFolderParentClick"
                                                 HorizontalAlignment="Left">
                                             Select the Parent Folder to save the Special Folder
                                         </Button>
@@ -1591,7 +1591,7 @@
                                         Use this option to delete a special folder.
                                         Make sure the Folder is empty before you delete it.
                                     </TextBlock>
-                                    <Button Margin="30, 10, 10, 10"
+                                    <Button Margin="30, 10, 10, 10" Name="btnDeleteSpecialFolder" Click="OnButtonDeleteSpecialFolderClick"
                                             HorizontalAlignment="Left">
                                         Browse &amp; Delete
                                     </Button>

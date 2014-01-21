@@ -703,5 +703,26 @@ namespace WindowsTweaker {
             MessageBox.Show("A scheduled shutdown has been cancelled", Constants.SuccessMsgTitle, MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
+
+        private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
+            folderBrowserDlg.Title = "Select a Parent Folder";
+            if (folderBrowserDlg.ShowDialog() == true) {
+                String parentPath = folderBrowserDlg.FileName;
+                String createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
+                Utils.ExecuteCmd(createCmd);
+                MessageBox.Show(cmboBxSpecialFolderNames.SelectionBoxItem + " created Successfully at " + parentPath,
+                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void OnButtonDeleteSpecialFolderClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                String path = folderBrowserDialog.FileName;
+                String createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
+                Utils.ExecuteCmd(createCmd);
+            }
+        }
     }
 }
