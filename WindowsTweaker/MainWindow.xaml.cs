@@ -47,6 +47,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.LOGON:
+                    LoadLogonTab();
                     break;
 
                 case Constants.RESTRICTIONS:
@@ -61,6 +62,21 @@ namespace WindowsTweaker {
             }
         }
 
+
+        //LOGON
+        private void LoadLogonTab()
+        {
+
+            using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon"))
+            {
+
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkEnableAutoLogin, hklmWinLogon,"");
+
+            }
+
+        }
+
+        //RESTRICTIONS
         private void LoadRestrictionsTab()
         {
 
