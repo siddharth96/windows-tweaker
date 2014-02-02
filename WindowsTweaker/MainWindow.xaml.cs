@@ -50,7 +50,9 @@ namespace WindowsTweaker {
                 case Constants.Features:
                     break;
 
+
                 case Constants.Logon:
+                    LoadLogonTab();
                     break;
 
                 case Constants.Restrictions:
@@ -64,8 +66,25 @@ namespace WindowsTweaker {
                     break;
             }
         }
-        
-        private void LoadRestrictionsTab() {
+                
+
+        //LOGON
+        private void LoadLogonTab()
+        {
+
+            using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon"))
+            {
+
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkEnableAutoLogin, hklmWinLogon,"");
+
+            }
+
+        }
+
+        //RESTRICTIONS
+        private void LoadRestrictionsTab()
+        {
+
 
             using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Explorer
