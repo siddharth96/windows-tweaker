@@ -2,3 +2,4 @@ update_info.xml
 WindowsTweaker/bin/*
 WindowsTweaker/obj/*
 *.suo
+*.user

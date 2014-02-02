@@ -1,0 +1,9 @@
+﻿<Window x:Class="WindowsTweaker.OpenWith"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="&quot;Open With&quot; Customization" Height="525" Width="517"
+        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
+    <Grid>
+        
+    </Grid>
+</Window>

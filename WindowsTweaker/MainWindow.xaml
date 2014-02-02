@@ -1113,7 +1113,7 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         Please don't select any existing folder, you must create a new folder.
                                     </TextBlock>
-                                    <Button Margin="30, 20, 10, 10"
+                                    <Button Margin="30, 20, 10, 10" Click="OnButtonSetupGodModeClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
                                         Browse &amp; Create New Folder
                                     </Button>
@@ -1235,7 +1235,7 @@
                                         Power Button action on Start Menu
                                     </TextBlock>
                                     <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                              SelectedIndex="0">
+                                              SelectedIndex="0" Name="cmboBxPowerBtnAction">
                                         <ComboBoxItem>Shutdown</ComboBoxItem>
                                         <ComboBoxItem>Hibernate</ComboBoxItem>
                                         <ComboBoxItem>Sleep</ComboBoxItem>
@@ -1404,15 +1404,15 @@
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" >
                                     <TextBlock Style="{StaticResource H1}">Schedule Action</TextBlock>
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <ComboBox SelectedIndex="0">
+                                        <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction">
                                             <ComboBoxItem>ShutDown</ComboBoxItem>
                                             <ComboBoxItem>Restart</ComboBoxItem>
                                         </ComboBox>
-                                        <toolkit:DateTimePicker Margin="30, 0, 5, 0"></toolkit:DateTimePicker>
+                                        <toolkit:DateTimePicker Margin="30, 0, 5, 0" Name="dateTimePickerScheduleShutdown"></toolkit:DateTimePicker>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <Button>Schedule</Button>
-                                        <Button>Cancel Scheduled Action</Button>
+                                        <Button Name="btnScheduleShutdown" Click="OnScheduleShutdownButtonClick">Schedule</Button>
+                                        <Button Name="btnCancelShutdown" Click="OnCancelShutdownButtonClick">Cancel Scheduled Action</Button>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -1557,7 +1557,7 @@
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal">
                                         <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
-                                                  SelectedIndex="0">
+                                                  SelectedIndex="0" Name="cmboBxSpecialFolderNames">
                                             <ComboBoxItem>CON</ComboBoxItem>
                                             <ComboBoxItem>PRN</ComboBoxItem>
                                             <ComboBoxItem>AUX</ComboBoxItem>
@@ -1581,7 +1581,7 @@
                                             <ComboBoxItem>LPT8</ComboBoxItem>
                                             <ComboBoxItem>LPT9</ComboBoxItem>
                                         </ComboBox>
-                                        <Button Margin="30, 10, 10, 10"
+                                        <Button Margin="30, 10, 10, 10" Name="btnCreateSpecialParentFolder" Click="OnButtonBrowseSpecialFolderParentClick"
                                                 HorizontalAlignment="Left">
                                             Select the Parent Folder to save the Special Folder
                                         </Button>
@@ -1591,7 +1591,7 @@
                                         Use this option to delete a special folder.
                                         Make sure the Folder is empty before you delete it.
                                     </TextBlock>
-                                    <Button Margin="30, 10, 10, 10"
+                                    <Button Margin="30, 10, 10, 10" Name="btnDeleteSpecialFolder" Click="OnButtonDeleteSpecialFolderClick"
                                             HorizontalAlignment="Left">
                                         Browse &amp; Delete
                                     </Button>
@@ -2374,7 +2374,7 @@
                                             <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlick">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
                                         </CheckBox.Content>

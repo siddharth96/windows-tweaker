@@ -1,8 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using System.IO;
+using System.Linq;
+using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WPFFolderBrowser;
 
 namespace WindowsTweaker {
 
@@ -22,46 +25,48 @@ namespace WindowsTweaker {
         public readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
 
         private void OnTabClicked(object sender, RoutedEventArgs e) {
-            String tagVal = ((TabItem)sender).Tag.ToString();
+            String tagVal = ((TabItem) sender).Tag.ToString();
             switch (tagVal) {
-                case Constants.EXPLORER:
+                case Constants.Explorer:
                     LoadExplorerTab();
                     break;
 
-                case Constants.SYSTEM:
+                case Constants.System:
                     break;
 
-                case Constants.DISPLAY:
+                case Constants.Display:
                     break;
 
-                case Constants.RIGHT_CLICK:
+                case Constants.RightClick:
                     break;
 
-                case Constants.PLACES:
+                case Constants.Places:
                     break;
 
-                case Constants.TASKS:
+                case Constants.Tasks:
+                    LoadTaskTab();
                     break;
 
-                case Constants.FEATURES:
+                case Constants.Features:
                     break;
 
-                case Constants.LOGON:
+
+                case Constants.Logon:
                     LoadLogonTab();
                     break;
 
-                case Constants.RESTRICTIONS:
+                case Constants.Restrictions:
                     LoadRestrictionsTab();
                     break;
 
-                case Constants.MAINTENANCE:
+                case Constants.Maintenance:
                     break;
 
-                case Constants.UTILITIES:
+                case Constants.Utilities:
                     break;
             }
         }
-
+                
 
         //LOGON
         private void LoadLogonTab()
@@ -80,139 +85,116 @@ namespace WindowsTweaker {
         private void LoadRestrictionsTab()
         {
 
-            using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"))
-            {
+
+            using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Explorer
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFileMenu, hkcuExplorer, Constants.NO_FILE_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFolderOpt, hkcuExplorer, Constants.NO_FOLDER_OPTION);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkRightClick, hkcuExplorer, Constants.NO_VIEW_CONTEXT_MENU);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFileMenu, hkcuExplorer, Constants.NoFileMenu);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideFolderOpt, hkcuExplorer, Constants.NoFolderOption);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkRightClick, hkcuExplorer, Constants.NoViewContextMenu);
                 //START MENU          
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideShutDownOpt, hkcuExplorer, Constants.NO_CLOSE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideRecentDocs, hkcuExplorer, Constants.NO_RECENT_DOCS_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideChangesStartMenu, hkcuExplorer, Constants.NO_CHANGE_START_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideLogOff, hkcuExplorer, Constants.NO_LOG_OFF);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideShutDownOpt, hkcuExplorer, Constants.NoClose);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideRecentDocs, hkcuExplorer, Constants.NoRecentDocsMenu);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideChangesStartMenu, hkcuExplorer, Constants.NoChangeStartMenu);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideLogOff, hkcuExplorer, Constants.NoLogOff);
                 //System            
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableDeletionPrinters, hkcuExplorer, Constants.NO_DELETE_PRINTER);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableAddNewPrinter, hkcuExplorer, Constants.NO_ADD_PRINTER);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWindUpdate, hkcuExplorer, Constants.NO_WINDOW_UPDATE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWindowRegEditTool, hkcuExplorer, Constants.DISBALE_REGISTRY_TOOLS);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableEditSettUnderMyComp, hkcuExplorer, Constants.NO_PROPERTIES_MY_COMPUTER);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableDeletionPrinters, hkcuExplorer, Constants.NoDeletePrinter);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableAddNewPrinter, hkcuExplorer, Constants.NoAddPrinter);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWindUpdate, hkcuExplorer, Constants.NoWindowUpdate);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWindowRegEditTool, hkcuExplorer, Constants.DisbaleRegistryTools);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableEditSettUnderMyComp, hkcuExplorer, Constants.NoPropertiesMyComputer);
             }
-            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
-            {
+            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 // Explorer
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideAppearanceOpt, hklmSystem, Constants.NO_DISP_APPEARANCE_PAGE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideChangeScreensaver, hklmSystem, Constants.NO_DISP_SCR_SAV_PAGE);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideAppearanceOpt, hklmSystem, Constants.NoDispAppearancePage);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideChangeScreensaver, hklmSystem, Constants.NoDispScrSavPage);
                 //START MENU      
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideControlPanel, hklmSystem, Constants.NO_DISP_CPL);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideControlPanel, hklmSystem, Constants.NoDispCpl);
                 //System        
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableChangeToVirtualMem, hklmSystem, Constants.NO_VIRT_MEM_PAGE);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableChangeToVirtualMem, hklmSystem, Constants.NoVirtMemPage);
             }
-            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"))
-            {
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideThumbNailCach, hkcuExAdvanced, Constants.DISABLE_THUMBNAIL_CACHE);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkTaskBarAnim, hkcuExAdvanced, Constants.TASK_BAR_ANIMATIONS);
-                //to check 
-                if (windowsOS != WindowsVer.Windows.XP)
-                {
-                    UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TASK_BAR_SMALL_ICONS);
+            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                // Explorer
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideThumbNailCach, hkcuExAdvanced, Constants.DisableThumbnailCache);
+                // Taskbar
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkTaskBarAnim, hkcuExAdvanced, Constants.TaskBarAnimations);
+                if (windowsOS != WindowsVer.Windows.XP) {
+                    UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TaskBarSmallIcons);
                 }
 
             }
-            using (RegistryKey hkcuDWM = HKCU.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM"))
-            {
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHide3DFlick, hkcuDWM, Constants.DIS_ALLOW_FLIP_3D);
+            if (windowsOS > WindowsVer.Windows.XP && windowsOS < WindowsVer.Windows.Eight) {
+                using (RegistryKey hkcuDWM = HKCU.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM")) {
+                    // Explorer
+                    UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHide3DFlip, hkcuDWM, Constants.DisAllowFlip_3D);
+                }
             }
-            using (RegistryKey hkcuSystem = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
-            {
-                //system
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableTaskManager, hkcuSystem, Constants.DISABLE_TASK_MGR);
+            else {
+                chkHide3DFlip.Visibility = Visibility.Collapsed;
             }
-            using (RegistryKey hklmParams = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters"))
-            {
-                //TO CHECK 
+            using (RegistryKey hkcuSystem = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 //System
-
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableAdminShares, hklmParams, Constants.AUTO_SHRE_WKS);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableTaskManager, hkcuSystem, Constants.DisableTaskMgr);
             }
-
+            using (RegistryKey hklmParams = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters")) {
+                //System
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableAdminShares, hklmParams, Constants.AutoShreWks, true);
+            }
         }
 
+        private void UpdateRegistryRestrictions() {
 
-
-
-
-        private void UpdateRegistryRestrictions()
-        {
-
-
-
-
-            using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"))
-            {
+            using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Explorer
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFileMenu, hkcuExplorer, Constants.NO_FILE_MENU);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFolderOpt, hkcuExplorer, Constants.NO_FOLDER_OPTION);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkRightClick, hkcuExplorer, Constants.NO_VIEW_CONTEXT_MENU);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFileMenu, hkcuExplorer, Constants.NoFileMenu);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideFolderOpt, hkcuExplorer, Constants.NoFolderOption);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkRightClick, hkcuExplorer, Constants.NoViewContextMenu);
                 //START MENU          
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideShutDownOpt, hkcuExplorer, Constants.NO_CLOSE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideRecentDocs, hkcuExplorer, Constants.NO_RECENT_DOCS_MENU);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangesStartMenu, hkcuExplorer, Constants.NO_CHANGE_START_MENU);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideLogOff, hkcuExplorer, Constants.NO_LOG_OFF);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideShutDownOpt, hkcuExplorer, Constants.NoClose);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideRecentDocs, hkcuExplorer, Constants.NoRecentDocsMenu);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangesStartMenu, hkcuExplorer, Constants.NoChangeStartMenu);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideLogOff, hkcuExplorer, Constants.NoLogOff);
                 //System            
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableDeletionPrinters, hkcuExplorer, Constants.NO_DELETE_PRINTER);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAddNewPrinter, hkcuExplorer, Constants.NO_ADD_PRINTER);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindUpdate, hkcuExplorer, Constants.NO_WINDOW_UPDATE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindowRegEditTool, hkcuExplorer, Constants.DISBALE_REGISTRY_TOOLS);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableEditSettUnderMyComp, hkcuExplorer, Constants.NO_PROPERTIES_MY_COMPUTER);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableDeletionPrinters, hkcuExplorer, Constants.NoDeletePrinter);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAddNewPrinter, hkcuExplorer, Constants.NoAddPrinter);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindUpdate, hkcuExplorer, Constants.NoWindowUpdate);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableWindowRegEditTool, hkcuExplorer, Constants.DisbaleRegistryTools);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableEditSettUnderMyComp, hkcuExplorer, Constants.NoPropertiesMyComputer);
             }
-            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
-            {
+            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 // Explorer
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideAppearanceOpt, hklmSystem, Constants.NO_DISP_APPEARANCE_PAGE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangeScreensaver, hklmSystem, Constants.NO_DISP_SCR_SAV_PAGE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideAppearanceOpt, hklmSystem, Constants.NoDispAppearancePage);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideChangeScreensaver, hklmSystem, Constants.NoDispScrSavPage);
                 //START MENU      
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideControlPanel, hklmSystem, Constants.NO_DISP_CPL);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideControlPanel, hklmSystem, Constants.NoDispCpl);
                 //System        
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableChangeToVirtualMem, hklmSystem, Constants.NO_VIRT_MEM_PAGE);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableChangeToVirtualMem, hklmSystem, Constants.NoVirtMemPage);
             }
-            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"))
-            {
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCach, hkcuExAdvanced, Constants.DISABLE_THUMBNAIL_CACHE);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkTaskBarAnim, hkcuExAdvanced, Constants.TASK_BAR_ANIMATIONS);
-                //to check 
-                if (windowsOS != WindowsVer.Windows.XP)
-                {
-                    UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TASK_BAR_SMALL_ICONS);
+            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCach, hkcuExAdvanced, Constants.DisableThumbnailCache);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkTaskBarAnim, hkcuExAdvanced, Constants.TaskBarAnimations);
+                if (windowsOS != WindowsVer.Windows.XP) {
+                    UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TaskBarSmallIcons);
                 }
 
             }
-            using (RegistryKey hkcuDWM = HKCU.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM"))
-            {
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHide3DFlick, hkcuDWM, Constants.DIS_ALLOW_FLIP_3D);
+            if (windowsOS > WindowsVer.Windows.XP && windowsOS < WindowsVer.Windows.Eight) {
+                using (RegistryKey hkcuDWM = HKCU.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM")) {
+                    UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHide3DFlip, hkcuDWM, Constants.DisAllowFlip_3D);
+                }
             }
-            using (RegistryKey hkcuSystem = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System"))
-            {
-                //system
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableTaskManager, hkcuSystem, Constants.DISABLE_TASK_MGR);
-            }
-            using (RegistryKey hklmParams = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters"))
-            {
-                //TO CHECK 
+            using (RegistryKey hkcuSystem = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 //System
-
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAdminShares, hklmParams, Constants.AUTO_SHRE_WKS);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableTaskManager, hkcuSystem, Constants.DisableTaskMgr);
             }
-
-
-
-            
+            using (RegistryKey hklmParams = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters")) {
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAdminShares, hklmParams, Constants.AutoShreWks, true);
+            }
         }
 
         private void LoadExplorerTab() {
             //Drive Letters
             using (RegistryKey hkcuCvExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
-                int showDriveLetterVal = (int)hkcuCvExplorer.GetValue(Constants.SHOW_DRIVE_LETTERS, 0);
+                int showDriveLetterVal = (int) hkcuCvExplorer.GetValue(Constants.ShowDriveLetters, 0);
                 switch (showDriveLetterVal) {
                     case 0:
                         rbtnShowDriveLetterAfterName.IsChecked = true;
@@ -234,46 +216,48 @@ namespace WindowsTweaker {
 
             using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 // Advanced
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowMenuBar, hkcuExAdvanced, Constants.ALWAYS_SHOW_MENU);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideExtension, hkcuExAdvanced, Constants.HIDE_FILE_EXT);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkSelectItems, hkcuExAdvanced, Constants.AUTO_CHK_SELECT);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowMenuBar, hkcuExAdvanced, Constants.AlwaysShowMenu);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideExtension, hkcuExAdvanced, Constants.HideFileExt);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkSelectItems, hkcuExAdvanced, Constants.AutoChkSelect);
 
-                int? val = (int?)hkcuExAdvanced.GetValue(Constants.HIDDEN);
+                int? val = (int?) hkcuExAdvanced.GetValue(Constants.Hidden);
                 chkShowHiddenFilesFolders.IsChecked = val == 1;
 
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkRestoreFoldersAtLogin, hkcuExAdvanced, Constants.PERSIST_BROWSERS);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowOSfiles, hkcuExAdvanced, Constants.SUPER_HIDDEN);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowNtfsInColor, hkcuExAdvanced, Constants.COMPRESSED_COLOR);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkRestoreFoldersAtLogin, hkcuExAdvanced, Constants.PersistBrowsers);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowOSfiles, hkcuExAdvanced, Constants.SuperHidden);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowNtfsInColor, hkcuExAdvanced, Constants.CompressedColor);
 
                 // Properties
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideSecurity, hkcuExAdvanced, Constants.NO_SECURITY_TAB);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowHideCustomize, hkcuExAdvanced, Constants.NO_CUSTOMIZE_TAB);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideSecurity, hkcuExAdvanced, Constants.NoSecurityTab);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkShowHideCustomize, hkcuExAdvanced, Constants.NoCustomizeTab);
             }
 
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
                 if (windowsOS > WindowsVer.Windows.XP) {
-                    RegistryKey key = hklmNamespace.OpenSubKey(Constants.LIBRARY);
+                    RegistryKey key = hklmNamespace.OpenSubKey(Constants.Library);
                     if (key != null) {
                         rbtnShowLibraries.IsChecked = true;
-                    } else {
+                    }
+                    else {
                         rbtnHideLibraries.IsChecked = true;
                     }
-                } else {
+                }
+                else {
                     tabItemLibrary.Visibility = Visibility.Collapsed;
                 }
             }
 
             // Etc
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkAddRecycleBinToMyComputer, hklmNamespace, Constants.RECYCLE_BIN);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkAddRecycleBinToMyComputer, hklmNamespace, Constants.RecycleBin);
             }
 
             RegistryKey hkcrCLSID = HKCR.OpenSubKey(@"CLSID");
             RegistryKey hklmCPNamespace = HKLM.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
             if (hkcrCLSID != null && hklmCPNamespace != null) {
-                RegistryKey keyInHKCR = hkcrCLSID.OpenSubKey(Constants.REGEDIT);
-                RegistryKey keyInHKLM = hklmCPNamespace.OpenSubKey(Constants.REGEDIT);
+                RegistryKey keyInHKCR = hkcrCLSID.OpenSubKey(Constants.Regedit);
+                RegistryKey keyInHKLM = hklmCPNamespace.OpenSubKey(Constants.Regedit);
                 if (keyInHKCR != null && keyInHKLM != null) {
                     chkAddRegeditToControlPanel.IsChecked = true;
                     keyInHKLM.Close();
@@ -290,68 +274,74 @@ namespace WindowsTweaker {
                 int val = 0;
                 if (rbtnShowDriveLetterAfterName.IsChecked == true) {
                     val = 0;
-                } else if (rbtnHideDriveLetter.IsChecked == true) {
+                }
+                else if (rbtnHideDriveLetter.IsChecked == true) {
                     val = 2;
-                } else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
+                }
+                else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
                     val = 4;
-                } else {
+                }
+                else {
                     val = 0;
                 }
-                hkcuCvExplorer.SetValue(Constants.SHOW_DRIVE_LETTERS, val);
+                hkcuCvExplorer.SetValue(Constants.ShowDriveLetters, val);
             }
 
             using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 // Advanced
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowMenuBar, hkcuExAdvanced, Constants.ALWAYS_SHOW_MENU);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideExtension, hkcuExAdvanced, Constants.HIDE_FILE_EXT);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkSelectItems, hkcuExAdvanced, Constants.AUTO_CHK_SELECT);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowMenuBar, hkcuExAdvanced, Constants.AlwaysShowMenu);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideExtension, hkcuExAdvanced, Constants.HideFileExt);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkSelectItems, hkcuExAdvanced, Constants.AutoChkSelect);
 
                 int val = chkShowHiddenFilesFolders.IsChecked == true ? 1 : 2;
-                hkcuExAdvanced.SetValue(Constants.HIDDEN, val);
+                hkcuExAdvanced.SetValue(Constants.Hidden, val);
 
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkRestoreFoldersAtLogin, hkcuExAdvanced, Constants.PERSIST_BROWSERS);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowOSfiles, hkcuExAdvanced, Constants.SUPER_HIDDEN);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowNtfsInColor, hkcuExAdvanced, Constants.COMPRESSED_COLOR);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkRestoreFoldersAtLogin, hkcuExAdvanced, Constants.PersistBrowsers);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowOSfiles, hkcuExAdvanced, Constants.SuperHidden);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowNtfsInColor, hkcuExAdvanced, Constants.CompressedColor);
 
                 // Properties
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideSecurity, hkcuExAdvanced, Constants.NO_SECURITY_TAB);
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowHideCustomize, hkcuExAdvanced, Constants.NO_CUSTOMIZE_TAB);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideSecurity, hkcuExAdvanced, Constants.NoSecurityTab);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowHideCustomize, hkcuExAdvanced, Constants.NoCustomizeTab);
             }
 
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
                 if (windowsOS > WindowsVer.Windows.XP) {
-                    RegistryKey key = hklmNamespace.OpenSubKey(Constants.LIBRARY, true);
+                    RegistryKey key = hklmNamespace.OpenSubKey(Constants.Library, true);
                     if (rbtnShowLibraries.IsChecked == true)
-                        UIRegistryHandler.SetRegistryKeyFromBool(true, hklmNamespace, Constants.LIBRARY);
+                        UIRegistryHandler.SetRegistryKeyFromBool(true, hklmNamespace, Constants.Library);
                     else if (rbtnHideLibraries.IsChecked == true)
-                        UIRegistryHandler.SetRegistryKeyFromBool(false, hklmNamespace, Constants.LIBRARY);
+                        UIRegistryHandler.SetRegistryKeyFromBool(false, hklmNamespace, Constants.Library);
                 }
             }
 
             // Etc
             using (RegistryKey hklmNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace")) {
-                UIRegistryHandler.SetRegistryKeyFromUICheckBox(chkAddRecycleBinToMyComputer, hklmNamespace, Constants.RECYCLE_BIN);
+                UIRegistryHandler.SetRegistryKeyFromUICheckBox(chkAddRecycleBinToMyComputer, hklmNamespace, Constants.RecycleBin);
             }
 
             RegistryKey hkcrCLSID = HKCR.OpenSubKey(@"CLSID");
-            RegistryKey hklmCPNamespace = HKLM.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
+            RegistryKey hklmCPNamespace =
+                HKLM.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
             if (chkAddRegeditToControlPanel.IsChecked == true) {
                 if (hkcrCLSID == null)
                     hkcrCLSID = HKCR.CreateSubKey(@"CLSID");
                 if (hklmCPNamespace == null)
-                    hklmCPNamespace = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
-                UIRegistryHandler.SetRegistryKeyFromBool(true, hkcrCLSID, Constants.REGEDIT);
-                UIRegistryHandler.SetRegistryKeyFromBool(true, hklmCPNamespace, Constants.REGEDIT);
+                    hklmCPNamespace =
+                        HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
+                UIRegistryHandler.SetRegistryKeyFromBool(true, hkcrCLSID, Constants.Regedit);
+                UIRegistryHandler.SetRegistryKeyFromBool(true, hklmCPNamespace, Constants.Regedit);
                 hkcrCLSID.Close();
                 hklmCPNamespace.Close();
-            } else {
+            }
+            else {
                 if (hkcrCLSID != null) {
-                    UIRegistryHandler.SetRegistryKeyFromBool(false, hkcrCLSID, Constants.REGEDIT);
+                    UIRegistryHandler.SetRegistryKeyFromBool(false, hkcrCLSID, Constants.Regedit);
                     hkcrCLSID.Close();
                 }
                 if (hklmCPNamespace != null) {
-                    UIRegistryHandler.SetRegistryKeyFromBool(false, hklmCPNamespace, Constants.REGEDIT);
+                    UIRegistryHandler.SetRegistryKeyFromBool(false, hklmCPNamespace, Constants.Regedit);
                     hklmCPNamespace.Close();
                 }
             }
@@ -362,16 +352,18 @@ namespace WindowsTweaker {
                 //Shutdown Configuration
                 String val;
                 try {
-                    val = (String)hkcuDesktop.GetValue(Constants.AUTO_END_TASKS);
+                    val = (String) hkcuDesktop.GetValue(Constants.AutoEndTasks);
                     rbtnShutdownImmediately.IsChecked = Utils.StringToBool(val);
-                } catch (InvalidCastException) {
+                }
+                catch (InvalidCastException) {
                     rbtnShutdownImmediately.Visibility = Visibility.Collapsed;
                 }
 
-                val = (String)hkcuDesktop.GetValue(Constants.WAIT_TO_KILL_APP_TIMEOUT);
+                val = (String) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
                 if (val != null) {
                     rbtnShutdownAfterWaiting.IsChecked = !rbtnShutdownImmediately.IsChecked;
-                } else {
+                }
+                else {
                     if (rbtnShutdownImmediately.IsChecked != true)
                         rbtnShutdownAfterWaiting.IsChecked = true;
                 }
@@ -379,32 +371,33 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmWinInstaller = HKLM.CreateSubKey(@"Software\Policies\Microsoft\Windows\Installer")) {
                 // Windows Installer
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWinInstaller, hklmWinInstaller, Constants.DISABLE_MSI);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkElevatedInstall, hklmWinInstaller, Constants.ALWAYS_INSTALL_ELEVATED);
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableSysRestoreInstall, hklmWinInstaller, Constants.LIMIT_SYSTEM_RESTORE);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableWinInstaller, hklmWinInstaller, Constants.DisableMsi);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkElevatedInstall, hklmWinInstaller, Constants.AlwaysInstallElevated);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkDisableSysRestoreInstall, hklmWinInstaller, Constants.LimitSystemRestore);
             }
 
             using (RegistryKey hklmCVWinNT = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion")) {
                 // Registration
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtOwnerName, hklmCVWinNT, Constants.REGISTERED_OWNER);
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtCompanyName, hklmCVWinNT, Constants.REGISTERED_ORG);
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtProductId, hklmCVWinNT, Constants.PRODUCT_ID);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtOwnerName, hklmCVWinNT, Constants.RegisteredOwner);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtCompanyName, hklmCVWinNT, Constants.RegisteredOrg);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtProductId, hklmCVWinNT, Constants.ProductId);
             }
 
             using (RegistryKey hklmOEM = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
                 // Edit Information
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtManufacturer, hklmOEM, Constants.MANUFACTURER);
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtModel, hklmOEM, Constants.MODEL);
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtSupportPhone, hklmOEM, Constants.SUPPORT_PHONE);
-                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtSupportUrl, hklmOEM, Constants.SUPPORT_URL);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtManufacturer, hklmOEM, Constants.Manufacturer);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtModel, hklmOEM, Constants.Model);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtSupportPhone, hklmOEM, Constants.SupportPhone);
+                UIRegistryHandler.SetUITextBoxFromRegistryValue(txtSupportUrl, hklmOEM, Constants.SupportUrl);
 
                 // Logo
-                String logoUrl = (String)hklmOEM.GetValue(Constants.LOGO);
+                String logoUrl = (String) hklmOEM.GetValue(Constants.Logo);
                 if (logoUrl != null && logoUrl.Length > 0) {
                     btnDeleteLogo.IsEnabled = true;
                     try {
                         // TODO: Add Image Box
-                    } catch (UriFormatException) {
+                    }
+                    catch (UriFormatException) {
                         // TODO : Append c: to path
                     }
                 }
@@ -416,7 +409,7 @@ namespace WindowsTweaker {
             if (rbtnShutdownImmediately.Visibility == Visibility.Visible) {
                 using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
                     String val = Utils.BoolToString(rbtnShutdownImmediately.IsChecked);
-                    hkcuDesktop.SetValue(Constants.AUTO_END_TASKS, val);
+                    hkcuDesktop.SetValue(Constants.AutoEndTasks, val);
                     if (rbtnShutdownAfterWaiting.IsChecked == true) {
                         // TODO : set timeout
                     }
@@ -429,21 +422,24 @@ namespace WindowsTweaker {
                 bool allFalse = false;
                 // Windows Installer
                 if (chkDisableWinInstaller.IsChecked == true) {
-                    hklmWinInstaller.SetValue(Constants.DISABLE_MSI, 2);
-                } else {
-                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.DISABLE_MSI);
+                    hklmWinInstaller.SetValue(Constants.DisableMsi, 2);
+                }
+                else {
+                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.DisableMsi);
                 }
 
                 if (chkElevatedInstall.IsChecked == true) {
-                    hklmWinInstaller.SetValue(Constants.ALWAYS_INSTALL_ELEVATED, 1);
-                } else {
-                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.ALWAYS_INSTALL_ELEVATED);
+                    hklmWinInstaller.SetValue(Constants.AlwaysInstallElevated, 1);
+                }
+                else {
+                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.AlwaysInstallElevated);
                 }
 
                 if (chkDisableSysRestoreInstall.IsChecked == true) {
-                    hklmWinInstaller.SetValue(Constants.LIMIT_SYSTEM_RESTORE, 1);
-                } else {
-                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.LIMIT_SYSTEM_RESTORE);
+                    hklmWinInstaller.SetValue(Constants.LimitSystemRestore, 1);
+                }
+                else {
+                    Utils.SafeDeleteRegistryValue(hklmWinInstaller, Constants.LimitSystemRestore);
                 }
 
                 // TODO : Cleanup the leftovers
@@ -451,32 +447,32 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmCVWinNT = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion")) {
                 // Registration
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtOwnerName, hklmCVWinNT, Constants.REGISTERED_OWNER);
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtCompanyName, hklmCVWinNT, Constants.REGISTERED_ORG);
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtProductId, hklmCVWinNT, Constants.PRODUCT_ID);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtOwnerName, hklmCVWinNT, Constants.RegisteredOwner);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtCompanyName, hklmCVWinNT, Constants.RegisteredOrg);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtProductId, hklmCVWinNT, Constants.ProductId);
             }
 
             using (RegistryKey hklmOEM = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
                 // Edit Information
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtManufacturer, hklmOEM, Constants.MANUFACTURER);
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtModel, hklmOEM, Constants.MODEL);
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportPhone, hklmOEM, Constants.SUPPORT_PHONE);
-                UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportUrl, hklmOEM, Constants.SUPPORT_URL);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtManufacturer, hklmOEM, Constants.Manufacturer);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtModel, hklmOEM, Constants.Model);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportPhone, hklmOEM, Constants.SupportPhone);
+                UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportUrl, hklmOEM, Constants.SupportUrl);
             }
         }
 
         private void LoadDisplayTab() {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
-                String val = (String)hkcuWinMet.GetValue(Constants.MIN_ANIMATE);
+                String val = (String) hkcuWinMet.GetValue(Constants.MinAnimate);
                 chkWindowAnim.IsChecked = Utils.StringToBool(val);
             }
 
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
-                String val = (String)hkcuDesktop.GetValue(Constants.DRAG_FULL_WIN);
+                String val = (String) hkcuDesktop.GetValue(Constants.DragFullWin);
                 chkShowWindowDrag.IsChecked = Utils.StringToBool(val);
 
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkWindowVersion, hkcuDesktop, Constants.PAINT_DESKTOP_VER);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkWindowVersion, hkcuDesktop, Constants.PaintDesktopVer);
 
                 // Alt-Tab
                 // TODO : Alt-Tab implementation
@@ -484,12 +480,13 @@ namespace WindowsTweaker {
 
             // Selection Color
             using (RegistryKey hkcuColors = HKCU.CreateSubKey(@"Control Panel\Colors")) {
-                String val = (String)hkcuColors.GetValue(Constants.SELECTION_COLOR);
+                String val = (String) hkcuColors.GetValue(Constants.SelectionColor);
                 String[] rgb = val.Split(' ');
                 Color selectionColor;
                 if (rgb.Length == 3) {
                     selectionColor = Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2]));
-                } else {
+                }
+                else {
                     selectionColor = DEFAULT_SELECTION_COLOR;
                 }
                 rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
@@ -500,14 +497,14 @@ namespace WindowsTweaker {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
                 String val = Utils.BoolToString(chkWindowAnim.IsChecked);
-                hkcuWinMet.SetValue(Constants.MIN_ANIMATE, val);
+                hkcuWinMet.SetValue(Constants.MinAnimate, val);
             }
 
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
                 String val = Utils.BoolToString(chkShowWindowDrag.IsChecked);
-                hkcuDesktop.SetValue(Constants.DRAG_FULL_WIN, val);
+                hkcuDesktop.SetValue(Constants.DragFullWin, val);
 
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkWindowVersion, hkcuDesktop, Constants.PAINT_DESKTOP_VER);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkWindowVersion, hkcuDesktop, Constants.PaintDesktopVer);
 
                 // Alt-Tab
                 // TODO : Alt-Tab implementation
@@ -515,10 +512,10 @@ namespace WindowsTweaker {
 
             // Selection Color
             using (RegistryKey hkcuColors = HKCU.CreateSubKey(@"Control Panel\Colors")) {
-                Color selectionColor = ((SolidColorBrush)rectSelectionColor.Fill).Color;
+                Color selectionColor = ((SolidColorBrush) rectSelectionColor.Fill).Color;
 
                 String val = String.Format("{0} {1} {2}", selectionColor.R, selectionColor.G, selectionColor.B);
-                hkcuColors.SetValue(Constants.SELECTION_COLOR, val);
+                hkcuColors.SetValue(Constants.SelectionColor, val);
             }
         }
 
@@ -531,29 +528,59 @@ namespace WindowsTweaker {
             String[] subKeyNames = rootKey.GetSubKeyNames();
             foreach (String keyName in subKeyNames) {
                 RegistryKey keyToValidate = rootKey.OpenSubKey(keyName, true);
-                String copyToVal = (String)keyToValidate.GetValue(Constants.COPY_TO_ID);
-                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.COPY_TO)) {
+                String copyToVal = (String) keyToValidate.GetValue(Constants.CopyToId);
+                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.COPY_TO);
-                    keyToValidate.SetValue("", Constants.COPY_TO_ID);
+                    keyToValidate = rootKey.CreateSubKey(Constants.CopyTo);
+                    keyToValidate.SetValue("", Constants.CopyToId);
                     continue;
                 }
-                String moveToVal = (String)keyToValidate.GetValue(Constants.MOVE_TO_ID);
-                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MOVE_TO)) {
+                String moveToVal = (String) keyToValidate.GetValue(Constants.MoveToId);
+                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.MOVE_TO);
-                    keyToValidate.SetValue("", Constants.MOVE_TO_ID);
+                    keyToValidate = rootKey.CreateSubKey(Constants.MoveTo);
+                    keyToValidate.SetValue("", Constants.MoveToId);
                     continue;
                 }
-                String sendToVal = (String)keyToValidate.GetValue(Constants.SEND_TO_ID);
-                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SEND_TO)) {
+                String sendToVal = (String) keyToValidate.GetValue(Constants.SendToId);
+                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.SEND_TO);
-                    keyToValidate.SetValue("", Constants.SEND_TO_ID);
+                    keyToValidate = rootKey.CreateSubKey(Constants.SendTo);
+                    keyToValidate.SetValue("", Constants.SendToId);
                     continue;
+                }
+            }
+        }
+
+        private void LoadPlacesTab() {
+            // Power Button
+            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                int val = (int) hkcuExAdvanced.GetValue(Constants.StartPowerBtnAction);
+                switch (val) {
+                    case 2:
+                        cmboBxPowerBtnAction.SelectedIndex = 0;
+                        break;
+                    case 64:
+                        cmboBxPowerBtnAction.SelectedIndex = 1;
+                        break;
+                    case 16:
+                        cmboBxPowerBtnAction.SelectedIndex = 2;
+                        break;
+                    case 4:
+                        cmboBxPowerBtnAction.SelectedIndex = 3;
+                        break;
+                    case 512:
+                        cmboBxPowerBtnAction.SelectedIndex = 4;
+                        break;
+                    case 1:
+                        cmboBxPowerBtnAction.SelectedIndex = 5;
+                        break;
+                    case 256:
+                        cmboBxPowerBtnAction.SelectedIndex = 6;
+                        break;
                 }
             }
         }
@@ -562,51 +589,159 @@ namespace WindowsTweaker {
             // General
             using (RegistryKey hkcrContextMenuHandlers = HKCR.CreateSubKey(@"AllFilesystemObjects\shellex\ContextMenuHandlers")) {
                 ValidateAndFixKeys(hkcrContextMenuHandlers);
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkCopyToFolder, hkcrContextMenuHandlers, Constants.COPY_TO);
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkMoveToFolder, hkcrContextMenuHandlers, Constants.MOVE_TO);
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkSendTo, hkcrContextMenuHandlers, Constants.SEND_TO);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkCopyToFolder, hkcrContextMenuHandlers, Constants.CopyTo);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkMoveToFolder, hkcrContextMenuHandlers, Constants.MoveTo);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkSendTo, hkcrContextMenuHandlers, Constants.SendTo);
             }
 
             using (RegistryKey hkcrFileShell = HKCR.CreateSubKey(@"*\shell")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkOpenWithNotepad, hkcrFileShell, Constants.OPEN_NOTEPAD);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkOpenWithNotepad, hkcrFileShell, Constants.OpenNotepad);
             }
 
             using (RegistryKey hkcrShell = HKCR.CreateSubKey(@"Directory\Background\shell")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkControlPanelInDesktopMenu, hkcrShell, Constants.CONTROL_PANEL);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkControlPanelInDesktopMenu, hkcrShell, Constants.ControlPanel);
             }
 
             using (RegistryKey hkcrDirShell = HKCR.CreateSubKey(@"Directory\shell")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkOpenCmdPrompt, hkcrDirShell, Constants.OPEN_CMD);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkOpenCmdPrompt, hkcrDirShell, Constants.OpenCmd);
             }
 
             using (RegistryKey hkcrDriveShell = HKCR.CreateSubKey(@"Drive\shell")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkAddDefragInMenu, hkcrDriveShell, Constants.RUN_AS);
+                UIRegistryHandler.SetUICheckBoxFromRegistryKey(chkAddDefragInMenu, hkcrDriveShell, Constants.RunAs);
             }
 
-            using (RegistryKey hklmExAdvanced = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkEncryptAndDecrypt, hklmExAdvanced, Constants.ENCRYPT_CTX_MENU);
+            using (
+                RegistryKey hklmExAdvanced =
+                    HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkEncryptAndDecrypt, hklmExAdvanced, Constants.EncryptCtxMenu);
             }
 
             using (RegistryKey hklmClasses = HKLM.CreateSubKey(@"Software\Classes")) {
                 using (RegistryKey hklmDotTxt = HKLM.CreateSubKey(@"Software\Classes\.txt")) {
-                    String txtFile = (String)hklmDotTxt.GetValue("");
+                    String txtFile = (String) hklmDotTxt.GetValue("");
                     RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
-                    RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.SHELL, true);
+                    RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
 
-                    string[] subKeysShell = hklmDotTextShell.GetSubKeyNames();
-                    RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TEXT_FILE);
-                    RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.SHELL, true);
-                    chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.COPY_CONTENTS) != null
-                        || hklmTextShell.GetValue(Constants.COPY_CONTENTS) != null;
-                    hklmTxt.Close();
-                    hklmDotTextShell.Close();
-                    hklmTextFile.Close();
-                    hklmTextShell.Close();
+                    if (hklmDotTextShell != null) {
+                        string[] subKeysShell = hklmDotTextShell.GetSubKeyNames();
+                        RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
+                        RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
+                        if (hklmTextShell != null) {
+                            chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
+                                                        || hklmTextShell.GetValue(Constants.CopyContents) != null;
+                        }
+                        else {
+                            chkCopyContents.IsChecked = false;
+                        }
+                        hklmTxt.Close();
+                        hklmDotTextShell.Close();
+                        hklmTextFile.Close();
+                        if (hklmTextShell != null)
+                            hklmTextShell.Close();
+                    }
                 }
             }
         }
 
-        private void UpdateRegistryFromRightClick() {
+        private void UpdateRegistryFromRightClick() {}
+
+        private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                String selectedFolderName = folderBrowserDialog.FileName;
+                if (Utils.IsEmptyDirectory(selectedFolderName)) {
+                    if (Directory.GetParent(selectedFolderName) != null) {
+                        String godModeFolderPath = selectedFolderName + Constants.GodModeKey;
+                        if (Directory.Exists(godModeFolderPath))
+                            Directory.Delete(godModeFolderPath);
+                            DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
+                            String parentDir = selectedFolderDirectoryInfo.Parent.FullName;
+                            try {
+                                selectedFolderDirectoryInfo.Delete(true);
+                                Directory.CreateDirectory(godModeFolderPath);
+                                MessageBox.Show("God Mode folder has been successfully created in " + parentDir +
+                                                "\n\nPlease note that if on clicking the folder you get an error, " +
+                                                "then you need to refresh that window for changes to be reflected.",
+                                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (UnauthorizedAccessException ex) {
+                                MessageBox.Show("Permission Denied!", Constants.ErrorMsgTitle, MessageBoxButton.OK, 
+                                    MessageBoxImage.Error);
+                            }
+                    }
+                    else {
+                        MessageBox.Show("You can't make " + selectedFolderName + " a \'God\' folder. " +
+                                        "\n Please select an empty folder or create a new one", Constants.WarningMsgTitle,
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else {
+                    MessageBox.Show(selectedFolderName + " is not an empty folder.\n You must create an " +
+                                                  "empty folder, to set God Mode", Constants.WarningMsgTitle, 
+                                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+
+        private void LoadTaskTab() {
+            dateTimePickerScheduleShutdown.Value = DateTime.Now;
+        }
+
+        private void OnScheduleShutdownButtonClick(object sender, RoutedEventArgs e) {
+            DateTime? selectedDateTime = dateTimePickerScheduleShutdown.Value;
+            if (selectedDateTime.HasValue) {
+                String param = null;
+                switch (cmboBxShutdownAction.SelectedIndex) {
+                    case 0: param = "/s";
+                        break;
+                    case 1: param = "/r";
+                        break;
+                }
+                DateTime nowTime = DateTime.Now;
+                TimeSpan gap = selectedDateTime.Value.Subtract(nowTime);
+                long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
+                if (timeout >= 0) {
+                    String shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
+                    Utils.ExecuteCmd(shutdwnComd);
+                    MessageBox.Show("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") + " at " + selectedDateTime.Value.ToString("h:m tt"),
+                        Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else {
+                    MessageBox.Show("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
+                                    " exceed the limit of 10 years.", Constants.AlertMsgTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else {
+                MessageBox.Show("Please select a date!", Constants.WarningMsgTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+            }
+        }
+
+        private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
+            Utils.ExecuteCmd("shutdown /a");
+            MessageBox.Show("A scheduled shutdown has been cancelled", Constants.SuccessMsgTitle, MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
+        private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
+            folderBrowserDlg.Title = "Select a Parent Folder";
+            if (folderBrowserDlg.ShowDialog() == true) {
+                String parentPath = folderBrowserDlg.FileName;
+                String createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
+                Utils.ExecuteCmd(createCmd);
+                MessageBox.Show(cmboBxSpecialFolderNames.SelectionBoxItem + " created Successfully at " + parentPath,
+                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void OnButtonDeleteSpecialFolderClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                String path = folderBrowserDialog.FileName;
+                String createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
+                Utils.ExecuteCmd(createCmd);
+            }
         }
     }
 }
