@@ -89,7 +89,10 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WPFFolderBrowser, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WPFFolderBrowser.dll</HintPath>
+      <HintPath>..\..\..\Users\gmanchanda\Documents\Visual Studio 2013\Projects\WindowsTweaker\WindowsTweaker\bin\Debug\WPFFolderBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\..\..\Users\gmanchanda\Documents\Visual Studio 2013\Projects\WindowsTweaker\WindowsTweaker\bin\Debug\WPFToolkit.Extended.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
