@@ -12,10 +12,10 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 
     ```git clone git@github.com:siddharth96/windows-tweaker.git```
 
-3. Add references to all the DLLs located in the ```Dependencies``` directory. Also, install [Microsoft Blend SDK](http://www.microsoft.com/en-us/download/details.aspx?id=10801).
+3. Add references to all the DLLs located in ```WindowsTweaker/Dependencies``` directory. Also, install [Microsoft Blend SDK](http://www.microsoft.com/en-us/download/details.aspx?id=10801).
 
 
-### Links to external libraries
+### Links to external libraries used
 1. [WPF ToolKit](https://wpftoolkit.codeplex.com/)
 2. [WPF Spark](https://wpfspark.codeplex.com/)
 
