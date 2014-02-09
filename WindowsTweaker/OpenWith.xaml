@@ -2,12 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="&quot;Open With&quot; Customization" Height="525" Width="517"
-        Loaded="OnWindowLoaded"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary Source="Resources/TileViewWithToggleButton.xaml"></ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Name="btnCancel" Click="OnCancelButtonClick">Dismiss Me</Button>
+        <ListBox Margin="5" Name="lstOpenWithBox" ItemTemplate="{StaticResource ToggleBtnTileView}" HorizontalAlignment="Stretch" 
+                 HorizontalContentAlignment="Stretch"></ListBox>
+        <Button Name="btnCancel" Click="OnCancelButtonClick" Grid.Row="1">Dismiss Me</Button>
     </Grid>
 </Window>

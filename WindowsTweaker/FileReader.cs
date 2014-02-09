@@ -47,9 +47,24 @@ namespace WindowsTweaker {
                 Icon fileIcon = Icon.ExtractAssociatedIcon(fileInfo.FullName);
                 ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle, new Int32Rect(0, 0,
                     fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
-                fileItems.Add(new FileItem(Path.GetFileNameWithoutExtension(fileInfo.Name), imageSource));
+                fileItems.Add(new FileItem(fileInfo.FullName, imageSource));
             }
             return fileItems;
+        }
+
+        public static ObservableCollection<FileItem> GetAsFileItemListCollection(Dictionary<String, bool> fileList)
+        {
+            ObservableCollection<FileItem> fileItemCollection = null;
+            if (fileList != null) {
+                fileItemCollection = new ObservableCollection<FileItem>();
+                foreach (String filePath in fileList.Keys) {
+                    Icon fileIcon = Icon.ExtractAssociatedIcon(filePath);
+                    ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle, new Int32Rect(0, 0,
+                        fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
+                    fileItemCollection.Add(new FileItem(filePath, imageSource, fileList[filePath]));
+                }
+            }
+            return fileItemCollection;
         }
     }
 }

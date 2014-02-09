@@ -111,6 +111,10 @@ namespace WindowsTweaker
         public const String EncryptCtxMenu = "EncryptionContextMenu";
         public const String CopyContents = "copycontents";
         public const String Shell = "shell";
+        public const String Open = "Open";
+        public const String Edit = "edit";
+        public const String Read = "Read";
+        public const String Cmd = "command";
         public const String TextFile = "textfile";
         public const String ControlPanelCreatePath = "rundll32.exe shell32.dll,Control_RunDLL";
 
@@ -152,6 +156,6 @@ namespace WindowsTweaker
         // Power Button
         public const String StartPowerBtnAction = "Start_PowerButtonAction";
         // Open With
-        
+        public const String NoOpenWith = "NoOpenWith";
     }
 }

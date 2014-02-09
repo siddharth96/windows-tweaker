@@ -38,5 +38,31 @@ namespace WindowsTweaker {
             proc.StartInfo = hideProc;
             proc.Start();
         }
+
+        public static String ExtractFileName(String fPath) {
+            String[] fileInfo = null;
+            if (fPath[0] == '\"' && (fPath.Contains("\"%1\"") || fPath.Contains("\"%L\"") || fPath.Contains("%1"))) {
+                fileInfo = fPath.Split('\"');
+                return fileInfo[1];
+            }
+            else if (!fPath.Contains("\"") || fPath.Contains("\"%1\"") || fPath.Contains("%1")) {
+                int space_cnt = 0;
+                for (int i = 0; i < fPath.Length; i++) {
+                    if (fPath[i] == ' ')
+                        space_cnt++;
+                }
+                if (space_cnt == 1)
+                    fileInfo = fPath.Split(' ');
+                else if (space_cnt > 1) {
+                    if (fPath.Contains('/')) {
+                        fileInfo = fPath.Split('/');
+                    } else {
+                        fileInfo = fPath.Split('\"');
+                    }
+                }
+                return fileInfo[0];
+            }
+            return null;
+        }
     }
 }

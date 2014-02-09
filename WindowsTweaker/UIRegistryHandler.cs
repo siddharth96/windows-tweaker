@@ -9,7 +9,7 @@ namespace WindowsTweaker {
         /// <summary>
         /// Updates the checked state of the <paramref name="chk"/> if the <paramref name="valueName"/>
         /// evaluates to true (i.e., 1) for the passed in <paramref name="registryKey"/>. 
-        /// However, if <paramref name="inverse"/> is to true, it updates the reverses the checkbox state, i.e., 
+        /// However, if <paramref name="inverse"/> is to true, it updates the checkbox state in reverse manner, i.e., 
         /// if the <paramref name="valueName"/> evaluates to true (i.e., 1), checkbox is set to unchecked.
         /// </summary>
         /// <param name="chk"></param>
