@@ -25,7 +25,7 @@ namespace WindowsTweaker {
         public readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
 
         private void OnTabClicked(object sender, RoutedEventArgs e) {
-            String tagVal = ((TabItem) sender).Tag.ToString();
+            string tagVal = ((TabItem) sender).Tag.ToString();
             switch (tagVal) {
                 case Constants.Explorer:
                     LoadExplorerTab();
@@ -350,16 +350,16 @@ namespace WindowsTweaker {
         private void LoadSystemTab() {
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
                 //Shutdown Configuration
-                String val;
+                string val;
                 try {
-                    val = (String) hkcuDesktop.GetValue(Constants.AutoEndTasks);
+                    val = (string) hkcuDesktop.GetValue(Constants.AutoEndTasks);
                     rbtnShutdownImmediately.IsChecked = Utils.StringToBool(val);
                 }
                 catch (InvalidCastException) {
                     rbtnShutdownImmediately.Visibility = Visibility.Collapsed;
                 }
 
-                val = (String) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
+                val = (string) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
                 if (val != null) {
                     rbtnShutdownAfterWaiting.IsChecked = !rbtnShutdownImmediately.IsChecked;
                 }
@@ -391,7 +391,7 @@ namespace WindowsTweaker {
                 UIRegistryHandler.SetUITextBoxFromRegistryValue(txtSupportUrl, hklmOEM, Constants.SupportUrl);
 
                 // Logo
-                String logoUrl = (String) hklmOEM.GetValue(Constants.Logo);
+                string logoUrl = (string) hklmOEM.GetValue(Constants.Logo);
                 if (logoUrl != null && logoUrl.Length > 0) {
                     btnDeleteLogo.IsEnabled = true;
                     try {
@@ -408,7 +408,7 @@ namespace WindowsTweaker {
             //Shutdown Configuration
             if (rbtnShutdownImmediately.Visibility == Visibility.Visible) {
                 using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
-                    String val = Utils.BoolToString(rbtnShutdownImmediately.IsChecked);
+                    string val = Utils.BoolToString(rbtnShutdownImmediately.IsChecked);
                     hkcuDesktop.SetValue(Constants.AutoEndTasks, val);
                     if (rbtnShutdownAfterWaiting.IsChecked == true) {
                         // TODO : set timeout
@@ -464,12 +464,12 @@ namespace WindowsTweaker {
         private void LoadDisplayTab() {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
-                String val = (String) hkcuWinMet.GetValue(Constants.MinAnimate);
+                string val = (string) hkcuWinMet.GetValue(Constants.MinAnimate);
                 chkWindowAnim.IsChecked = Utils.StringToBool(val);
             }
 
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
-                String val = (String) hkcuDesktop.GetValue(Constants.DragFullWin);
+                string val = (string) hkcuDesktop.GetValue(Constants.DragFullWin);
                 chkShowWindowDrag.IsChecked = Utils.StringToBool(val);
 
                 UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkWindowVersion, hkcuDesktop, Constants.PaintDesktopVer);
@@ -480,8 +480,8 @@ namespace WindowsTweaker {
 
             // Selection Color
             using (RegistryKey hkcuColors = HKCU.CreateSubKey(@"Control Panel\Colors")) {
-                String val = (String) hkcuColors.GetValue(Constants.SelectionColor);
-                String[] rgb = val.Split(' ');
+                string val = (string) hkcuColors.GetValue(Constants.SelectionColor);
+                string[] rgb = val.Split(' ');
                 Color selectionColor;
                 if (rgb.Length == 3) {
                     selectionColor = Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2]));
@@ -496,12 +496,12 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromDisplay() {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
-                String val = Utils.BoolToString(chkWindowAnim.IsChecked);
+                string val = Utils.BoolToString(chkWindowAnim.IsChecked);
                 hkcuWinMet.SetValue(Constants.MinAnimate, val);
             }
 
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
-                String val = Utils.BoolToString(chkShowWindowDrag.IsChecked);
+                string val = Utils.BoolToString(chkShowWindowDrag.IsChecked);
                 hkcuDesktop.SetValue(Constants.DragFullWin, val);
 
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkWindowVersion, hkcuDesktop, Constants.PaintDesktopVer);
@@ -514,7 +514,7 @@ namespace WindowsTweaker {
             using (RegistryKey hkcuColors = HKCU.CreateSubKey(@"Control Panel\Colors")) {
                 Color selectionColor = ((SolidColorBrush) rectSelectionColor.Fill).Color;
 
-                String val = String.Format("{0} {1} {2}", selectionColor.R, selectionColor.G, selectionColor.B);
+                string val = String.Format("{0} {1} {2}", selectionColor.R, selectionColor.G, selectionColor.B);
                 hkcuColors.SetValue(Constants.SelectionColor, val);
             }
         }
@@ -525,10 +525,10 @@ namespace WindowsTweaker {
         /// and unfortunately some 3rd party tweaking softwares put in the latter one in the Registry.
         /// </summary>
         private void ValidateAndFixKeys(RegistryKey rootKey) {
-            String[] subKeyNames = rootKey.GetSubKeyNames();
-            foreach (String keyName in subKeyNames) {
+            string[] subKeyNames = rootKey.GetSubKeyNames();
+            foreach (string keyName in subKeyNames) {
                 RegistryKey keyToValidate = rootKey.OpenSubKey(keyName, true);
-                String copyToVal = (String) keyToValidate.GetValue(Constants.CopyToId);
+                string copyToVal = (string) keyToValidate.GetValue(Constants.CopyToId);
                 if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
@@ -536,7 +536,7 @@ namespace WindowsTweaker {
                     keyToValidate.SetValue("", Constants.CopyToId);
                     continue;
                 }
-                String moveToVal = (String) keyToValidate.GetValue(Constants.MoveToId);
+                string moveToVal = (string) keyToValidate.GetValue(Constants.MoveToId);
                 if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
@@ -544,7 +544,7 @@ namespace WindowsTweaker {
                     keyToValidate.SetValue("", Constants.MoveToId);
                     continue;
                 }
-                String sendToVal = (String) keyToValidate.GetValue(Constants.SendToId);
+                string sendToVal = (string) keyToValidate.GetValue(Constants.SendToId);
                 if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
@@ -618,7 +618,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmClasses = HKLM.CreateSubKey(@"Software\Classes")) {
                 using (RegistryKey hklmDotTxt = HKLM.CreateSubKey(@"Software\Classes\.txt")) {
-                    String txtFile = (String) hklmDotTxt.GetValue("");
+                    string txtFile = (string) hklmDotTxt.GetValue("");
                     RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
                     RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
 
@@ -648,14 +648,14 @@ namespace WindowsTweaker {
         private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == true) {
-                String selectedFolderName = folderBrowserDialog.FileName;
+                string selectedFolderName = folderBrowserDialog.FileName;
                 if (Utils.IsEmptyDirectory(selectedFolderName)) {
                     if (Directory.GetParent(selectedFolderName) != null) {
-                        String godModeFolderPath = selectedFolderName + Constants.GodModeKey;
+                        string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
                         if (Directory.Exists(godModeFolderPath))
                             Directory.Delete(godModeFolderPath);
                             DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
-                            String parentDir = selectedFolderDirectoryInfo.Parent.FullName;
+                            string parentDir = selectedFolderDirectoryInfo.Parent.FullName;
                             try {
                                 selectedFolderDirectoryInfo.Delete(true);
                                 Directory.CreateDirectory(godModeFolderPath);
@@ -691,7 +691,7 @@ namespace WindowsTweaker {
         private void OnScheduleShutdownButtonClick(object sender, RoutedEventArgs e) {
             DateTime? selectedDateTime = dateTimePickerScheduleShutdown.Value;
             if (selectedDateTime.HasValue) {
-                String param = null;
+                string param = null;
                 switch (cmboBxShutdownAction.SelectedIndex) {
                     case 0: param = "/s";
                         break;
@@ -702,7 +702,7 @@ namespace WindowsTweaker {
                 TimeSpan gap = selectedDateTime.Value.Subtract(nowTime);
                 long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
                 if (timeout >= 0) {
-                    String shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
+                    string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
                     Utils.ExecuteCmd(shutdwnComd);
                     MessageBox.Show("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") + " at " + selectedDateTime.Value.ToString("h:m tt"),
                         Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -727,8 +727,8 @@ namespace WindowsTweaker {
             WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
             folderBrowserDlg.Title = "Select a Parent Folder";
             if (folderBrowserDlg.ShowDialog() == true) {
-                String parentPath = folderBrowserDlg.FileName;
-                String createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
+                string parentPath = folderBrowserDlg.FileName;
+                string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
                 Utils.ExecuteCmd(createCmd);
                 MessageBox.Show(cmboBxSpecialFolderNames.SelectionBoxItem + " created Successfully at " + parentPath,
                     Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -738,8 +738,8 @@ namespace WindowsTweaker {
         private void OnButtonDeleteSpecialFolderClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == true) {
-                String path = folderBrowserDialog.FileName;
-                String createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
+                string path = folderBrowserDialog.FileName;
+                string createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
                 Utils.ExecuteCmd(createCmd);
             }
         }
@@ -752,6 +752,11 @@ namespace WindowsTweaker {
         private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
             CheckBox chkBox = (CheckBox) sender;
             chkBox.Tag = Constants.HasUserInteracted;
+        }
+
+        private void OnLaunchStartupManagerBtnClick(object sender, RoutedEventArgs e) {
+            StartupManager startupManager = new StartupManager();
+            startupManager.ShowDialog();
         }
     }
 }

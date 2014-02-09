@@ -12,24 +12,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace WindowsTweaker {
-    class FileReader {
-        private String folderPath;
-        private List<String> ignoreExtensionList;
+    internal class FileReader {
+        private string folderPath;
+        private List<string> ignoreExtensionList;
+        private Dictionary<string, bool> fileDictionary;
+        private Dictionary<string, Tuple<string, bool>> fileWithTitleDictionary;
 
         public FileReader(string folderPath) {
             this.folderPath = folderPath;
         }
 
-        public FileReader(String folderPath, List<String> ignoreExtensionList) {
+        public FileReader(string folderPath, List<string> ignoreExtensionList) {
             this.folderPath = folderPath;
             this.ignoreExtensionList = ignoreExtensionList;
         }
 
-        public String FolderPath {
+        public FileReader(Dictionary<string, bool> fileDictionary) {
+            this.fileDictionary = fileDictionary;
+        }
+
+        public FileReader(Dictionary<string, Tuple<string, bool>> fileWithTitleDictionary) {
+            this.fileWithTitleDictionary = fileWithTitleDictionary;
+        }
+
+        public Dictionary<string, Tuple<string, bool>> FileWithTitleDictionary {
+            get { return fileWithTitleDictionary; }
+        }
+
+        public Dictionary<string, bool> FileDictionary {
+            get { return fileDictionary; }
+        }
+
+        public string FolderPath {
             get { return folderPath; }
         }
 
-        public List<String> IgnoreExtensionList {
+        public List<string> IgnoreExtensionList {
             get { return ignoreExtensionList; }
         }
 
@@ -52,19 +70,66 @@ namespace WindowsTweaker {
             return fileItems;
         }
 
-        public static ObservableCollection<FileItem> GetAsFileItemListCollection(Dictionary<String, bool> fileList)
-        {
-            ObservableCollection<FileItem> fileItemCollection = null;
-            if (fileList != null) {
-                fileItemCollection = new ObservableCollection<FileItem>();
-                foreach (String filePath in fileList.Keys) {
+        private FileItem GetFileItem(string filePath, bool isChecked, string name) {
+            try {
+                FileInfo fInfo = new FileInfo(filePath);
+                if (fInfo.Exists) {
                     Icon fileIcon = Icon.ExtractAssociatedIcon(filePath);
-                    ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle, new Int32Rect(0, 0,
-                        fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
-                    fileItemCollection.Add(new FileItem(filePath, imageSource, fileList[filePath]));
+                    ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle,
+                        new Int32Rect(0, 0,
+                            fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
+                    return new FileItem(filePath, imageSource, isChecked, name);
+                }
+            }
+            catch (ArgumentException) {
+                //Invalid filePath
+            }
+            return null;
+        }
+
+        public ObservableCollection<FileItem> GetAsFileItemListCollection() {
+            ObservableCollection<FileItem> fileItemCollection = null;
+            if (fileDictionary != null) {
+                fileItemCollection = new ObservableCollection<FileItem>();
+                foreach (string filePath in fileDictionary.Keys) {
+                    FileItem fileItem = GetFileItem(filePath, fileDictionary[filePath], null);
+                    if (fileItem != null) {
+                        fileItemCollection.Add(fileItem);
+                    }
                 }
             }
             return fileItemCollection;
+        }
+
+        public ObservableCollection<ToggleViewFileItem> GetAsToggleViewFileItemCollection(string showTxt,
+            string hideText) {
+            ObservableCollection<ToggleViewFileItem> toggleViewFileItemCollection = null;
+            if (fileDictionary != null) {
+                toggleViewFileItemCollection = new ObservableCollection<ToggleViewFileItem>();
+                foreach (string filePath in fileDictionary.Keys) {
+                    FileItem fileItem = GetFileItem(filePath, fileDictionary[filePath], null);
+                    if (fileItem != null) {
+                        toggleViewFileItemCollection.Add(new ToggleViewFileItem(fileItem, showTxt, hideText));
+                    }
+                }
+            }
+            return toggleViewFileItemCollection;
+        }
+
+        public ObservableCollection<ToggleViewFileItem> GetAsToggleViewFileItemCollectionWithUserTitle(string showTxt,
+            string hideText) {
+            ObservableCollection<ToggleViewFileItem> toggleViewFileItemCollection = null;
+            if (fileWithTitleDictionary != null) {
+                toggleViewFileItemCollection = new ObservableCollection<ToggleViewFileItem>();
+                foreach (string filePath in fileWithTitleDictionary.Keys) {
+                    Tuple<string, bool> titleAndIsChecked = fileWithTitleDictionary[filePath];
+                    FileItem fileItem = GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x);
+                    if (fileItem != null) {
+                        toggleViewFileItemCollection.Add(new ToggleViewFileItem(fileItem, showTxt, hideText));
+                    }
+                }
+            }
+            return toggleViewFileItemCollection;
         }
     }
 }

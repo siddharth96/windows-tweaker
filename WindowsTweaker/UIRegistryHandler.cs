@@ -17,7 +17,7 @@ namespace WindowsTweaker {
         /// <param name="valueName"></param>
         /// <param name="inverse"></param>
         public static void SetUICheckBoxFromRegistryValue(CheckBox chk, RegistryKey registryKey, 
-            String valueName, bool inverse=false) {
+            string valueName, bool inverse=false) {
             int? val = (int?)registryKey.GetValue(valueName);
             bool result = Utils.IntToBool(val);
             chk.IsChecked = inverse ? !result : result;
@@ -30,7 +30,7 @@ namespace WindowsTweaker {
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        public static void SetUICheckBoxFromRegistryKey(CheckBox chk, RegistryKey registryKey, String keyName) {
+        public static void SetUICheckBoxFromRegistryKey(CheckBox chk, RegistryKey registryKey, string keyName) {
             RegistryKey key = registryKey.OpenSubKey(keyName);
             if (key != null) {
                 chk.IsChecked = true;
@@ -49,7 +49,7 @@ namespace WindowsTweaker {
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
-        public static void SetRegistryValueFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName, bool inverse=false) {
+        public static void SetRegistryValueFromUICheckBox(CheckBox chk, RegistryKey registryKey, string keyName, bool inverse=false) {
             if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
                 SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
             }
@@ -64,7 +64,7 @@ namespace WindowsTweaker {
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        public static void SetRegistryKeyFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName) {
+        public static void SetRegistryKeyFromUICheckBox(CheckBox chk, RegistryKey registryKey, string keyName) {
             if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
                 SetRegistryKeyFromBool(chk.IsChecked, registryKey, keyName);
             }
@@ -77,7 +77,7 @@ namespace WindowsTweaker {
         /// <param name="val"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        public static void SetRegistryKeyFromBool(bool? val, RegistryKey registryKey, String keyName) {
+        public static void SetRegistryKeyFromBool(bool? val, RegistryKey registryKey, string keyName) {
             RegistryKey newKey = registryKey.OpenSubKey(keyName, true);
             if (val == true && newKey == null) {
                 registryKey.CreateSubKey(keyName);
@@ -100,7 +100,7 @@ namespace WindowsTweaker {
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
-        public static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, String keyName, bool inverse=false) {
+        public static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, string keyName, bool inverse=false) {
             int intVal = inverse ? Utils.ReversedBoolToInt(val) : Utils.BoolToInt(val);
             registryKey.SetValue(keyName, intVal);
         }
@@ -112,8 +112,8 @@ namespace WindowsTweaker {
         /// <param name="txt"></param>
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
-        public static void SetUITextBoxFromRegistryValue(TextBox txt, RegistryKey registryKey, String valueName) {
-            String val = (String)registryKey.GetValue(valueName);
+        public static void SetUITextBoxFromRegistryValue(TextBox txt, RegistryKey registryKey, string valueName) {
+            string val = (string)registryKey.GetValue(valueName);
             if (val != null) {
                 val = val.Trim();
                 txt.Text = val;
@@ -127,8 +127,8 @@ namespace WindowsTweaker {
         /// <param name="txt"></param>
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
-        public static void SetRegistryValueFromUITextBox(TextBox txt, RegistryKey registryKey, String valueName) {
-            String txtVal = txt.Text.Trim();
+        public static void SetRegistryValueFromUITextBox(TextBox txt, RegistryKey registryKey, string valueName) {
+            string txtVal = txt.Text.Trim();
             registryKey.SetValue(valueName, txtVal);
         }
     }

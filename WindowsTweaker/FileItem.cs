@@ -4,24 +4,32 @@ using System.Windows.Media;
 
 namespace WindowsTweaker {
     internal class FileItem {
-        public FileItem(String fullName, ImageSource iconAssociated) {
+        public FileItem(string fullName, ImageSource iconAssociated) {
             this.iconAssociated = iconAssociated;
             this.fullName = fullName;
             this.isChecked = false;
         }
 
-        public FileItem(String fullName, ImageSource iconAssociated, bool isChecked) {
+        public FileItem(string fullName, ImageSource iconAssociated, bool isChecked) {
             this.iconAssociated = iconAssociated;
             this.fullName = fullName;
             this.isChecked = isChecked;
         }
 
-        private String fullName;
+        public FileItem(string fullName, ImageSource iconAssociated, bool isChecked, string name) {
+            this.fullName = fullName;
+            this.iconAssociated = iconAssociated;
+            this.isChecked = isChecked;
+            this.name = name;
+        }
+
+        private string fullName;
         private ImageSource iconAssociated;
         private bool isChecked;
+        private string name;
 
         public string Name {
-            get { return Path.GetFileNameWithoutExtension(fullName); }
+            get { return name ?? Path.GetFileNameWithoutExtension(fullName); }
         }
 
         public ImageSource IconAssociated {

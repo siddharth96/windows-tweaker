@@ -4,158 +4,158 @@ namespace WindowsTweaker
 {
     internal static class Constants
     {
-        public const String Explorer = "explorer";
-        public const String System = "system";
-        public const String Display = "display";
-        public const String RightClick = "rightclick";
-        public const String Places = "places";
-        public const String Tasks = "tasks";
-        public const String Features = "features";
-        public const String Logon = "logon";
-        public const String Restrictions = "restrictions";
-        public const String Maintenance = "maintenance";
-        public const String Utilities = "utilities";
-        public const String ErrorMsgTitle = "On My God!!";
-        public const String WarningMsgTitle = "Hey!!";
-        public const String AlertMsgTitle = "Mind You!!";
-        public const String SuccessMsgTitle = "Mission Accomplished!!";
+        public const string Explorer = "explorer";
+        public const string System = "system";
+        public const string Display = "display";
+        public const string RightClick = "rightclick";
+        public const string Places = "places";
+        public const string Tasks = "tasks";
+        public const string Features = "features";
+        public const string Logon = "logon";
+        public const string Restrictions = "restrictions";
+        public const string Maintenance = "maintenance";
+        public const string Utilities = "utilities";
+        public const string ErrorMsgTitle = "On My God!!";
+        public const string WarningMsgTitle = "Hey!!";
+        public const string AlertMsgTitle = "Mind You!!";
+        public const string SuccessMsgTitle = "Mission Accomplished!!";
         public const byte HasUserInteracted = 1;
 
         // Explorer Tab Keys/Value
 
         // Drive Letter Display
-        public const String ShowDriveLetters = "ShowDriveLettersFirst";
+        public const string ShowDriveLetters = "ShowDriveLettersFirst";
 
         // Advanced
-        public const String AlwaysShowMenu = "AlwaysShowMenus";
+        public const string AlwaysShowMenu = "AlwaysShowMenus";
 
-        public const String HideFileExt = "HideFileExt";
-        public const String AutoChkSelect = "AutoCheckSelect";
-        public const String Hidden = "Hidden";
-        public const String PersistBrowsers = "PersistBrowsers";
-        public const String SuperHidden = "ShowSuperHidden";
-        public const String CompressedColor = "ShowCompColor";
+        public const string HideFileExt = "HideFileExt";
+        public const string AutoChkSelect = "AutoCheckSelect";
+        public const string Hidden = "Hidden";
+        public const string PersistBrowsers = "PersistBrowsers";
+        public const string SuperHidden = "ShowSuperHidden";
+        public const string CompressedColor = "ShowCompColor";
 
         // Property Dialog
-        public const String NoSecurityTab = "NoSecurityTab";
+        public const string NoSecurityTab = "NoSecurityTab";
 
-        public const String NoCustomizeTab = "NoCustomizeThisFolder";
+        public const string NoCustomizeTab = "NoCustomizeThisFolder";
 
         // Libraries
-        public const String Library = "{031E4825-7B94-4dc3-B131-E946B44C8DD5}";
+        public const string Library = "{031E4825-7B94-4dc3-B131-E946B44C8DD5}";
 
         //etc
-        public const String RecycleBin = "{645FF040-5081-101B-9F08-00AA002F954E}";
+        public const string RecycleBin = "{645FF040-5081-101B-9F08-00AA002F954E}";
 
-        public const String Regedit = "{77708248-f839-436b-8919-527c410f48b9}";
+        public const string Regedit = "{77708248-f839-436b-8919-527c410f48b9}";
 
         // System Tab Key/Values
 
         // Shutdown Configuration
-        public const String AutoEndTasks = "AutoEndTasks";
+        public const string AutoEndTasks = "AutoEndTasks";
 
-        public const String WaitToKillAppTimeout = "WaitToKillAppTimeout";
+        public const string WaitToKillAppTimeout = "WaitToKillAppTimeout";
 
         // Windows Installer
-        public const String DisableMsi = "DisableMSI";
+        public const string DisableMsi = "DisableMSI";
 
-        public const String AlwaysInstallElevated = "AlwaysInstallElevated";
-        public const String LimitSystemRestore = "LimitSystemRestoreCheckpointing";
+        public const string AlwaysInstallElevated = "AlwaysInstallElevated";
+        public const string LimitSystemRestore = "LimitSystemRestoreCheckpointing";
 
         // Registration
-        public const String RegisteredOwner = "RegisteredOwner";
+        public const string RegisteredOwner = "RegisteredOwner";
 
-        public const String RegisteredOrg = "RegisteredOrganization";
-        public const String ProductId = "ProductId";
+        public const string RegisteredOrg = "RegisteredOrganization";
+        public const string ProductId = "ProductId";
 
         // Information
-        public const String Manufacturer = "Manufacturer";
+        public const string Manufacturer = "Manufacturer";
 
-        public const String Model = "Model";
-        public const String SupportPhone = "SupportPhone";
-        public const String SupportUrl = "SupportURL";
+        public const string Model = "Model";
+        public const string SupportPhone = "SupportPhone";
+        public const string SupportUrl = "SupportURL";
 
         // Logo
-        public const String Logo = "Logo";
+        public const string Logo = "Logo";
 
         // Display Tab Key/Values
 
         // Display Settings
-        public const String MinAnimate = "MinAnimate";
+        public const string MinAnimate = "MinAnimate";
 
-        public const String DragFullWin = "DragFullWindows";
-        public const String PaintDesktopVer = "PaintDesktopVersion";
+        public const string DragFullWin = "DragFullWindows";
+        public const string PaintDesktopVer = "PaintDesktopVersion";
 
         // ALT Tab
-        public const String SwitchCols = "CoolSwitchColumns";
+        public const string SwitchCols = "CoolSwitchColumns";
 
-        public const String SwitchRows = "CoolSwitchRows";
+        public const string SwitchRows = "CoolSwitchRows";
 
         // Selection Color
-        public const String SelectionColor = "HotTrackingColor";
+        public const string SelectionColor = "HotTrackingColor";
 
         // Right Click Keys/Values
 
         // General
-        public const String CopyToId = "{C2FBB630-2971-11D1-A18C-00C04FD75D13}";
+        public const string CopyToId = "{C2FBB630-2971-11D1-A18C-00C04FD75D13}";
 
-        public const String MoveToId = "{C2FBB631-2971-11D1-A18C-00C04FD75D13}";
-        public const String SendToId = "{7BA4C740-9E81-11CF-99D3-00AA004AE837}";
-        public const String CopyTo = "Copy To";
-        public const String MoveTo = "Move To";
-        public const String SendTo = "SendTo";
-        public const String OpenNotepad = "Open With Notepad";
-        public const String ControlPanel = "Control Panel";
-        public const String OpenCmd = "Open Command Prompt here";
-        public const String RunAs = "runas";
-        public const String EncryptCtxMenu = "EncryptionContextMenu";
-        public const String CopyContents = "copycontents";
-        public const String Shell = "shell";
-        public const String Open = "Open";
-        public const String Edit = "edit";
-        public const String Read = "Read";
-        public const String Cmd = "command";
-        public const String TextFile = "textfile";
-        public const String ControlPanelCreatePath = "rundll32.exe shell32.dll,Control_RunDLL";
+        public const string MoveToId = "{C2FBB631-2971-11D1-A18C-00C04FD75D13}";
+        public const string SendToId = "{7BA4C740-9E81-11CF-99D3-00AA004AE837}";
+        public const string CopyTo = "Copy To";
+        public const string MoveTo = "Move To";
+        public const string SendTo = "SendTo";
+        public const string OpenNotepad = "Open With Notepad";
+        public const string ControlPanel = "Control Panel";
+        public const string OpenCmd = "Open Command Prompt here";
+        public const string RunAs = "runas";
+        public const string EncryptCtxMenu = "EncryptionContextMenu";
+        public const string CopyContents = "copycontents";
+        public const string Shell = "shell";
+        public const string Open = "Open";
+        public const string Edit = "edit";
+        public const string Read = "Read";
+        public const string Cmd = "command";
+        public const string TextFile = "textfile";
+        public const string ControlPanelCreatePath = "rundll32.exe shell32.dll,Control_RunDLL";
 
         //Restrictions
 
         //Explorer
-        public const String NoFileMenu = "NoFileMenu";
-        public const String NoFolderOption = "NoFolderOptions";
-        public const String NoViewContextMenu="NoViewContextMenu";
-        public const String NoDispAppearancePage="NoDispAppearancePage";
-        public const String NoDispScrSavPage = "NoDispScrSavPage";
-        public const String DisableThumbnailCache="DisableThumbnailCache";
-        public const String DisAllowFlip_3D= "DisallowFlip3D";
+        public const string NoFileMenu = "NoFileMenu";
+        public const string NoFolderOption = "NoFolderOptions";
+        public const string NoViewContextMenu="NoViewContextMenu";
+        public const string NoDispAppearancePage="NoDispAppearancePage";
+        public const string NoDispScrSavPage = "NoDispScrSavPage";
+        public const string DisableThumbnailCache="DisableThumbnailCache";
+        public const string DisAllowFlip_3D= "DisallowFlip3D";
         //Start Menu
-        public const String NoClose="NoClose";
-        public const String NoRecentDocsMenu="NoRecentDocsMenu";
-        public const String NoChangeStartMenu="NoChangeStartMenu";
-        public const String NoLogOff="NoLogoff";
-        public const String NoDispCpl="NoDispCPL";
+        public const string NoClose="NoClose";
+        public const string NoRecentDocsMenu="NoRecentDocsMenu";
+        public const string NoChangeStartMenu="NoChangeStartMenu";
+        public const string NoLogOff="NoLogoff";
+        public const string NoDispCpl="NoDispCPL";
         //System
-        public const String NoDeletePrinter="NoDeletePrinter";
-        public const String NoAddPrinter="NoAddPrinter";
-        public const String NoWindowUpdate="NoWindowsUpdate";
-        public const String NoVirtMemPage="NoVirtMemPage";
-        public const String DisbaleRegistryTools="DisableRegistryTools";
-        public const String DisableTaskMgr="DisableTaskMgr";
-        public const String NoPropertiesMyComputer="NoPropertiesMyComputer";
+        public const string NoDeletePrinter="NoDeletePrinter";
+        public const string NoAddPrinter="NoAddPrinter";
+        public const string NoWindowUpdate="NoWindowsUpdate";
+        public const string NoVirtMemPage="NoVirtMemPage";
+        public const string DisbaleRegistryTools="DisableRegistryTools";
+        public const string DisableTaskMgr="DisableTaskMgr";
+        public const string NoPropertiesMyComputer="NoPropertiesMyComputer";
         //Special case 
-        public const String AutoShreWks = "AutoShareWks";
+        public const string AutoShreWks = "AutoShareWks";
 
         //Taskbar
-        public const String TaskBarAnimations = "TaskbarAnimations";
-        public const String TaskBarSmallIcons="TaskbarSmallIcons";
+        public const string TaskBarAnimations = "TaskbarAnimations";
+        public const string TaskBarSmallIcons="TaskbarSmallIcons";
 
 
         // Places
         // God Mode
-        public const String GodModeKey = ".{ED7BA470-8E54-465E-825C-99712043E01C}";
+        public const string GodModeKey = ".{ED7BA470-8E54-465E-825C-99712043E01C}";
         // Power Button
-        public const String StartPowerBtnAction = "Start_PowerButtonAction";
+        public const string StartPowerBtnAction = "Start_PowerButtonAction";
         // Open With
-        public const String NoOpenWith = "NoOpenWith";
+        public const string NoOpenWith = "NoOpenWith";
     }
 }

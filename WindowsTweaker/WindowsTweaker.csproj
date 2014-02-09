@@ -112,7 +112,11 @@
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\WindowDictionary.cs" />
+    <Compile Include="StartupManager.xaml.cs">
+      <DependentUpon>StartupManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToggleViewFileItem.cs" />
+    <Compile Include="Tuple.cs" />
     <Compile Include="UIRegistryHandler.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WindowsVer.cs" />
@@ -148,9 +152,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\WindowDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="StartupManager.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

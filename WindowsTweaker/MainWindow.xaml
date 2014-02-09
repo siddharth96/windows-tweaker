@@ -1324,7 +1324,7 @@
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         Manage programs ,that are executed when Windows starts and also Add/Remove programs from startup.
                                     </TextBlock>
-                                    <Button Margin="30, 20, 10, 10"
+                                    <Button Margin="30, 20, 10, 10" Click="OnLaunchStartupManagerBtnClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
                                         Launch Startup Manager
                                     </Button>

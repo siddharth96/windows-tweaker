@@ -14,13 +14,13 @@ namespace WindowsTweaker
             InitializeComponent();
         }
 
-        public String HelpText
+        public string HelpText
         {
             get { return txtHelp.Text; }
             set { txtHelp.Text = value; }
         }
 
-        public String Text
+        public string Text
         {
             get { return txtChkBx.Text; }
             set { txtChkBx.Text = value; }

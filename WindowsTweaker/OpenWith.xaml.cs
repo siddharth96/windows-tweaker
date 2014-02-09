@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 
 namespace WindowsTweaker {
     /// <summary>
-    /// Interaction logic for OpenWith.xaml
+    ///     Interaction logic for OpenWith.xaml
     /// </summary>
     public partial class OpenWith : Window {
-        
         public OpenWith() {
-            Dictionary<String, bool> openWithFileDictionary = new Dictionary<string, bool>();
+            Dictionary<string, bool> openWithFileDictionary = new Dictionary<string, bool>();
             InitializeComponent();
-            openWithFileDictionary = LoadItems();
+            openWithFileDictionary = LoadOpenWithItems();
             if (openWithFileDictionary.Any()) {
-                ObservableCollection<FileItem> fileItemList = FileReader.GetAsFileItemListCollection(openWithFileDictionary);
+                FileReader fileReader = new FileReader(openWithFileDictionary);
+                ObservableCollection<ToggleViewFileItem> fileItemList = fileReader.GetAsToggleViewFileItemCollection("Show", "Hide");
                 lstOpenWithBox.ItemsSource = fileItemList;
             }
         }
@@ -35,12 +26,12 @@ namespace WindowsTweaker {
             this.Close();
         }
 
-        private Dictionary<String, bool> LoadItems() {
-            Dictionary<String, bool> openWithFileDictionary = new Dictionary<string, bool>();
+        private Dictionary<string, bool> LoadOpenWithItems() {
+            Dictionary<string, bool> openWithFileDictionary = new Dictionary<string, bool>();
             using (RegistryKey hkcrApplications = Registry.ClassesRoot.OpenSubKey("Applications", true)) {
-                String[] subKeyNames = hkcrApplications.GetSubKeyNames();
+                string[] subKeyNames = hkcrApplications.GetSubKeyNames();
                 RegistryKey hkcrShell, hkcrOpen, hkcrEdit, hkcrCmd;
-                foreach (String subKeyName in subKeyNames) {
+                foreach (string subKeyName in subKeyNames) {
                     hkcrShell = hkcrOpen = hkcrEdit = hkcrCmd = null;
                     RegistryKey regKey = hkcrApplications.OpenSubKey(subKeyName, true);
                     if (regKey.SubKeyCount > 0) {
@@ -62,9 +53,9 @@ namespace WindowsTweaker {
                             if (commandParentKey != null) {
                                 hkcrCmd = commandParentKey.OpenSubKey(Constants.Cmd);
                                 if (hkcrCmd != null) {
-                                    String fPath = (String) hkcrCmd.GetValue("");
+                                    string fPath = (string) hkcrCmd.GetValue("");
                                     if (fPath != null) {
-                                        fPath = Utils.ExtractFileName(fPath);
+                                        fPath = Utils.ExtractFilePath(fPath);
                                         if (fPath != null) {
                                             openWithFileDictionary[fPath] = isChecked;
                                         }
