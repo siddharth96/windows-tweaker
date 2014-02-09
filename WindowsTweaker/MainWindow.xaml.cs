@@ -114,7 +114,7 @@ namespace WindowsTweaker {
             }
             using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 // Explorer
-                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideThumbNailCach, hkcuExAdvanced, Constants.DisableThumbnailCache);
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkHideThumbNailCache, hkcuExAdvanced, Constants.DisableThumbnailCache);
                 // Taskbar
                 UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkTaskBarAnim, hkcuExAdvanced, Constants.TaskBarAnimations);
                 if (windowsOS != WindowsVer.Windows.XP) {
@@ -170,7 +170,7 @@ namespace WindowsTweaker {
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableChangeToVirtualMem, hklmSystem, Constants.NoVirtMemPage);
             }
             using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
-                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCach, hkcuExAdvanced, Constants.DisableThumbnailCache);
+                UIRegistryHandler.SetRegistryValueFromUICheckBox(chkHideThumbNailCache, hkcuExAdvanced, Constants.DisableThumbnailCache);
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkTaskBarAnim, hkcuExAdvanced, Constants.TaskBarAnimations);
                 if (windowsOS != WindowsVer.Windows.XP) {
                     UIRegistryHandler.SetRegistryValueFromUICheckBox(chkShowIconsTaskBar, hkcuExAdvanced, Constants.TaskBarSmallIcons);
