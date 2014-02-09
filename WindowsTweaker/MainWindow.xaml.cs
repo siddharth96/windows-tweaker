@@ -724,5 +724,15 @@ namespace WindowsTweaker {
                 Utils.ExecuteCmd(createCmd);
             }
         }
+
+        private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
+            OpenWith openWithDialog = new OpenWith();
+            openWithDialog.ShowDialog();
+        }
+
+        private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
+            CheckBox chkBox = (CheckBox) sender;
+            chkBox.Tag = Constants.HasUserInteracted;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace WindowsTweaker {
             get { return folderPath; }
         }
 
-        public List<string> IgnoreExtensionList {
+        public List<String> IgnoreExtensionList {
             get { return ignoreExtensionList; }
         }
 

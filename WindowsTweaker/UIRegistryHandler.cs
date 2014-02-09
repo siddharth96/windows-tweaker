@@ -42,24 +42,32 @@ namespace WindowsTweaker {
         /// Sets the value of <paramref name="keyName"/> in <paramref name="registryKey"/> to 1 if
         /// <paramref name="chk"/>'s IsChecked is equal to true, otherwise sets it to 0.
         /// This behaviour is reversed if <paramref name="inverse"/> is set to true.
+        /// Each <paramref name="chk" /> has a tag associated with it, which when set to 1 (HasUserInteracted)
+        /// will then be saved to registry, otherwise it'll be ignored.
         /// </summary>
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
         public static void SetRegistryValueFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName, bool inverse=false) {
-            SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
+            if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
+                SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
+            }
         }
 
         /// <summary>
         /// Creates a sub-key with name (if it doesn't exists) <paramref name="keyName"/> under <paramref name="registryKey"/> if
         /// <paramref name="chk"/>'s IsChecked is equal to true, otherwise it deletes it (if present).
+        /// Each <paramref name="chk" /> has a tag associated with it, which when set to 1 (HasUserInteracted)
+        /// will then be saved to registry, otherwise it'll be ignored.
         /// </summary>
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         public static void SetRegistryKeyFromUICheckBox(CheckBox chk, RegistryKey registryKey, String keyName) {
-            SetRegistryKeyFromBool(chk.IsChecked, registryKey, keyName);
+            if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
+                SetRegistryKeyFromBool(chk.IsChecked, registryKey, keyName);
+            }
         }
 
         /// <summary>

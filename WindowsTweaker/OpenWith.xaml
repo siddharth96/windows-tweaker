@@ -2,8 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="&quot;Open With&quot; Customization" Height="525" Width="517"
+        Loaded="OnWindowLoaded"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Name="btnCancel" Click="OnCancelButtonClick">Dismiss Me</Button>
     </Grid>
 </Window>

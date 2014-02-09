@@ -118,19 +118,19 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         Advanced Explorer Tweaks
                                     </TextBlock>
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkShowMenuBar" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkShowHiddenFilesFolders" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkHideExtension" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkSelectItems" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkRestoreFoldersAtLogin" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkShowOSfiles" />
-                                    <CheckBox Margin="30, 5, 5, 5"
+                                    <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Content="Display compressed &amp; encrypted NTFS files in colour"
                                               Style="{StaticResource ChkStyle}" Name="chkShowNtfsInColor" />
                                 </StackPanel>
@@ -195,10 +195,10 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         Hide options in Property Dialog
                                     </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5"
+                                    <CheckBox Margin="30, 30, 5, 5" Click="OnCheckBoxClick"
                                               Content="Hide &quot;Security&quot; in Folders, Files, Shortcuts &amp; Drives"
                                               Style="{StaticResource ChkStyle}" Name="chkHideSecurity" />
-                                    <CheckBox Margin="30, 20, 5, 5"
+                                    <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
                                               Content="Hide &quot;Customize&quot; in Folders, Files, Shortcuts &amp; Drives"
                                               Style="{StaticResource ChkStyle}" Name="chkShowHideCustomize" />
                                 </StackPanel>
@@ -269,9 +269,9 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         Extras
                                     </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Recycle Bin to My Computer"
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Recycle Bin to My Computer" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkAddRecycleBinToMyComputer" />
-                                    <CheckBox Margin="30, 30, 5, 5"
+                                    <CheckBox Margin="30, 30, 5, 5" Click="OnCheckBoxClick"
                                               Content="Add Registry Editor (Regedit) to Control Panel"
                                               Style="{StaticResource ChkStyle}" Name="chkAddRegeditToControlPanel" />
                                 </StackPanel>
@@ -459,12 +459,12 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         Windows Installer Preferences
                                     </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Disable Windows Installer service"
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Disable Windows Installer service" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkDisableWinInstaller" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Always install with elevated privileges"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="Always install with elevated privileges" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkElevatedInstall" />
                                     <CheckBox Margin="30, 20, 5, 5"
-                                              Content="Turn off creation of System Restore points when installing"
+                                              Content="Turn off creation of System Restore points when installing" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkDisableSysRestoreInstall" />
                                 </StackPanel>
                             </Grid>
@@ -706,12 +706,12 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         Display Settings
                                     </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Enable Windows Animation"
+                                    <CheckBox Margin="30, 30, 5, 5" Content="Enable Windows Animation" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkWindowAnim" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Show Windows' content while dragging"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="Show Windows' content while dragging" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkShowWindowDrag" />
                                     <CheckBox Margin="30, 20, 5, 5"
-                                              Content="Show Windows' version on the Desktop (In white text)"
+                                              Content="Show Windows' version on the Desktop (In white text)" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkWindowVersion" />
                                 </StackPanel>
                             </Grid>
@@ -868,7 +868,7 @@
                                     <TextBlock Style="{StaticResource H1}">
                                         General right-click enhancements
                                     </TextBlock>
-                                    <CheckBox Margin="30, 10, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 10, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkCopyToFolder">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
@@ -878,7 +878,7 @@
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
-                                              Name="chkMoveToFolder">
+                                              Name="chkMoveToFolder" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
                                                 Add &quot;Move to Folder&quot;
@@ -886,7 +886,7 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Name="chkSendTo">
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick" Name="chkSendTo">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
                                                 Add &quot;Send To&quot; to Right-Click
@@ -894,7 +894,7 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkCopyContents">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
@@ -903,7 +903,7 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkEncryptAndDecrypt">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
@@ -912,7 +912,7 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkOpenWithNotepad">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
@@ -921,7 +921,7 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkControlPanelInDesktopMenu">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">
@@ -930,13 +930,13 @@
                                             </TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkOpenCmdPrompt">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">Make &quot;Open Command Prompt here&quot; always display for folders &amp; drives</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
+                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkAddDefragInMenu">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">Add Defragment to the Right-Click menu of drives</TextBlock>
@@ -1195,7 +1195,8 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         User this option to add another program, that should always appear in the list, so that you don't need to click 'Browse' everytime.
                                     </TextBlock>
-                                    <Button Margin="30, 10, 5, 5"
+                                    <Button Margin="30, 10, 5, 5" Name="btnOpenWithDialog"
+                                            Click="OnButtonOpenWithDialogClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
                                         Customize Open With
                                     </Button>
@@ -1768,22 +1769,22 @@
                                         <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them.</ComboBoxItem>
                                     </ComboBox>
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">Other options</TextBlock>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Prevent Windows Update from forcibly rebooting Windows</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
                                         </CheckBox.Content>
@@ -1895,7 +1896,7 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         Use Windows built in DVD Burner
                                     </CheckBox>
                                 </StackPanel>
@@ -1943,7 +1944,7 @@
                                         Use this option to turn on/off System beeps such as sound produced
                                         when using the Volume control or sounds produced by error dialogs etc.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         Turn off System Beeps
                                     </CheckBox>
                                 </StackPanel>
@@ -1986,7 +1987,7 @@
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Automatic Login
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5"
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkEnableAutoLogin" Content="Enable Automatic Login" />
                                     <Border BorderBrush="{DynamicResource TabItemTextBrushHover}"
                                             BorderThickness="1" Margin="30,5,5,10" Padding="5" CornerRadius="2">
@@ -2020,13 +2021,13 @@
                                                      Margin="5" />
                                         </Grid>
                                     </Border>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5"
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkPreventShiftPress">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Prevent stopping automatic logon by pressing shift key</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5"
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkAutoLogonAfterLogoff">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Logon automatically after Logoff</TextBlock>
@@ -2071,7 +2072,7 @@
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Specify whether Windows should play sound when starting up
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkLoginSound"
                                               Content="Play a sound when Windows starts up" IsChecked="True" />
                                 </StackPanel>
@@ -2115,7 +2116,7 @@
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Screensave Lock
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkScreenSaverLock">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">
@@ -2151,7 +2152,7 @@
                                         Login Message
                                     </TextBlock>
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
-                                              Name="chkEnableLoginMsg">
+                                              Name="chkEnableLoginMsg" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">
                                                 Show a message before user logs on
@@ -2211,17 +2212,17 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Name="chkRequireCtrlAltDlt" Margin="30, 10, 5, 5">
+                                    <CheckBox Name="chkRequireCtrlAltDlt" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Require users to press Ctrl+Alt+Delete before logon</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Name="chkRestrictLastLoginUser" Margin="30, 10, 5, 5">
+                                    <CheckBox Name="chkRestrictLastLoginUser" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show classic login screen</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Name="chkShowShutdownBtn" Margin="30, 10, 5, 5" IsChecked="True">
+                                    <CheckBox Name="chkShowShutdownBtn" Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show shutdown button on login screen</TextBlock>
                                         </CheckBox.Content>
@@ -2343,38 +2344,38 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFileMenu">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFileMenu" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable &quot;File&quot; menu in Explorer</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFolderOpt">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideFolderOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Folder options</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkRightClick">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkRightClick" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Right-Click</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <!-- TODO Add help description here-->
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideAppearanceOpt">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideAppearanceOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide Appearance option under Display Menu</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangeScreensaver">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangeScreensaver" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to screensaver</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideThumbNailCach">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideThumbNailCache" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
                                         </CheckBox.Content>
@@ -2414,27 +2415,27 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideShutDownOpt">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideShutDownOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Shutdown option</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideRecentDocs">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideRecentDocs" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide recent documents</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangesStartMenu">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangesStartMenu" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to start menu</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideLogOff">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideLogOff" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable log-off option</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideControlPanel">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkHideControlPanel" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Hide Control Panel</TextBlock>
                                         </CheckBox.Content>
@@ -2488,42 +2489,42 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableDeletionPrinters">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableDeletionPrinters" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable deletion of printers</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAddNewPrinter"> 
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAddNewPrinter" Click="OnCheckBoxClick"> 
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable addition of new printers</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindUpdate">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindUpdate" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Windows update</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableChangeToVirtualMem">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableChangeToVirtualMem" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable changes to Virtual Memory</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindowRegEditTool">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindowRegEditTool" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Windows' Registry editing tools</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableTaskManager">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableTaskManager" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Task Manager</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableEditSettUnderMyComp">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableEditSettUnderMyComp" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable editing of settings under &quot;My Computer&quot;</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAdminShares">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAdminShares" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable administrative shares</TextBlock>
                                         </CheckBox.Content>
@@ -2563,12 +2564,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarAnim">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarAnim" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Taskbar animations</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar">
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show small icons on TaskBar</TextBlock>
                                         </CheckBox.Content>
@@ -2611,12 +2612,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Group Policy update during startup</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Unload unused DLLs after an application is closed</TextBlock>
                                         </CheckBox.Content>
@@ -2709,7 +2710,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Don't show error reporting dialog, when an app crashes</TextBlock>
                                         </CheckBox.Content>
@@ -2779,12 +2780,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True">
+                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Enable boot defragmentation (Recommended)</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable creation of last known good configuration (Not Recommended)</TextBlock>
                                         </CheckBox.Content>
@@ -2869,7 +2870,7 @@
                                             <ComboBoxItem>Show error message (Blue Screen of Death)</ComboBoxItem>
                                         </ComboBox>
                                     </StackPanel>
-                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True">
+                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Record event in system log</TextBlock>
                                         </CheckBox.Content>

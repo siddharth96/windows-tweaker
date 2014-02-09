@@ -19,6 +19,7 @@ namespace WindowsTweaker
         public const String WarningMsgTitle = "Hey!!";
         public const String AlertMsgTitle = "Mind You!!";
         public const String SuccessMsgTitle = "Mission Accomplished!!";
+        public const byte HasUserInteracted = 1;
 
         // Explorer Tab Keys/Value
 
@@ -150,5 +151,7 @@ namespace WindowsTweaker
         public const String GodModeKey = ".{ED7BA470-8E54-465E-825C-99712043E01C}";
         // Power Button
         public const String StartPowerBtnAction = "Start_PowerButtonAction";
+        // Open With
+        
     }
 }

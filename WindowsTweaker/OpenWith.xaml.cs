@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -19,6 +20,25 @@ namespace WindowsTweaker {
     public partial class OpenWith : Window {
         public OpenWith() {
             InitializeComponent();
+        }
+
+
+        private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e) {
+            LoadItems();
+        }
+
+        private void LoadItems() {
+            using (RegistryKey hkcrApplications = Registry.ClassesRoot.OpenSubKey("Applications", true)) {
+                String[] subKeyNames = hkcrApplications.GetSubKeyNames();
+                foreach (string subKeyName in subKeyNames) {
+                    RegistryKey regKey = hkcrApplications.OpenSubKey(subKeyName, true);
+
+                }
+            }
         }
     }
 }
