@@ -58,7 +58,11 @@ namespace WindowsTweaker {
                         filePath = Utils.ExtractFilePath(filePath);
                         if (filePath != null) {
                             Tuple<string, bool> tuple = new Tuple<string, bool>(valueName, isChecked);
-                            startupItemDictionary.Add(filePath, tuple);
+                            if (startupItemDictionary.ContainsKey(filePath)) {
+                                Tuple<string, bool> val = startupItemDictionary[filePath];
+                                tuple.y = tuple.y || val.y;
+                            }
+                            startupItemDictionary[filePath] = tuple;
                         }
                     }
                 }
