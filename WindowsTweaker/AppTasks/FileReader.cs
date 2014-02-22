@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WindowsTweaker.Models;
 
-namespace WindowsTweaker {
+namespace WindowsTweaker.AppTasks {
     internal class FileReader {
         private string folderPath;
         private List<string> ignoreExtensionList;
         private Dictionary<string, bool> fileDictionary;
-        private Dictionary<string, Tuple<string, bool>> fileWithTitleDictionary;
+        private Dictionary<string, Models.Tuple<string, bool>> fileWithTitleDictionary;
 
         public FileReader(string folderPath) {
             this.folderPath = folderPath;
@@ -31,11 +29,11 @@ namespace WindowsTweaker {
             this.fileDictionary = fileDictionary;
         }
 
-        public FileReader(Dictionary<string, Tuple<string, bool>> fileWithTitleDictionary) {
+        public FileReader(Dictionary<string, Models.Tuple<string, bool>> fileWithTitleDictionary) {
             this.fileWithTitleDictionary = fileWithTitleDictionary;
         }
 
-        public Dictionary<string, Tuple<string, bool>> FileWithTitleDictionary {
+        public Dictionary<string, Models.Tuple<string, bool>> FileWithTitleDictionary {
             get { return fileWithTitleDictionary; }
         }
 
@@ -101,31 +99,15 @@ namespace WindowsTweaker {
             return fileItemCollection;
         }
 
-        public ObservableCollection<ToggleViewFileItem> GetAsToggleViewFileItemCollection(string showTxt,
-            string hideText) {
-            ObservableCollection<ToggleViewFileItem> toggleViewFileItemCollection = null;
-            if (fileDictionary != null) {
-                toggleViewFileItemCollection = new ObservableCollection<ToggleViewFileItem>();
-                foreach (string filePath in fileDictionary.Keys) {
-                    FileItem fileItem = GetFileItem(filePath, fileDictionary[filePath], null);
-                    if (fileItem != null) {
-                        toggleViewFileItemCollection.Add(new ToggleViewFileItem(fileItem, showTxt, hideText));
-                    }
-                }
-            }
-            return toggleViewFileItemCollection;
-        }
-
-        public ObservableCollection<ToggleViewFileItem> GetAsToggleViewFileItemCollectionWithUserTitle(string showTxt,
-            string hideText) {
-            ObservableCollection<ToggleViewFileItem> toggleViewFileItemCollection = null;
+        public ObservableCollection<FileItem> GetAsFileItemCollectionWithUserTitle() {
+            ObservableCollection<FileItem> toggleViewFileItemCollection = null;
             if (fileWithTitleDictionary != null) {
-                toggleViewFileItemCollection = new ObservableCollection<ToggleViewFileItem>();
+                toggleViewFileItemCollection = new ObservableCollection<FileItem>();
                 foreach (string filePath in fileWithTitleDictionary.Keys) {
-                    Tuple<string, bool> titleAndIsChecked = fileWithTitleDictionary[filePath];
+                    Models.Tuple<string, bool> titleAndIsChecked = fileWithTitleDictionary[filePath];
                     FileItem fileItem = GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x);
                     if (fileItem != null) {
-                        toggleViewFileItemCollection.Add(new ToggleViewFileItem(fileItem, showTxt, hideText));
+                        toggleViewFileItemCollection.Add(fileItem);
                     }
                 }
             }

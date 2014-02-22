@@ -303,4 +303,8 @@
         <Setter Property="FontSize" Value="21.333" />
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
     </Style>
+    
+    <Style TargetType="{x:Type TextBox}" x:Key="SmallTxtBoxStyle" BasedOn="{StaticResource TxtBoxStyle}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
 </ResourceDictionary>

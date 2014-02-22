@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using WindowsTweaker.AppTasks;
+using WindowsTweaker.Models;
 using Microsoft.Win32;
+using WPFSpark;
+using Image = System.Drawing.Image;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -12,65 +18,48 @@ namespace WindowsTweaker {
     public partial class StartupManager : Window {
         public StartupManager() {
             InitializeComponent();
-            Dictionary<string, Tuple<string, bool>> startupItemDictionary = LoadStartupItems();
-            if (startupItemDictionary.Any()) {
-                FileReader fileReader = new FileReader(startupItemDictionary);
-                ObservableCollection<ToggleViewFileItem> fileItemList =
-                    fileReader.GetAsToggleViewFileItemCollectionWithUserTitle("On", "Off");
-                lstStartupItems.ItemsSource = fileItemList;
-            }
+            Dictionary<string, Models.Tuple<string, bool>> startupItemDictionary = StartupManagerTask.LoadStartupItems();
+            if (!startupItemDictionary.Any()) return;
+            FileReader fileReader = new FileReader(startupItemDictionary);
+            ObservableCollection<FileItem> fileItemList =
+                fileReader.GetAsFileItemCollectionWithUserTitle();
+            lstStartupItems.ItemsSource = fileItemList;
         }
 
-        private Dictionary<string, Tuple<string, bool>> LoadStartupItems() {
-            StartupItemHolderClass startupItemHolderClass = new StartupItemHolderClass();
-            using (RegistryKey hkcrRun = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run")) {
-                startupItemHolderClass.UpdateStartupDictionaryForKey(hkcrRun, true);
-            }
-            using (RegistryKey hkcrRunDisabled = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-")) {
-                startupItemHolderClass.UpdateStartupDictionaryForKey(hkcrRunDisabled, false);
-            }
-            using (RegistryKey hklmRun = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run")) {
-                startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRun, false);
-            }
-            using (RegistryKey hklmRunDisabled = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-")) {
-                startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRunDisabled, false);
-            }
-            return startupItemHolderClass.StartupItemDictionary;
-        }
-
-
-        private class StartupItemHolderClass {
-            private Dictionary<string, Tuple<string, bool>> startupItemDictionary;
-
-            public Dictionary<string, Tuple<string, bool>> StartupItemDictionary {
-                get { return startupItemDictionary; }
-            }
-
-            public StartupItemHolderClass() {
-                this.startupItemDictionary = new Dictionary<string, Tuple<string, bool>>();
-            }
-
-            public void UpdateStartupDictionaryForKey(RegistryKey registryKey, bool isChecked) {
-                if (registryKey != null) {
-                    String[] valueNames = registryKey.GetValueNames();
-                    foreach (string valueName in valueNames) {
-                        string filePath = (string) registryKey.GetValue(valueName);
-                        filePath = Utils.ExtractFilePath(filePath);
-                        if (filePath != null) {
-                            Tuple<string, bool> tuple = new Tuple<string, bool>(valueName, isChecked);
-                            if (startupItemDictionary.ContainsKey(filePath)) {
-                                Tuple<string, bool> val = startupItemDictionary[filePath];
-                                tuple.y = tuple.y || val.y;
-                            }
-                            startupItemDictionary[filePath] = tuple;
-                        }
-                    }
-                }
-            }
-        }
+        
 
         private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
             this.Close();
+        }
+
+        private void OnToggleButtonChecked(object sender, RoutedEventArgs e) {
+            ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
+            if (toggleSwitch == null) return;
+            FileItem fileItem = toggleSwitch.Tag as FileItem;
+            if (fileItem == null) return;
+            StartupManagerTask.Add(fileItem);
+        }
+
+        private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e) {
+            ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
+            if (toggleSwitch == null) return;
+            FileItem fileItem = toggleSwitch.Tag as FileItem;
+            if (fileItem == null) return;
+            StartupManagerTask.Remove(fileItem);
+        }
+
+        private void OnMoreInfoImageTouched(object sender, TouchEventArgs e) {
+            System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
+            if (img == null) return;
+            StartupManagerTask.ShowDetail(img);
+            e.Handled = true;
+        }
+
+        private void OnMoreInfoImageMouseDown(object sender, MouseButtonEventArgs e) {
+            System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
+            if (img == null) return;
+            StartupManagerTask.ShowDetail(img);
+            e.Handled = true;
         }
     }
 }

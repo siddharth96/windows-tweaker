@@ -103,11 +103,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Constants.cs" />
-    <Compile Include="FileItem.cs" />
-    <Compile Include="FileReader.cs" />
+    <Compile Include="AppTasks\OpenWithTask.cs" />
+    <Compile Include="AppTasks\StartupManagerTask.cs" />
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\FileItem.cs" />
+    <Compile Include="AppTasks\FileReader.cs" />
     <Compile Include="HelpCheckBox.xaml.cs">
       <DependentUpon>HelpCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoreInfo.xaml.cs">
+      <DependentUpon>MoreInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
@@ -115,11 +120,10 @@
     <Compile Include="StartupManager.xaml.cs">
       <DependentUpon>StartupManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToggleViewFileItem.cs" />
-    <Compile Include="Tuple.cs" />
-    <Compile Include="UIRegistryHandler.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="WindowsVer.cs" />
+    <Compile Include="Models\Tuple.cs" />
+    <Compile Include="AppTasks\UIRegistryHandler.cs" />
+    <Compile Include="AppTasks\Utils.cs" />
+    <Compile Include="AppTasks\WindowsVer.cs" />
     <Page Include="HelpCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +140,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MoreInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OpenWith.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,10 +155,6 @@
     <Page Include="Resources\MetroSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\TileViewWithToggleButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartupManager.xaml">
       <SubType>Designer</SubType>
@@ -268,6 +272,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dependencies\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

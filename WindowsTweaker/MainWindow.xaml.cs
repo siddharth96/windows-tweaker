@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using System.Linq;
+using WindowsTweaker.AppTasks;
+using WindowsTweaker.Models;
 using Microsoft.Win32;
 using System;
 using System.Windows;

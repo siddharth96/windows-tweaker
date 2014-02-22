@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Win32;
-using System;
 
-namespace WindowsTweaker {
+namespace WindowsTweaker.AppTasks {
 
     internal static class Utils {
         public static Func<int?, bool> IntToBool = (int? val) => !(val == 0 || val == null);
@@ -71,6 +72,16 @@ namespace WindowsTweaker {
                 }
             }
             return null;
+        }
+
+        public static bool MoveRegistryKey(RegistryKey sourceKey, RegistryKey destinationKey, string keyName) {
+            string keyVal = (string) sourceKey.GetValue(keyName);
+            if (keyVal != null) {
+                sourceKey.DeleteValue(keyName);
+                destinationKey.SetValue(keyName, keyVal);
+                return true;
+            }
+            return false;
         }
     }
 }

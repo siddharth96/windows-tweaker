@@ -1,18 +1,122 @@
 ﻿<Window x:Class="WindowsTweaker.OpenWith"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         Title="&quot;Open With&quot; Customization" Height="525" Width="517"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
     <Window.Resources>
-        <ResourceDictionary Source="Resources/TileViewWithToggleButton.xaml"></ResourceDictionary>
+        <DataTemplate x:Key="ToggleBtnTileView">
+            <Grid Margin="3, 10, 10, 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Path=IconAssociated}" Grid.Column="0" Margin="10, 0, 0, 0" Width="16" Height="16"
+                   VerticalAlignment="Center">
+                </Image>
+                <TextBlock Grid.Column="1" Text="{Binding Path=Name}" VerticalAlignment="Center" FontSize="14"
+                       Margin="10, 0, 0, 0"
+                       HorizontalAlignment="Left">
+                </TextBlock>
+                <wpfSpark:ToggleSwitch Grid.Column="2" Background="Black"
+                                   IsChecked="{Binding Path=IsChecked}"
+                                   ThumbWidth="30"
+                                   BorderThickness="2"
+                                   CheckedForeground="White"
+                                   CheckedText="Show"
+                                   CornerRadius="8"
+                                   FontFamily="/WindowsTweaker;component/Fonts/#RobotoTahoma"
+                                   FontSize="14"
+                                   FontWeight="Normal"
+                                   Height="30"
+                                   HorizontalAlignment="Right"
+                                   x:Name="toggleSwitch"
+                                   Padding="0"
+                                   ThumbBorderThickness="2"
+                                   ThumbCornerRadius="5"
+                                   ThumbGlowColor="Gray"
+                                   ThumbShineCornerRadius="6,6,3,3"
+                                   Tag="{Binding}"
+                                   UncheckedForeground="Black"
+                                   UncheckedText="Hide"
+                                   VerticalAlignment="Top"
+                                   Width="68"
+                                   Checked="OnToggleButtonChecked"
+                                   Unchecked="OnToggleButtonUnchecked"
+                                   CheckedToolTip="True"
+                                   UncheckedToolTip="False">
+                    <wpfSpark:ToggleSwitch.UncheckedBackground>
+                        <LinearGradientBrush EndPoint="0,1"
+                                         StartPoint="0,0">
+                            <GradientStop Color="#626262"
+                                      Offset="0.1" />
+                            <GradientStop Color="#A5A5A5"
+                                      Offset="0.5" />
+                            <GradientStop Color="#F1F1F1"
+                                      Offset="1" />
+                        </LinearGradientBrush>
+                    </wpfSpark:ToggleSwitch.UncheckedBackground>
+                    <wpfSpark:ToggleSwitch.BorderBrush>
+                        <LinearGradientBrush EndPoint="0,0"
+                                         StartPoint="0,1">
+                            <GradientStop Color="#959595"
+                                      Offset="0" />
+                            <GradientStop Color="#A1A1A1"
+                                      Offset="0.5" />
+                            <GradientStop Color="#555555"
+                                      Offset="1" />
+                        </LinearGradientBrush>
+                    </wpfSpark:ToggleSwitch.BorderBrush>
+                    <wpfSpark:ToggleSwitch.CheckedBackground>
+                        <LinearGradientBrush EndPoint="0,1"
+                                         StartPoint="0,0">
+                            <GradientStop Color="#1E41A5"
+                                      Offset="0" />
+                            <GradientStop Color="#2F6AEA"
+                                      Offset="0.5" />
+                            <GradientStop Color="#6298FE"
+                                      Offset="1" />
+                        </LinearGradientBrush>
+                    </wpfSpark:ToggleSwitch.CheckedBackground>
+                    <wpfSpark:ToggleSwitch.ThumbBackground>
+                        <LinearGradientBrush EndPoint="0,1"
+                                         StartPoint="0,0">
+                            <GradientStop Color="#C1C1C1"
+                                      Offset="0" />
+                            <GradientStop Color="#A5A5A5"
+                                      Offset="0.5" />
+                            <GradientStop Color="#FCFCF6"
+                                      Offset="1" />
+                        </LinearGradientBrush>
+                    </wpfSpark:ToggleSwitch.ThumbBackground>
+                    <wpfSpark:ToggleSwitch.ThumbBorderBrush>
+                        <LinearGradientBrush EndPoint="0,1"
+                                         StartPoint="0,0">
+                            <GradientStop Color="#F6F6F6"
+                                      Offset="0" />
+                            <GradientStop Color="#959595"
+                                      Offset="0.5" />
+                            <GradientStop Color="#565656"
+                                      Offset="1" />
+                        </LinearGradientBrush>
+                    </wpfSpark:ToggleSwitch.ThumbBorderBrush>
+                </wpfSpark:ToggleSwitch>
+                <Image Grid.Column="3" Width="24" Height="24" Margin="10, 0, 0, 0" Cursor="Hand" Tag="{Binding}"
+                       PreviewMouseDown="OnMoreInfoImageMouseDown" Source="Images/help.png"></Image>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
         <ListBox Margin="5" Name="lstOpenWithBox" ItemTemplate="{StaticResource ToggleBtnTileView}" HorizontalAlignment="Stretch" 
-                 HorizontalContentAlignment="Stretch"></ListBox>
-        <Button Name="btnCancel" Click="OnCancelButtonClick" Grid.Row="1">Dismiss Me</Button>
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnMoreInfoImageMouseDown"></EventSetter>
+                    <EventSetter Event="PreviewTouchDown" Handler="OnMoreInfoImageTouched"></EventSetter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
     </Grid>
 </Window>

@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Windows.Controls;
+using WindowsTweaker.Models;
+using Microsoft.Win32;
 
-namespace WindowsTweaker {
+namespace WindowsTweaker.AppTasks {
 
     internal static class UIRegistryHandler {
 

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WindowsTweaker {
+namespace WindowsTweaker.AppTasks {
 
-    public class WindowsVer {
+    internal class WindowsVer {
 
         public enum Windows { Other = 4, XP, Vista, Seven, Eight, Blue };
 

@@ -1,0 +1,32 @@
+﻿<Window x:Class="WindowsTweaker.MoreInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ShowInTaskbar="False"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner"
+        Title="MoreInfo" Height="250" Width="600">
+    <Grid Background="{StaticResource WindowBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10, 10, 10, 5">
+            <Image Width="48" Height="48" Name="imgProgramIcon"></Image>
+            <TextBlock Margin="30, 0, 0, 0" VerticalAlignment="Center" Style="{StaticResource TxtStyle}" Name="txtAppTitle"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="20, 5, 10, 8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" Margin="5, 10">File</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" Name="txtAppFileName" IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" Margin="5, 10">Path</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" Name="txtAppFilePath" IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
+        </Grid>
+    </Grid>
+</Window>

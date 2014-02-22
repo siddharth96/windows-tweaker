@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using Microsoft.Win32;
+using System.Windows.Input;
+using WindowsTweaker.AppTasks;
+using WindowsTweaker.Models;
+using WPFSpark;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -11,62 +14,51 @@ namespace WindowsTweaker {
     /// </summary>
     public partial class OpenWith : Window {
         public OpenWith() {
-            Dictionary<string, bool> openWithFileDictionary = new Dictionary<string, bool>();
             InitializeComponent();
-            openWithFileDictionary = LoadOpenWithItems();
+            Dictionary<string, bool> openWithFileDictionary = OpenWithTask.LoadOpenWithItems();
             if (openWithFileDictionary.Any()) {
                 FileReader fileReader = new FileReader(openWithFileDictionary);
-                ObservableCollection<ToggleViewFileItem> fileItemList = fileReader.GetAsToggleViewFileItemCollection("Show", "Hide");
+                ObservableCollection<FileItem> fileItemList = fileReader.GetAsFileItemListCollection();
                 lstOpenWithBox.ItemsSource = fileItemList;
             }
         }
-
 
         private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
-        private Dictionary<string, bool> LoadOpenWithItems() {
-            Dictionary<string, bool> openWithFileDictionary = new Dictionary<string, bool>();
-            using (RegistryKey hkcrApplications = Registry.ClassesRoot.OpenSubKey("Applications", true)) {
-                string[] subKeyNames = hkcrApplications.GetSubKeyNames();
-                RegistryKey hkcrShell, hkcrOpen, hkcrEdit, hkcrCmd;
-                foreach (string subKeyName in subKeyNames) {
-                    hkcrShell = hkcrOpen = hkcrEdit = hkcrCmd = null;
-                    RegistryKey regKey = hkcrApplications.OpenSubKey(subKeyName, true);
-                    if (regKey.SubKeyCount > 0) {
-                        bool isChecked = regKey.GetValue(Constants.NoOpenWith) == null;
-                        hkcrShell = regKey.OpenSubKey(Constants.Shell);
-                        if (hkcrShell != null) {
-                            RegistryKey commandParentKey = null;
-                            hkcrOpen = hkcrShell.OpenSubKey(Constants.Open);
-                            if (hkcrOpen != null)
-                                commandParentKey = hkcrOpen;
-                            else {
-                                hkcrEdit = hkcrShell.OpenSubKey(Constants.Edit);
-                                if (hkcrEdit != null)
-                                    commandParentKey = hkcrEdit;
-                                else {
-                                    commandParentKey = hkcrShell.OpenSubKey(Constants.Read);
-                                }
-                            }
-                            if (commandParentKey != null) {
-                                hkcrCmd = commandParentKey.OpenSubKey(Constants.Cmd);
-                                if (hkcrCmd != null) {
-                                    string fPath = (string) hkcrCmd.GetValue("");
-                                    if (fPath != null) {
-                                        fPath = Utils.ExtractFilePath(fPath);
-                                        if (fPath != null) {
-                                            openWithFileDictionary[fPath] = isChecked;
-                                        }
-                                    }
-                                }
-                            } // end of commandParent != null
-                        } // end of hkcr != null
-                    } // end of regKey.Count > 0
-                } // end for
-            } // end using
-            return openWithFileDictionary;
+        private void OnToggleButtonChecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
+            if (toggleSwitch == null) return;
+            FileItem fileItem = toggleSwitch.Tag as FileItem;
+            if (fileItem == null) return;
+            StartupManagerTask.Add(fileItem);
+        }
+
+        private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
+            if (toggleSwitch == null) return;
+            FileItem fileItem = toggleSwitch.Tag as FileItem;
+            if (fileItem == null) return;
+            OpenWithTask.Remove(fileItem);
+        }
+
+        private void OnMoreInfoImageTouched(object sender, TouchEventArgs e)
+        {
+            System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
+            if (img == null) return;
+            OpenWithTask.ShowDetail(img);
+            e.Handled = true;
+        }
+
+        private void OnMoreInfoImageMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
+            if (img == null) return;
+            OpenWithTask.ShowDetail(img);
+            e.Handled = true;
         }
     }
 }

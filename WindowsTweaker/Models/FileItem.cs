@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Media;
 
-namespace WindowsTweaker {
+namespace WindowsTweaker.Models {
     internal class FileItem {
         public FileItem(string fullName, ImageSource iconAssociated) {
             this.iconAssociated = iconAssociated;
