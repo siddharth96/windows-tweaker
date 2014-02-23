@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Windows.Input;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
@@ -67,22 +68,19 @@ namespace WindowsTweaker {
                     break;
             }
         }
-                
 
-        //LOGON
+
+        #region Logon
         private void LoadLogonTab()
         {
-
             using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon"))
             {
-
                 UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkEnableAutoLogin, hklmWinLogon,"");
-
             }
-
         }
+        #endregion
 
-        //RESTRICTIONS
+        #region Restrictions
         private void LoadRestrictionsTab()
         {
 
@@ -191,7 +189,9 @@ namespace WindowsTweaker {
                 UIRegistryHandler.SetRegistryValueFromUICheckBox(chkDisableAdminShares, hklmParams, Constants.AutoShreWks, true);
             }
         }
+        #endregion
 
+        #region Explorer
         private void LoadExplorerTab() {
             //Drive Letters
             using (RegistryKey hkcuCvExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
@@ -347,7 +347,9 @@ namespace WindowsTweaker {
                 }
             }
         }
+        #endregion
 
+        #region System
         private void LoadSystemTab() {
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
                 //Shutdown Configuration
@@ -461,7 +463,9 @@ namespace WindowsTweaker {
                 UIRegistryHandler.SetRegistryValueFromUITextBox(txtSupportUrl, hklmOEM, Constants.SupportUrl);
             }
         }
+        #endregion
 
+        #region Display
         private void LoadDisplayTab() {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
@@ -519,43 +523,9 @@ namespace WindowsTweaker {
                 hkcuColors.SetValue(Constants.SelectionColor, val);
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Checks the name of RegistryKey for Copy-To, Move-To and Send-To Registry Keys, and corrects them if they are wrong.
-        /// These names are case-sensitive, eg., "Copy To" will work, but "Copy to" as registry-key's value will fail,
-        /// and unfortunately some 3rd party tweaking softwares put in the latter one in the Registry.
-        /// </summary>
-        private void ValidateAndFixKeys(RegistryKey rootKey) {
-            string[] subKeyNames = rootKey.GetSubKeyNames();
-            foreach (string keyName in subKeyNames) {
-                RegistryKey keyToValidate = rootKey.OpenSubKey(keyName, true);
-                string copyToVal = (string) keyToValidate.GetValue(Constants.CopyToId);
-                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo)) {
-                    keyToValidate.Close();
-                    rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.CopyTo);
-                    keyToValidate.SetValue("", Constants.CopyToId);
-                    continue;
-                }
-                string moveToVal = (string) keyToValidate.GetValue(Constants.MoveToId);
-                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo)) {
-                    keyToValidate.Close();
-                    rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.MoveTo);
-                    keyToValidate.SetValue("", Constants.MoveToId);
-                    continue;
-                }
-                string sendToVal = (string) keyToValidate.GetValue(Constants.SendToId);
-                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo)) {
-                    keyToValidate.Close();
-                    rootKey.DeleteSubKeyTree(keyName);
-                    keyToValidate = rootKey.CreateSubKey(Constants.SendTo);
-                    keyToValidate.SetValue("", Constants.SendToId);
-                    continue;
-                }
-            }
-        }
-
+        #region Places
         private void LoadPlacesTab() {
             // Power Button
             using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
@@ -582,6 +552,49 @@ namespace WindowsTweaker {
                     case 256:
                         cmboBxPowerBtnAction.SelectedIndex = 6;
                         break;
+                }
+            }
+        }
+        #endregion
+
+        #region Right-Click
+        /// <summary>
+        /// Checks the name of RegistryKey for Copy-To, Move-To and Send-To Registry Keys, and corrects them if they are wrong.
+        /// These names are case-sensitive, eg., "Copy To" will work, but "Copy to" as registry-key's value will fail,
+        /// and unfortunately some 3rd party tweaking softwares put in the latter one in the Registry.
+        /// </summary>
+        private void ValidateAndFixKeys(RegistryKey rootKey)
+        {
+            string[] subKeyNames = rootKey.GetSubKeyNames();
+            foreach (string keyName in subKeyNames)
+            {
+                RegistryKey keyToValidate = rootKey.OpenSubKey(keyName, true);
+                string copyToVal = (string)keyToValidate.GetValue(Constants.CopyToId);
+                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo))
+                {
+                    keyToValidate.Close();
+                    rootKey.DeleteSubKeyTree(keyName);
+                    keyToValidate = rootKey.CreateSubKey(Constants.CopyTo);
+                    keyToValidate.SetValue("", Constants.CopyToId);
+                    continue;
+                }
+                string moveToVal = (string)keyToValidate.GetValue(Constants.MoveToId);
+                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo))
+                {
+                    keyToValidate.Close();
+                    rootKey.DeleteSubKeyTree(keyName);
+                    keyToValidate = rootKey.CreateSubKey(Constants.MoveTo);
+                    keyToValidate.SetValue("", Constants.MoveToId);
+                    continue;
+                }
+                string sendToVal = (string)keyToValidate.GetValue(Constants.SendToId);
+                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo))
+                {
+                    keyToValidate.Close();
+                    rootKey.DeleteSubKeyTree(keyName);
+                    keyToValidate = rootKey.CreateSubKey(Constants.SendTo);
+                    keyToValidate.SetValue("", Constants.SendToId);
+                    continue;
                 }
             }
         }
@@ -645,7 +658,9 @@ namespace WindowsTweaker {
         }
 
         private void UpdateRegistryFromRightClick() {}
+        #endregion
 
+        #region Places -> GodMode
         private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == true) {
@@ -683,8 +698,9 @@ namespace WindowsTweaker {
                 }
             }
         }
+        #endregion
 
-
+        #region Task
         private void LoadTaskTab() {
             dateTimePickerScheduleShutdown.Value = DateTime.Now;
         }
@@ -723,7 +739,9 @@ namespace WindowsTweaker {
             MessageBox.Show("A scheduled shutdown has been cancelled", Constants.SuccessMsgTitle, MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
+        #endregion
 
+        #region Task -> Special Folder
         private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
             folderBrowserDlg.Title = "Select a Parent Folder";
@@ -744,20 +762,144 @@ namespace WindowsTweaker {
                 Utils.ExecuteCmd(createCmd);
             }
         }
-
-        private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
-            OpenWith openWithDialog = new OpenWith();
-            openWithDialog.ShowDialog();
-        }
+        #endregion
 
         private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
             CheckBox chkBox = (CheckBox) sender;
             chkBox.Tag = Constants.HasUserInteracted;
         }
 
+        #region Places -> Open With
+
+        private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
+            OpenWith openWithDialog = new OpenWith();
+            openWithDialog.ShowDialog();
+        }
+
+        private void OnAddToOpenWithImageMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowAddToOpenWithPopup();
+        }
+
+        private void OnAddToOpenWithImageTouchEnd(object sender, TouchEventArgs e) {
+            ShowAddToOpenWithPopup();
+        }
+
+        private void ShowAddToOpenWithPopup() {
+            if (!popupAddToOpenWith.IsOpen) {
+                popupAddToOpenWith.IsOpen = true;
+            }
+        }
+
+        private void OnBrowseFileForOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToOpenWith.IsOpen = false;
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null) {
+                txtOpenWithFilePath.Text = filePath;
+            }
+            popupAddToOpenWith.IsOpen = true;
+        }
+
+        private void OnAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            string filePath = txtOpenWithFilePath.Text.Trim();
+            if (filePath.Length == 0) return;
+            if (File.Exists(filePath)) {
+                OpenWithTask.AddStatus status = OpenWithTask.Add(filePath);
+                switch (status) {
+                        case OpenWithTask.AddStatus.Success:
+                            MessageBox.Show("Successfully added to open-with", Constants.SuccessMsgTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                            break;
+                        case OpenWithTask.AddStatus.AlreadyPresent:
+                            MessageBox.Show("This file is already present in open-with", Constants.WarningMsgTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            break;
+                        case OpenWithTask.AddStatus.Failed:
+                            MessageBox.Show("Failed to add this file to open-with", Constants.SuccessMsgTitle,
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                            break;
+                }
+            }
+            else {
+                MessageBox.Show("The specified file doesn't exist.", Constants.WarningMsgTitle, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            txtOpenWithFilePath.Text = String.Empty;
+        }
+
+        private void OnCancelAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToOpenWith.IsOpen = false;
+        }
+        #endregion
+
+        #region Places -> Startup Manager
         private void OnLaunchStartupManagerBtnClick(object sender, RoutedEventArgs e) {
             StartupManager startupManager = new StartupManager();
             startupManager.ShowDialog();
         }
+
+        private void ShowAddToStartupPopup() {
+            if (!popupAddToStartup.IsOpen) {
+                popupAddToStartup.IsOpen = true;
+            }
+        }
+
+        private void OnBrowseFileForStartupBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToStartup.IsOpen = false;
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null) {
+                txtStartupFilePath.Text = filePath;
+            }
+            popupAddToStartup.IsOpen = true;
+        }
+
+        private void OnAddToStartupBtnClick(object sender, RoutedEventArgs e) {
+            string filePath = txtStartupFilePath.Text.Trim();
+            bool? onlyCurrentUser = rbtnStartupForCurrentUser.IsChecked;
+            if (onlyCurrentUser != true) {
+                onlyCurrentUser = rbtnStartupForAllUser.IsChecked;
+            }
+            if (filePath.Length == 0) return;
+            if (File.Exists(filePath)) {
+                StartupManagerTask.AddStatus status = StartupManagerTask.Add(filePath, onlyCurrentUser);
+                switch (status) {
+                    case StartupManagerTask.AddStatus.Success:
+                        MessageBox.Show("Successfully added to startup", Constants.SuccessMsgTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        break;
+                    case StartupManagerTask.AddStatus.AlreadyPresent:
+                        MessageBox.Show("This file is already present in startup", Constants.WarningMsgTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        break;
+                    case StartupManagerTask.AddStatus.Failed:
+                        MessageBox.Show("Failed to add this file to startup", Constants.SuccessMsgTitle,
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                        break;
+                }
+            }
+            else {
+                MessageBox.Show("The specified file doesn't exist.", Constants.WarningMsgTitle, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            txtStartupFilePath.Text = String.Empty;
+        }
+
+        private void OnCancelAddToStartupBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToStartup.IsOpen = false;
+        }
+
+        private void OnAddToStartupImageMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowAddToStartupPopup();
+        }
+
+        private void OnAddToStartupImageTouchEnd(object sender, TouchEventArgs e) {
+            ShowAddToStartupPopup();
+        }
+        #endregion
     }
 }

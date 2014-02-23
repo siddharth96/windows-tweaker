@@ -55,12 +55,12 @@
                                         Specify how the drives are displayed in My Computer
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name"
-                                                 Style="{StaticResource rbtnStyle}"
+                                                 Style="{StaticResource RbtnStyle}"
                                                  Name="rbtnShowDriveLetterBeforeName" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShowDriveLetterAfterName" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShowDriveLetterAfterName" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnHideDriveLetter" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnHideDriveLetter" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -238,10 +238,10 @@
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5"
                                                  Content="Show &quot;Libraries&quot; in Navigation Pane"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShowLibraries" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShowLibraries" />
                                     <RadioButton Margin="30, 30, 5, 5"
                                                  Content="Hide &quot;Libraries&quot; in Navigation Pane"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnHideLibraries" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnHideLibraries" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -318,10 +318,10 @@
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5"
                                                  Content="Kill applications immediately and shutdown straightaway"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShutdownImmediately" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShutdownImmediately" />
                                     <RadioButton Margin="30, 5, 5, 5"
                                                  Content="Wait for applications to exit for X milliseconds"
-                                                 Style="{StaticResource rbtnStyle}" Name="rbtnShutdownAfterWaiting" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShutdownAfterWaiting" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -1195,11 +1195,60 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
                                         User this option to add another program, that should always appear in the list, so that you don't need to click 'Browse' everytime.
                                     </TextBlock>
-                                    <Button Margin="30, 10, 5, 5" Name="btnOpenWithDialog"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="30, 10, 5, 5" Name="btnOpenWithDialog"
                                             Click="OnButtonOpenWithDialogClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                        Customize Open With
-                                    </Button>
+                                            Customize Open With
+                                        </Button>
+                                        <Viewbox>
+                                            <Grid Margin="20, 0, 0, 0" MouseDown="OnAddToOpenWithImageMouseDown"
+                                                  TouchDown="OnAddToOpenWithImageTouchEnd" Name="gridAddToOpenWith" Cursor="Hand">
+                                                <Grid Name="backgroundGrid" Width="48" Height="48" Visibility="Visible">
+                                                    <Ellipse Fill="#FFFFFFFF" Name="addOpenWith" Visibility="Visible" />
+                                                </Grid>
+                                                <Path Data="M24.52501,16.128025C23.931993,16.128025,23.451005,
+                                                      16.608006,23.451005,17.202978L23.451005,19.352032 21.259997,
+                                                      19.352032C20.642993,19.352032 20.144,19.852033 20.144,20.467025 
+                                                      20.144,21.08397 20.642993,21.583971 21.259997,21.583971L23.451005,
+                                                      21.583971 23.451005,23.980949C23.451005,24.574945 23.931993,25.057979 
+                                                      24.52501,25.057979 25.120987,25.057979 25.599991,24.574945 25.599991,
+                                                      23.980949L25.599991,21.583971 27.874985,21.583971C28.490981,21.583971
+                                                      28.990981,21.08397 28.990981,20.467025 28.990981,19.852033 28.490981,
+                                                      19.352032 27.874985,19.352032L25.599991,19.352032 25.599991,
+                                                      17.202978C25.599991,16.608006,25.120987,16.128025,24.52501,16.128025z
+                                                      M24.520005,13.826993C28.147994,13.826993 31.091993,16.767919 31.091993,
+                                                      20.397933 31.091993,24.025017 28.147994,26.968994 24.520005,26.968994
+                                                      20.891009,26.968994 17.948994,24.025017 17.948993,20.397933 17.948994,
+                                                      16.767919 20.891009,13.826993 24.520005,13.826993z M7.7990189,
+                                                      6.433979C7.7620192,6.433979,7.731019,6.447979,7.6970186,6.4529791L7.4890184,
+                                                      6.4529791 7.4890184,6.4979787C7.2260189,6.6099787 7.0410185,6.8519778 
+                                                      7.0410185,7.1379766 7.0410185,7.5259757 7.3800192,7.8409743 7.7990189,
+                                                      7.8409743L14.701019,7.8409743C15.119019,7.8409743 15.457019,7.5259757 
+                                                      15.457019,7.1379766 15.457019,6.7479782 15.119019,6.433979 14.701019,6.433979z 
+                                                      M0,3.9819336L3.7690182,3.9819336 3.7690182,6.8689466 3.7690182,9.1569562
+                                                      3.7690182,17.330992C3.7690182,18.282996 2.9250145,18.666997 1.8850098,18.666997
+                                                      0.84500504,18.666997 0,17.894994 0,16.94299L0,9.1569562 0,6.8689466z
+                                                      M7.4100189,3.4149885L7.4100189,3.4789886C7.1280184,3.5869884 6.929019,
+                                                      3.8469877 6.929019,4.1549864 6.929019,4.5579853 7.2760191,4.884984 7.7040186,
+                                                      4.884984L14.767019,4.884984C15.195019,4.884984 15.541018,4.5579853 15.541018,
+                                                      4.1549864 15.541018,3.7489882 15.195019,3.4219885 14.767019,3.4219885L14.376019,
+                                                      3.4219885 14.376019,3.4149885z M5.2330189,0L20.548019,0 20.552018,12.824959C18.364019,
+                                                      13.791955,16.799019,15.865948,16.509018,18.33594L5.2330189,18.33594z"
+                                                      Stretch="Uniform" Fill="#FFA9A4A4" Width="36" Height="36" Margin="0,0,0,0" 
+                                                      RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Grid>
+                                        </Viewbox>
+                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -1324,10 +1373,59 @@
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
                                         Manage programs ,that are executed when Windows starts and also Add/Remove programs from startup.
                                     </TextBlock>
-                                    <Button Margin="30, 20, 10, 10" Click="OnLaunchStartupManagerBtnClick"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="30, 20, 10, 10" Click="OnLaunchStartupManagerBtnClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                        Launch Startup Manager
-                                    </Button>
+                                            Launch Startup Manager
+                                        </Button>
+                                        <Viewbox>
+                                            <Grid Margin="20, 0, 0, 0" MouseDown="OnAddToStartupImageMouseDown"
+                                                  TouchDown="OnAddToStartupImageTouchEnd" Name="gridAddToStartup" Cursor="Hand">
+                                                <Grid Width="48" Height="48" Visibility="Visible">
+                                                    <Ellipse Fill="#FFFFFFFF" Visibility="Visible" />
+                                                </Grid>
+                                                <Path Data="M24.52501,16.128025C23.931993,16.128025,23.451005,
+                                                      16.608006,23.451005,17.202978L23.451005,19.352032 21.259997,
+                                                      19.352032C20.642993,19.352032 20.144,19.852033 20.144,20.467025 
+                                                      20.144,21.08397 20.642993,21.583971 21.259997,21.583971L23.451005,
+                                                      21.583971 23.451005,23.980949C23.451005,24.574945 23.931993,25.057979 
+                                                      24.52501,25.057979 25.120987,25.057979 25.599991,24.574945 25.599991,
+                                                      23.980949L25.599991,21.583971 27.874985,21.583971C28.490981,21.583971
+                                                      28.990981,21.08397 28.990981,20.467025 28.990981,19.852033 28.490981,
+                                                      19.352032 27.874985,19.352032L25.599991,19.352032 25.599991,
+                                                      17.202978C25.599991,16.608006,25.120987,16.128025,24.52501,16.128025z
+                                                      M24.520005,13.826993C28.147994,13.826993 31.091993,16.767919 31.091993,
+                                                      20.397933 31.091993,24.025017 28.147994,26.968994 24.520005,26.968994
+                                                      20.891009,26.968994 17.948994,24.025017 17.948993,20.397933 17.948994,
+                                                      16.767919 20.891009,13.826993 24.520005,13.826993z M7.7990189,
+                                                      6.433979C7.7620192,6.433979,7.731019,6.447979,7.6970186,6.4529791L7.4890184,
+                                                      6.4529791 7.4890184,6.4979787C7.2260189,6.6099787 7.0410185,6.8519778 
+                                                      7.0410185,7.1379766 7.0410185,7.5259757 7.3800192,7.8409743 7.7990189,
+                                                      7.8409743L14.701019,7.8409743C15.119019,7.8409743 15.457019,7.5259757 
+                                                      15.457019,7.1379766 15.457019,6.7479782 15.119019,6.433979 14.701019,6.433979z 
+                                                      M0,3.9819336L3.7690182,3.9819336 3.7690182,6.8689466 3.7690182,9.1569562
+                                                      3.7690182,17.330992C3.7690182,18.282996 2.9250145,18.666997 1.8850098,18.666997
+                                                      0.84500504,18.666997 0,17.894994 0,16.94299L0,9.1569562 0,6.8689466z
+                                                      M7.4100189,3.4149885L7.4100189,3.4789886C7.1280184,3.5869884 6.929019,
+                                                      3.8469877 6.929019,4.1549864 6.929019,4.5579853 7.2760191,4.884984 7.7040186,
+                                                      4.884984L14.767019,4.884984C15.195019,4.884984 15.541018,4.5579853 15.541018,
+                                                      4.1549864 15.541018,3.7489882 15.195019,3.4219885 14.767019,3.4219885L14.376019,
+                                                      3.4219885 14.376019,3.4149885z M5.2330189,0L20.548019,0 20.552018,12.824959C18.364019,
+                                                      13.791955,16.799019,15.865948,16.509018,18.33594L5.2330189,18.33594z"
+                                                      Stretch="Uniform" Fill="#FFA9A4A4" Width="36" Height="36" Margin="0,0,0,0" 
+                                                      RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0" />
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Grid>
+                                        </Viewbox>
+                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -1653,12 +1751,12 @@
                                     </TextBlock>
                                     <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
                                                  Content="Use Autoplay for all devices."
-                                                 Style="{StaticResource rbtnStyle}" />
+                                                 Style="{StaticResource RbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5"
                                                  Content="Turn-off Autoplay for CD-ROM and removable devices."
-                                                 Style="{StaticResource rbtnStyle}" />
+                                                 Style="{StaticResource RbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices."
-                                                 Style="{StaticResource rbtnStyle}" />
+                                                 Style="{StaticResource RbtnStyle}" />
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 10, 10, 10"
                                                 HorizontalAlignment="Left">
@@ -2898,6 +2996,58 @@
                     </TabControl>
                 </TabItem>
             </TabControl>
+            <Popup Name="popupAddToOpenWith" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=gridAddToOpenWith}" 
+                   PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="10">
+                <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="{StaticResource WhiteBackgroudBrush}"
+                        Padding="2, 2, 10, 5">
+                    <StackPanel>
+                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}">Add file to Open With</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Style="{StaticResource TxtBoxStyle}" Width="250" FontSize="14" 
+                                                      Name="txtOpenWithFilePath">
+                                <toolkit:WatermarkTextBox.Watermark>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14">Browse the file, or input file-path</TextBlock>
+                                </toolkit:WatermarkTextBox.Watermark>
+                            </toolkit:WatermarkTextBox>
+                            <Button Content="..." Padding="10, 2" VerticalAlignment="Center" Margin="0, 5, 0, 0" Click="OnBrowseFileForOpenWithBtnClick"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
+                            <Button Name="btnAddToOpenWith" Padding="10, 5" Click="OnAddToOpenWithBtnClick">Add</Button>
+                            <Button Name="btnCloseOpenWith" Padding="10, 5" Click="OnCancelAddToOpenWithBtnClick">Cancel</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup Name="popupAddToStartup" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=gridAddToStartup}" 
+                   PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="10">
+                <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="{StaticResource WhiteBackgroudBrush}"
+                        Padding="2, 2, 10, 5">
+                    <StackPanel>
+                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}">Add file to Startup</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Style="{StaticResource TxtBoxStyle}" Width="250" FontSize="14" 
+                                                      Name="txtStartupFilePath">
+                                <toolkit:WatermarkTextBox.Watermark>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14">Browse the file, or input file-path</TextBlock>
+                                </toolkit:WatermarkTextBox.Watermark>
+                            </toolkit:WatermarkTextBox>
+                            <Button Content="..." Padding="10, 2" VerticalAlignment="Center" Margin="0, 5, 0, 0" 
+                                    Click="OnBrowseFileForStartupBtnClick"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 2, 0, 0">For</TextBlock>
+                            <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForCurrentUser" IsChecked="True"
+                                         Margin="10, 1, 10, 0">Current Users</RadioButton>
+                            <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForAllUser"
+                                         Margin="0, 1, 0, 0">All Users</RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
+                            <Button Name="btnAddToStartup" Padding="10, 5" Click="OnAddToStartupBtnClick">Add</Button>
+                            <Button Name="btnCancelAddToStartup" Padding="10, 5" Click="OnCancelAddToStartupBtnClick">Cancel</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

@@ -1,41 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
 
 namespace WindowsTweaker.AppTasks {
     internal static class StartupManagerTask {
+        public enum AddStatus {
+            Success, AlreadyPresent, Failed
+        }
 
-        public static void Add(FileItem fileItem) {
+        public static AddStatus Add(string filePath, bool? onlyCurrentUser) {
+            RegistryKey hkcrRun = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+            if (Contains(hkcrRun, filePath)) {
+                hkcrRun.Close();
+                return AddStatus.AlreadyPresent;
+            }
+            RegistryKey hkcrRunDisabled =
+                Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
+            if (Contains(hkcrRunDisabled, filePath)) {
+                hkcrRun.Close();
+                hkcrRunDisabled.Close();
+                return AddStatus.AlreadyPresent;
+            }
+            RegistryKey hklmRun = Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+            if (Contains(hklmRun, filePath)) {
+                hkcrRun.Close();
+                hkcrRunDisabled.Close();
+                hklmRun.Close();
+                return AddStatus.AlreadyPresent;
+            }
+            RegistryKey hklmRunDisabled =
+                Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
+            if (Contains(hklmRunDisabled, filePath)) {
+                hkcrRun.Close();
+                hkcrRunDisabled.Close();
+                hklmRun.Close();
+                hklmRunDisabled.Close();
+                return AddStatus.AlreadyPresent;
+            }
+            RegistryKey regKey = onlyCurrentUser == true ? hkcrRun : hklmRun;
+            regKey.SetValue(Path.GetFileNameWithoutExtension(filePath), filePath);
+            hkcrRun.Close();
+            hkcrRunDisabled.Close();
+            hklmRun.Close();
+            hklmRunDisabled.Close();
+            return AddStatus.Success;
+        }
+
+        public static bool Contains(RegistryKey regKey, string filePath) {
+            if (regKey == null) return false;
+            string[] valueKeys = regKey.GetValueNames();
+            return (from valueKey in valueKeys select (string) regKey.GetValue(valueKey) into value where
+                        value != null select Utils.ExtractFilePath(value)).Any(containedFilePath => containedFilePath
+                            != null && containedFilePath.Equals(filePath, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public static void Toggle(FileItem fileItem, bool newState) {
             RegistryKey hkcrRun = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
             RegistryKey hkcrRunDisabled =
                 Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
             bool isSuccess = Utils.MoveRegistryKey(hkcrRunDisabled, hkcrRun, fileItem.Name);
-            if (!isSuccess)
-            {
-                RegistryKey hklmRun = Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-                RegistryKey hklmRunDisabled =
-                    Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-                Utils.MoveRegistryKey(hklmRunDisabled, hklmRun, fileItem.Name);
-                hklmRun.Close();
-                hklmRunDisabled.Close();
-            }
-            hkcrRun.Close();
-            hkcrRunDisabled.Close();
-        }
-
-        public static void Remove(FileItem fileItem) {
-            RegistryKey hkcrRun = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-            RegistryKey hkcrRunDisabled =
-                Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-            bool isSuccess = Utils.MoveRegistryKey(hkcrRun, hkcrRunDisabled, fileItem.Name);
             if (!isSuccess) {
-                RegistryKey hklmRun = Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
+                RegistryKey hklmRun =
+                    Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
                 RegistryKey hklmRunDisabled =
                     Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-                Utils.MoveRegistryKey(hklmRun, hklmRunDisabled, fileItem.Name);
-                hklmRun.Close();    
+                if (newState) {
+                    Utils.MoveRegistryKey(hklmRunDisabled, hklmRun, fileItem.Name);
+                }
+                else {
+                    Utils.MoveRegistryKey(hklmRun, hklmRunDisabled, fileItem.Name);
+                }
+                hklmRun.Close();
                 hklmRunDisabled.Close();
             }
             hkcrRun.Close();
@@ -59,7 +98,7 @@ namespace WindowsTweaker.AppTasks {
                 startupItemHolderClass.UpdateStartupDictionaryForKey(hkcrRunDisabled, false);
             }
             using (RegistryKey hklmRun = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run")) {
-                startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRun, false);
+                startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRun, true);
             }
             using (RegistryKey hklmRunDisabled = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-")) {
                 startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRunDisabled, false);

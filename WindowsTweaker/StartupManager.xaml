@@ -4,7 +4,7 @@
         xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         Title="StartupManager" Height="525" Width="517"
         ShowInTaskbar="False"
-        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="ThreeDBorderWindow">
+        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     <Window.Resources>
         <DataTemplate x:Key="ToggleBtnTileView">
             <Grid Margin="3, 10, 10, 5">

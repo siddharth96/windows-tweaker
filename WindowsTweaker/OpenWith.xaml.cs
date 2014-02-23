@@ -33,7 +33,7 @@ namespace WindowsTweaker {
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
             if (fileItem == null) return;
-            StartupManagerTask.Add(fileItem);
+            OpenWithTask.Toggle(fileItem, true);
         }
 
         private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace WindowsTweaker {
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
             if (fileItem == null) return;
-            OpenWithTask.Remove(fileItem);
+            OpenWithTask.Toggle(fileItem, false);
         }
 
         private void OnMoreInfoImageTouched(object sender, TouchEventArgs e)

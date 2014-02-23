@@ -40,38 +40,20 @@ namespace WindowsTweaker.AppTasks {
             proc.Start();
         }
 
+
+        // Regex link : http://social.msdn.microsoft.com/Forums/en-US/e3f2bb04-1b6a-4e06-9fcd-07e86ae4bd5f/regular-expression-to-validate-file-path?forum=regexp
+        private static readonly Regex FilePathRegex = new Regex(
+            @"(?:(?:(?:\b[a-z]:|\\\\[a-z0-9_.$]+\\[a-z0-9_.$]+)\\|
+	              \\?[^\\/:*?""<>|\r\n]+\\?)               
+	              (?:[^\\/:*?""<>|\r\n]+\\)*               
+	              [^\\/:*?""<>|\r\n]*)",
+            RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace);
+
         public static string ExtractFilePath(string fPath) {
-            string[] fileInfo = null;
-            if (fPath[0] == '\"' && (fPath.Contains("\"%1\"") || fPath.Contains("\"%L\"") || fPath.Contains("%1"))) {
-                fileInfo = fPath.Split('\"');
-                return fileInfo[1];
-            }
-            else if (!fPath.Contains("\"") || fPath.Contains("\"%1\"") || fPath.Contains("%1")) {
-                int space_cnt = 0;
-                for (int i = 0; i < fPath.Length; i++) {
-                    if (fPath[i] == ' ')
-                        space_cnt++;
-                }
-                if (space_cnt == 1)
-                    fileInfo = fPath.Split(' ');
-                else if (space_cnt > 1) {
-                    if (fPath.Contains('/')) {
-                        fileInfo = fPath.Split('/');
-                    }
-                    else {
-                        fileInfo = fPath.Split('\"');
-                    }
-                }
-                return fileInfo[0];
-            }
-            else {
-                fileInfo = fPath.Split(' ');
-                string probableFilePath = fileInfo[0];
-                if (probableFilePath.StartsWith("\"") && probableFilePath.EndsWith("\"")) {
-                    return probableFilePath.Substring(1, probableFilePath.Length - 2);
-                }
-            }
-            return null;
+            Match filePathMatch = FilePathRegex.Match(fPath);
+            if (!filePathMatch.Success) return null;
+            string val = filePathMatch.Value;
+            return val;
         }
 
         public static bool MoveRegistryKey(RegistryKey sourceKey, RegistryKey destinationKey, string keyName) {
@@ -82,6 +64,16 @@ namespace WindowsTweaker.AppTasks {
                 return true;
             }
             return false;
+        }
+
+        public static string GetUserSelectedFilePath() {
+            OpenFileDialog openFileDialog = new OpenFileDialog {
+                Filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*"
+            };
+            if (openFileDialog.ShowDialog() == true) {
+                return openFileDialog.FileName;
+            }
+            return null;
         }
     }
 }

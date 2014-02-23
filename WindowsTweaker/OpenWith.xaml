@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         Title="&quot;Open With&quot; Customization" Height="525" Width="517"
-        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" WindowStyle="None">
+        ShowInTaskbar="True"
+        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     <Window.Resources>
         <DataTemplate x:Key="ToggleBtnTileView">
             <Grid Margin="3, 10, 10, 5">

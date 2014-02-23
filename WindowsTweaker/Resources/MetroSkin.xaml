@@ -21,6 +21,7 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="ButtonBackgroundBrush_Press" Color="#FF325C86" />
+    <SolidColorBrush x:Key="WhiteBackgroudBrush" Color="#FFF0F0F0" />
 
     <LinearGradientBrush x:Key="WindowBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FFF0F0F0" Offset="0.2" />
@@ -257,10 +258,14 @@
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
     </Style>
 
-    <Style TargetType="{x:Type RadioButton}" x:Key="rbtnStyle">
+    <Style TargetType="{x:Type RadioButton}" x:Key="RbtnStyle">
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="21.333" />
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="SmallRbtnStyle" BasedOn="{StaticResource RbtnStyle}">
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <Style TargetType="{x:Type CheckBox}" x:Key="ChkStyle">

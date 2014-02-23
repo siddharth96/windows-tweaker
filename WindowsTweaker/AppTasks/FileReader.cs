@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -89,11 +90,9 @@ namespace WindowsTweaker.AppTasks {
             ObservableCollection<FileItem> fileItemCollection = null;
             if (fileDictionary != null) {
                 fileItemCollection = new ObservableCollection<FileItem>();
-                foreach (string filePath in fileDictionary.Keys) {
-                    FileItem fileItem = GetFileItem(filePath, fileDictionary[filePath], null);
-                    if (fileItem != null) {
-                        fileItemCollection.Add(fileItem);
-                    }
+                foreach (FileItem fileItem in fileDictionary.Keys.Select(filePath => 
+                    GetFileItem(filePath, fileDictionary[filePath], null)).Where(fileItem => fileItem != null)) {
+                    fileItemCollection.Add(fileItem);
                 }
             }
             return fileItemCollection;
@@ -103,12 +102,11 @@ namespace WindowsTweaker.AppTasks {
             ObservableCollection<FileItem> toggleViewFileItemCollection = null;
             if (fileWithTitleDictionary != null) {
                 toggleViewFileItemCollection = new ObservableCollection<FileItem>();
-                foreach (string filePath in fileWithTitleDictionary.Keys) {
-                    Models.Tuple<string, bool> titleAndIsChecked = fileWithTitleDictionary[filePath];
-                    FileItem fileItem = GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x);
-                    if (fileItem != null) {
-                        toggleViewFileItemCollection.Add(fileItem);
-                    }
+                foreach (FileItem fileItem in from filePath in fileWithTitleDictionary.Keys 
+                                              let titleAndIsChecked = fileWithTitleDictionary[filePath] 
+                                              select GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x) 
+                                              into fileItem where fileItem != null select fileItem) {
+                    toggleViewFileItemCollection.Add(fileItem);
                 }
             }
             return toggleViewFileItemCollection;

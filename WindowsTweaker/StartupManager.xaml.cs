@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
-using Microsoft.Win32;
 using WPFSpark;
-using Image = System.Drawing.Image;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -26,18 +23,12 @@ namespace WindowsTweaker {
             lstStartupItems.ItemsSource = fileItemList;
         }
 
-        
-
-        private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
-            this.Close();
-        }
-
         private void OnToggleButtonChecked(object sender, RoutedEventArgs e) {
             ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
             if (fileItem == null) return;
-            StartupManagerTask.Add(fileItem);
+            StartupManagerTask.Toggle(fileItem, true);
         }
 
         private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e) {
@@ -45,7 +36,7 @@ namespace WindowsTweaker {
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
             if (fileItem == null) return;
-            StartupManagerTask.Remove(fileItem);
+            StartupManagerTask.Toggle(fileItem, false);
         }
 
         private void OnMoreInfoImageTouched(object sender, TouchEventArgs e) {

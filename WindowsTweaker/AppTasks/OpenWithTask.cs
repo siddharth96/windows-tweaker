@@ -1,14 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Controls;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
 
 namespace WindowsTweaker.AppTasks {
     internal static class OpenWithTask {
+        public enum AddStatus {
+            Success, AlreadyPresent, Failed
+        }
 
-        public static void Add(FileItem fileItem) {}
+        public static AddStatus Add(string filePath) {
+            using (RegistryKey hkcrApplications = Registry.ClassesRoot.CreateSubKey("Applications")) {
+                string fileName = Path.GetFileName(filePath);
+                if (fileName == null) return AddStatus.Failed;
+                RegistryKey regKey = hkcrApplications.OpenSubKey(fileName);
+                if (regKey != null) return AddStatus.AlreadyPresent;
+                regKey = hkcrApplications.CreateSubKey(fileName);
+                RegistryKey hkcrShell = regKey.CreateSubKey(Constants.Shell);
+                RegistryKey hkcrOpen = hkcrShell.CreateSubKey(Constants.Open);
+                RegistryKey hkcrCmd = hkcrOpen.CreateSubKey(Constants.Cmd);
+                hkcrCmd.SetValue("", filePath);
+                return AddStatus.Success;
+            }
+        }
 
-        public static void Remove(FileItem fileItem) {}
+        public static void Toggle(FileItem fileItem, bool newState) {
+            using (RegistryKey hkcrApplications = Registry.ClassesRoot.CreateSubKey("Applications"))
+            {
+                string fileName = System.IO.Path.GetFileName(fileItem.FullName);
+                if (fileName == null) return;
+                RegistryKey regKey = hkcrApplications.OpenSubKey(fileName, true);
+                if (regKey == null) return;
+                if (newState) {
+                    regKey.DeleteValue(Constants.NoOpenWith);
+                }
+                else {
+                    regKey.SetValue(Constants.NoOpenWith, "");
+                }
+            }
+        }
 
         public static void ShowDetail(Image img) {
             FileItem fileItem = img.Tag as FileItem;
@@ -19,7 +51,7 @@ namespace WindowsTweaker.AppTasks {
 
         public static Dictionary<string, bool> LoadOpenWithItems() {
             Dictionary<string, bool> openWithFileDictionary = new Dictionary<string, bool>();
-            using (RegistryKey hkcrApplications = Registry.ClassesRoot.OpenSubKey("Applications", true)) {
+            using (RegistryKey hkcrApplications = Registry.ClassesRoot.OpenSubKey("Applications")) {
                 string[] subKeyNames = hkcrApplications.GetSubKeyNames();
                 RegistryKey hkcrShell, hkcrOpen, hkcrEdit, hkcrCmd;
                 foreach (string subKeyName in subKeyNames) {
