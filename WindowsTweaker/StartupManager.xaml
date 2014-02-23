@@ -4,8 +4,12 @@
         xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         Title="StartupManager" Height="525" Width="517"
         ShowInTaskbar="False"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+        Loaded="OnWindowLoaded" Closing="OnWindowClosing"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     <Window.Resources>
+        <cm:BackgroundWorker x:Key="backgroundWorker" RunWorkerCompleted="OnRunWorkerCompleted"
+                             WorkerSupportsCancellation="True" DoWork="OnDoWork"></cm:BackgroundWorker>
         <DataTemplate x:Key="ToggleBtnTileView">
             <Grid Margin="3, 10, 10, 5">
                 <Grid.ColumnDefinitions>
@@ -110,8 +114,9 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
+        <TextBlock Name="txtLoading" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TxtStyle}">Loading...</TextBlock>
         <ListBox Margin="5" Name="lstStartupItems" ItemTemplate="{StaticResource ToggleBtnTileView}" HorizontalAlignment="Stretch" 
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch" Visibility="Collapsed">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnMoreInfoImageMouseDown"></EventSetter>

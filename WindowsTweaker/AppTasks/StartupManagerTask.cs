@@ -62,7 +62,8 @@ namespace WindowsTweaker.AppTasks {
             RegistryKey hkcrRun = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
             RegistryKey hkcrRunDisabled =
                 Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-            bool isSuccess = Utils.MoveRegistryKey(hkcrRunDisabled, hkcrRun, fileItem.Name);
+            bool isSuccess = newState ? Utils.MoveRegistryKey(hkcrRunDisabled, hkcrRun, fileItem.Name) 
+                : Utils.MoveRegistryKey(hkcrRun, hkcrRunDisabled, fileItem.Name);
             if (!isSuccess) {
                 RegistryKey hklmRun =
                     Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");

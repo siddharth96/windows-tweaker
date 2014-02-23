@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -15,20 +16,12 @@ namespace WindowsTweaker {
     public partial class OpenWith : Window {
         public OpenWith() {
             InitializeComponent();
-            Dictionary<string, bool> openWithFileDictionary = OpenWithTask.LoadOpenWithItems();
-            if (openWithFileDictionary.Any()) {
-                FileReader fileReader = new FileReader(openWithFileDictionary);
-                ObservableCollection<FileItem> fileItemList = fileReader.GetAsFileItemListCollection();
-                lstOpenWithBox.ItemsSource = fileItemList;
-            }
+            backgroundWorker = (BackgroundWorker) this.FindResource("backgroundWorker");
         }
 
-        private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
-            this.Close();
-        }
+        private readonly BackgroundWorker backgroundWorker;
 
-        private void OnToggleButtonChecked(object sender, RoutedEventArgs e)
-        {
+        private void OnToggleButtonChecked(object sender, RoutedEventArgs e) {
             ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
@@ -36,8 +29,7 @@ namespace WindowsTweaker {
             OpenWithTask.Toggle(fileItem, true);
         }
 
-        private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e)
-        {
+        private void OnToggleButtonUnchecked(object sender, RoutedEventArgs e) {
             ToggleSwitch toggleSwitch = e.Source as ToggleSwitch;
             if (toggleSwitch == null) return;
             FileItem fileItem = toggleSwitch.Tag as FileItem;
@@ -45,20 +37,62 @@ namespace WindowsTweaker {
             OpenWithTask.Toggle(fileItem, false);
         }
 
-        private void OnMoreInfoImageTouched(object sender, TouchEventArgs e)
-        {
+        private void OnMoreInfoImageTouched(object sender, TouchEventArgs e) {
             System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
             if (img == null) return;
             OpenWithTask.ShowDetail(img);
             e.Handled = true;
         }
 
-        private void OnMoreInfoImageMouseDown(object sender, MouseButtonEventArgs e)
-        {
+        private void OnMoreInfoImageMouseDown(object sender, MouseButtonEventArgs e) {
             System.Windows.Controls.Image img = e.OriginalSource as System.Windows.Controls.Image;
             if (img == null) return;
             OpenWithTask.ShowDetail(img);
             e.Handled = true;
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e) {
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void OnWindowClosing(object sender, CancelEventArgs e) {
+            if (backgroundWorker.IsBusy) {
+                backgroundWorker.CancelAsync();
+            }
+        }
+
+        private void OnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Cancelled) return;
+            ObservableCollection<FileItem> fileItemList = e.Result as ObservableCollection<FileItem>;
+            if (fileItemList != null) {
+                lstOpenWithBox.ItemsSource = fileItemList;
+                txtLoading.Visibility = Visibility.Collapsed;
+                lstOpenWithBox.Visibility = Visibility.Visible;
+            }
+            else {
+                string msg = e.Result as string;
+                txtLoading.Text = msg ?? "An error occured";
+            }
+        }
+
+        private void OnDoWork(object sender, DoWorkEventArgs e) {
+            Dictionary<string, bool> openWithFileDictionary = OpenWithTask.LoadOpenWithItems();
+            if (backgroundWorker.CancellationPending) {
+                e.Cancel = true;
+                return;
+            }
+            if (openWithFileDictionary.Any()) {
+                FileReader fileReader = new FileReader(openWithFileDictionary);
+                if (backgroundWorker.CancellationPending) {
+                    e.Cancel = true;
+                    return;
+                }
+                ObservableCollection<FileItem> fileItemList = fileReader.GetAsFileItemListCollection();
+                e.Result = fileItemList;
+            }
+            else {
+                e.Result = "Nothing to show";
+            }
         }
     }
 }

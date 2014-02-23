@@ -64,6 +64,7 @@ namespace WindowsTweaker.AppTasks {
                 Icon fileIcon = Icon.ExtractAssociatedIcon(fileInfo.FullName);
                 ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle, new Int32Rect(0, 0,
                     fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
+                imageSource.Freeze();
                 fileItems.Add(new FileItem(fileInfo.FullName, imageSource));
             }
             return fileItems;
@@ -77,6 +78,7 @@ namespace WindowsTweaker.AppTasks {
                     ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle,
                         new Int32Rect(0, 0,
                             fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
+                    imageSource.Freeze();
                     return new FileItem(filePath, imageSource, isChecked, name);
                 }
             }
