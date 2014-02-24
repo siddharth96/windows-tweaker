@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppTasks\Message.cs" />
     <Compile Include="AppTasks\OpenWithTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
     <Compile Include="Models\Constants.cs" />

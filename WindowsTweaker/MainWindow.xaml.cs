@@ -18,6 +18,7 @@ namespace WindowsTweaker {
 
         public MainWindow() {
             InitializeComponent();
+            message = new Message(msgContainerBorder, txtMsg);
         }
 
         private readonly RegistryKey HKCU = Registry.CurrentUser;
@@ -25,7 +26,9 @@ namespace WindowsTweaker {
         private readonly RegistryKey HKCR = Registry.ClassesRoot;
         private readonly WindowsVer.Windows windowsOS = WindowsVer.Instance.GetName();
         public readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
+        private readonly Message message;
 
+        #region Common Code
         private void OnTabClicked(object sender, RoutedEventArgs e) {
             string tagVal = ((TabItem) sender).Tag.ToString();
             switch (tagVal) {
@@ -69,6 +72,11 @@ namespace WindowsTweaker {
             }
         }
 
+        private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
+            CheckBox chkBox = (CheckBox)sender;
+            chkBox.Tag = Constants.HasUserInteracted;
+        }
+        #endregion
 
         #region Logon
         private void LoadLogonTab()
@@ -675,26 +683,22 @@ namespace WindowsTweaker {
                             try {
                                 selectedFolderDirectoryInfo.Delete(true);
                                 Directory.CreateDirectory(godModeFolderPath);
-                                MessageBox.Show("God Mode folder has been successfully created in " + parentDir +
-                                                "\n\nPlease note that if on clicking the folder you get an error, " +
-                                                "then you need to refresh that window for changes to be reflected.",
-                                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                                message.Success("Successfully created folder in " + parentDir +
+                                                ". Please note that if on clicking the folder you get an error, " +
+                                                "then you need to refresh that window for changes to be reflected.");
                             }
                             catch (UnauthorizedAccessException ex) {
-                                MessageBox.Show("Permission Denied!", Constants.ErrorMsgTitle, MessageBoxButton.OK, 
-                                    MessageBoxImage.Error);
+                                message.Error("Permission Denied!");
                             }
                     }
                     else {
-                        MessageBox.Show("You can't make " + selectedFolderName + " a \'God\' folder. " +
-                                        "\n Please select an empty folder or create a new one", Constants.WarningMsgTitle,
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                        message.Error("You can't make " + selectedFolderName + " a \'God\' folder. " +
+                                      "Please select an empty folder or create a new one");
                     }
                 }
                 else {
-                    MessageBox.Show(selectedFolderName + " is not an empty folder.\n You must create an " +
-                                                  "empty folder, to set God Mode", Constants.WarningMsgTitle, 
-                                                  MessageBoxButton.OK, MessageBoxImage.Warning);
+                    message.Error(selectedFolderName + " is not an empty folder. You must create an " +
+                                  "empty folder, to set God Mode");
                 }
             }
         }
@@ -721,23 +725,22 @@ namespace WindowsTweaker {
                 if (timeout >= 0) {
                     string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
                     Utils.ExecuteCmd(shutdwnComd);
-                    MessageBox.Show("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") + " at " + selectedDateTime.Value.ToString("h:m tt"),
-                        Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+                    message.Success("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
+                        + " at " + selectedDateTime.Value.ToString("hh:mm tt"));
                 }
                 else {
-                    MessageBox.Show("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
-                                    " exceed the limit of 10 years.", Constants.AlertMsgTitle, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    message.Error("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
+                                  " exceed the limit of 10 years.");
                 }
             }
             else {
-                MessageBox.Show("Please select a date!", Constants.WarningMsgTitle, MessageBoxButton.OK, MessageBoxImage.Stop);
+                message.Error("Please select a date!");
             }
         }
 
         private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
             Utils.ExecuteCmd("shutdown /a");
-            MessageBox.Show("A scheduled shutdown has been cancelled", Constants.SuccessMsgTitle, MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            message.Success("Previously scheduled shutdown has been cancelled");
         }
         #endregion
 
@@ -749,8 +752,7 @@ namespace WindowsTweaker {
                 string parentPath = folderBrowserDlg.FileName;
                 string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
                 Utils.ExecuteCmd(createCmd);
-                MessageBox.Show(cmboBxSpecialFolderNames.SelectionBoxItem + " created Successfully at " + parentPath,
-                    Constants.SuccessMsgTitle, MessageBoxButton.OK, MessageBoxImage.Information);
+               message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " created successfully at " + parentPath);
             }
         }
 
@@ -763,11 +765,6 @@ namespace WindowsTweaker {
             }
         }
         #endregion
-
-        private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
-            CheckBox chkBox = (CheckBox) sender;
-            chkBox.Tag = Constants.HasUserInteracted;
-        }
 
         #region Places -> Open With
 
@@ -805,26 +802,19 @@ namespace WindowsTweaker {
             if (File.Exists(filePath)) {
                 OpenWithTask.AddStatus status = OpenWithTask.Add(filePath);
                 switch (status) {
-                        case OpenWithTask.AddStatus.Success:
-                            MessageBox.Show("Successfully added to open-with", Constants.SuccessMsgTitle,
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
-                            break;
-                        case OpenWithTask.AddStatus.AlreadyPresent:
-                            MessageBox.Show("This file is already present in open-with", Constants.WarningMsgTitle,
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning);
-                            break;
-                        case OpenWithTask.AddStatus.Failed:
-                            MessageBox.Show("Failed to add this file to open-with", Constants.SuccessMsgTitle,
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-                            break;
+                    case OpenWithTask.AddStatus.Success:
+                        message.Success("Successfully added to open-with");
+                        break;
+                    case OpenWithTask.AddStatus.AlreadyPresent:
+                        message.Success("This file is already present in open-with");
+                        break;
+                    case OpenWithTask.AddStatus.Failed:
+                        message.Error("Failed to add this file to open-with");
+                        break;
                 }
             }
             else {
-                MessageBox.Show("The specified file doesn't exist.", Constants.WarningMsgTitle, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                message.Error("The specified file doesn't exist.");
             }
             txtOpenWithFilePath.Text = String.Empty;
         }
@@ -866,25 +856,18 @@ namespace WindowsTweaker {
                 StartupManagerTask.AddStatus status = StartupManagerTask.Add(filePath, onlyCurrentUser);
                 switch (status) {
                     case StartupManagerTask.AddStatus.Success:
-                        MessageBox.Show("Successfully added to startup", Constants.SuccessMsgTitle,
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                        message.Success("Successfully added to startup");
                         break;
                     case StartupManagerTask.AddStatus.AlreadyPresent:
-                        MessageBox.Show("This file is already present in startup", Constants.WarningMsgTitle,
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Warning);
+                        message.Error("This file is already present in startup");
                         break;
                     case StartupManagerTask.AddStatus.Failed:
-                        MessageBox.Show("Failed to add this file to startup", Constants.SuccessMsgTitle,
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
+                        message.Error("Failed to add this file to startup");
                         break;
                 }
             }
             else {
-                MessageBox.Show("The specified file doesn't exist.", Constants.WarningMsgTitle, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                message.Error("The specified file doesn't exist");
             }
             txtStartupFilePath.Text = String.Empty;
         }
@@ -901,5 +884,13 @@ namespace WindowsTweaker {
             ShowAddToStartupPopup();
         }
         #endregion
+
+        private void OnMessageViewCloseGridMouseDown(object sender, MouseButtonEventArgs e) {
+            message.Hide();
+        }
+
+        private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
+            message.Hide();
+        }
     }
 }
