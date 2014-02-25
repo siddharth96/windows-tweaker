@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Windows.Input;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
@@ -19,17 +22,19 @@ namespace WindowsTweaker {
         public MainWindow() {
             InitializeComponent();
             message = new Message(msgContainerBorder, txtMsg);
+            sendToBackgroundWorker = (BackgroundWorker)this.FindResource("sendToBackgroundWorker");
         }
 
         private readonly RegistryKey HKCU = Registry.CurrentUser;
         private readonly RegistryKey HKLM = Registry.LocalMachine;
         private readonly RegistryKey HKCR = Registry.ClassesRoot;
         private readonly WindowsVer.Windows windowsOS = WindowsVer.Instance.GetName();
-        public readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
+        private readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
         private readonly Message message;
+        private readonly BackgroundWorker sendToBackgroundWorker;
 
         #region Common Code
-        private void OnTabClicked(object sender, RoutedEventArgs e) {
+        private void OnTabLoaded(object sender, RoutedEventArgs e) {
             string tagVal = ((TabItem) sender).Tag.ToString();
             switch (tagVal) {
                 case Constants.Explorer:
@@ -43,6 +48,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.RightClick:
+                    LoadRightClickTab();
                     break;
 
                 case Constants.Places:
@@ -76,6 +82,15 @@ namespace WindowsTweaker {
             CheckBox chkBox = (CheckBox)sender;
             chkBox.Tag = Constants.HasUserInteracted;
         }
+
+        private void OnMessageViewCloseGridMouseDown(object sender, MouseButtonEventArgs e) {
+            message.Hide();
+        }
+
+        private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
+            message.Hide();
+        }
+
         #endregion
 
         #region Logon
@@ -663,6 +678,9 @@ namespace WindowsTweaker {
                     }
                 }
             }
+
+            // Send To
+            LoadSendTo();
         }
 
         private void UpdateRegistryFromRightClick() {}
@@ -885,12 +903,30 @@ namespace WindowsTweaker {
         }
         #endregion
 
-        private void OnMessageViewCloseGridMouseDown(object sender, MouseButtonEventArgs e) {
-            message.Hide();
+        #region Right-Click -> Send To
+
+        private void LoadSendTo() {
+            if (lstSendTo.ItemsSource != null || sendToBackgroundWorker.IsBusy) return;
+            lstSendTo.Visibility = Visibility.Hidden;
+            sendToBackgroundWorker.RunWorkerAsync();
         }
 
-        private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
-            message.Hide();
+        private void OnSendToWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            ObservableCollection<FileItem> sendToFileItems = e.Result as ObservableCollection<FileItem>;
+            if (sendToFileItems == null) return;
+            lstSendTo.ItemsSource = sendToFileItems;
+            txtSendToLoading.Visibility = Visibility.Hidden;
+            lstSendTo.Visibility = Visibility.Visible;
         }
+
+        private void OnSendToWorkerStarted(object sender, DoWorkEventArgs e) {
+            string sendToPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\SendTo";
+            if (windowsOS == WindowsVer.Windows.XP)
+                sendToPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\SendTo";
+            FileReader fileReader = new FileReader(sendToPath, new List<string>() {".ini"});
+            ObservableCollection<FileItem> sendToFileItems = fileReader.GetAllFiles();
+            e.Result = sendToFileItems;
+        }
+        #endregion
     }
 }
