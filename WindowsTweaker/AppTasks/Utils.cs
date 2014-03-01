@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Documents;
 using Microsoft.Win32;
 
 namespace WindowsTweaker.AppTasks {
@@ -74,6 +76,20 @@ namespace WindowsTweaker.AppTasks {
                 return openFileDialog.FileName;
             }
             return null;
+        }
+
+        internal static string SentenceJoin(List<string> lst) {
+            if (lst == null || !lst.Any())
+                return String.Empty;
+            string txt = String.Empty;
+            int lenLst = lst.Count;
+            if (lenLst == 1) {
+                return lst[0];
+            } else if (lenLst == 2) {
+                return lst[0] + " and " + lst[1];
+            } else {
+                return String.Join(", ", lst.Take(lenLst - 1)) + " and " + lst[lenLst - 1];
+            }
         }
     }
 }

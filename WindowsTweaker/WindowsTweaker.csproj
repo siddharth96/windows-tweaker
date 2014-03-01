@@ -69,7 +69,7 @@
   <ItemGroup>
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>Dependencies\Interop.IWshRuntimeLibrary.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationFramework.Aero" />
@@ -105,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="AppTasks\Message.cs" />
     <Compile Include="AppTasks\OpenWithTask.cs" />
+    <Compile Include="AppTasks\SendToTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\FileItem.cs" />

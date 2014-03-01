@@ -12,52 +12,52 @@ using WindowsTweaker.Models;
 
 namespace WindowsTweaker.AppTasks {
     internal class FileReader {
-        private string folderPath;
-        private List<string> ignoreExtensionList;
-        private Dictionary<string, bool> fileDictionary;
-        private Dictionary<string, Models.Tuple<string, bool>> fileWithTitleDictionary;
+        private readonly string _folderPath;
+        private readonly List<string> _ignoreExtensionList;
+        private readonly Dictionary<string, bool> _fileDictionary;
+        private readonly Dictionary<string, Models.Tuple<string, bool>> _fileWithTitleDictionary;
 
         public FileReader(string folderPath) {
-            this.folderPath = folderPath;
+            this._folderPath = folderPath;
         }
 
         public FileReader(string folderPath, List<string> ignoreExtensionList) {
-            this.folderPath = folderPath;
-            this.ignoreExtensionList = ignoreExtensionList;
+            this._folderPath = folderPath;
+            this._ignoreExtensionList = ignoreExtensionList;
         }
 
         public FileReader(Dictionary<string, bool> fileDictionary) {
-            this.fileDictionary = fileDictionary;
+            this._fileDictionary = fileDictionary;
         }
 
         public FileReader(Dictionary<string, Models.Tuple<string, bool>> fileWithTitleDictionary) {
-            this.fileWithTitleDictionary = fileWithTitleDictionary;
+            this._fileWithTitleDictionary = fileWithTitleDictionary;
         }
 
         public Dictionary<string, Models.Tuple<string, bool>> FileWithTitleDictionary {
-            get { return fileWithTitleDictionary; }
+            get { return _fileWithTitleDictionary; }
         }
 
         public Dictionary<string, bool> FileDictionary {
-            get { return fileDictionary; }
+            get { return _fileDictionary; }
         }
 
         public string FolderPath {
-            get { return folderPath; }
+            get { return _folderPath; }
         }
 
         public List<string> IgnoreExtensionList {
-            get { return ignoreExtensionList; }
+            get { return _ignoreExtensionList; }
         }
 
         public ObservableCollection<FileItem> GetAllFiles() {
             ObservableCollection<FileItem> fileItems = null;
-            DirectoryInfo directory = new DirectoryInfo(this.folderPath);
+            DirectoryInfo directory = new DirectoryInfo(this._folderPath);
             if (!directory.Exists)
                 throw new FileNotFoundException();
             fileItems = new ObservableCollection<FileItem>();
             foreach (FileInfo fileInfo in directory.GetFiles()) {
-                if (ignoreExtensionList != null && ignoreExtensionList.Contains(fileInfo.Extension)) {
+                if (_ignoreExtensionList != null && _ignoreExtensionList.Contains(fileInfo.Extension)) {
                     continue;
                 }
 
@@ -89,28 +89,26 @@ namespace WindowsTweaker.AppTasks {
         }
 
         public ObservableCollection<FileItem> GetAsFileItemListCollection() {
+            if (_fileDictionary == null) return null;
             ObservableCollection<FileItem> fileItemCollection = null;
-            if (fileDictionary != null) {
-                fileItemCollection = new ObservableCollection<FileItem>();
-                foreach (FileItem fileItem in fileDictionary.Keys.Select(filePath => 
-                    GetFileItem(filePath, fileDictionary[filePath], null)).Where(fileItem => fileItem != null)) {
+            fileItemCollection = new ObservableCollection<FileItem>();
+            foreach (FileItem fileItem in _fileDictionary.Keys.Select(filePath => 
+                GetFileItem(filePath, _fileDictionary[filePath], null)).Where(fileItem => fileItem != null)) {
                     fileItemCollection.Add(fileItem);
                 }
-            }
             return fileItemCollection;
         }
 
         public ObservableCollection<FileItem> GetAsFileItemCollectionWithUserTitle() {
+            if (_fileWithTitleDictionary == null) return null;
             ObservableCollection<FileItem> toggleViewFileItemCollection = null;
-            if (fileWithTitleDictionary != null) {
-                toggleViewFileItemCollection = new ObservableCollection<FileItem>();
-                foreach (FileItem fileItem in from filePath in fileWithTitleDictionary.Keys 
-                                              let titleAndIsChecked = fileWithTitleDictionary[filePath] 
-                                              select GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x) 
-                                              into fileItem where fileItem != null select fileItem) {
+            toggleViewFileItemCollection = new ObservableCollection<FileItem>();
+            foreach (FileItem fileItem in from filePath in _fileWithTitleDictionary.Keys 
+                let titleAndIsChecked = _fileWithTitleDictionary[filePath] 
+                select GetFileItem(filePath, titleAndIsChecked.y, titleAndIsChecked.x) 
+                into fileItem where fileItem != null select fileItem) {
                     toggleViewFileItemCollection.Add(fileItem);
                 }
-            }
             return toggleViewFileItemCollection;
         }
     }

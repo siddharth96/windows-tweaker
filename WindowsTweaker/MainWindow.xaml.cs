@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Windows.Documents;
 using System.Windows.Input;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
@@ -11,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WPFFolderBrowser;
+using File = System.IO.File;
 
 namespace WindowsTweaker {
 
@@ -89,6 +92,17 @@ namespace WindowsTweaker {
 
         private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
             message.Hide();
+        }
+
+        private void StartProcess(object sender, RoutedEventArgs e) {
+            try {
+                Process.Start(((Hyperlink)sender).Tag.ToString());
+            } catch (Win32Exception) {
+                if (((Hyperlink)sender).Tag.ToString().Contains("SystemPropertiesProtection")) {
+                    Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\system32\Restore\rstrui.exe");
+                } else
+                    message.Error("This option is not available in your version of Windows");
+            } catch (Exception) { }
         }
 
         #endregion
@@ -911,6 +925,12 @@ namespace WindowsTweaker {
             sendToBackgroundWorker.RunWorkerAsync();
         }
 
+        private void ReloadSendTo() {
+            lstSendTo.Visibility = Visibility.Hidden;
+            txtSendToLoading.Visibility = Visibility.Hidden;
+            sendToBackgroundWorker.RunWorkerAsync();
+        }
+
         private void OnSendToWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             ObservableCollection<FileItem> sendToFileItems = e.Result as ObservableCollection<FileItem>;
             if (sendToFileItems == null) return;
@@ -920,13 +940,54 @@ namespace WindowsTweaker {
         }
 
         private void OnSendToWorkerStarted(object sender, DoWorkEventArgs e) {
-            string sendToPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\SendTo";
-            if (windowsOS == WindowsVer.Windows.XP)
-                sendToPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\SendTo";
+            string sendToPath = SendToTask.GetFolderPath(windowsOS);
             FileReader fileReader = new FileReader(sendToPath, new List<string>() {".ini"});
             ObservableCollection<FileItem> sendToFileItems = fileReader.GetAllFiles();
             e.Result = sendToFileItems;
         }
+
+        private void OnButtonAddFolderToSendToClick(object sender, RoutedEventArgs e) {
+            try {
+                if (SendToTask.AddFolder(windowsOS)) {
+                    ReloadSendTo();
+                }
+            }
+            catch (BadImageFormatException) {
+                message.Error("Because of an error, add operations for operations have been disabled");
+                btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
+            }
+            catch (FileNotFoundException) {
+                message.Error("File path is not valid, hence not creating any shortcut");
+            }
+        }
+
+        private void OnButtonAddFileToSendToClick(object sender, RoutedEventArgs e) {
+            try {
+                if (SendToTask.AddFile(windowsOS)) {
+                    ReloadSendTo();
+                }
+            } catch (BadImageFormatException) {
+                message.Error("Because of an error, add operations for operations have been disabled");
+                btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
+            } catch (FileNotFoundException) {
+                message.Error("File path is not valid, hence not creating any shortcut");
+            }
+        }
+
+        private void OnButtonDeleteFromSendToClick(object sender, RoutedEventArgs e) {
+            SendToTask.Delete(lstSendTo, message);
+            ReloadSendTo();
+        }
+
+        private void OnLinkEditSendToExplorerClick(object sender, RoutedEventArgs e) {
+            string sendToPath = SendToTask.GetFolderPath(windowsOS);
+            try {
+                Process.Start(sendToPath);
+            } catch (Win32Exception) {
+                message.Error("The SendTo Path is different on your Windows");
+            }
+        }
+
         #endregion
     }
 }

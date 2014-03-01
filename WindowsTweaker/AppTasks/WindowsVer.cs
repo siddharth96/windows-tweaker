@@ -3,6 +3,7 @@
 namespace WindowsTweaker.AppTasks {
 
     internal class WindowsVer {
+        public static readonly bool Is64BitMachine = IntPtr.Size == 8;
 
         public enum Windows { Other = 4, XP, Vista, Seven, Eight, Blue };
 
