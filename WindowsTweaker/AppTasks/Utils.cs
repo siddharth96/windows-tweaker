@@ -72,10 +72,7 @@ namespace WindowsTweaker.AppTasks {
             OpenFileDialog openFileDialog = new OpenFileDialog {
                 Filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*"
             };
-            if (openFileDialog.ShowDialog() == true) {
-                return openFileDialog.FileName;
-            }
-            return null;
+            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
         }
 
         internal static string SentenceJoin(List<string> lst) {

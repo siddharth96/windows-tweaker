@@ -3,10 +3,11 @@ using System.Windows.Media;
 
 namespace WindowsTweaker.Models {
     internal class FileItem {
-        public FileItem(string fullName, ImageSource iconAssociated) {
+        public FileItem(string fullName, ImageSource iconAssociated, object tag=null) {
             this.iconAssociated = iconAssociated;
             this.fullName = fullName;
             this.isChecked = false;
+            this.tag = tag;
         }
 
         public FileItem(string fullName, ImageSource iconAssociated, bool isChecked) {
@@ -26,9 +27,11 @@ namespace WindowsTweaker.Models {
         private ImageSource iconAssociated;
         private bool isChecked;
         private string name;
+        private object tag;
 
         public string Name {
             get { return name ?? Path.GetFileNameWithoutExtension(fullName); }
+            set { name = value; }
         }
 
         public ImageSource IconAssociated {
@@ -44,6 +47,11 @@ namespace WindowsTweaker.Models {
         public bool IsChecked {
             get { return isChecked; }
             set { isChecked = value; }
+        }
+
+        public object Tag {
+            get { return tag; }
+            set { tag = value; }
         }
     }
 }

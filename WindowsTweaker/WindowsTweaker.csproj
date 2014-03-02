@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppTasks\RightClickAddDeleteTask.cs" />
     <Compile Include="AppTasks\Message.cs" />
     <Compile Include="AppTasks\OpenWithTask.cs" />
     <Compile Include="AppTasks\SendToTask.cs" />
@@ -277,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Garbage-Closed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

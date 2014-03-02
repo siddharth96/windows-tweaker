@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Documents;
 using System.Windows.Input;
 using WindowsTweaker.AppTasks;
@@ -988,6 +989,87 @@ namespace WindowsTweaker {
             }
         }
 
+        #endregion
+
+        #region Right-Click -> Add Items
+
+        private void OnButtonBrowseFileForContextMenu(object sender, RoutedEventArgs e) {
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null)
+                txtShrtCtPath.Text = filePath;
+        }
+
+        private void OnButtonContextMenuShortcutClick(object sender, RoutedEventArgs e) {
+            AddToContextMenu();
+        }
+
+        private void AddToContextMenu() {
+            string shrtCtName = txtShrtCtName.Text.Trim();
+            if (shrtCtName.Length == 0) {
+                message.Error("Please enter a name for the shortcut");
+                return;
+            }  
+            if (shrtCtName == "cmd") {
+                message.Error("Can't create shortcut with name \"cmd\" since it is reserved by Windows. Please try a different name.");
+            }
+            string shrtCtPath = txtShrtCtPath.Text.Trim();
+            if (shrtCtPath.Length == 0) {
+                message.Error("Please enter a valid file-path or url");
+                return;
+            }
+            bool result = RightClickAddDeleteTask.Add(shrtCtName, shrtCtPath);
+            if (!result)
+                message.Error("Please enter a valid file-path or url");
+            else {
+                message.Success("Successfully added " + shrtCtName + " to Right-Click");
+                ClearAddToContextMenuInput();
+            }
+        }
+
+        private void ClearAddToContextMenuInput() {
+            txtShrtCtPath.Text = txtShrtCtName.Text = String.Empty;
+        }
+
+        private void OnButtonDeleteFromContextMenuClick(object sender, RoutedEventArgs e) {
+            ShowContextMenuItems();
+        }
+
+        private void ShowContextMenuItems() {
+            ObservableCollection<FileItem> rightClickListItems = RightClickAddDeleteTask.All();
+            if (rightClickListItems != null && rightClickListItems.Any()) {
+                lstRightClickShortcuts.ItemsSource = rightClickListItems;
+                popupRightClickList.IsOpen = true;
+            } else {
+                popupRightClickList.IsOpen = false;
+                message.Error("You haven't added anything to the Right-Click");
+            }
+        }
+
+        private void OnButtonDismissContextMenuListClick(object sender, RoutedEventArgs e) {
+            popupRightClickList.IsOpen = false;
+        }
+
+        private void OnImageDeleteItemFromContextMenuMouseDown(object sender, MouseButtonEventArgs e) {
+            DeleteItemFromContextMenu(e.Source);
+        }
+
+        private void OnImageDeleteItemFromContextMenuTouchEnd(object sender, TouchEventArgs e) {
+            DeleteItemFromContextMenu(e.Source);
+        }
+
+        private void DeleteItemFromContextMenu(object source) {
+            Image image = source as Image;
+            if (image == null || image.Tag == null) return;
+            FileItem fileItem = image.Tag as FileItem;
+            if (fileItem == null || fileItem.Tag == null) return;
+            ObservableCollection<FileItem> rightClickItems =
+                lstRightClickShortcuts.ItemsSource as ObservableCollection<FileItem>;
+            RightClickAddDeleteTask.Delete(fileItem, rightClickItems);
+            if (!rightClickItems.Any()) {
+                popupRightClickList.IsOpen = false;
+            }
+            message.Success("Sucessfully deleted " + fileItem.Tag + " from Right-Click menu");
+        }
         #endregion
     }
 }

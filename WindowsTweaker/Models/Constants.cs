@@ -18,6 +18,7 @@
         public const string AlertMsgTitle = "Mind You!!";
         public const string SuccessMsgTitle = "Mission Accomplished!!";
         public const byte HasUserInteracted = 1;
+        public const string InternetExplorer = "iexplore.exe";
 
         // Explorer Tab Keys/Value
 
