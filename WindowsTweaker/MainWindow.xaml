@@ -1956,19 +1956,19 @@
                                         by using the options below.
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink>Activate the built in Administrator account. (Not recommended)</Hyperlink>
+                                        <Hyperlink Name="lnkActivateAdminAccount" Click="OnLinkActivateAdminClick">Activate the built in Administrator account. (Not recommended)</Hyperlink>
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
                                         Hence, it is recommended to use this account only to perform special tasks and then de-activate it.
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink>De-activate the built in Administrator account.</Hyperlink>
+                                        <Hyperlink Name="lnkDeactivateAdminAccount" Click="OnLinkDeactivateAdminAccountClick">De-activate the built in Administrator account.</Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="system beeps" Width="135">
+                        <TabItem Header="windows-dvd burner" Width="190">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2023,13 +2023,14 @@
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkWinDvdBurner">
                                         Use Windows built in DVD Burner
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows-dvd burner" Width="190">
+                        <TabItem Header="system beeps" Width="135">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2071,7 +2072,8 @@
                                         Use this option to turn on/off System beeps such as sound produced
                                         when using the Volume control or sounds produced by error dialogs etc.
                                     </TextBlock>
-                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkSystemBeep">
                                         Turn off System Beeps
                                     </CheckBox>
                                 </StackPanel>

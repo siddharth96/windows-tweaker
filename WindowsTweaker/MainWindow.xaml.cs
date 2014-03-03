@@ -63,6 +63,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.Features:
+                    LoadFeaturesTab();
                     break;
 
 
@@ -105,7 +106,6 @@ namespace WindowsTweaker {
                     message.Error("This option is not available in your version of Windows");
             } catch (Exception) { }
         }
-
         #endregion
 
         #region Logon
@@ -757,7 +757,7 @@ namespace WindowsTweaker {
                 long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
                 if (timeout >= 0) {
                     string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
-                    Utils.ExecuteCmd(shutdwnComd);
+                    ProcessWrapper.ExecuteDosCmd(shutdwnComd);
                     message.Success("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
                         + " at " + selectedDateTime.Value.ToString("hh:mm tt"));
                 }
@@ -772,7 +772,7 @@ namespace WindowsTweaker {
         }
 
         private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
-            Utils.ExecuteCmd("shutdown /a");
+            ProcessWrapper.ExecuteDosCmd("shutdown /a");
             message.Success("Previously scheduled shutdown has been cancelled");
         }
         #endregion
@@ -784,7 +784,7 @@ namespace WindowsTweaker {
             if (folderBrowserDlg.ShowDialog() == true) {
                 string parentPath = folderBrowserDlg.FileName;
                 string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
-                Utils.ExecuteCmd(createCmd);
+                ProcessWrapper.ExecuteDosCmd(createCmd);
                message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " created successfully at " + parentPath);
             }
         }
@@ -794,13 +794,12 @@ namespace WindowsTweaker {
             if (folderBrowserDialog.ShowDialog() == true) {
                 string path = folderBrowserDialog.FileName;
                 string createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
-                Utils.ExecuteCmd(createCmd);
+                ProcessWrapper.ExecuteDosCmd(createCmd);
             }
         }
         #endregion
 
         #region Places -> Open With
-
         private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
             OpenWith openWithDialog = new OpenWith();
             openWithDialog.ShowDialog();
@@ -919,7 +918,6 @@ namespace WindowsTweaker {
         #endregion
 
         #region Right-Click -> Send To
-
         private void LoadSendTo() {
             if (lstSendTo.ItemsSource != null || sendToBackgroundWorker.IsBusy) return;
             lstSendTo.Visibility = Visibility.Hidden;
@@ -988,11 +986,9 @@ namespace WindowsTweaker {
                 message.Error("The SendTo Path is different on your Windows");
             }
         }
-
         #endregion
 
         #region Right-Click -> Add Items
-
         private void OnButtonBrowseFileForContextMenu(object sender, RoutedEventArgs e) {
             string filePath = Utils.GetUserSelectedFilePath();
             if (filePath != null)
@@ -1069,6 +1065,52 @@ namespace WindowsTweaker {
                 popupRightClickList.IsOpen = false;
             }
             message.Success("Sucessfully deleted " + fileItem.Tag + " from Right-Click menu");
+        }
+        #endregion
+
+        #region Features
+        private void LoadFeaturesTab() {
+            // System Beep
+            using (RegistryKey hkcuSound = HKCU.OpenSubKey(@"Control Panel\Sound")) {
+                if (hkcuSound != null) {
+                    string val = (string) hkcuSound.GetValue(Constants.Beep);
+                    if (val != null) {
+                        switch (val) {
+                            case Constants.Yes:
+                                chkSystemBeep.IsChecked = false;
+                                break;
+                            case Constants.No:
+                                chkSystemBeep.IsChecked = true;
+                                break;
+                            default:
+                                // It has some garbage value, so fixing it
+                                chkSystemBeep.IsChecked = false;
+                                hkcuSound.SetValue(Constants.Beep, Constants.Yes);
+                                break;
+                        }
+                    } else {
+                        chkSystemBeep.IsChecked = false;
+                    }
+                } else {
+                    chkSystemBeep.IsChecked = false;
+                }
+            }
+
+            // Windows DVD Burner
+            using (RegistryKey hkcuExplorer =
+                    HKCU.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkWinDvdBurner, hkcuExplorer, Constants.NoDvdBurning, true);
+            }
+        }
+
+        private void OnLinkActivateAdminClick(object sender, RoutedEventArgs e) {
+            ProcessWrapper.ExecuteProcess("net", "user administrator /active:yes");
+            message.Success("Successfully activated the Administrator account");
+        }
+
+        private void OnLinkDeactivateAdminAccountClick(object sender, RoutedEventArgs e) {
+            ProcessWrapper.ExecuteProcess("net", "user administrator /active:no");
+            message.Success("Successfully de-activated the Administrator account");
         }
         #endregion
     }

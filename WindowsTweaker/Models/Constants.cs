@@ -156,5 +156,13 @@
         public const string StartPowerBtnAction = "Start_PowerButtonAction";
         // Open With
         public const string NoOpenWith = "NoOpenWith";
+
+        // Features
+        //System Beep
+        public const string Beep = "Beep";
+        public const string Yes = "yes";
+        public const string No = "no";
+        // Windows DVD Burner
+        public const string NoDvdBurning = "NoCDBurning";
     }
 }

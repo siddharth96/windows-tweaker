@@ -32,17 +32,6 @@ namespace WindowsTweaker.AppTasks {
             return !Directory.EnumerateFiles(path).Any();
         }
 
-        public static void ExecuteCmd(string cmd) {
-            ProcessStartInfo hideProc = new ProcessStartInfo("cmd", "/c " + cmd);
-            hideProc.RedirectStandardOutput = true;
-            hideProc.UseShellExecute = false;
-            hideProc.CreateNoWindow = true;
-            Process proc = new Process();
-            proc.StartInfo = hideProc;
-            proc.Start();
-        }
-
-
         // Regex link : http://social.msdn.microsoft.com/Forums/en-US/e3f2bb04-1b6a-4e06-9fcd-07e86ae4bd5f/regular-expression-to-validate-file-path?forum=regexp
         private static readonly Regex FilePathRegex = new Regex(
             @"(?:(?:(?:\b[a-z]:|\\\\[a-z0-9_.$]+\\[a-z0-9_.$]+)\\|
