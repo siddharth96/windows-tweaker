@@ -46,6 +46,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.System:
+                    LoadSystemTab();
                     break;
 
                 case Constants.Display:
@@ -1097,8 +1098,7 @@ namespace WindowsTweaker {
             }
 
             // Windows DVD Burner
-            using (RegistryKey hkcuExplorer =
-                    HKCU.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+            using (RegistryKey hkcuExplorer = HKCU.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 UIRegistryHandler.SetUICheckBoxFromRegistryValue(chkWinDvdBurner, hkcuExplorer, Constants.NoDvdBurning, true);
             }
         }
@@ -1111,6 +1111,29 @@ namespace WindowsTweaker {
         private void OnLinkDeactivateAdminAccountClick(object sender, RoutedEventArgs e) {
             ProcessWrapper.ExecuteProcess("net", "user administrator /active:no");
             message.Success("Successfully de-activated the Administrator account");
+        }
+
+        private void UpdateRegistryFromFeatures() {
+            // System Beeps
+            if (chkSystemBeep.Tag != null && (chkSystemBeep.Tag as Byte?) == Constants.HasUserInteracted) {
+                using (RegistryKey hkcuSound = HKCU.CreateSubKey(@"Control Panel\Sound")) {
+                    string val = chkSystemBeep.IsChecked == true ? Constants.No : Constants.Yes;
+                    hkcuSound.SetValue(Constants.Beep, val);
+                }
+            }
+
+            // Windows DVD Burner
+            if (chkWinDvdBurner.Tag != null && (chkWinDvdBurner.Tag as Byte?) == Constants.HasUserInteracted) {
+                using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                    if (chkWinDvdBurner.IsChecked == true) {
+                        if (hkcuExplorer.GetValue(Constants.NoDvdBurning) != null) {
+                            hkcuExplorer.DeleteValue(Constants.NoDvdBurning);
+                        }
+                    } else {
+                        hkcuExplorer.SetValue(Constants.NoDvdBurning, 1);    
+                    }   
+                }
+            }
         }
         #endregion
     }
