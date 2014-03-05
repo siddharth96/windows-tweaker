@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
@@ -99,10 +100,17 @@ namespace WindowsTweaker {
 
         private void StartProcess(object sender, RoutedEventArgs e) {
             try {
-                Process.Start(((Hyperlink)sender).Tag.ToString());
+                string tagVal = ((Hyperlink) sender).Tag.ToString();
+                if (tagVal.Contains(",")) {
+                    string[] tagArr = tagVal.Split(',');
+                    ProcessWrapper.ExecuteProcess(tagArr[0], tagArr[1]);
+                } else {
+                    ProcessWrapper.ExecuteProcess(tagVal);
+                }
             } catch (Win32Exception) {
                 if (((Hyperlink)sender).Tag.ToString().Contains("SystemPropertiesProtection")) {
-                    Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\system32\Restore\rstrui.exe");
+                    ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows) 
+                        + @"\system32\Restore\rstrui.exe");
                 } else
                     message.Error("This option is not available in your version of Windows");
             } catch (Exception) { }
@@ -434,14 +442,46 @@ namespace WindowsTweaker {
 
                 // Logo
                 string logoUrl = (string) hklmOEM.GetValue(Constants.Logo);
-                if (logoUrl != null && logoUrl.Length > 0) {
+                if (!String.IsNullOrEmpty(logoUrl)) {
                     btnDeleteLogo.IsEnabled = true;
                     try {
-                        // TODO: Add Image Box
+                        imgProperty.Source = new BitmapImage(new Uri(logoUrl, UriKind.Absolute));
                     }
                     catch (UriFormatException) {
-                        // TODO : Append c: to path
+                        Uri uriLogo;
+                        if (Uri.TryCreate("C:" + logoUrl, UriKind.Absolute, out uriLogo)) {
+                            imgProperty.Source = new BitmapImage(uriLogo);
+                        }
                     }
+                }
+            }
+        }
+
+
+        private void OnButtonSelectLogoClick(object sender, RoutedEventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog() {
+                Filter = "Bitmap Images|*.bmp",
+                Multiselect = false
+            };
+            if (openFileDialog.ShowDialog() == true) {
+                using (RegistryKey hklmOEM = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
+                    hklmOEM.SetValue(Constants.Logo, openFileDialog.FileName);
+                    imgProperty.Source = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
+                    btnDeleteLogo.IsEnabled = true;
+                    message.Success("Image has been successfully applied. If your Computer\'s property windows is already open then" +
+                                    " please close & re-open the window for the changes to be reflected.");
+                }
+            }
+        }
+
+        private void OnButtonDeleteLogoClick(object sender, RoutedEventArgs e) {
+            using (RegistryKey hklmOEM = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
+                string logoUrl = (string) hklmOEM.GetValue(Constants.Logo);
+                if (!String.IsNullOrEmpty(logoUrl)) {
+                    hklmOEM.SetValue(Constants.Logo, "");
+                    btnDeleteLogo.IsEnabled = false;
+                    imgProperty.Source = null;
+                    message.Success("Image has been successfully removed");
                 }
             }
         }

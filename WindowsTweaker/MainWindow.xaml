@@ -662,9 +662,12 @@
                                         </Grid.ColumnDefinitions>
                                         <StackPanel>
                                             <Button Content="Select Logo" Style="{StaticResource LargeButton}"
-                                                    Name="btnSelectLogo" />
+                                                    Name="btnSelectLogo" Click="OnButtonSelectLogoClick" />
                                             <Button Content="Delete Logo" Style="{StaticResource LargeButton}"
-                                                    Name="btnDeleteLogo" IsEnabled="False" />
+                                                    Name="btnDeleteLogo" IsEnabled="False" Click="OnButtonDeleteLogoClick"/>
+                                            <TextBlock HorizontalAlignment="Left" Margin="6, 50, 0, 0">
+                                                <Hyperlink Click="StartProcess" Tag="control,system">View System Properties</Hyperlink>
+                                            </TextBlock>
                                         </StackPanel>
                                         <Grid Grid.Column="1">
                                             <Grid.RowDefinitions>
@@ -673,6 +676,7 @@
                                             </Grid.RowDefinitions>
                                             <TextBlock HorizontalAlignment="Center"
                                                        Text="Present image" Style="{StaticResource TxtStyle}" />
+                                            <Image Name="imgProperty" Grid.Row="1" Stretch="None" MaxHeight="200" />
                                         </Grid>
                                     </Grid>
                                 </StackPanel>
@@ -1080,7 +1084,7 @@
                                         <Button Margin="0, 0, 10, 0" Name="btnAddFolderToSendTo" Click="OnButtonAddFolderToSendToClick">Add Folder</Button>
                                         <Button Margin="0, 10, 10, 0" Name="btnAddFileToSendTo" Click="OnButtonAddFileToSendToClick">Add File</Button>
                                         <Button Margin="0, 10, 10, 0" Name="btnDeleteFromSendTo" Click="OnButtonDeleteFromSendToClick">Delete Selected</Button>
-                                        <TextBlock HorizontalAlignment="Left" Margin="0, 50, 0, 0">
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 50, 0, 0">
                                             <Hyperlink Click="OnLinkEditSendToExplorerClick" Name="lnkOpenExplorer">Edit in Explorer</Hyperlink></TextBlock>
                                     </StackPanel>
                                 </Grid>

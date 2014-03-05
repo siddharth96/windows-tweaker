@@ -59,7 +59,8 @@ namespace WindowsTweaker.AppTasks {
 
         public static string GetUserSelectedFilePath() {
             OpenFileDialog openFileDialog = new OpenFileDialog {
-                Filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*"
+                Filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*",
+                Multiselect = false
             };
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
         }
