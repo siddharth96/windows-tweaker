@@ -634,6 +634,28 @@ namespace WindowsTweaker {
                 }
             }
         }
+
+        private void UpdateFromPlaces() {
+            int val = cmboBxPowerBtnAction.SelectedIndex;
+            using (RegistryKey hkcuExAdvanced = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                switch (val) {
+                    case 0 : hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 2);
+                        break;
+                    case 1: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 64);
+                        break;
+                    case 2: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 16);
+                        break;
+                    case 3: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 4);
+                        break;
+                    case 4: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 512);
+                        break;
+                    case 5: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 1);
+                        break;
+                    case 6: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 256);
+                        break;
+                }
+            }
+        }
         #endregion
 
         #region Right-Click
