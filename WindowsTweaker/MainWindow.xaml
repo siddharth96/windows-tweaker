@@ -780,10 +780,11 @@
                                         <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 0, 20, 5">Current Color:</TextBlock>
                                         <Rectangle Cursor="Hand" Name="rectSelectionColor" Width="16"
                                                    Height="16" Stroke="Black" StrokeThickness="1"
-                                                   Margin="15, 0, 20, 5" />
-                                        <Button Style="{StaticResource LargeButton}">Select Color</Button>
+                                                   Margin="15, 0, 20, 5" MouseDown="OnSelectionRectangleMouseDown"
+                                                   TouchDown="OnSelectionRectangleTouchEnd"/>
+                                        <Button Style="{StaticResource LargeButton}" Name="btnSelectColor" Click="OnButtonSelectionColorClick">Select Color</Button>
                                     </StackPanel>
-                                    <Button Margin="10"
+                                    <Button Margin="10" Name="btnUseDefaultColor" Click="OnButtonUseDefaultSelectionColorClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Right">
                                         Use Default Color
                                     </Button>

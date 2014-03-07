@@ -28,6 +28,7 @@ namespace WindowsTweaker {
             InitializeComponent();
             message = new Message(msgContainerBorder, txtMsg);
             sendToBackgroundWorker = (BackgroundWorker)this.FindResource("sendToBackgroundWorker");
+            selectionColor = DEFAULT_SELECTION_COLOR;
         }
 
         private readonly RegistryKey HKCU = Registry.CurrentUser;
@@ -37,6 +38,7 @@ namespace WindowsTweaker {
         private readonly Color DEFAULT_SELECTION_COLOR = Color.FromArgb(255, 0, 102, 204);
         private readonly Message message;
         private readonly BackgroundWorker sendToBackgroundWorker;
+        private Color selectionColor;
 
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
@@ -51,6 +53,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.Display:
+                    LoadDisplayTab();
                     break;
 
                 case Constants.RightClick:
@@ -67,7 +70,6 @@ namespace WindowsTweaker {
                 case Constants.Features:
                     LoadFeaturesTab();
                     break;
-
 
                 case Constants.Logon:
                     LoadLogonTab();
@@ -566,13 +568,7 @@ namespace WindowsTweaker {
             using (RegistryKey hkcuColors = HKCU.CreateSubKey(@"Control Panel\Colors")) {
                 string val = (string) hkcuColors.GetValue(Constants.SelectionColor);
                 string[] rgb = val.Split(' ');
-                Color selectionColor;
-                if (rgb.Length == 3) {
-                    selectionColor = Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2]));
-                }
-                else {
-                    selectionColor = DEFAULT_SELECTION_COLOR;
-                }
+                selectionColor = rgb.Length == 3 ? Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2])) : DEFAULT_SELECTION_COLOR;
                 rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
             }
         }
@@ -1195,6 +1191,32 @@ namespace WindowsTweaker {
                         hkcuExplorer.SetValue(Constants.NoDvdBurning, 1);    
                     }   
                 }
+            }
+        }
+        #endregion
+
+        #region Display -> Selection Color
+        private void OnSelectionRectangleMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnSelectionRectangleTouchEnd(object sender, TouchEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnButtonSelectionColorClick(object sender, RoutedEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnButtonUseDefaultSelectionColorClick(object sender, RoutedEventArgs e) {
+            rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
+        }
+
+        private void ShowColorDialog() {
+            ColorPickerDialog colorPickerDialog = new ColorPickerDialog(selectionColor);
+            if (colorPickerDialog.ShowDialog() == true) {
+                selectionColor = colorPickerDialog.SelectedColour;
+                rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
             }
         }
         #endregion

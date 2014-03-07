@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppTasks\ColorPickerDialog.cs" />
     <Compile Include="AppTasks\ProcessWrapper.cs" />
     <Compile Include="AppTasks\RightClickAddDeleteTask.cs" />
     <Compile Include="AppTasks\Message.cs" />
