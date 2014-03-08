@@ -2123,7 +2123,7 @@
                                     </TextBlock>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkEnableAutoLogin" Content="Enable Automatic Login" />
-                                    <Border BorderBrush="{DynamicResource TabItemTextBrushHover}"
+                                    <Border BorderBrush="{DynamicResource TabItemTextBrushHover}" Name="borderAutoLogin"
                                             BorderThickness="1" Margin="30,5,5,10" Padding="5" CornerRadius="2">
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -2152,7 +2152,7 @@
                                                 Domain Name
                                             </TextBlock>
                                             <TextBox Name="txtAutoLoginDomainName" Grid.Row="2" Grid.Column="1"
-                                                     Margin="5" />
+                                                     Margin="5,3,5,7" />
                                         </Grid>
                                     </Border>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
@@ -2311,9 +2311,9 @@
                                                    VerticalAlignment="Center" Grid.Row="1">
                                             Content
                                         </TextBlock>
-                                        <PasswordBox Name="txtLoginMsgContent"
-                                                     Style="{StaticResource SmallPwBxStyle}" Margin="5"
-                                                     VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                                        <TextBox Name="txtLoginMsgContent"
+                                                 Style="{StaticResource SmallTxtBoxStyle}" Margin="5"
+                                                 VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>

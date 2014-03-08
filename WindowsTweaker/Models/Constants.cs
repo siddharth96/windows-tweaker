@@ -21,83 +21,59 @@
         public const string InternetExplorer = "iexplore.exe";
 
         // Explorer Tab Keys/Value
-
         // Drive Letter Display
         public const string ShowDriveLetters = "ShowDriveLettersFirst";
-
         // Advanced
         public const string AlwaysShowMenu = "AlwaysShowMenus";
-
         public const string HideFileExt = "HideFileExt";
         public const string AutoChkSelect = "AutoCheckSelect";
         public const string Hidden = "Hidden";
         public const string PersistBrowsers = "PersistBrowsers";
         public const string SuperHidden = "ShowSuperHidden";
         public const string CompressedColor = "ShowCompColor";
-
         // Property Dialog
         public const string NoSecurityTab = "NoSecurityTab";
-
         public const string NoCustomizeTab = "NoCustomizeThisFolder";
-
         // Libraries
         public const string Library = "{031E4825-7B94-4dc3-B131-E946B44C8DD5}";
-
         //etc
         public const string RecycleBin = "{645FF040-5081-101B-9F08-00AA002F954E}";
-
         public const string Regedit = "{77708248-f839-436b-8919-527c410f48b9}";
 
         // System Tab Key/Values
-
         // Shutdown Configuration
         public const string AutoEndTasks = "AutoEndTasks";
-
         public const string WaitToKillAppTimeout = "WaitToKillAppTimeout";
-
         // Windows Installer
         public const string DisableMsi = "DisableMSI";
-
         public const string AlwaysInstallElevated = "AlwaysInstallElevated";
         public const string LimitSystemRestore = "LimitSystemRestoreCheckpointing";
-
         // Registration
         public const string RegisteredOwner = "RegisteredOwner";
-
         public const string RegisteredOrg = "RegisteredOrganization";
         public const string ProductId = "ProductId";
-
         // Information
         public const string Manufacturer = "Manufacturer";
-
         public const string Model = "Model";
         public const string SupportPhone = "SupportPhone";
         public const string SupportUrl = "SupportURL";
-
         // Logo
         public const string Logo = "Logo";
 
         // Display Tab Key/Values
-
         // Display Settings
         public const string MinAnimate = "MinAnimate";
-
         public const string DragFullWin = "DragFullWindows";
         public const string PaintDesktopVer = "PaintDesktopVersion";
-
         // ALT Tab
         public const string SwitchCols = "CoolSwitchColumns";
-
         public const string SwitchRows = "CoolSwitchRows";
-
         // Selection Color
         public const string SelectionColor = "HotTrackingColor";
 
         // Right Click Keys/Values
-
         // General
         public const string CopyToId = "{C2FBB630-2971-11D1-A18C-00C04FD75D13}";
-
         public const string MoveToId = "{C2FBB631-2971-11D1-A18C-00C04FD75D13}";
         public const string SendToId = "{7BA4C740-9E81-11CF-99D3-00AA004AE837}";
         public const string CopyTo = "Copy To";
@@ -117,8 +93,7 @@
         public const string TextFile = "textfile";
         public const string ControlPanelCreatePath = "rundll32.exe shell32.dll,Control_RunDLL";
 
-        //Restrictions
-
+        //Restrictions Tab Key/Values
         //Explorer
         public const string NoFileMenu = "NoFileMenu";
         public const string NoFolderOption = "NoFolderOptions";
@@ -143,13 +118,11 @@
         public const string NoPropertiesMyComputer="NoPropertiesMyComputer";
         //Special case 
         public const string AutoShreWks = "AutoShareWks";
-
         //Taskbar
         public const string TaskBarAnimations = "TaskbarAnimations";
         public const string TaskBarSmallIcons="TaskbarSmallIcons";
 
-
-        // Places
+        // Places Tab Key/Values
         // God Mode
         public const string GodModeKey = ".{ED7BA470-8E54-465E-825C-99712043E01C}";
         // Power Button
@@ -157,12 +130,32 @@
         // Open With
         public const string NoOpenWith = "NoOpenWith";
 
-        // Features
-        //System Beep
+        // Features Tab Key/Values
+        // System Beep
         public const string Beep = "Beep";
         public const string Yes = "yes";
         public const string No = "no";
         // Windows DVD Burner
         public const string NoDvdBurning = "NoCDBurning";
+
+        // Logon Tab Key/Values
+        // Automatic Logon
+        public const string AutoAdminLogon = "AutoAdminLogon";
+        public const string DefaultUserName = "DefaultUserName";
+        public const string DefaultPassword = "DefaultPassword";
+        public const string DefaultDomainName = "DefaultDomainName";
+        public const string IgnoreShiftOverride = "IgnoreShiftOverride";
+        public const string ForceAutoLogon = "ForceAutoLogon";
+        // Startup Sound
+        public const string DisableStartupSound = "DisableStartupSound";
+        // Screensaver Lock
+        public const string ScreenSaverIsSecure = "ScreenSaverIsSecure";
+        // Miscellaneous
+        public const string DisableCtrlAltDlt = "DisableCAD";
+        public const string NoLastUserName = "dontdisplaylastusername";
+        public const string ShutdownWithoutLogon = "shutdownwithoutlogon";
+        // Login Message
+        public const string LoginMsgTitle = "LegalNoticeCaption";
+        public const string LoginMsgContent = "LegalNoticeText";
     }
 }
