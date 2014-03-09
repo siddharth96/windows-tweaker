@@ -36,8 +36,7 @@ namespace WindowsTweaker.AppTasks {
         internal static void SetUiCheckBoxFromStringRegistryValue(CheckBox chk, RegistryKey registryKey,
             string valueName, bool inverse = false) {
             string val = (string) registryKey.GetValue(valueName);
-            bool result = Utils.StringToBool(val);
-            chk.IsChecked = inverse ? !result : result;
+            chk.IsChecked = inverse ? Utils.ReversedStringToBool(val) : Utils.StringToBool(val);
         }
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
         internal static void SetRegistryValueFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName, bool inverse=false) {
-            if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
+            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
                 SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
             }
         }
@@ -83,10 +82,12 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
-        public static void SetStringRegistryValueFromUiChecBox(CheckBox chk, RegistryKey registryKey, string keyName,
+        public static void SetStringRegistryValueFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName,
             bool inverse = false) {
-            string val = inverse ? Utils.ReversedBoolToString(chk.IsChecked) : Utils.BoolToString(chk.IsChecked);
-            registryKey.SetValue(keyName, val);
+            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
+                string val = inverse ? Utils.ReversedBoolToString(chk.IsChecked) : Utils.BoolToString(chk.IsChecked);
+                registryKey.SetValue(keyName, val);
+            }
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
         internal static void SetRegistryKeyFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName) {
-            if (chk.Tag != null && (chk.Tag as Byte?) == Constants.HasUserInteracted) {
+            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
                 SetRegistryKeyFromBool(chk.IsChecked, registryKey, keyName);
             }
         }

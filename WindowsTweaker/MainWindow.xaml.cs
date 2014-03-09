@@ -80,6 +80,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.Maintenance:
+                    LoadMaintenanceTab();
                     break;
 
                 case Constants.Utilities:
@@ -176,7 +177,7 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromLogon() {
             // Auto Login
             using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
-                if (chkEnableAutoLogin.Tag != null && (chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
+                if ((chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
                     UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkEnableAutoLogin, hklmWinLogon, Constants.AutoAdminLogon);
                     UiRegistryHandler.SetRegistryValueFromUiTextBox(txtAutoLoginUserName, hklmWinLogon, Constants.DefaultUserName);
                     UiRegistryHandler.SetRegistryValueFromUiPasswordBox(txtAutoLoginPasswd, hklmWinLogon, Constants.DefaultPassword);
@@ -203,7 +204,7 @@ namespace WindowsTweaker {
                 UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkShowShutdownBtn, hklmSystem, Constants.ShutdownWithoutLogon);
 
                 // Login Message
-                if (chkEnableAutoLogin.Tag != null && (chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
+                if ((chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
                     UiRegistryHandler.SetRegistryValueFromUiTextBox(txtLoginMsgTitle, hklmSystem, Constants.LoginMsgTitle);
                     UiRegistryHandler.SetRegistryValueFromUiTextBox(txtLoginMsgContent, hklmSystem,  Constants.LoginMsgContent);
                 }
@@ -680,11 +681,11 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromDisplay() {
             // Display Settings
             using (RegistryKey hkcuWinMet = HKCU.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
-                UiRegistryHandler.SetStringRegistryValueFromUiChecBox(chkWindowAnim, hkcuWinMet, Constants.MinAnimate);
+                UiRegistryHandler.SetStringRegistryValueFromUiCheckBox(chkWindowAnim, hkcuWinMet, Constants.MinAnimate);
             }
 
             using (RegistryKey hkcuDesktop = HKCU.CreateSubKey(@"Control Panel\Desktop")) {
-                UiRegistryHandler.SetStringRegistryValueFromUiChecBox(chkShowWindowDrag, hkcuDesktop, Constants.DragFullWin);
+                UiRegistryHandler.SetStringRegistryValueFromUiCheckBox(chkShowWindowDrag, hkcuDesktop, Constants.DragFullWin);
                 UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkWindowVersion, hkcuDesktop, Constants.PaintDesktopVer);
 
                 // Alt-Tab
@@ -1274,7 +1275,7 @@ namespace WindowsTweaker {
 
         private void UpdateRegistryFromFeatures() {
             // System Beeps
-            if (chkSystemBeep.Tag != null && (chkSystemBeep.Tag as Byte?) == Constants.HasUserInteracted) {
+            if ((chkSystemBeep.Tag as Byte?) == Constants.HasUserInteracted) {
                 using (RegistryKey hkcuSound = HKCU.CreateSubKey(@"Control Panel\Sound")) {
                     string val = chkSystemBeep.IsChecked == true ? Constants.No : Constants.Yes;
                     hkcuSound.SetValue(Constants.Beep, val);
@@ -1282,7 +1283,7 @@ namespace WindowsTweaker {
             }
 
             // Windows DVD Burner
-            if (chkWinDvdBurner.Tag != null && (chkWinDvdBurner.Tag as Byte?) == Constants.HasUserInteracted) {
+            if ((chkWinDvdBurner.Tag as Byte?) == Constants.HasUserInteracted) {
                 using (RegistryKey hkcuExplorer = HKCU.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                     if (chkWinDvdBurner.IsChecked == true) {
                         if (hkcuExplorer.GetValue(Constants.NoDvdBurning) != null) {
@@ -1318,6 +1319,124 @@ namespace WindowsTweaker {
             if (colorPickerDialog.ShowDialog() == true) {
                 selectionColor = colorPickerDialog.SelectedColour;
                 rectSelectionColor.Fill = new SolidColorBrush(selectionColor);
+            }
+        }
+        #endregion
+
+        #region Maintenance
+        private void LoadMaintenanceTab() {
+            // Memory
+            using (RegistryKey hklmCVExplorer = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
+                UiRegistryHandler.SetUiCheckBoxFromRegistryValue(chkUnloadUnsedDLL, hklmCVExplorer, Constants.AlwaysUnloadDll);
+            }
+            using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
+                int? machineVal = (int?) hklmSystem.GetValue(Constants.MachineGroupPolicy);
+                int? userVal = (int?) hklmSystem.GetValue(Constants.UserGroupPolicy);
+                chkDisableGroupPolicy.IsChecked = Utils.ReversedIntToBool(machineVal) && Utils.ReversedIntToBool(userVal);
+            }
+
+            // Auto Reboot
+            using (RegistryKey hklmCrashControl = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\Control\CrashControl")) {
+                UiRegistryHandler.SetUiCheckBoxFromRegistryValue(chkRecordCrashEvent, hklmCrashControl, Constants.LogEvent);
+                int? val = (int?) hklmCrashControl.GetValue(Constants.AutoReboot);
+                cmboBxWinCrashAction.SelectedIndex = val == 0 ? 1 : 0;
+            }
+
+            // Startup Settings
+            using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
+                UiRegistryHandler.SetUiCheckBoxFromStringRegistryValue(chkDisableLKGC, hklmWinLogon, Constants.ReportBootOk, true);
+            }
+            using (RegistryKey hklmBootOptFunc = HKLM.CreateSubKey(@"Software\Microsoft\Dfrg\BootOptimizeFunction")) {
+                string val = (string) hklmBootOptFunc.GetValue(Constants.Enable);
+                chkEnableBootDefrag.IsChecked = val == null || val.Equals("Y");
+            }
+
+            // Error
+            using (RegistryKey hkcuWinErrReporting = HKCU.CreateSubKey(@"Software\Microsoft\Windows\Windows Error Reporting")) {
+                UiRegistryHandler.SetUiCheckBoxFromRegistryValue(chkHideErrReporting, hkcuWinErrReporting, Constants.DontShowUi);
+                using (RegistryKey hkcuConsent = HKCU.CreateSubKey(@"Software\Microsoft\Windows\Windows Error Reporting\Consent")) {
+                    int? defaultConsentVal = (int?) hkcuConsent.GetValue(Constants.DefaultConsent);
+                    int? disabledVal = (int?) hkcuWinErrReporting.GetValue(Constants.Disabled);
+                    if (defaultConsentVal == null && disabledVal == null) {
+                        cmboBxErrReportTye.SelectedIndex = 1;
+                    } else if (disabledVal == 0 || disabledVal == null) {
+                        switch (defaultConsentVal) {
+                            case 1:
+                                cmboBxErrReportTye.SelectedIndex = 0;
+                                break;
+                            case 2:
+                                cmboBxErrReportTye.SelectedIndex = 1;
+                                break;
+                            case 3:
+                                cmboBxErrReportTye.SelectedIndex = 2;
+                                break;
+                            default:
+                                cmboBxErrReportTye.SelectedIndex = 0;
+                                break;
+                        }
+                    } else if(disabledVal == 1) {
+                        cmboBxErrReportTye.SelectedIndex = 3;
+                    }
+                }
+            }
+        }
+
+        private void UpdateSettingsFromMaintenance() {
+            // Memory
+            using (RegistryKey hklmCVExplorer = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
+                UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkUnloadUnsedDLL, hklmCVExplorer, Constants.AlwaysUnloadDll);
+            }
+            if ((chkDisableGroupPolicy.Tag as Byte?) == Constants.HasUserInteracted) {
+                using (RegistryKey hklmSystem = HKLM.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
+                    if (chkDisableGroupPolicy.IsChecked == true) {
+                        hklmSystem.SetValue(Constants.MachineGroupPolicy, 0);
+                        hklmSystem.SetValue(Constants.UserGroupPolicy, 0);
+                    } else {
+                        hklmSystem.DeleteValue(Constants.MachineGroupPolicy, false);
+                        hklmSystem.DeleteValue(Constants.UserGroupPolicy, false);
+                    }
+                }
+            }
+
+            // Auto Reboot
+            using (RegistryKey hklmCrashControl = HKLM.CreateSubKey(@"SYSTEM\CurrentControlSet\Control\CrashControl")) {
+                UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkRecordCrashEvent, hklmCrashControl, Constants.LogEvent);
+                hklmCrashControl.SetValue(Constants.AutoReboot, cmboBxWinCrashAction.SelectedIndex == 0 ? 1 : 0);
+            }
+
+            // Startup Settings
+            using (RegistryKey hklmWinLogon = HKLM.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
+                UiRegistryHandler.SetStringRegistryValueFromUiCheckBox(chkDisableLKGC, hklmWinLogon, Constants.ReportBootOk, true);
+            }
+
+            if ((chkEnableBootDefrag.Tag as Byte?) == Constants.HasUserInteracted) {
+                using (RegistryKey hklmBootOptFunc = HKLM.CreateSubKey(@"Software\Microsoft\Dfrg\BootOptimizeFunction")) {
+                    hklmBootOptFunc.SetValue(Constants.Enable, chkEnableBootDefrag.IsChecked == true ? "Y" : "N");
+                }
+            }
+
+            // Error
+            using (RegistryKey hkcuWinErrReporting = HKCU.CreateSubKey(@"Software\Microsoft\Windows\Windows Error Reporting")) {
+                UiRegistryHandler.SetRegistryValueFromUiCheckBox(chkHideErrReporting, hkcuWinErrReporting, Constants.DontShowUi);
+                using (RegistryKey hkcuConsent = HKCU.CreateSubKey(@"Software\Microsoft\Windows\Windows Error Reporting\Consent")) {
+                    switch (cmboBxErrReportTye.SelectedIndex) {
+                        case 0:
+                            hkcuWinErrReporting.SetValue(Constants.Disabled, 0);
+                            hkcuConsent.SetValue(Constants.DefaultConsent, 1);
+                            break;
+                        case 1:
+                            hkcuWinErrReporting.SetValue(Constants.Disabled, 0);
+                            hkcuConsent.SetValue(Constants.DefaultConsent, 2);
+                            break;
+                        case 2:
+                            hkcuWinErrReporting.SetValue(Constants.Disabled, 0);
+                            hkcuConsent.SetValue(Constants.DefaultConsent, 3);
+                            break;
+                        case 3:
+                            hkcuWinErrReporting.SetValue(Constants.Disabled, 1);
+                            break;
+                    }
+                }
             }
         }
         #endregion

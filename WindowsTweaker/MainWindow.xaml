@@ -2746,12 +2746,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkDisableGroupPolicy">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable Group Policy update during startup</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkUnloadUnsedDLL">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Unload unused DLLs after an application is closed</TextBlock>
                                         </CheckBox.Content>
@@ -2844,7 +2844,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkHideErrReporting">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Don't show error reporting dialog, when an app crashes</TextBlock>
                                         </CheckBox.Content>
@@ -2854,7 +2854,7 @@
                                             Type of report to be 
                                             Microsoft when an error occurs
                                         </TextBlock>
-                                        <ComboBox Margin="10, 0, 0, 0" SelectedIndex="0" FontSize="16">
+                                        <ComboBox Margin="10, 0, 0, 0" SelectedIndex="0" FontSize="16" Name="cmboBxErrReportTye">
                                             <ComboBoxItem>Ask, when sending</ComboBoxItem>
                                             <ComboBoxItem>Send basic data</ComboBoxItem>
                                             <ComboBoxItem>Send basic and additional data</ComboBoxItem>
@@ -2915,12 +2915,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick" Name="chkEnableBootDefrag">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Enable boot defragmentation (Recommended)</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkDisableLKGC">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Disable creation of last known good configuration (Not Recommended)</TextBlock>
                                         </CheckBox.Content>
@@ -3000,12 +3000,12 @@
                                         <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center">
                                             Default action to perform, when Windows crashes
                                         </TextBlock>
-                                        <ComboBox SelectedIndex="0" Margin="10, 0, 0, 0" FontSize="16">
+                                        <ComboBox SelectedIndex="0" Margin="10, 0, 0, 0" FontSize="16" Name="cmboBxWinCrashAction">
                                             <ComboBoxItem>Automatically restart</ComboBoxItem>
                                             <ComboBoxItem>Show error message (Blue Screen of Death)</ComboBoxItem>
                                         </ComboBox>
                                     </StackPanel>
-                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
+                                    <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick" Name="chkRecordCrashEvent">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Record event in system log</TextBlock>
                                         </CheckBox.Content>

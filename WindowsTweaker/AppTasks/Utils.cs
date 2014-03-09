@@ -12,13 +12,19 @@ namespace WindowsTweaker.AppTasks {
     internal static class Utils {
         public static Func<int?, bool> IntToBool = (int? val) => !(val == 0 || val == null);
         
-        public static Func<int?, bool> ReversedIntToBool = (int? val) => val != 1;
+        public static Func<int?, bool> ReversedIntToBool = (int? val) => val == 0;
 
         public static Func<bool?, int> BoolToInt = (bool? val) => val == true ? 1 : 0;
 
         public static Func<bool?, int> ReversedBoolToInt = (bool? val) => val == true ? 0 : 1;
 
         public static Func<string, bool> StringToBool = (string val) => val != null && val.Equals("1");
+
+        public static bool ReversedStringToBool(string val) {
+            if (val == null)
+                return false;
+            return !val.Equals("1");
+        }
 
         public static Func<bool?, string> BoolToString = (bool? val) => val == true ? "1" : "0";
 

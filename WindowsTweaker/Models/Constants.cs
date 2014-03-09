@@ -157,5 +157,21 @@
         // Login Message
         public const string LoginMsgTitle = "LegalNoticeCaption";
         public const string LoginMsgContent = "LegalNoticeText";
+
+        // Maintenance Tab Key/Values
+        // Memory
+        public const string AlwaysUnloadDll = "AlwaysUnloadDLL";
+        public const string MachineGroupPolicy = "SynchronousMachineGroupPolicy";
+        public const string UserGroupPolicy = "SynchronousUserGroupPolicy";
+        // Auto Reboot
+        public const string LogEvent = "LogEvent";
+        public const string AutoReboot = "AutoReboot";
+        // Startup Settings
+        public const string ReportBootOk = "ReportBootOk";
+        public const string Enable = "Enable";
+        // Error
+        public const string DontShowUi = "DontShowUI";
+        public const string DefaultConsent = "DefaultConsent";
+        public const string Disabled = "Disabled";
     }
 }
