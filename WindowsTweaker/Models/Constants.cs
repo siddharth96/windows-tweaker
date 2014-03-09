@@ -131,6 +131,16 @@
         public const string NoOpenWith = "NoOpenWith";
 
         // Features Tab Key/Values
+        // AutoPlay
+        public const string NoDriveAutoPlay = "NoDriveTypeAutoRun";
+        public const string DisableAutoplay = "DisableAutoplay";
+        public const string AutoRun = "AutoRun";
+        // Windows Update
+        public const string AutoUpdateOptions = "AUOptions";
+        public const string IncludeRecommendedUpdates = "IncludeRecommendedUpdates";
+        public const string ElevateNonAdmins = "ElevateNonAdmins";
+        public const string EnableFeaturedSoftware = "EnableFeaturedSoftware";
+        public const string DefaultWindowsUpdateText = "Please choose an option:";
         // System Beep
         public const string Beep = "Beep";
         public const string Yes = "yes";

@@ -1785,12 +1785,13 @@
                                     </TextBlock>
                                     <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
                                                  Content="Use Autoplay for all devices."
+                                                 Name="rbtnEnableAutoPlay"
                                                  Style="{StaticResource RbtnStyle}" />
-                                    <RadioButton Margin="30, 5, 5, 5"
+                                    <RadioButton Margin="30, 5, 5, 5" Name="rbtnEnableCdUsbAutoPlay"
                                                  Content="Turn-off Autoplay for CD-ROM and removable devices."
                                                  Style="{StaticResource RbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices."
-                                                 Style="{StaticResource RbtnStyle}" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnDisableAutoPlay"/>
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 10, 10, 10"
                                                 HorizontalAlignment="Left">
@@ -1895,28 +1896,34 @@
                                         When your computer is online, Windows automatically checks for available updates.
                                         You can configure this behaviour from here.
                                     </TextBlock>
-                                    <ComboBox Margin="30, 5, 5, 5" SelectedIndex="0">
-                                        <ComboBoxItem>Install updates automatically. (Recommended)</ComboBoxItem>
-                                        <ComboBoxItem>Download Updates but let me choose whether to install them.</ComboBoxItem>
-                                        <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them.</ComboBoxItem>
+                                    <ComboBox Margin="30, 5, 5, 5" SelectedIndex="0" Name="cmboBxWinUpdate">
+                                        <ComboBoxItem>Install updates automatically (Recommended)</ComboBoxItem>
+                                        <ComboBoxItem>Download Updates but let me choose whether to install them</ComboBoxItem>
+                                        <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them</ComboBoxItem>
+                                        <ComboBoxItem>Never check for updates (Not Recommended)</ComboBoxItem>
                                     </ComboBox>
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">Other options</TextBlock>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkUpdateReboot">
+                                        <!-- TODO: Implement Registry handling for this tweak -->
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Prevent Windows Update from forcibly rebooting Windows</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkRecommenedUpdates">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkAllowAllInstallUpdate">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer.</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick">
+                                    <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
+                                              Name="chkNotifyNewMSSw">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
                                         </CheckBox.Content>

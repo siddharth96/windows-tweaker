@@ -10,7 +10,7 @@ using Microsoft.Win32;
 namespace WindowsTweaker.AppTasks {
 
     internal static class Utils {
-        public static Func<int?, bool> IntToBool = (int? val) => !(val == 0 || val == null);
+        public static Func<int?, bool> IntToBool = (int? val) => !(val == 0 || !val.HasValue);
         
         public static Func<int?, bool> ReversedIntToBool = (int? val) => val == 0;
 
