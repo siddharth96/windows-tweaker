@@ -9,10 +9,18 @@ using Microsoft.Win32;
 
 namespace WindowsTweaker.AppTasks {
     internal static class RightClickAddDeleteTask {
-        internal static bool Add(string shrtCtName, string shrtCtPathInputVal) {
+        internal static bool Add(string shrtCtName, string inputVal) {
+            string shrtPathParam = null, shrtCtPathInputVal = inputVal;
+            if (shrtCtPathInputVal.Contains(" ")) {
+                string[] shrtctPathSplit = shrtCtPathInputVal.Split(' ');
+                if (shrtctPathSplit.Length == 2) {
+                    shrtPathParam = shrtctPathSplit[1].Trim();
+                    shrtCtPathInputVal = shrtctPathSplit[0];
+                }
+            }
             string shrtCtPathToSave = Utils.ExtractFilePath(shrtCtPathInputVal);
             if (shrtCtPathToSave != null && File.Exists(shrtCtPathToSave)) {
-                shrtCtPathToSave = shrtCtPathInputVal;
+                shrtCtPathToSave = shrtCtPathInputVal + (!String.IsNullOrEmpty(shrtPathParam) ? " " + shrtPathParam : "");
             } else {
                 bool isUri = IsUri(shrtCtPathInputVal, ref shrtCtPathToSave);
                 if (!isUri)
@@ -55,6 +63,11 @@ namespace WindowsTweaker.AppTasks {
                     if (val.ToLower().Contains(Constants.InternetExplorer)) {
                         val = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
                             @"Internet Explorer\" + Constants.InternetExplorer);
+                    } else if (val.Contains(" ")) {
+                        string[] valSplit = val.Split(' ');
+                        if (valSplit.Length == 2) {
+                            val = valSplit[0];
+                        }
                     }
                     if (!File.Exists(val))
                         continue;

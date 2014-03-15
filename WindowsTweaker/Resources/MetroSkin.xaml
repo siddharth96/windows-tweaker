@@ -245,9 +245,10 @@
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="H1">
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="FontWeight" Value="ExtraLight" />
-        <Setter Property="FontSize" Value="29.333" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="FontSize" Value="28" />
         <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
     </Style>
 

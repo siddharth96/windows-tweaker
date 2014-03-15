@@ -31,6 +31,7 @@
         public const string PersistBrowsers = "PersistBrowsers";
         public const string SuperHidden = "ShowSuperHidden";
         public const string CompressedColor = "ShowCompColor";
+        public const string NavPaneExpandToCurrentFolder = "NavPaneExpandToCurrentFolder";
         // Property Dialog
         public const string NoSecurityTab = "NoSecurityTab";
         public const string NoCustomizeTab = "NoCustomizeThisFolder";
@@ -65,6 +66,11 @@
         public const string MinAnimate = "MinAnimate";
         public const string DragFullWin = "DragFullWindows";
         public const string PaintDesktopVer = "PaintDesktopVersion";
+        // Explorer
+        public const string SharedFolderIcon = "ntshrui.dll";
+        public const string OldStyleFileSort = "NoStrCmpLogical";
+        // Icon Title
+        public const string IconTitleWrap = "IconTitleWrap";
         // ALT Tab
         public const string SwitchCols = "CoolSwitchColumns";
         public const string SwitchRows = "CoolSwitchRows";
@@ -81,7 +87,7 @@
         public const string SendTo = "SendTo";
         public const string OpenNotepad = "Open With Notepad";
         public const string ControlPanel = "Control Panel";
-        public const string OpenCmd = "Open Command Prompt here";
+        public const string OpenCmdPromptVal = "cmd.exe /k cd %1";
         public const string RunAs = "runas";
         public const string EncryptCtxMenu = "EncryptionContextMenu";
         public const string CopyContents = "copycontents";
@@ -98,6 +104,7 @@
         public const string NoFileMenu = "NoFileMenu";
         public const string NoFolderOption = "NoFolderOptions";
         public const string NoViewContextMenu="NoViewContextMenu";
+        public const string NoTrayContextMenu = "NoTrayContextMenu";
         public const string NoDispAppearancePage="NoDispAppearancePage";
         public const string NoDispScrSavPage = "NoDispScrSavPage";
         public const string DisableThumbnailCache="DisableThumbnailCache";
@@ -121,6 +128,8 @@
         //Taskbar
         public const string TaskBarAnimations = "TaskbarAnimations";
         public const string TaskBarSmallIcons="TaskbarSmallIcons";
+        public const string ShowInfoTip = "ShowInfoTip";
+
 
         // Places Tab Key/Values
         // God Mode

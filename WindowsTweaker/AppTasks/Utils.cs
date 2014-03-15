@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
+using WindowsTweaker.Models;
 using Microsoft.Win32;
 
 namespace WindowsTweaker.AppTasks {
@@ -29,14 +30,6 @@ namespace WindowsTweaker.AppTasks {
         public static Func<bool?, string> BoolToString = (bool? val) => val == true ? "1" : "0";
 
         public static Func<bool?, string> ReversedBoolToString = (bool? val) => val == true ? "0" : "1";
-
-        public static void SafeDeleteRegistryValue(RegistryKey regKey, string keyName) {
-            // Can't extend Microsoft.Win32.RegistryKey since its sealed, hence has to put this in Utils.cs
-            try {
-                regKey.DeleteValue(keyName);
-            } catch (ArgumentException) {
-            }
-        }
 
         public static bool IsEmptyDirectory(string path) {
             return !Directory.EnumerateFiles(path).Any();
@@ -80,13 +73,21 @@ namespace WindowsTweaker.AppTasks {
                 return String.Empty;
             string txt = String.Empty;
             int lenLst = lst.Count;
-            if (lenLst == 1) {
-                return lst[0];
-            } else if (lenLst == 2) {
-                return lst[0] + " and " + lst[1];
-            } else {
-                return String.Join(", ", lst.Take(lenLst - 1)) + " and " + lst[lenLst - 1];
+            switch (lenLst) {
+                case 1:
+                    return lst[0];
+                case 2:
+                    return lst[0] + " and " + lst[1];
+                default:
+                    return String.Join(", ", lst.Take(lenLst - 1)) + " and " + lst[lenLst - 1];
             }
+        }
+
+        internal static bool HasValueInShellCommand(RegistryKey regKey, string valName) {
+            if (regKey == null)
+                return false;
+            return regKey.GetSubKeyNames().Select(subKeyName => regKey.OpenSubKey(subKeyName + @"\" + Constants.Cmd)).
+                Any(subKey => subKey != null && (subKey.GetValue("") as string) == valName);
         }
     }
 }

@@ -55,7 +55,6 @@ namespace WindowsTweaker.AppTasks {
                 string[] subKeyNames = hkcrApplications.GetSubKeyNames();
                 RegistryKey hkcrShell, hkcrOpen, hkcrEdit, hkcrCmd;
                 foreach (string subKeyName in subKeyNames) {
-                    hkcrShell = hkcrOpen = hkcrEdit = hkcrCmd = null;
                     RegistryKey regKey = hkcrApplications.OpenSubKey(subKeyName, true);
                     if (regKey.SubKeyCount > 0) {
                         bool isChecked = regKey.GetValue(Constants.NoOpenWith) == null;
