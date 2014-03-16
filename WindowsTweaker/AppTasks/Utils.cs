@@ -50,25 +50,23 @@ namespace WindowsTweaker.AppTasks {
             return val;
         }
 
-        public static bool MoveRegistryKey(RegistryKey sourceKey, RegistryKey destinationKey, string keyName) {
+        public static bool Move(this RegistryKey sourceKey, RegistryKey destinationKey, string keyName) {
             string keyVal = (string) sourceKey.GetValue(keyName);
-            if (keyVal != null) {
-                sourceKey.DeleteValue(keyName);
-                destinationKey.SetValue(keyName, keyVal);
-                return true;
-            }
-            return false;
+            if (keyVal == null) return false;
+            sourceKey.DeleteValue(keyName);
+            destinationKey.SetValue(keyName, keyVal);
+            return true;
         }
 
-        public static string GetUserSelectedFilePath() {
+        public static string GetUserSelectedFilePath(string filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*") {
             OpenFileDialog openFileDialog = new OpenFileDialog {
-                Filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*",
+                Filter = filter,
                 Multiselect = false
             };
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
         }
 
-        internal static string SentenceJoin(List<string> lst) {
+        internal static string SentenceJoin(this List<string> lst) {
             if (lst == null || !lst.Any())
                 return String.Empty;
             string txt = String.Empty;
@@ -83,7 +81,7 @@ namespace WindowsTweaker.AppTasks {
             }
         }
 
-        internal static bool HasValueInShellCommand(RegistryKey regKey, string valName) {
+        internal static bool HasValueInShellCommand(this RegistryKey regKey, string valName) {
             if (regKey == null)
                 return false;
             return regKey.GetSubKeyNames().Select(subKeyName => regKey.OpenSubKey(subKeyName + @"\" + Constants.Cmd)).

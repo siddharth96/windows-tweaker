@@ -1071,12 +1071,6 @@
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
-                                              Name="chkOpenExplorer">
-                                        <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Make &quot;Open Explorer here&quot; always display for folders &amp; drives</TextBlock>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-                                    <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkAddDefragInMenu">
                                         <CheckBox.Content>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">Add Defragment to the Right-Click menu of drives</TextBlock>

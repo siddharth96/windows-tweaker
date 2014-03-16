@@ -17,7 +17,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
         /// <param name="inverse"></param>
-        internal static void SetUiCheckBoxFromRegistryValue(CheckBox chk, RegistryKey registryKey, 
+        internal static void SetCheckedState(this CheckBox chk, RegistryKey registryKey, 
             string valueName, bool inverse=false) {
             int? val = (int?)registryKey.GetValue(valueName);
             chk.IsChecked = inverse ? Utils.ReversedIntToBool(val) : Utils.IntToBool(val);
@@ -33,7 +33,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
         /// <param name="inverse"></param>
-        internal static void SetUiCheckBoxFromStringRegistryValue(CheckBox chk, RegistryKey registryKey,
+        internal static void SetCheckedStateFromString(this CheckBox chk, RegistryKey registryKey,
             string valueName, bool inverse = false) {
             string val = (string) registryKey.GetValue(valueName);
             chk.IsChecked = inverse ? Utils.ReversedStringToBool(val) : Utils.StringToBool(val);
@@ -46,7 +46,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="chk"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
-        internal static void SetUiCheckBoxFromRegistryKey(CheckBox chk, RegistryKey registryKey, string keyName) {
+        internal static void SetCheckedStateFromSubKey(this CheckBox chk, RegistryKey registryKey, string keyName) {
             RegistryKey key = registryKey.OpenSubKey(keyName);
             if (key != null) {
                 chk.IsChecked = true;
@@ -61,13 +61,13 @@ namespace WindowsTweaker.AppTasks {
         /// Each <paramref name="chk" /> has a tag associated with it, which when set to 1 (HasUserInteracted)
         /// will then be saved to registry, otherwise it'll be ignored.
         /// </summary>
-        /// <param name="chk"></param>
         /// <param name="registryKey"></param>
+        /// <param name="chk"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
-        internal static void SetRegistryValueFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName, bool inverse=false) {
+        internal static void SetValue(this RegistryKey registryKey, CheckBox chk, string keyName, bool inverse = false) {
             if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
-                SetRegistryValueFromBool(chk.IsChecked, registryKey, keyName, inverse);
+                registryKey.SetValue(keyName, chk.IsChecked, inverse);
             }
         }
 
@@ -78,11 +78,11 @@ namespace WindowsTweaker.AppTasks {
         /// Each <paramref name="chk" /> has a tag associated with it, which when set to 1 (HasUserInteracted)
         /// will then be saved to registry, otherwise it'll be ignored.
         /// </summary>
-        /// <param name="chk"></param>
         /// <param name="registryKey"></param>
+        /// <param name="chk"></param>
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
-        public static void SetStringRegistryValueFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName,
+        public static void SetStringValue(this RegistryKey registryKey, CheckBox chk, string keyName,
             bool inverse = false) {
             if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
                 string val = inverse ? Utils.ReversedBoolToString(chk.IsChecked) : Utils.BoolToString(chk.IsChecked);
@@ -96,29 +96,29 @@ namespace WindowsTweaker.AppTasks {
         /// Each <paramref name="chk" /> has a tag associated with it, which when set to 1 (HasUserInteracted)
         /// will then be saved to registry, otherwise it'll be ignored.
         /// </summary>
-        /// <param name="chk"></param>
         /// <param name="registryKey"></param>
+        /// <param name="chk"></param>
         /// <param name="keyName"></param>
-        internal static void SetRegistryKeyFromUiCheckBox(CheckBox chk, RegistryKey registryKey, string keyName) {
+        internal static void SetSubKey(this RegistryKey registryKey, CheckBox chk, string keyName) {
             if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
-                SetRegistryKeyFromBool(chk.IsChecked, registryKey, keyName);
+                registryKey.SetSubKey(keyName, chk.IsChecked);
             }
         }
 
         /// <summary>
-        /// Sets the value of <paramref name="keyName"/> in <paramref name="registryKey"/> to 1 if
-        /// <paramref name="val"/> is equal to true, otherwise sets it to 0.
+        /// Creates a sub-key with name equal to <paramref name="subKeyName"/> in <paramref name="registryKey"/> if
+        /// <paramref name="val"/> is equal to true, otherwise deletes it.
         /// </summary>
-        /// <param name="val"></param>
         /// <param name="registryKey"></param>
-        /// <param name="keyName"></param>
-        internal static void SetRegistryKeyFromBool(bool? val, RegistryKey registryKey, string keyName) {
-            RegistryKey newKey = registryKey.OpenSubKey(keyName, true);
+        /// <param name="subKeyName"></param>
+        /// <param name="val"></param>
+        internal static void SetSubKey(this RegistryKey registryKey, string subKeyName, bool? val) {
+            RegistryKey newKey = registryKey.OpenSubKey(subKeyName, true);
             if (val == true && newKey == null) {
-                registryKey.CreateSubKey(keyName);
+                registryKey.CreateSubKey(subKeyName);
             } else {
                 if (newKey != null) {
-                    registryKey.DeleteSubKeyTree(keyName);
+                    registryKey.DeleteSubKeyTree(subKeyName, false);
                 }
             }
             if (newKey != null) {
@@ -127,15 +127,15 @@ namespace WindowsTweaker.AppTasks {
         }
 
         /// <summary>
-        /// Creates a sub-key with name (if it doesn't exists) <paramref name="keyName"/> under <paramref name="registryKey"/> if
-        /// <paramref name="val"/> is equal to true, otherwise it deletes it (if present). This behaviour is reversed if 
+        /// Sets the value of <paramref name="keyName"/> under <paramref name="registryKey"/> to 1 (REG_DWORD)
+        /// if <paramref name="val"/> equal to true, otherwise it sets it to 0. This behaviour is reversed if 
         /// <paramref name="inverse"/> is true.
         /// </summary>
-        /// <param name="val"></param>
         /// <param name="registryKey"></param>
         /// <param name="keyName"></param>
+        /// <param name="val"></param>
         /// <param name="inverse"></param>
-        internal static void SetRegistryValueFromBool(bool? val, RegistryKey registryKey, string keyName, bool inverse=false) {
+        internal static void SetValue(this RegistryKey registryKey, string keyName, bool? val, bool inverse = false) {
             int intVal = inverse ? Utils.ReversedBoolToInt(val) : Utils.BoolToInt(val);
             registryKey.SetValue(keyName, intVal);
         }
@@ -147,7 +147,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="txt"></param>
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
-        internal static void SetUiTextBoxFromRegistryValue(TextBox txt, RegistryKey registryKey, string valueName) {
+        internal static void SetText(this TextBox txt, RegistryKey registryKey, string valueName) {
             string val = (string) registryKey.GetValue(valueName);
             if (val != null) {
                 val = val.Trim();
@@ -159,10 +159,10 @@ namespace WindowsTweaker.AppTasks {
         /// Updates the value of <paramref name="valueName"/>
         /// in <paramref name="registryKey"/> from the text present in <paramref name="txt"/>
         /// </summary>
-        /// <param name="txt"></param>
         /// <param name="registryKey"></param>
+        /// <param name="txt"></param>
         /// <param name="valueName"></param>
-        internal static void SetRegistryValueFromUiTextBox(TextBox txt, RegistryKey registryKey, string valueName) {
+        internal static void SetValue(this RegistryKey registryKey, TextBox txt, string valueName) {
             string txtVal = txt.Text.Trim();
             registryKey.SetValue(valueName, txtVal);
         }
@@ -171,10 +171,10 @@ namespace WindowsTweaker.AppTasks {
         /// Updates the value of <paramref name="valueName"/>
         /// in <paramref name="registryKey"/> from the password present in <paramref name="passwordBox"/>
         /// </summary>
-        /// <param name="passwordBox"></param>
         /// <param name="registryKey"></param>
+        /// <param name="passwordBox"></param>
         /// <param name="valueName"></param>
-        internal static void SetRegistryValueFromUiPasswordBox(PasswordBox passwordBox, RegistryKey registryKey,
+        internal static void SetValue(this RegistryKey registryKey, PasswordBox passwordBox,
             string valueName) {
             registryKey.SetValue(valueName, passwordBox.Password);
         }
@@ -186,7 +186,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="txtPasswd"></param>
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
-        internal static void SetUiPasswordBoxFromRegistryValue(PasswordBox txtPasswd, RegistryKey registryKey, string valueName) {
+        internal static void SetPassword(this PasswordBox txtPasswd, RegistryKey registryKey, string valueName) {
             string val = (string) registryKey.GetValue(valueName);
             if (val != null) {
                 txtPasswd.Password = val;

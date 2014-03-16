@@ -66,41 +66,39 @@ namespace WindowsTweaker.AppTasks
             string msg = sendToListItems.Length == 1
                 ? "Are you sure you want to delete \"" + sendToListItems[0].Name + "\" from Send To Menu?"
                 : "Are you sure you want to delete all these " + sendToListItems.Length + " items from Send To Menu?";
-            if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) ==
-                MessageBoxResult.Yes) {
-                List<string> failedFiles = new List<string>();
-                foreach (FileItem sendToFileItem in sendToListItems) {
-                    string filePath = sendToFileItem.FullName;
-                    try {
-                        if (Path.GetExtension(filePath).Equals(".lnk", StringComparison.InvariantCultureIgnoreCase) ||
-                            Path.GetExtension(filePath).Equals(".pif", StringComparison.InvariantCultureIgnoreCase)) {
-                            if (!System.IO.File.Exists(filePath)) {
-                                failedFiles.Add(sendToFileItem.Name);
-                                continue;
-                            }
-                        }
-                        else {
+            if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) !=
+                MessageBoxResult.Yes) return;
+            List<string> failedFiles = new List<string>();
+            foreach (FileItem sendToFileItem in sendToListItems) {
+                string filePath = sendToFileItem.FullName;
+                try {
+                    if (Path.GetExtension(filePath).Equals(".lnk", StringComparison.InvariantCultureIgnoreCase) ||
+                        Path.GetExtension(filePath).Equals(".pif", StringComparison.InvariantCultureIgnoreCase)) {
+                        if (!System.IO.File.Exists(filePath)) {
                             failedFiles.Add(sendToFileItem.Name);
                             continue;
                         }
-                        System.IO.File.Delete(filePath);
                     }
-                    catch (IOException) {
+                    else {
                         failedFiles.Add(sendToFileItem.Name);
+                        continue;
                     }
-                    catch (NullReferenceException) {
-                        failedFiles.Add(sendToFileItem.Name);
-                    }
+                    System.IO.File.Delete(filePath);
                 }
-                if (failedFiles.Any()) {
-                    string failedMsg = failedFiles.Count > 1
-                        ? "Failed to delete " + Utils.SentenceJoin(failedFiles) +
-                          " because they are either System files or are not shortcuts"
-                        : "Failed to delete " + Utils.SentenceJoin(failedFiles) +
-                          " because it is either a System file or is not a valid shortcut.";
-                    message.Error(failedMsg);
+                catch (IOException) {
+                    failedFiles.Add(sendToFileItem.Name);
+                }
+                catch (NullReferenceException) {
+                    failedFiles.Add(sendToFileItem.Name);
                 }
             }
+            if (!failedFiles.Any()) return;
+            string failedMsg = failedFiles.Count > 1
+                ? "Failed to delete " + failedFiles.SentenceJoin() +
+                  " because they are either System files or are not shortcuts"
+                : "Failed to delete " + failedFiles.SentenceJoin() +
+                  " because it is either a System file or is not a valid shortcut.";
+            message.Error(failedMsg);
         }
     }
 }
