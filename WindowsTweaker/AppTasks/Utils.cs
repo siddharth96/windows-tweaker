@@ -87,5 +87,19 @@ namespace WindowsTweaker.AppTasks {
             return regKey.GetSubKeyNames().Select(subKeyName => regKey.OpenSubKey(subKeyName + @"\" + Constants.Cmd)).
                 Any(subKey => subKey != null && (subKey.GetValue("") as string) == valName);
         }
+
+        public static bool HasValue(this RegistryKey regKey, string filePath) {
+            if (regKey == null) return false;
+            string[] valueKeys = regKey.GetValueNames();
+            return (from valueKey in valueKeys
+                select (string) regKey.GetValue(valueKey)
+                into value
+                where
+                    value != null
+                select ExtractFilePath(value)).Any(containedFilePath => containedFilePath
+                                                                        != null &&
+                                                                        containedFilePath.Equals(filePath,
+                                                                            StringComparison.InvariantCultureIgnoreCase));
+        }
     }
 }

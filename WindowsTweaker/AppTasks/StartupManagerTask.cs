@@ -14,19 +14,19 @@ namespace WindowsTweaker.AppTasks {
 
         public static AddStatus Add(string filePath, bool? onlyCurrentUser) {
             RegistryKey hkcrRun = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-            if (Contains(hkcrRun, filePath)) {
+            if (hkcrRun.HasValue(filePath)) {
                 hkcrRun.Close();
                 return AddStatus.AlreadyPresent;
             }
             RegistryKey hkcrRunDisabled =
                 Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-            if (Contains(hkcrRunDisabled, filePath)) {
+            if (hkcrRunDisabled.HasValue(filePath)) {
                 hkcrRun.Close();
                 hkcrRunDisabled.Close();
                 return AddStatus.AlreadyPresent;
             }
             RegistryKey hklmRun = Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-            if (Contains(hklmRun, filePath)) {
+            if (hklmRun.HasValue(filePath)) {
                 hkcrRun.Close();
                 hkcrRunDisabled.Close();
                 hklmRun.Close();
@@ -34,7 +34,7 @@ namespace WindowsTweaker.AppTasks {
             }
             RegistryKey hklmRunDisabled =
                 Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-");
-            if (Contains(hklmRunDisabled, filePath)) {
+            if (hklmRunDisabled.HasValue(filePath)) {
                 hkcrRun.Close();
                 hkcrRunDisabled.Close();
                 hklmRun.Close();
@@ -48,14 +48,6 @@ namespace WindowsTweaker.AppTasks {
             hklmRun.Close();
             hklmRunDisabled.Close();
             return AddStatus.Success;
-        }
-
-        public static bool Contains(RegistryKey regKey, string filePath) {
-            if (regKey == null) return false;
-            string[] valueKeys = regKey.GetValueNames();
-            return (from valueKey in valueKeys select (string) regKey.GetValue(valueKey) into value where
-                        value != null select Utils.ExtractFilePath(value)).Any(containedFilePath => containedFilePath
-                            != null && containedFilePath.Equals(filePath, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public static void Toggle(FileItem fileItem, bool newState) {
