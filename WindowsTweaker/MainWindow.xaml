@@ -4,7 +4,7 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         Title="Windows Tweaker 5.0"
-        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="700"
+        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="750"
         ResizeMode="CanResizeWithGrip">
     <Window.Resources>
         <cm:BackgroundWorker x:Key="sendToBackgroundWorker" RunWorkerCompleted="OnSendToWorkerCompleted"
@@ -82,7 +82,7 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="advanced" Width="100">
-                            <Grid Margin="10, 30, 0, 10">
+                            <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -131,28 +131,28 @@
                                             RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="100, 10, 5, 30">
+                                <StackPanel Grid.Column="1" Margin="100, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}">
                                         Advanced Explorer Tweaks
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkShowMenuBar" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkShowMenuBar" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkShowHiddenFilesFolders" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkShowHiddenFilesFolders" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkHideExtension" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkHideExtension" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkSelectItems" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkSelectItems" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkRestoreFoldersAtLogin" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkRestoreFoldersAtLogin" />
                                     <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files" Click="OnCheckBoxClick"
-                                              Style="{StaticResource ChkStyle}" Name="chkShowOSfiles" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkShowOSfiles" />
                                     <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Content="Display compressed &amp; encrypted NTFS files in colour"
-                                              Style="{StaticResource ChkStyle}" Name="chkShowNtfsInColor" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkShowNtfsInColor" />
                                     <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Content="Disable expand to current folder in left navigation-pane"
-                                              Style="{StaticResource ChkStyle}" Name="chkAutoExpand" />
+                                              Style="{StaticResource SmallChkStyle}" Name="chkAutoExpand" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -211,7 +211,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="100, 20, 5, 30">
+                                <StackPanel Grid.Column="1" Margin="100, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}">
                                         Hide options in Property Dialog
                                     </TextBlock>
@@ -262,6 +262,132 @@
                                     <RadioButton Margin="30, 30, 5, 5"
                                                  Content="Hide &quot;Libraries&quot; in Navigation Pane"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnHideLibraries" />
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="start screen" Width="120">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M30.448001,35.630001L53.9897,35.630001C54.726802,35.630001,55.323001,
+                                            36.226425,55.323001,36.963356L55.323001,41.489647C55.323001,42.226677,54.726802,
+                                            42.823002,53.9897,42.823002L30.448001,42.823002z M1.3332689,35.630001L28.227001,
+                                            35.630001 28.227001,42.823002 1.3332689,42.823002C0.59619968,42.823002,
+                                            2.1979213E-07,42.226677,0,41.489647L0,36.963356C2.1979213E-07,36.226425,
+                                            0.59619968,35.630001,1.3332689,35.630001z M0.87511574,1.1368684E-13L27.840909,
+                                            1.1368684E-13C28.299102,-2.3010274E-07,28.669,0.37109263,28.669,0.82946581L28.669,
+                                            31.568905C28.669,32.025902,28.299102,32.396999,27.840909,32.396999L0.87511574,
+                                            32.396999C0.41662501,32.396999,0.047000217,32.025902,0.047000204,31.568905L0.047000204,
+                                            0.82946581C0.047000217,0.37109263,0.41662501,-2.3010274E-07,0.87511574,1.1368684E-13z"
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource H1}">
+                                        Start Screen
+                                    </TextBlock>
+                                    <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
+                                              Content="Show my desktop background on Start" Name="chkDesktopBkgOnStart"
+                                              Style="{StaticResource SmallChkStyle}" />
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource SmallChkStyle}" Name="chkNavigateToDesktopOnClose" >
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                When I sign in or close all apps on a screen, go to the desktop instead of Start
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick" Name="chkStartOnDisplay"
+                                              Style="{StaticResource SmallChkStyle}">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Show Start on the display I'm using when I press the Windows logo key
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource SmallChkStyle}" Name="chkAppsViewOnStart">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Show the Apps view automatically when I go to Start
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource SmallChkStyle}" Name="chkSearchEverywhere">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Search everywhere instead of just my apps when I search from the Apps view
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource SmallChkStyle}" Name="chkListDesktopApps">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                List desktop apps first in the Apps view when it's sorted by category
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="navigtation" Width="120">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M30.448001,35.630001L53.9897,35.630001C54.726802,35.630001,55.323001,
+                                            36.226425,55.323001,36.963356L55.323001,41.489647C55.323001,42.226677,54.726802,
+                                            42.823002,53.9897,42.823002L30.448001,42.823002z M1.3332689,35.630001L28.227001,
+                                            35.630001 28.227001,42.823002 1.3332689,42.823002C0.59619968,42.823002,
+                                            2.1979213E-07,42.226677,0,41.489647L0,36.963356C2.1979213E-07,36.226425,
+                                            0.59619968,35.630001,1.3332689,35.630001z M0.87511574,1.1368684E-13L27.840909,
+                                            1.1368684E-13C28.299102,-2.3010274E-07,28.669,0.37109263,28.669,0.82946581L28.669,
+                                            31.568905C28.669,32.025902,28.299102,32.396999,27.840909,32.396999L0.87511574,
+                                            32.396999C0.41662501,32.396999,0.047000217,32.025902,0.047000204,31.568905L0.047000204,
+                                            0.82946581C0.047000217,0.37109263,0.41662501,-2.3010274E-07,0.87511574,1.1368684E-13z"
+                                            Stretch="Uniform" Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
+                                    <TextBlock Style="{StaticResource H1}">
+                                        Navigation Tweaks for Windows 8
+                                    </TextBlock>
+                                    <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkCharmsTR"
+                                              Content="When I point to the upper-right corner, show the charms"
+                                              IsChecked="True"
+                                              Style="{StaticResource ChkStyle}" />
+                                    <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkAppsTL"
+                                              Content="When I click the upper-left corner, switch between my recent apps"
+                                              Style="{StaticResource ChkStyle}" IsChecked="" />
+                                    <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource ChkStyle}" Name="chkReplaceCmdPromptWithPs">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                Replace Command Prompt with Windows PowerShell in the menu when I right-click the
+                                                lower-left corner or press Windows key+X</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -3194,7 +3320,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 2, 0, 0">For</TextBlock>
                             <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForCurrentUser" IsChecked="True"
-                                         Margin="10, 1, 10, 0">Current Users</RadioButton>
+                                         Margin="10, 1, 10, 0">Current User</RadioButton>
                             <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForAllUser"
                                          Margin="0, 1, 0, 0">All Users</RadioButton>
                         </StackPanel>

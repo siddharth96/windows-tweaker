@@ -110,6 +110,7 @@
     <Compile Include="AppTasks\OpenWithTask.cs" />
     <Compile Include="AppTasks\SendToTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
+    <Compile Include="AppTasks\UserInteractionMarker.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\FileItem.cs" />
     <Compile Include="AppTasks\FileReader.cs" />

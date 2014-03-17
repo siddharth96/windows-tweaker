@@ -37,7 +37,18 @@
         public const string NoCustomizeTab = "NoCustomizeThisFolder";
         // Libraries
         public const string Library = "{031E4825-7B94-4dc3-B131-E946B44C8DD5}";
-        //etc
+        // Start Screen
+        public const string DesktopBkgOnStart = "MotionAccentId_v1.00";
+        public const string OpenDesktop = "OpenAtLogon";
+        public const string MonitorOverride = "MonitorOverride";
+        public const string MakeAllAppsDefault = "MakeAllAppsDefault";
+        public const string GlobalSearchInApps = "GlobalSearchInApps";
+        public const string DesktopFirst = "DesktopFirst";
+        // Navigation
+        public const string DisableTrCorner = "DisableTRCorner";
+        public const string DisableTlCorner = "DisableTLCorner";
+        public const string DontUsePowerShellOnWinX = "DontUsePowerShellOnWinX";
+        // Etc
         public const string RecycleBin = "{645FF040-5081-101B-9F08-00AA002F954E}";
         public const string Regedit = "{77708248-f839-436b-8919-527c410f48b9}";
 

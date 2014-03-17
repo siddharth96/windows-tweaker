@@ -15,7 +15,7 @@ namespace WindowsTweaker.AppTasks
     {
         private static string _cachedSendToPath;
 
-        internal static Func<WindowsVer.Windows, string> GetFolderPath = (windowsOs) =>   _cachedSendToPath ?? (_cachedSendToPath = windowsOs == WindowsVer.Windows.XP
+        internal static Func<WindowsVer.Windows, string> GetFolderPath = (windowsOs) =>   _cachedSendToPath ?? (_cachedSendToPath = windowsOs == WindowsVer.Windows.Xp
                 ? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\SendTo"
                 : Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\SendTo");
 

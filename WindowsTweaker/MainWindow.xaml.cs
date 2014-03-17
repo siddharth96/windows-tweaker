@@ -90,7 +90,7 @@ namespace WindowsTweaker {
 
         private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
             CheckBox chkBox = (CheckBox)sender;
-            chkBox.Tag = Constants.HasUserInteracted;
+            chkBox.SetInteracted();
             if (chkBox.Equals(chkEnableAutoLogin)) {
                 ToggleAutoLoginUiState();
             } else if (chkBox.Equals(chkEnableLoginMsg)) {
@@ -121,7 +121,7 @@ namespace WindowsTweaker {
                         + @"\system32\Restore\rstrui.exe");
                 } else
                     _message.Error("This option is not available in your version of Windows");
-            } catch (Exception) { }
+            }
         }
         #endregion
 
@@ -177,12 +177,10 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromLogon() {
             // Auto Login
             using (RegistryKey hklmWinLogon = _hklm.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
-                if ((chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
-                    hklmWinLogon.SetValue(chkEnableAutoLogin, Constants.AutoAdminLogon);
-                    hklmWinLogon.SetValue(txtAutoLoginUserName, Constants.DefaultUserName);
-                    hklmWinLogon.SetValue(txtAutoLoginPasswd, Constants.DefaultPassword);
-                    hklmWinLogon.SetValue(txtAutoLoginDomainName, Constants.DefaultDomainName);
-                }
+                hklmWinLogon.SetValue(chkEnableAutoLogin, Constants.AutoAdminLogon);
+                hklmWinLogon.SetValue(txtAutoLoginUserName, Constants.DefaultUserName);
+                hklmWinLogon.SetValue(txtAutoLoginPasswd, Constants.DefaultPassword);
+                hklmWinLogon.SetValue(txtAutoLoginDomainName, Constants.DefaultDomainName);
                 hklmWinLogon.SetValue(chkPreventShiftPress, Constants.IgnoreShiftOverride);
                 hklmWinLogon.SetValue(chkAutoLogonAfterLogoff, Constants.ForceAutoLogon);
             }
@@ -204,10 +202,8 @@ namespace WindowsTweaker {
                 hklmSystem.SetValue(chkShowShutdownBtn, Constants.ShutdownWithoutLogon);
 
                 // Login Message
-                if ((chkEnableAutoLogin.Tag as Byte?) == Constants.HasUserInteracted) {
-                    hklmSystem.SetValue(txtLoginMsgTitle, Constants.LoginMsgTitle);
-                    hklmSystem.SetValue(txtLoginMsgContent, Constants.LoginMsgContent);
-                }
+                hklmSystem.SetValue(txtLoginMsgTitle, Constants.LoginMsgTitle);
+                hklmSystem.SetValue(txtLoginMsgContent, Constants.LoginMsgContent);
             }
         }
 
@@ -272,13 +268,13 @@ namespace WindowsTweaker {
                 chkHideThumbNailCache.SetCheckedState(hkcuExAdvanced, Constants.DisableThumbnailCache);
                 // Taskbar
                 chkTaskBarAnim.SetCheckedState(hkcuExAdvanced, Constants.TaskBarAnimations);
-                if (_windowsOs != WindowsVer.Windows.XP) {
+                if (_windowsOs != WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
                 }
                 chkTaskBarNoTooltip.SetCheckedState(hkcuExAdvanced, Constants.ShowInfoTip, true);
 
             }
-            if (_windowsOs > WindowsVer.Windows.XP && _windowsOs < WindowsVer.Windows.Eight) {
+            if (_windowsOs > WindowsVer.Windows.Xp && _windowsOs < WindowsVer.Windows.Eight) {
                 using (RegistryKey hkcuDWM = _hkcu.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM")) {
                     // Explorer
                     chkHide3DFlip.SetCheckedState(hkcuDWM, Constants.DisAllowFlip_3D);
@@ -329,12 +325,12 @@ namespace WindowsTweaker {
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 hkcuExAdvanced.SetValue(chkHideThumbNailCache, Constants.DisableThumbnailCache);
                 hkcuExAdvanced.SetValue(chkTaskBarAnim, Constants.TaskBarAnimations);
-                if (_windowsOs != WindowsVer.Windows.XP) {
+                if (_windowsOs != WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
                 }
 
             }
-            if (_windowsOs > WindowsVer.Windows.XP && _windowsOs < WindowsVer.Windows.Eight) {
+            if (_windowsOs > WindowsVer.Windows.Xp && _windowsOs < WindowsVer.Windows.Eight) {
                 using (RegistryKey hkcuDWM = _hkcu.CreateSubKey(@"Software\Policies\Microsoft\Windows\DWM")) {
                     hkcuDWM.SetValue(chkHide3DFlip, Constants.DisAllowFlip_3D);
                 }
@@ -394,7 +390,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmNamespace = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
-                if (_windowsOs > WindowsVer.Windows.XP) {
+                if (_windowsOs > WindowsVer.Windows.Xp) {
                     RegistryKey key = hklmNamespace.OpenSubKey(Constants.Library);
                     if (key != null) {
                         rbtnShowLibraries.IsChecked = true;
@@ -425,6 +421,41 @@ namespace WindowsTweaker {
                 }
                 hkcrCLSID.Close();
                 hklmCPNamespace.Close();
+            }
+
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                // Start Screen
+                using (RegistryKey hkcuAccess = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Accent")) {
+                    int? desktopBkgOnStartVal = (int?) hkcuAccess.GetValue(Constants.DesktopBkgOnStart);
+                    switch (desktopBkgOnStartVal) {
+                        case 0xdb:
+                            chkDesktopBkgOnStart.IsChecked = true;
+                            break;
+                        case 0xdd:
+                            chkDesktopBkgOnStart.IsChecked = false;
+                            break;
+                        default:
+                            chkDesktopBkgOnStart.IsChecked = false;
+                            break;
+                    }
+                }
+                using (RegistryKey hkcuStartScreen = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage")) {
+                    chkNavigateToDesktopOnClose.SetCheckedState(hkcuStartScreen, Constants.OpenDesktop, true);
+                    chkStartOnDisplay.SetCheckedState(hkcuStartScreen, Constants.MonitorOverride);
+                    chkAppsViewOnStart.SetCheckedState(hkcuStartScreen, Constants.MakeAllAppsDefault);
+                    chkSearchEverywhere.SetCheckedState(hkcuStartScreen, Constants.GlobalSearchInApps);
+                    chkListDesktopApps.SetCheckedState(hkcuStartScreen, Constants.DesktopFirst);
+                }
+
+                // Navigation
+                using (RegistryKey hkcuEdgeUi = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\ImmersiveShell\EdgeUi")) {
+                    chkCharmsTR.SetCheckedState(hkcuEdgeUi, Constants.DisableTrCorner, true);
+                    chkAppsTL.SetCheckedState(hkcuEdgeUi, Constants.DisableTlCorner, true);
+                }
+
+                using (RegistryKey hkcuAdvanced = _hkcr.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                    chkReplaceCmdPromptWithPs.SetCheckedState(hkcuAdvanced, Constants.DontUsePowerShellOnWinX, true);
+                }
             }
         }
 
@@ -467,7 +498,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmNamespace = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
-                if (_windowsOs > WindowsVer.Windows.XP) {
+                if (_windowsOs > WindowsVer.Windows.Xp) {
                     RegistryKey key = hklmNamespace.OpenSubKey(Constants.Library, true);
                     if (rbtnShowLibraries.IsChecked == true)
                         hklmNamespace.SetSubKey(Constants.Library, true);
@@ -503,6 +534,33 @@ namespace WindowsTweaker {
                 if (hklmCPNamespace != null) {
                     hklmCPNamespace.SetSubKey(Constants.Regedit, false);
                     hklmCPNamespace.Close();
+                }
+            }
+
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                // Start Screen
+                if (chkDesktopBkgOnStart.HasUserInteracted()) {
+                    using (RegistryKey hkcuAccess = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Accent")) {
+                        int desktopBkgOnStartVal = chkDesktopBkgOnStart.IsChecked == true ? 0xdb : 0xdd;
+                        hkcuAccess.SetValue(Constants.DesktopBkgOnStart, desktopBkgOnStartVal);
+                    }
+                }
+                using (RegistryKey hkcuStartScreen = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage")) {
+                    hkcuStartScreen.SetValue(chkNavigateToDesktopOnClose, Constants.OpenDesktop, true);
+                    hkcuStartScreen.SetValue(chkStartOnDisplay, Constants.MonitorOverride);
+                    hkcuStartScreen.SetValue(chkAppsViewOnStart, Constants.MakeAllAppsDefault);
+                    hkcuStartScreen.SetValue(chkSearchEverywhere, Constants.GlobalSearchInApps);
+                    hkcuStartScreen.SetValue(chkListDesktopApps, Constants.DesktopFirst);
+                }
+
+                // Navigation
+                using (RegistryKey hkcuEdgeUi = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\ImmersiveShell\EdgeUi")) {
+                    hkcuEdgeUi.SetValue(chkCharmsTR, Constants.DisableTrCorner, true);
+                    hkcuEdgeUi.SetValue(chkAppsTL, Constants.DisableTlCorner, true);
+                }
+
+                using (RegistryKey hkcuAdvanced = _hkcr.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                    hkcuAdvanced.SetValue(chkReplaceCmdPromptWithPs, Constants.DontUsePowerShellOnWinX, true);
                 }
             }
         }
@@ -736,7 +794,7 @@ namespace WindowsTweaker {
             }
 
             // Explorer
-            if (chkHandIcon.Tag as Byte? == Constants.HasUserInteracted) {
+            if (chkHandIcon.HasUserInteracted()) {
                 using (RegistryKey hkcrSharingHandler = _hkcr.CreateSubKey(@"Network\SharingHandler")) {
                     hkcrSharingHandler.SetValue("", chkHandIcon.IsChecked == true ? Constants.SharedFolderIcon : "");
                 }
@@ -1390,7 +1448,7 @@ namespace WindowsTweaker {
 
         private void UpdateRegistryFromFeatures() {
             // System Beeps
-            if ((chkSystemBeep.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chkSystemBeep.HasUserInteracted()) {
                 using (RegistryKey hkcuSound = _hkcu.CreateSubKey(@"Control Panel\Sound")) {
                     string val = chkSystemBeep.IsChecked == true ? Constants.No : Constants.Yes;
                     hkcuSound.SetValue(Constants.Beep, val);
@@ -1399,7 +1457,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Windows DVD Burner
-                if ((chkWinDvdBurner.Tag as Byte?) == Constants.HasUserInteracted) {
+                if (chkWinDvdBurner.HasUserInteracted()) {
                     if (chkWinDvdBurner.IsChecked == true) {
                         if (hkcuExplorer.GetValue(Constants.NoDvdBurning) != null) {
                             hkcuExplorer.DeleteValue(Constants.NoDvdBurning);
@@ -1537,7 +1595,7 @@ namespace WindowsTweaker {
             using (RegistryKey hklmCVExplorer = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
                 hklmCVExplorer.SetValue(chkUnloadUnsedDLL, Constants.AlwaysUnloadDll);
             }
-            if ((chkDisableGroupPolicy.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chkDisableGroupPolicy.HasUserInteracted()) {
                 using (RegistryKey hklmSystem = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                     if (chkDisableGroupPolicy.IsChecked == true) {
                         hklmSystem.SetValue(Constants.MachineGroupPolicy, 0);
@@ -1560,7 +1618,7 @@ namespace WindowsTweaker {
                 hklmWinLogon.SetStringValue(chkDisableLKGC, Constants.ReportBootOk, true);
             }
 
-            if ((chkEnableBootDefrag.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chkEnableBootDefrag.HasUserInteracted()) {
                 using (RegistryKey hklmBootOptFunc = _hklm.CreateSubKey(@"Software\Microsoft\Dfrg\BootOptimizeFunction")) {
                     hklmBootOptFunc.SetValue(Constants.Enable, chkEnableBootDefrag.IsChecked == true ? "Y" : "N");
                 }

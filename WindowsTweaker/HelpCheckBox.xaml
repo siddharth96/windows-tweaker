@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <CheckBox>
+        <CheckBox Name="chk">
             <CheckBox.Content>
                 <TextBlock TextWrapping="Wrap" Name="txtChkBx"></TextBlock>
             </CheckBox.Content>

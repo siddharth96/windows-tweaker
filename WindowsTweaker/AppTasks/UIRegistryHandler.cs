@@ -66,7 +66,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="keyName"></param>
         /// <param name="inverse"></param>
         internal static void SetValue(this RegistryKey registryKey, CheckBox chk, string keyName, bool inverse = false) {
-            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chk.HasUserInteracted()) {
                 registryKey.SetValue(keyName, chk.IsChecked, inverse);
             }
         }
@@ -84,7 +84,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="inverse"></param>
         public static void SetStringValue(this RegistryKey registryKey, CheckBox chk, string keyName,
             bool inverse = false) {
-            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chk.HasUserInteracted()) {
                 string val = inverse ? Utils.ReversedBoolToString(chk.IsChecked) : Utils.BoolToString(chk.IsChecked);
                 registryKey.SetValue(keyName, val);
             }
@@ -100,7 +100,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="chk"></param>
         /// <param name="keyName"></param>
         internal static void SetSubKey(this RegistryKey registryKey, CheckBox chk, string keyName) {
-            if ((chk.Tag as Byte?) == Constants.HasUserInteracted) {
+            if (chk.HasUserInteracted()) {
                 registryKey.SetSubKey(keyName, chk.IsChecked);
             }
         }

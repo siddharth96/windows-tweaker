@@ -1,6 +1,6 @@
-Windows Tweaker has been written in C# and WPF using .net Framework 4.5.1, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
+Windows Tweaker 5.0 has been written in C# and WPF using .net Framework 4.5.1, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
 
-Window Tweaker 4.0 was released on March-4, 2012.
+Window Tweaker 4.0 (used .net 4.0) was released on March-4, 2012.
 The latest version 5.0 is currently under development, and is a complete re-write from scratch.
 
 ## To Build
