@@ -10,18 +10,7 @@
         <GradientStop Color="#FF498EC5" Offset="0.0" />
         <GradientStop Color="#FF325C86" Offset="1" />
     </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FF498EC5" Offset="0.004" />
-        <GradientStop Color="#FF325C86" Offset="0.895" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ButtonBackgroundBrush_Hover" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#88498EC5" Offset="0.0" />
-        <GradientStop Color="#88498EC5" Offset="0.895" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="ButtonBackgroundBrush_Press" Color="#FF325C86" />
+    
     <SolidColorBrush x:Key="WhiteBackgroudBrush" Color="#FFF0F0F0" />
 
     <LinearGradientBrush x:Key="WindowBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
@@ -182,13 +171,18 @@
     <SolidColorBrush x:Key="BorderBackgroundBrush" Color="#FF1C677F" />
     <SolidColorBrush x:Key="BorderColorBrushGreen" Color="#FFF3FFFF" />
     <SolidColorBrush x:Key="BorderBackgroundBrushGreen" Color="#D198CC3C" />
-
+    
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="#FFAAAAAA" />
+    <SolidColorBrush x:Key="ButtonBackgroundHoverBrush" Color="#FFEDEDED"></SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FF333333"></SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonBackgroundPressedBrush" Color="#FFDBDBDB"></SolidColorBrush>
+    
     <Style TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="Border" TextBlock.Foreground="White"
-                            Background="{StaticResource ButtonBackgroundBrush}">
+                    <Border Name="Border" TextBlock.Foreground="{StaticResource ButtonForegroundBrush}" BorderThickness="1"
+                            Background="{StaticResource VectorImageBackground}" BorderBrush="{StaticResource ButtonBorderBrush}">
                         <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center" />
@@ -196,11 +190,11 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource ButtonBackgroundBrush_Hover}" />
+                                    Value="{StaticResource ButtonBackgroundHoverBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource ButtonBackgroundBrush_Press}" />
+                                    Value="{StaticResource ButtonBackgroundPressedBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="Background" Value="MistyRose" />
@@ -218,8 +212,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Name="Border" TextBlock.Foreground="White"
-                            Background="{StaticResource ButtonBackgroundBrush}">
+                    <Border Name="Border" TextBlock.Foreground="{StaticResource ButtonForegroundBrush}" BorderThickness="1"
+                            Background="{StaticResource VectorImageBackground}" BorderBrush="{StaticResource ButtonBorderBrush}">
                         <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center" />
@@ -227,11 +221,11 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource ButtonBackgroundBrush_Hover}" />
+                                    Value="{StaticResource ButtonBackgroundHoverBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource ButtonBackgroundBrush_Press}" />
+                                    Value="{StaticResource ButtonBackgroundPressedBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="Background" Value="MistyRose" />
@@ -241,6 +235,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="5,2" />
         <Setter Property="Padding" Value="50,5" />
     </Style>

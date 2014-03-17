@@ -28,10 +28,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="{StaticResource BlueShadeBackgroundBrush}" Grid.Row="1" Grid.Column="0" Width="10" Height="60" VerticalAlignment="Top"
+                   Margin="0, 20, 0, 0"></Rectangle>
+        <Grid Grid.Row="0" Grid.Column="1">
             <TextBlock Style="{StaticResource H1}" Margin="20, 15, 10, 0" HorizontalAlignment="Left">Windows Tweaker 5.0</TextBlock>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
                 <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
                          Tag="explorer" Loaded="OnTabLoaded">
@@ -3362,14 +3368,14 @@
                 </Border>
             </Popup>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource LargeButton}" Name="btnApply">S_ave</Button>
                 <Button Style="{StaticResource LargeButton}" Name="btnOk">_Save &amp; Exit</Button>
                 <Button Style="{StaticResource LargeButton}" Name="btnCancel">_Don't Save &amp; Exit</Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="0" 
+        <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="0" Grid.Column="1"
               Name="msgContainerBorder" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
