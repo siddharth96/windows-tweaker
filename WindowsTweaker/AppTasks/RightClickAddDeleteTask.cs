@@ -12,10 +12,17 @@ namespace WindowsTweaker.AppTasks {
         internal static bool Add(string shrtCtName, string inputVal) {
             string shrtPathParam = null, shrtCtPathInputVal = inputVal;
             if (shrtCtPathInputVal.Contains(" ")) {
-                string[] shrtctPathSplit = shrtCtPathInputVal.Split(' ');
-                if (shrtctPathSplit.Length == 2) {
-                    shrtPathParam = shrtctPathSplit[1].Trim();
-                    shrtCtPathInputVal = shrtctPathSplit[0];
+                // Random hackery to extract file-path when input is of the form "C:\folder\somefile.exe %1"
+                int lastIndxOfSpace = shrtCtPathInputVal.LastIndexOf(" ", StringComparison.Ordinal);
+                string assumedFilePath = shrtCtPathInputVal.Substring(0, lastIndxOfSpace);
+                if (File.Exists(assumedFilePath)) {
+                    try {
+                        shrtPathParam = shrtCtPathInputVal.Substring(lastIndxOfSpace + 1);
+                    }
+                    catch (ArgumentOutOfRangeException) {
+                        shrtPathParam = null;
+                    }
+                    shrtCtPathInputVal = assumedFilePath;
                 }
             }
             string shrtCtPathToSave = Utils.ExtractFilePath(shrtCtPathInputVal);
@@ -27,11 +34,15 @@ namespace WindowsTweaker.AppTasks {
                     return false;
                 shrtCtPathToSave = Constants.InternetExplorer + " " + shrtCtPathToSave;
             }
+            AddToRegistry(shrtCtName, shrtCtPathToSave);
+            return true;
+        }
+
+        internal static void AddToRegistry(string shrtCtName, string shrtCtPathToSave) {
             using (RegistryKey hkcrFrndlyTxt =
                     Registry.ClassesRoot.CreateSubKey(@"Directory\Background\Shell\" + shrtCtName + @"\command")) {
                 hkcrFrndlyTxt.SetValue("", shrtCtPathToSave);
             }
-            return true;
         }
 
         private static bool IsUri(string val, ref string formattedUri) {

@@ -35,19 +35,22 @@ namespace WindowsTweaker.AppTasks {
             return !Directory.EnumerateFiles(path).Any();
         }
 
-        // Regex link : http://social.msdn.microsoft.com/Forums/en-US/e3f2bb04-1b6a-4e06-9fcd-07e86ae4bd5f/regular-expression-to-validate-file-path?forum=regexp
+        // Regex link : http://stackoverflow.com/a/7804916/1293716
         private static readonly Regex FilePathRegex = new Regex(
-            @"(?:(?:(?:\b[a-z]:|\\\\[a-z0-9_.$]+\\[a-z0-9_.$]+)\\|
-	              \\?[^\\/:*?""<>|\r\n]+\\?)               
-	              (?:[^\\/:*?""<>|\r\n]+\\)*               
-	              [^\\/:*?""<>|\r\n]*)",
+            @"(([a-z]:|\\\\[a-z0-9_.$]+\\[a-z0-9_.$]+)?(\\?(?:[^\\/:*?""<>|\r\n]+\\)+)[^\\/:*?""<>|\r\n]+)",
             RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace);
 
         public static string ExtractFilePath(string fPath) {
-            Match filePathMatch = FilePathRegex.Match(fPath);
-            if (!filePathMatch.Success) return null;
-            string val = filePathMatch.Value;
-            return val;
+            try {
+                Match filePathMatch = FilePathRegex.Match(fPath);
+                if (!filePathMatch.Success) return null;
+                string val = filePathMatch.Value;
+                return val;
+            }
+            catch (ArgumentException) {
+                // Syntax error in regular expression
+                return null;
+            }
         }
 
         public static bool Move(this RegistryKey sourceKey, RegistryKey destinationKey, string keyName) {

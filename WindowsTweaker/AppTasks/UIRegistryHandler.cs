@@ -176,7 +176,7 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="valueName"></param>
         internal static void SetText(this TextBox txt, RegistryKey registryKey, string valueName) {
             string val = (string) registryKey.GetValue(valueName);
-            if (val != null) {
+            if (!String.IsNullOrEmpty(val) && val != "\0") {
                 val = val.Trim();
                 txt.Text = val;
             }

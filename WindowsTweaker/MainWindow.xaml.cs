@@ -1281,9 +1281,19 @@ namespace WindowsTweaker {
                 return;
             }
             bool result = RightClickAddDeleteTask.Add(shrtCtName, shrtCtPath);
-            if (!result)
+            if (!result) {
+                string msg = String.Format("Unable to identify \"{0}\" as a valid file-path or url." +
+                                           "\n Do you still want to proceed anyways and create a shortcut?" +
+                                           "\n PS : You might want to do this if this file is added to your PATH.", shrtCtPath);
+                if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                    RightClickAddDeleteTask.AddToRegistry(shrtCtName, shrtCtPath);
+                    result = true;
+                }
+            }
+            if (!result) {
                 _message.Error("Please enter a valid file-path or url");
-            else {
+            } else {
                 _message.Success("Successfully added " + shrtCtName + " to Right-Click");
                 ClearAddToContextMenuInput();
             }
