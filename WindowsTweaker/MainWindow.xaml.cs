@@ -806,6 +806,32 @@ namespace WindowsTweaker {
         }
         #endregion
 
+        #region Display -> Selection Color
+        private void OnSelectionRectangleMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnSelectionRectangleTouchEnd(object sender, TouchEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnButtonSelectionColorClick(object sender, RoutedEventArgs e) {
+            ShowColorDialog();
+        }
+
+        private void OnButtonUseDefaultSelectionColorClick(object sender, RoutedEventArgs e) {
+            rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
+        }
+
+        private void ShowColorDialog() {
+            ColorPickerDialog colorPickerDialog = new ColorPickerDialog(_selectionColor);
+            if (colorPickerDialog.ShowDialog() == true) {
+                _selectionColor = colorPickerDialog.SelectedColour;
+                rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
+            }
+        }
+        #endregion
+
         #region Places
         private void LoadPlacesTab() {
             // Power Button
@@ -835,6 +861,40 @@ namespace WindowsTweaker {
                         break;
                 }
             }
+
+            // Default Opening
+            using (RegistryKey hkcrNoEnd = _hkcr.CreateSubKey(@".")) {
+                string prgForNoExt = String.Empty;
+                using (RegistryKey hkcrOpen = hkcrNoEnd.OpenSubKey(@"shell\open\command")) {
+                    if (hkcrOpen != null) {
+                        prgForNoExt = (string)hkcrOpen.GetValue("");
+                    }
+                    if (!String.IsNullOrEmpty(prgForNoExt)) {
+                        txtPrgForNoExt.Text = prgForNoExt;
+                        rbtnPrgForNoExt.IsChecked = true;
+                        rbtnOpenDlgForNoExt.IsChecked = false;
+                    } else {
+                        rbtnPrgForNoExt.IsChecked = false;
+                        rbtnOpenDlgForNoExt.IsChecked = false;
+                    }
+                }
+            }
+            using (RegistryKey hkcrUnknown = _hkcr.CreateSubKey(@"Unknown")) {
+                string prgForUnkownExt = String.Empty;
+                using (RegistryKey hkcrOpen = hkcrUnknown.OpenSubKey(@"shell\open\command")) {
+                    if (hkcrOpen != null) {
+                        prgForUnkownExt = (string) hkcrOpen.GetValue("");
+                    }
+                    if (!String.IsNullOrEmpty(prgForUnkownExt)) {
+                        txtPrgForUnknownExt.Text = prgForUnkownExt;
+                        rbtnPrgForUnknownExt.IsChecked = true;
+                        rbtnOpenDlgForUnknownExt.IsChecked = false;
+                    } else {
+                        rbtnPrgForUnknownExt.IsChecked = false;
+                        rbtnOpenDlgForUnknownExt.IsChecked = false;
+                    }
+                }
+            }
         }
 
         private void UpdateFromPlaces() {
@@ -856,6 +916,172 @@ namespace WindowsTweaker {
                     case 6: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 256);
                         break;
                 }
+            }
+        }
+        #endregion
+
+        #region Places -> GodMode
+        private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                string selectedFolderName = folderBrowserDialog.FileName;
+                if (Utils.IsEmptyDirectory(selectedFolderName)) {
+                    if (Directory.GetParent(selectedFolderName) != null) {
+                        string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
+                        if (Directory.Exists(godModeFolderPath))
+                            Directory.Delete(godModeFolderPath);
+                        DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
+                        string parentDir = selectedFolderDirectoryInfo.Parent.FullName;
+                        try {
+                            selectedFolderDirectoryInfo.Delete(true);
+                            Directory.CreateDirectory(godModeFolderPath);
+                            _message.Success("Successfully created folder in " + parentDir +
+                                            ". Please note that if on clicking the folder you get an error, " +
+                                            "then you need to refresh that window for changes to be reflected.");
+                        } catch (UnauthorizedAccessException ex) {
+                            _message.Error("Permission Denied!");
+                        }
+                    } else {
+                        _message.Error("You can't make " + selectedFolderName + " a \'God\' folder. " +
+                                      "Please select an empty folder or create a new one");
+                    }
+                } else {
+                    _message.Error(selectedFolderName + " is not an empty folder. You must create an " +
+                                  "empty folder, to set God Mode");
+                }
+            }
+        }
+        #endregion
+
+        #region Places -> Open With
+        private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
+            OpenWith openWithDialog = new OpenWith();
+            openWithDialog.ShowDialog();
+        }
+
+        private void OnAddToOpenWithImageMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowAddToOpenWithPopup();
+        }
+
+        private void OnAddToOpenWithImageTouchEnd(object sender, TouchEventArgs e) {
+            ShowAddToOpenWithPopup();
+        }
+
+        private void ShowAddToOpenWithPopup() {
+            if (!popupAddToOpenWith.IsOpen) {
+                popupAddToOpenWith.IsOpen = true;
+            }
+        }
+
+        private void OnBrowseFileForOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToOpenWith.IsOpen = false;
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null) {
+                txtOpenWithFilePath.Text = filePath;
+            }
+            popupAddToOpenWith.IsOpen = true;
+        }
+
+        private void OnAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            string filePath = txtOpenWithFilePath.Text.Trim();
+            if (filePath.Length == 0) return;
+            if (File.Exists(filePath)) {
+                OpenWithTask.AddStatus status = OpenWithTask.Add(filePath);
+                switch (status) {
+                    case OpenWithTask.AddStatus.Success:
+                        _message.Success("Successfully added to open-with");
+                        break;
+                    case OpenWithTask.AddStatus.AlreadyPresent:
+                        _message.Success("This file is already present in open-with");
+                        break;
+                    case OpenWithTask.AddStatus.Failed:
+                        _message.Error("Failed to add this file to open-with");
+                        break;
+                }
+            } else {
+                _message.Error("The specified file doesn't exist.");
+            }
+            txtOpenWithFilePath.Text = String.Empty;
+        }
+
+        private void OnCancelAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToOpenWith.IsOpen = false;
+        }
+        #endregion
+
+        #region Places -> Startup Manager
+        private void OnLaunchStartupManagerBtnClick(object sender, RoutedEventArgs e) {
+            StartupManager startupManager = new StartupManager();
+            startupManager.ShowDialog();
+        }
+
+        private void ShowAddToStartupPopup() {
+            if (!popupAddToStartup.IsOpen) {
+                popupAddToStartup.IsOpen = true;
+            }
+        }
+
+        private void OnBrowseFileForStartupBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToStartup.IsOpen = false;
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null) {
+                txtStartupFilePath.Text = filePath;
+            }
+            popupAddToStartup.IsOpen = true;
+        }
+
+        private void OnAddToStartupBtnClick(object sender, RoutedEventArgs e) {
+            string filePath = txtStartupFilePath.Text.Trim();
+            bool? onlyCurrentUser = rbtnStartupForCurrentUser.IsChecked;
+            if (onlyCurrentUser != true) {
+                onlyCurrentUser = rbtnStartupForAllUser.IsChecked;
+            }
+            if (filePath.Length == 0) return;
+            if (File.Exists(filePath)) {
+                StartupManagerTask.AddStatus status = StartupManagerTask.Add(filePath, onlyCurrentUser);
+                switch (status) {
+                    case StartupManagerTask.AddStatus.Success:
+                        _message.Success("Successfully added to startup");
+                        break;
+                    case StartupManagerTask.AddStatus.AlreadyPresent:
+                        _message.Error("This file is already present in startup");
+                        break;
+                    case StartupManagerTask.AddStatus.Failed:
+                        _message.Error("Failed to add this file to startup");
+                        break;
+                }
+            } else {
+                _message.Error("The specified file doesn't exist");
+            }
+            txtStartupFilePath.Text = String.Empty;
+        }
+
+        private void OnCancelAddToStartupBtnClick(object sender, RoutedEventArgs e) {
+            popupAddToStartup.IsOpen = false;
+        }
+
+        private void OnAddToStartupImageMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowAddToStartupPopup();
+        }
+
+        private void OnAddToStartupImageTouchEnd(object sender, TouchEventArgs e) {
+            ShowAddToStartupPopup();
+        }
+        #endregion
+
+        #region Places -> Default Opening
+        private void OnButtonBrowseProgramForNoExtensionClick(object sender, RoutedEventArgs e) {
+            SetFileValueInTextBox(txtPrgForNoExt);
+        }
+
+        private void OnButtonBrowseProgramForUnkownExtensionClick(object sender, RoutedEventArgs e) {
+            SetFileValueInTextBox(txtPrgForUnknownExt);
+        }
+
+        private static void SetFileValueInTextBox(TextBox txtBlk) {
+            string filePath = Utils.GetUserSelectedFilePath();
+            if (filePath != null) {
+                txtBlk.Text = filePath.Contains("%1") ? filePath : filePath + " %1";
             }
         }
         #endregion
@@ -968,222 +1194,6 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromRightClick() {}
         #endregion
 
-        #region Places -> GodMode
-        private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
-            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == true) {
-                string selectedFolderName = folderBrowserDialog.FileName;
-                if (Utils.IsEmptyDirectory(selectedFolderName)) {
-                    if (Directory.GetParent(selectedFolderName) != null) {
-                        string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
-                        if (Directory.Exists(godModeFolderPath))
-                            Directory.Delete(godModeFolderPath);
-                            DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
-                            string parentDir = selectedFolderDirectoryInfo.Parent.FullName;
-                            try {
-                                selectedFolderDirectoryInfo.Delete(true);
-                                Directory.CreateDirectory(godModeFolderPath);
-                                _message.Success("Successfully created folder in " + parentDir +
-                                                ". Please note that if on clicking the folder you get an error, " +
-                                                "then you need to refresh that window for changes to be reflected.");
-                            }
-                            catch (UnauthorizedAccessException ex) {
-                                _message.Error("Permission Denied!");
-                            }
-                    }
-                    else {
-                        _message.Error("You can't make " + selectedFolderName + " a \'God\' folder. " +
-                                      "Please select an empty folder or create a new one");
-                    }
-                }
-                else {
-                    _message.Error(selectedFolderName + " is not an empty folder. You must create an " +
-                                  "empty folder, to set God Mode");
-                }
-            }
-        }
-        #endregion
-
-        #region Task
-        private void LoadTaskTab() {
-            dateTimePickerScheduleShutdown.Value = DateTime.Now;
-        }
-
-        private void OnScheduleShutdownButtonClick(object sender, RoutedEventArgs e) {
-            DateTime? selectedDateTime = dateTimePickerScheduleShutdown.Value;
-            if (selectedDateTime.HasValue) {
-                string param = null;
-                switch (cmboBxShutdownAction.SelectedIndex) {
-                    case 0: param = "/s";
-                        break;
-                    case 1: param = "/r";
-                        break;
-                }
-                DateTime nowTime = DateTime.Now;
-                TimeSpan gap = selectedDateTime.Value.Subtract(nowTime);
-                long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
-                if (timeout >= 0) {
-                    string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
-                    ProcessWrapper.ExecuteDosCmd(shutdwnComd);
-                    _message.Success("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
-                        + " at " + selectedDateTime.Value.ToString("hh:mm tt"));
-                }
-                else {
-                    _message.Error("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
-                                  " exceed the limit of 10 years.");
-                }
-            }
-            else {
-                _message.Error("Please select a date!");
-            }
-        }
-
-        private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
-            ProcessWrapper.ExecuteDosCmd("shutdown /a");
-            _message.Success("Previously scheduled shutdown has been cancelled");
-        }
-        #endregion
-
-        #region Task -> Special Folder
-        private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
-            WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
-            folderBrowserDlg.Title = "Select a Parent Folder";
-            if (folderBrowserDlg.ShowDialog() == true) {
-                string parentPath = folderBrowserDlg.FileName;
-                string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
-                ProcessWrapper.ExecuteDosCmd(createCmd);
-               _message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " created successfully at " + parentPath);
-            }
-        }
-
-        private void OnButtonDeleteSpecialFolderClick(object sender, RoutedEventArgs e) {
-            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == true) {
-                string path = folderBrowserDialog.FileName;
-                string createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
-                ProcessWrapper.ExecuteDosCmd(createCmd);
-            }
-        }
-        #endregion
-
-        #region Places -> Open With
-        private void OnButtonOpenWithDialogClick(object sender, RoutedEventArgs e) {
-            OpenWith openWithDialog = new OpenWith();
-            openWithDialog.ShowDialog();
-        }
-
-        private void OnAddToOpenWithImageMouseDown(object sender, MouseButtonEventArgs e) {
-            ShowAddToOpenWithPopup();
-        }
-
-        private void OnAddToOpenWithImageTouchEnd(object sender, TouchEventArgs e) {
-            ShowAddToOpenWithPopup();
-        }
-
-        private void ShowAddToOpenWithPopup() {
-            if (!popupAddToOpenWith.IsOpen) {
-                popupAddToOpenWith.IsOpen = true;
-            }
-        }
-
-        private void OnBrowseFileForOpenWithBtnClick(object sender, RoutedEventArgs e) {
-            popupAddToOpenWith.IsOpen = false;
-            string filePath = Utils.GetUserSelectedFilePath();
-            if (filePath != null) {
-                txtOpenWithFilePath.Text = filePath;
-            }
-            popupAddToOpenWith.IsOpen = true;
-        }
-
-        private void OnAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
-            string filePath = txtOpenWithFilePath.Text.Trim();
-            if (filePath.Length == 0) return;
-            if (File.Exists(filePath)) {
-                OpenWithTask.AddStatus status = OpenWithTask.Add(filePath);
-                switch (status) {
-                    case OpenWithTask.AddStatus.Success:
-                        _message.Success("Successfully added to open-with");
-                        break;
-                    case OpenWithTask.AddStatus.AlreadyPresent:
-                        _message.Success("This file is already present in open-with");
-                        break;
-                    case OpenWithTask.AddStatus.Failed:
-                        _message.Error("Failed to add this file to open-with");
-                        break;
-                }
-            }
-            else {
-                _message.Error("The specified file doesn't exist.");
-            }
-            txtOpenWithFilePath.Text = String.Empty;
-        }
-
-        private void OnCancelAddToOpenWithBtnClick(object sender, RoutedEventArgs e) {
-            popupAddToOpenWith.IsOpen = false;
-        }
-        #endregion
-
-        #region Places -> Startup Manager
-        private void OnLaunchStartupManagerBtnClick(object sender, RoutedEventArgs e) {
-            StartupManager startupManager = new StartupManager();
-            startupManager.ShowDialog();
-        }
-
-        private void ShowAddToStartupPopup() {
-            if (!popupAddToStartup.IsOpen) {
-                popupAddToStartup.IsOpen = true;
-            }
-        }
-
-        private void OnBrowseFileForStartupBtnClick(object sender, RoutedEventArgs e) {
-            popupAddToStartup.IsOpen = false;
-            string filePath = Utils.GetUserSelectedFilePath();
-            if (filePath != null) {
-                txtStartupFilePath.Text = filePath;
-            }
-            popupAddToStartup.IsOpen = true;
-        }
-
-        private void OnAddToStartupBtnClick(object sender, RoutedEventArgs e) {
-            string filePath = txtStartupFilePath.Text.Trim();
-            bool? onlyCurrentUser = rbtnStartupForCurrentUser.IsChecked;
-            if (onlyCurrentUser != true) {
-                onlyCurrentUser = rbtnStartupForAllUser.IsChecked;
-            }
-            if (filePath.Length == 0) return;
-            if (File.Exists(filePath)) {
-                StartupManagerTask.AddStatus status = StartupManagerTask.Add(filePath, onlyCurrentUser);
-                switch (status) {
-                    case StartupManagerTask.AddStatus.Success:
-                        _message.Success("Successfully added to startup");
-                        break;
-                    case StartupManagerTask.AddStatus.AlreadyPresent:
-                        _message.Error("This file is already present in startup");
-                        break;
-                    case StartupManagerTask.AddStatus.Failed:
-                        _message.Error("Failed to add this file to startup");
-                        break;
-                }
-            }
-            else {
-                _message.Error("The specified file doesn't exist");
-            }
-            txtStartupFilePath.Text = String.Empty;
-        }
-
-        private void OnCancelAddToStartupBtnClick(object sender, RoutedEventArgs e) {
-            popupAddToStartup.IsOpen = false;
-        }
-
-        private void OnAddToStartupImageMouseDown(object sender, MouseButtonEventArgs e) {
-            ShowAddToStartupPopup();
-        }
-
-        private void OnAddToStartupImageTouchEnd(object sender, TouchEventArgs e) {
-            ShowAddToStartupPopup();
-        }
-        #endregion
-
         #region Right-Click -> Send To
         private void LoadSendTo() {
             if (lstSendTo.ItemsSource != null || _sendToBackgroundWorker.IsBusy) return;
@@ -1207,7 +1217,7 @@ namespace WindowsTweaker {
 
         private void OnSendToWorkerStarted(object sender, DoWorkEventArgs e) {
             string sendToPath = SendToTask.GetFolderPath(_windowsOs);
-            FileReader fileReader = new FileReader(sendToPath, new List<string>() {".ini"});
+            FileReader fileReader = new FileReader(sendToPath, new List<string>() { ".ini" });
             ObservableCollection<FileItem> sendToFileItems = fileReader.GetAllFiles();
             e.Result = sendToFileItems;
         }
@@ -1217,12 +1227,10 @@ namespace WindowsTweaker {
                 if (SendToTask.AddFolder(_windowsOs)) {
                     ReloadSendTo();
                 }
-            }
-            catch (BadImageFormatException) {
+            } catch (BadImageFormatException) {
                 _message.Error("Because of an error, add operations for operations have been disabled");
                 btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
-            }
-            catch (FileNotFoundException) {
+            } catch (FileNotFoundException) {
                 _message.Error("File path is not valid, hence not creating any shortcut");
             }
         }
@@ -1271,7 +1279,7 @@ namespace WindowsTweaker {
             if (shrtCtName.Length == 0) {
                 _message.Error("Please enter a name for the shortcut");
                 return;
-            }  
+            }
             if (shrtCtName == "cmd") {
                 _message.Error("Can't create shortcut with name \"cmd\" since it is reserved by Windows. Please try a different name.");
             }
@@ -1342,6 +1350,68 @@ namespace WindowsTweaker {
                 popupRightClickList.IsOpen = false;
             }
             _message.Success("Sucessfully deleted " + fileItem.Tag + " from Right-Click menu");
+        }
+        #endregion
+
+        #region Task
+        private void LoadTaskTab() {
+            dateTimePickerScheduleShutdown.Value = DateTime.Now;
+        }
+
+        private void OnScheduleShutdownButtonClick(object sender, RoutedEventArgs e) {
+            DateTime? selectedDateTime = dateTimePickerScheduleShutdown.Value;
+            if (selectedDateTime.HasValue) {
+                string param = null;
+                switch (cmboBxShutdownAction.SelectedIndex) {
+                    case 0: param = "/s";
+                        break;
+                    case 1: param = "/r";
+                        break;
+                }
+                DateTime nowTime = DateTime.Now;
+                TimeSpan gap = selectedDateTime.Value.Subtract(nowTime);
+                long timeout = (gap.Days * 86400) + (gap.Hours * 3600) + (gap.Minutes * 60) + gap.Seconds;
+                if (timeout >= 0) {
+                    string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
+                    ProcessWrapper.ExecuteDosCmd(shutdwnComd);
+                    _message.Success("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
+                        + " at " + selectedDateTime.Value.ToString("hh:mm tt"));
+                }
+                else {
+                    _message.Error("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
+                                  " exceed the limit of 10 years.");
+                }
+            }
+            else {
+                _message.Error("Please select a date!");
+            }
+        }
+
+        private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
+            ProcessWrapper.ExecuteDosCmd("shutdown /a");
+            _message.Success("Previously scheduled shutdown has been cancelled");
+        }
+        #endregion
+
+        #region Task -> Special Folder
+        private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
+            folderBrowserDlg.Title = "Select a Parent Folder";
+            if (folderBrowserDlg.ShowDialog() == true) {
+                string parentPath = folderBrowserDlg.FileName;
+                string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
+                ProcessWrapper.ExecuteDosCmd(createCmd);
+               _message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " created successfully at " + parentPath);
+            }
+        }
+
+        private void OnButtonDeleteSpecialFolderClick(object sender, RoutedEventArgs e) {
+            WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == true) {
+                string path = folderBrowserDialog.FileName;
+                string createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
+                ProcessWrapper.ExecuteDosCmd(createCmd);
+            }
         }
         #endregion
 
@@ -1516,32 +1586,6 @@ namespace WindowsTweaker {
         }
         #endregion
 
-        #region Display -> Selection Color
-        private void OnSelectionRectangleMouseDown(object sender, MouseButtonEventArgs e) {
-            ShowColorDialog();
-        }
-
-        private void OnSelectionRectangleTouchEnd(object sender, TouchEventArgs e) {
-            ShowColorDialog();
-        }
-
-        private void OnButtonSelectionColorClick(object sender, RoutedEventArgs e) {
-            ShowColorDialog();
-        }
-
-        private void OnButtonUseDefaultSelectionColorClick(object sender, RoutedEventArgs e) {
-            rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
-        }
-
-        private void ShowColorDialog() {
-            ColorPickerDialog colorPickerDialog = new ColorPickerDialog(_selectionColor);
-            if (colorPickerDialog.ShowDialog() == true) {
-                _selectionColor = colorPickerDialog.SelectedColour;
-                rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
-            }
-        }
-        #endregion
-
         #region Maintenance
         private void LoadMaintenanceTab() {
             // Memory
@@ -1659,5 +1703,6 @@ namespace WindowsTweaker {
             }
         }
         #endregion
+
     }
 }

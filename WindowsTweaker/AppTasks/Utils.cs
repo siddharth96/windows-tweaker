@@ -66,7 +66,8 @@ namespace WindowsTweaker.AppTasks {
                 Filter = filter,
                 Multiselect = false
             };
-            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
+            return openFileDialog.ShowDialog() == true && !String.IsNullOrEmpty(openFileDialog.FileName) ?
+                openFileDialog.FileName.Trim() : null;
         }
 
         internal static string SentenceJoin(this List<string> lst) {

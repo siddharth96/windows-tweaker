@@ -1625,7 +1625,7 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="default opening" Width="150">
-                            <Grid Margin="10, 50, 0, 10">
+                            <Grid Margin="10, 30, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="693" />
@@ -1653,8 +1653,52 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Default Open With
+                                        Default app for file with no extension
                                     </TextBlock>
+                                    <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="NoExtension"
+                                                 IsChecked="True" Name="rbtnOpenDlgForNoExt">
+                                        Show &quot;Open With &quot; dialog
+                                    </RadioButton>
+                                    <Grid Margin="30, 10, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton Style="{StaticResource RbtnStyle}" GroupName="NoExtension"
+                                                     VerticalAlignment="Center"
+                                                     Name="rbtnPrgForNoExt">
+                                            Use this as default application
+                                        </RadioButton>
+                                        <TextBox Style="{StaticResource TxtBoxStyle}" Grid.Column="1"
+                                                 Margin="5, 0" Name="txtPrgForNoExt"
+                                                 VerticalAlignment="Center">notepad.exe %1</TextBox>
+                                        <Button Grid.Column="2" VerticalAlignment="Center"
+                                                Margin="0, 1, 0, 0" Click="OnButtonBrowseProgramForNoExtensionClick">...</Button>
+                                    </Grid>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5">
+                                        Default app for file with unkown extension
+                                    </TextBlock>
+                                    <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="UnknownExtension"
+                                                 IsChecked="True" Name="rbtnOpenDlgForUnknownExt">
+                                        Show &quot;Open With &quot; dialog
+                                    </RadioButton>
+                                    <Grid Margin="30, 10, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton Style="{StaticResource RbtnStyle}" GroupName="UnknownExtension"
+                                                     VerticalAlignment="Center" Name="rbtnPrgForUnknownExt">
+                                            Use this as default application
+                                        </RadioButton>
+                                        <TextBox Style="{StaticResource TxtBoxStyle}" Grid.Column="1"
+                                                 Margin="5, 0"
+                                                 VerticalAlignment="Center" Name="txtPrgForUnknownExt">notepad.exe %1</TextBox>
+                                        <Button Grid.Column="2" VerticalAlignment="Center"
+                                                Margin="0, 1, 0, 0" Click="OnButtonBrowseProgramForUnkownExtensionClick">...</Button>
+                                    </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
