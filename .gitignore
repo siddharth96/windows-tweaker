@@ -3,3 +3,4 @@ WindowsTweaker/bin/*
 WindowsTweaker/obj/*
 *.suo
 *.user
+*.psess

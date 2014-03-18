@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
+using Xceed.Wpf.Toolkit;
 
 namespace WindowsTweaker.AppTasks {
 
@@ -37,6 +38,32 @@ namespace WindowsTweaker.AppTasks {
             string valueName, bool inverse = false) {
             string val = (string) registryKey.GetValue(valueName);
             chk.IsChecked = inverse ? Utils.ReversedStringToBool(val) : Utils.StringToBool(val);
+        }
+
+        /// <summary>
+        /// Updates the value of <paramref name="iud" /> from the <paramref name="valueName" /> present in
+        /// <paramref name="registryKey"/>. (<paramref name="defaultValStr"/> is returned if <paramref name="valueName"/>
+        /// is not in registry)
+        /// When <paramref name="maxVal"/> and <paramref name="minVal" /> are specified, and the value in registry is not in the range
+        /// then <paramref name="defaultValStr" /> is returned.
+        /// </summary>
+        /// <param name="iud"></param>
+        /// <param name="registryKey"></param>
+        /// <param name="valueName"></param>
+        /// <param name="defaultValStr"></param>
+        /// <param name="maxVal"></param>
+        /// <param name="minVal"></param>
+        internal static void SetValueFromString(this IntegerUpDown iud, RegistryKey registryKey,
+            string valueName, string defaultValStr, int? maxVal = null, int? minVal = null) {
+            int iudVal;
+            int defaultVal = Int32.Parse(defaultValStr);
+            try {
+                iudVal = Int32.Parse((string) registryKey.GetValue(valueName, defaultVal));
+            }
+            catch (FormatException) {
+                iudVal = defaultVal;
+            }
+            iud.Value = iudVal <= maxVal &&  iudVal >= minVal  ? iudVal : defaultVal;
         }
 
         /// <summary>

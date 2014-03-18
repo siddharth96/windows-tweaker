@@ -348,7 +348,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="navigtation" Width="120">
+                        <TabItem Header="navigation" Width="120">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -380,12 +380,21 @@
                                         Navigation Tweaks for Windows 8
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkCharmsTR"
-                                              Content="When I point to the upper-right corner, show the charms"
-                                              IsChecked="True"
-                                              Style="{StaticResource ChkStyle}" />
+                                              IsChecked="True" Style="{StaticResource ChkStyle}">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                When I point to the upper-right corner, show the charms
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkAppsTL"
-                                              Content="When I click the upper-left corner, switch between my recent apps"
-                                              Style="{StaticResource ChkStyle}" IsChecked="" />
+                                              Style="{StaticResource ChkStyle}" IsChecked="True">
+                                        <CheckBox.Content>
+                                            <TextBlock TextWrapping="Wrap">
+                                                When I click the upper-left corner, switch between my recent apps
+                                            </TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkReplaceCmdPromptWithPs">
                                         <CheckBox.Content>
@@ -869,6 +878,46 @@
                                     <CheckBox Margin="30, 20, 5, 5"
                                               Content="Show Windows' version on the Desktop (In white text)" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkWindowVersion" />
+                                    <Grid Margin="30, 20, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{StaticResource TxtStyle}">Windows Border Width</TextBlock>
+                                        <toolkit:IntegerUpDown Grid.Column="1" Name="iudWinBorderWidth" Margin="10, 0, 0, 0"
+                                                               Minimum="-750" Maximum="0" Increment="1"/>
+                                        <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
+                                            <Run>(in</Run> <Hyperlink Tag="http://www.google.com?q=twips" 
+                                                                      Click="StartProcess">twips</Hyperlink><Run>)</Run>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Margin="30, 20, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{StaticResource TxtStyle}">Horizontal Spacing Between Desktop Icons</TextBlock>
+                                        <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconHorizSpace" Margin="10, 0, 0, 0"
+                                                               Minimum="-2730" Maximum="-480" Increment="1"/>
+                                        <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
+                                            (in twips)
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Margin="30, 20, 5, 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{StaticResource TxtStyle}">Vertical Spacing Between Desktop Icons</TextBlock>
+                                        <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconVerSpace" Margin="10, 0, 0, 0"
+                                                               Minimum="-2730" Maximum="-480" Increment="1"/>
+                                        <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
+                                            (in twips)
+                                        </TextBlock>
+                                    </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -937,7 +986,7 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}">
-                                        Wrap icon titles' behaviour
+                                        Wrap icon title's behaviour
                                     </TextBlock>
                                     <RadioButton Margin="30, 20, 5, 5" Style="{StaticResource RbtnStyle}" Name="rbtnWrapText">
                                         <RadioButton.Content>

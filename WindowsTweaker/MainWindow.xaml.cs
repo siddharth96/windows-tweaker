@@ -112,6 +112,8 @@ namespace WindowsTweaker {
                 if (tagVal.Contains(",")) {
                     string[] tagArr = tagVal.Split(',');
                     ProcessWrapper.ExecuteProcess(tagArr[0], tagArr[1]);
+                } else if (tagVal.StartsWith("http")) {
+                    Process.Start(tagVal);
                 } else {
                     ProcessWrapper.ExecuteProcess(tagVal);
                 }
@@ -713,6 +715,12 @@ namespace WindowsTweaker {
             // Display Settings
             using (RegistryKey hkcuWinMet = _hkcu.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
                 chkWindowAnim.SetCheckedStateFromString(hkcuWinMet, Constants.MinAnimate);
+                iudWinBorderWidth.SetValueFromString(hkcuWinMet, Constants.BorderWidth, Constants.DefaultWinBorder,
+                    Constants.MaxBorderVal, Constants.MinBorderVal);
+                iudIconHorizSpace.SetValueFromString(hkcuWinMet, Constants.IconSpacing, Constants.DefaultIconSpacing,
+                    Constants.MaxIconSpacingVal, Constants.MinIconSpacingVal);
+                iudIconVerSpace.SetValueFromString(hkcuWinMet, Constants.IconVerticalSpacing, Constants.DefaultIconSpacing,
+                    Constants.MaxIconSpacingVal, Constants.MinIconSpacingVal);
             }
 
             using (RegistryKey hkcuDesktop = _hkcu.CreateSubKey(@"Control Panel\Desktop")) {
@@ -720,19 +728,8 @@ namespace WindowsTweaker {
                 chkWindowVersion.SetCheckedState(hkcuDesktop, Constants.PaintDesktopVer);
 
                 // Alt-Tab
-                int altTabNumIcons = 7, altTabNumRows = 3;
-                if (int.TryParse((string) hkcuDesktop.GetValue(Constants.SwitchCols, "7"), out altTabNumIcons)
-                    && int.TryParse((string) hkcuDesktop.GetValue(Constants.SwitchRows, "3"), out altTabNumRows)
-                    && (altTabNumIcons >= 1 && altTabNumIcons <= 15) && (altTabNumRows >= 2 && altTabNumRows <= 10)) {
-                    iudAltTabRow.Value = altTabNumIcons;
-                    iudNumAltTabRow.Value = altTabNumRows;
-                }
-                else {
-                    iudAltTabRow.Value = 7;
-                    iudNumAltTabRow.Value = 3;
-                    hkcuDesktop.SetValue(Constants.SwitchCols, "7");
-                    hkcuDesktop.SetValue(Constants.SwitchRows, "3");
-                }
+                iudAltTabRow.SetValueFromString(hkcuDesktop, Constants.SwitchCols, "7", 15, 1);
+                iudNumAltTabRow.SetValueFromString(hkcuDesktop, Constants.SwitchRows, "3", 10, 2);
             }
 
             // Selection Color
@@ -774,6 +771,9 @@ namespace WindowsTweaker {
             // Display Settings
             using (RegistryKey hkcuWinMet = _hkcu.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
                 hkcuWinMet.SetStringValue(chkWindowAnim, Constants.MinAnimate);
+                hkcuWinMet.SetValue(Constants.BorderWidth, iudWinBorderWidth.Value.ToString());
+                hkcuWinMet.SetValue(Constants.IconSpacing, iudIconHorizSpace.Value.ToString());
+                hkcuWinMet.SetValue(Constants.IconVerticalSpacing, iudIconVerSpace.Value.ToString());
             }
 
             using (RegistryKey hkcuDesktop = _hkcu.CreateSubKey(@"Control Panel\Desktop")) {

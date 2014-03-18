@@ -1,4 +1,6 @@
-﻿namespace WindowsTweaker.Models
+﻿using WindowsTweaker.AppTasks;
+
+namespace WindowsTweaker.Models
 {
     internal static class Constants
     {
@@ -77,6 +79,15 @@
         public const string MinAnimate = "MinAnimate";
         public const string DragFullWin = "DragFullWindows";
         public const string PaintDesktopVer = "PaintDesktopVersion";
+        public const string BorderWidth = "BorderWidth";
+        public const string DefaultWinBorder = "-15";
+        public const int MinBorderVal = -750;
+        public const int MaxBorderVal = 0;
+        public const string IconSpacing = "IconSpacing";
+        public const string IconVerticalSpacing = "IconVerticalSpacing";
+        public static readonly string DefaultIconSpacing = WindowsVer.Instance.GetName() >= WindowsVer.Windows.Seven ? "-1125" : "-75";
+        public const int MinIconSpacingVal = -2730;
+        public const int MaxIconSpacingVal = -480;
         // Explorer
         public const string SharedFolderIcon = "ntshrui.dll";
         public const string OldStyleFileSort = "NoStrCmpLogical";

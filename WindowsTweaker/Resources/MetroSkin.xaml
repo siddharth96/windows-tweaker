@@ -25,7 +25,7 @@
     <SolidColorBrush x:Key="GreenYellowShadeBackgroundBrush" Color="#B198CC3C" />
     <SolidColorBrush x:Key="VectorImageBackground" Color="#FFD2D1D1" />
 
-    <SolidColorBrush x:Key="TabItemTextBrushUnselected" Color="#FF7A8E8F" />
+    <SolidColorBrush x:Key="TabItemTextBrushUnselected" Color="#FF617374" />
     <SolidColorBrush x:Key="TabItemTextBrushDisabled" Color="Brown" />
     <SolidColorBrush x:Key="TabItemTextBrushHover" Color="#887A8E8F" />
     <SolidColorBrush x:Key="DarkSelectedBrush" Color="#FF070908" />
