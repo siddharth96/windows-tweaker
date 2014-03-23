@@ -42,7 +42,7 @@
                 <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
                          Tag="explorer" Loaded="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="drive letter display" Width="180">
+                        <TabItem Header="drive letter display" Width="180" Name="tabDriveLetterDisplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -87,7 +87,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="advanced" Width="100">
+                        <TabItem Header="advanced" Width="100" Name="tabAdvanced">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -162,7 +162,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="properties" Width="100">
+                        <TabItem Header="properties" Width="100" Name="tabProperties">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -230,7 +230,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="libraries" Width="90" Name="tabItemLibrary">
+                        <TabItem Header="libraries" Width="90" Name="tabLibrary">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -271,7 +271,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="start screen" Width="120">
+                        <TabItem Header="start screen" Width="120" Name="tabStartScreen">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -348,7 +348,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="navigation" Width="120">
+                        <TabItem Header="navigation" Width="120" Name="tabNavigation">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -406,7 +406,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="etc" Width="60">
+                        <TabItem Header="etc" Width="60" Name="tabEtc">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -443,7 +443,7 @@
                 <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}"
                          Tag="system" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="shutdown configuration" Width="220">
+                        <TabItem Header="shutdown configuration" Width="220" Name="tabShutdwnConfig">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -486,7 +486,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="edit information" Width="150">
+                        <TabItem Header="edit information" Width="150" Name="tabEditInfo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -552,26 +552,26 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <TextBlock Text="Manufacturer :" Style="{StaticResource TxtStyle}"
-                                                   Margin="5, 10" />
+                                                   Margin="5, 10" Name="lblManufacturer" />
                                         <TextBox Name="txtManufacturer" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Column="1" Margin="5, 10, 10, 10" />
                                         <TextBlock Text="Model :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="1" Margin="5, 10" />
+                                                   Grid.Row="1" Margin="5, 10" Name="lblModel" />
                                         <TextBox Name="txtModel" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
                                         <TextBlock Text="Support Phone:" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="2" Margin="5, 10" />
+                                                   Grid.Row="2" Margin="5, 10" Name="lblSupportPh" />
                                         <TextBox Name="txtSupportPhone" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
                                         <TextBlock Text="Support URL:" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="3" Margin="5, 10" />
+                                                   Grid.Row="3" Margin="5, 10" Name="lblSupportUrl" />
                                         <TextBox Name="txtSupportUrl" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="3" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows installer" Width="160">
+                        <TabItem Header="windows installer" Width="160" Name="tabWinInstaller">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -630,7 +630,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="registration" Width="120">
+                        <TabItem Header="registration" Width="120" Name="tabReg">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -707,22 +707,22 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <TextBlock Text="Owner Name :" Style="{StaticResource TxtStyle}"
-                                                   Margin="5, 10" />
+                                                   Margin="5, 10" Name="lblOwnerName" />
                                         <TextBox Name="txtOwnerName" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Column="1" Margin="5, 10, 10, 10" />
                                         <TextBlock Text="Company Name :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="1" Margin="5, 10" />
+                                                   Grid.Row="1" Margin="5, 10" Name="lblCompanyName" />
                                         <TextBox Name="txtCompanyName" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
                                         <TextBlock Text="Product ID :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="2" Margin="5, 10" />
+                                                   Grid.Row="2" Margin="5, 10" Name="lblProductId" />
                                         <TextBox Name="txtProductId" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="logo" Width="80">
+                        <TabItem Header="logo" Width="80" Name="tabLogo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -796,7 +796,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
+                                    <TextBlock Style="{StaticResource H1}" Name="lblImgCompProp">
                                         Specify the image that will be displayed in Computer's Property
                                     </TextBlock>
                                     <Grid Margin="30, 20, 5, 5">
@@ -831,7 +831,7 @@
                 <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}"
                          Tag="display" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="display settings" Width="150">
+                        <TabItem Header="display settings" Width="150" Name="tabDisplaySettings">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -884,7 +884,7 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}">Windows Border Width</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblWinBorderWidth">Windows Border Width</TextBlock>
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudWinBorderWidth" Margin="10, 0, 0, 0"
                                                                Minimum="-750" Maximum="0" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
@@ -898,7 +898,7 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}">Horizontal Spacing Between Desktop Icons</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblHorzSpace">Horizontal Spacing Between Desktop Icons</TextBlock>
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconHorizSpace" Margin="10, 0, 0, 0"
                                                                Minimum="-2730" Maximum="-480" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
@@ -911,7 +911,7 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}">Vertical Spacing Between Desktop Icons</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblVertSpace">Vertical Spacing Between Desktop Icons</TextBlock>
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconVerSpace" Margin="10, 0, 0, 0"
                                                                Minimum="-2730" Maximum="-480" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
@@ -921,7 +921,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="explorer" Width="80">
+                        <TabItem Header="explorer" Width="80" Name="tabDisplayExplorer">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -962,7 +962,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="icon title" Width="100">
+                        <TabItem Header="icon title" Width="100" Name="tabIconTitle">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -985,7 +985,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
+                                    <TextBlock Style="{StaticResource H1}" Name="lblWrapIconTitle">
                                         Wrap icon title's behaviour
                                     </TextBlock>
                                     <RadioButton Margin="30, 20, 5, 5" Style="{StaticResource RbtnStyle}" Name="rbtnWrapText">
@@ -1002,7 +1002,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="selection color" Width="140">
+                        <TabItem Header="selection color" Width="140" Name="tabSelectionColor">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1037,7 +1037,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
+                                    <TextBlock Style="{StaticResource H1}" Name="lblSelRect">
                                         Specify the color for Selection rectangle, used for
                                         selecting files/folders in Windows Explorer
                                     </TextBlock>
@@ -1056,7 +1056,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="alt-tab" Width="80">
+                        <TabItem Header="alt-tab" Width="80" Name="tabAltTab">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1095,8 +1095,7 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}">
-                                        Specify the color for Selection rectangle, used for
-                                        selecting files/folders in Windows Explorer
+                                        Icons in Alt-Tab View
                                     </TextBlock>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -1104,7 +1103,8 @@
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}">
+                                        <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}"
+                                          Name="lblAltTabCols">
                                             Icons shown in a single row of ALT + Tab switcher
                                         </TextBlock>
                                         <toolkit:IntegerUpDown Grid.Column="1" Margin="10, 5, 0, 0" VerticalAlignment="Center"
@@ -1119,7 +1119,8 @@
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}">
+                                        <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}"
+                                          Name="lblAltTabRows">
                                             Number of rows shown in ALT + Tab switcher
                                         </TextBlock>
                                         <toolkit:IntegerUpDown Grid.Column="1" Margin="10, 5, 0, 0" VerticalAlignment="Center"
@@ -1139,7 +1140,7 @@
                 <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
                          Tag="rightclick" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="general" Width="90">
+                        <TabItem Header="general" Width="90" Name="tabGeneral">
                             <Grid Margin="10, 20, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1260,7 +1261,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="add items" Width="100">
+                        <TabItem Header="add items" Width="100" Name="tabAddItems">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1338,7 +1339,7 @@
                                 </Grid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="send-to menu" Width="150">
+                        <TabItem Header="send-to menu" Width="150" Name="tabSendTo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1389,7 +1390,7 @@
                 <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="places" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="god mode" Width="120">
+                        <TabItem Header="god mode" Width="120" Name="tabGodMode">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1425,7 +1426,8 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
+                                               Name="lblSetupGodMode">
                                         Set up "God-Mode"
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
@@ -1447,7 +1449,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="open with" Width="110">
+                        <TabItem Header="open with" Width="110" Name="tabOpenWith">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1513,7 +1515,8 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
+                                               Name="lblOpenWith">
                                         Customize "Open With" shown in Right-Click Menu
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
@@ -1579,7 +1582,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="power button" Width="130">
+                        <TabItem Header="power button" Width="130" Name="tabPowerBtn">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1608,7 +1611,8 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
+                                      Name="lblPowerBtnAction">
                                         Power Button action on Start Menu
                                     </TextBlock>
                                     <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
@@ -1624,7 +1628,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="default opening" Width="150">
+                        <TabItem Header="default opening" Width="150" Name="tabDefaultOpening">
                             <Grid Margin="10, 30, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1652,7 +1656,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Name="lblNoExt">
                                         Default app for file with no extension
                                     </TextBlock>
                                     <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="NoExtension"
@@ -1676,7 +1680,8 @@
                                         <Button Grid.Column="2" VerticalAlignment="Center"
                                                 Margin="0, 1, 0, 0" Click="OnButtonBrowseProgramForNoExtensionClick">...</Button>
                                     </Grid>
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5"
+                                      Name="lblUnknownExt">
                                         Default app for file with unkown extension
                                     </TextBlock>
                                     <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="UnknownExtension"
@@ -1702,7 +1707,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup manager" Width="160">
+                        <TabItem Header="startup manager" Width="160" Name="tabStartupMgr">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1741,7 +1746,8 @@
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
                                         Startup Manager
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5"
+                                      Name="lblStartupMgr">
                                         Manage programs ,that are executed when Windows starts and also Add/Remove programs from startup.
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal">
@@ -1805,7 +1811,7 @@
                 <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="tasks" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="schedule shutdown" Width="180">
+                        <TabItem Header="schedule shutdown" Width="180" Name="tabScheduleShutdwn">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1887,7 +1893,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="special hiding" Width="150">
+                        <TabItem Header="special hiding" Width="150" Name="tabSpecialHiding">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1951,14 +1957,15 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
+                                      Name="lblHideSysPrivileges">
                                         Use this option to hide files/folders with System Privileges
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
                                         Hide
                                     </Button>
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5" Name="lblUnhideSysPrivileges">
                                         Use this option to Un-hide files/folders with System Privileges
                                     </TextBlock>
                                     <Button Margin="30, 20, 10, 10"
@@ -1968,7 +1975,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="special folder names" Width="190">
+                        <TabItem Header="special folder names" Width="190" Name="tabSpecialFolderNames">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2018,7 +2025,8 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
+                                      Name="lblSpecialFolders">
                                         Create Special Folders
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
@@ -2073,7 +2081,7 @@
                 <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
                          Tag="features" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="autoplay" Width="100">
+                        <TabItem Header="autoplay" Width="100" Name="tabAutoplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2121,16 +2129,16 @@
                                         Choose what happens when you insert a CD/DVD or a USB device.
                                     </TextBlock>
                                     <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
-                                                 Content="Use Autoplay for all devices."
+                                                 Content="Use Autoplay for all devices"
                                                  Name="rbtnEnableAutoPlay"
                                                  Style="{StaticResource RbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5" Name="rbtnEnableCdUsbAutoPlay"
-                                                 Content="Turn-off Autoplay for CD-ROM and removable devices."
+                                                 Content="Turn-off Autoplay for CD-ROM and removable devices"
                                                  Style="{StaticResource RbtnStyle}" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices."
+                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnDisableAutoPlay"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Margin="30, 10, 10, 10"
+                                        <Button Margin="30, 10, 10, 10" Name="btnAutoPlayViaGP"
                                                 HorizontalAlignment="Left">
                                             Configure Autoplay via Group Policy Editor
                                         </Button>
@@ -2174,7 +2182,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows update" Width="160">
+                        <TabItem Header="windows update" Width="160" Name="tabWinUpdate">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2250,25 +2258,25 @@
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkRecommenedUpdates">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates.</TextBlock>
+                                            <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkAllowAllInstallUpdate">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer.</TextBlock>
+                                            <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkNotifyNewMSSw">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available.</TextBlock>
+                                            <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="administrator account" Width="200">
+                        <TabItem Header="administrator account" Width="200" Name="tabAdminAccount">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2302,22 +2310,22 @@
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Windows consists of an built-in account named "Administrator" which is deactivated by default. Activate/deactivate this account
-                                        by using the options below.
+                                        by using the options below
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink Name="lnkActivateAdminAccount" Click="OnLinkActivateAdminClick">Activate the built in Administrator account. (Not recommended)</Hyperlink>
+                                        <Hyperlink Name="lnkActivateAdminAccount" Click="OnLinkActivateAdminClick">Activate the built in Administrator account (Not recommended)</Hyperlink>
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
                                         Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
-                                        Hence, it is recommended to use this account only to perform special tasks and then de-activate it.
+                                        Hence, it is recommended to use this account only to perform special tasks and then de-activate it
                                     </TextBlock>
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink Name="lnkDeactivateAdminAccount" Click="OnLinkDeactivateAdminAccountClick">De-activate the built in Administrator account.</Hyperlink>
+                                        <Hyperlink Name="lnkDeactivateAdminAccount" Click="OnLinkDeactivateAdminAccountClick">De-activate the built in Administrator account</Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows-dvd burner" Width="190">
+                        <TabItem Header="windows-dvd burner" Width="190" Name="tabWinDvdBurner">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2379,7 +2387,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="system beeps" Width="135">
+                        <TabItem Header="system beeps" Width="135" Name="tabSysBeeps">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2433,7 +2441,7 @@
                 <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
                          Tag="logon" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="automatic login" Width="150">
+                        <TabItem Header="automatic login" Width="150" Name="tabAutoLogin">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2480,19 +2488,21 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center">
+                                                       VerticalAlignment="Center" Name="lblAutoLoginUserName">
                                                 Username
                                             </TextBlock>
                                             <TextBox Name="txtAutoLoginUserName" Grid.Column="1" Margin="5" />
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center" Grid.Row="1">
+                                                       VerticalAlignment="Center" Grid.Row="1"
+                                                       Name="lblAutoLoginPasswd">
                                                 Password
                                             </TextBlock>
                                             <PasswordBox Name="txtAutoLoginPasswd"
                                                          Style="{StaticResource SmallPwBxStyle}" Margin="5"
                                                          VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Grid.Row="2"
-                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center">
+                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center"
+                                                       Name="lblDomainName">
                                                 Domain Name
                                             </TextBlock>
                                             <TextBox Name="txtAutoLoginDomainName" Grid.Row="2" Grid.Column="1"
@@ -2514,7 +2524,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup sound" Width="150">
+                        <TabItem Header="startup sound" Width="150" Name="tabStartupSound">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2556,7 +2566,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="screensaver lock" Width="155">
+                        <TabItem Header="screensaver lock" Width="155" Name="tabScreenLk">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2606,7 +2616,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="message" Width="100">
+                        <TabItem Header="message" Width="100" Name="tabLoginMsg">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2662,7 +2672,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="140">
+                        <TabItem Header="miscellaneous" Width="140" Name="tabLoginMisc">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2713,7 +2723,7 @@
                 <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="restrictions" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="explorer" Width="90">
+                        <TabItem Header="explorer" Width="90" Name="tabExplorerRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2866,7 +2876,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="start menu" Width="120">
+                        <TabItem Header="start menu" Width="120" Name="tabStartMenuRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2926,7 +2936,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="system" Width="90">
+                        <TabItem Header="system" Width="90" Name="tabSystemRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3015,7 +3025,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="taskbar" Width="90">
+                        <TabItem Header="taskbar" Width="90" Name="tabTaskbarRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3061,7 +3071,7 @@
                 <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="maintenance" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10">
-                        <TabItem Header="memory" Width="90">
+                        <TabItem Header="memory" Width="90" Name="tabMemory">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3104,7 +3114,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="error" Width="70">
+                        <TabItem Header="error" Width="70" Name="tabError">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3195,9 +3205,9 @@
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <StackPanel Orientation="Horizontal" Margin="30, 10, 5, 5">
-                                        <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center">
-                                            Type of report to be 
-                                            Microsoft when an error occurs
+                                        <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center"
+                                          Name="lblErrReportType">
+                                            Type of report that should be send to Microsoft when an error occurs
                                         </TextBlock>
                                         <ComboBox Margin="10, 0, 0, 0" SelectedIndex="0" FontSize="16" Name="cmboBxErrReportTye">
                                             <ComboBoxItem>Ask, when sending</ComboBoxItem>
@@ -3209,7 +3219,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup settings" Width="150">
+                        <TabItem Header="startup settings" Width="150" Name="tabStartupSettings">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3273,7 +3283,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="auto reboot" Width="160">
+                        <TabItem Header="auto reboot" Width="160" Name="tabAutoReboot">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3342,7 +3352,7 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <StackPanel Orientation="Horizontal" Margin="30, 10, 5, 5">
-                                        <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center">
+                                        <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center" Name="lblWinCrashAction">
                                             Default action to perform, when Windows crashes
                                         </TextBlock>
                                         <ComboBox SelectedIndex="0" Margin="10, 0, 0, 0" FontSize="16" Name="cmboBxWinCrashAction">

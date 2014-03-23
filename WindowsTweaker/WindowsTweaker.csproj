@@ -191,6 +191,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Search\englishTermAndUiElementMap.json" />
   </ItemGroup>
   <ItemGroup>
     <BlendEmbeddedFont Include="Fonts\Roboto-Black.ttf">
@@ -284,6 +285,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Garbage-Closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Search\searchInputEnglish.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Search\stemmer.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

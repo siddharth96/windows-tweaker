@@ -4,3 +4,4 @@ WindowsTweaker/obj/*
 *.suo
 *.user
 *.psess
+.idea/

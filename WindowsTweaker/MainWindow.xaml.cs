@@ -402,7 +402,7 @@ namespace WindowsTweaker {
                     }
                 }
                 else {
-                    tabItemLibrary.Visibility = Visibility.Collapsed;
+                    tabLibrary.Visibility = Visibility.Collapsed;
                 }
             }
 
