@@ -34,8 +34,16 @@
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{StaticResource BlueShadeBackgroundBrush}" Grid.Row="1" Grid.Column="0" Width="10" Height="60" VerticalAlignment="Top"
                    Margin="0, 20, 0, 0"></Rectangle>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <TextBlock Style="{StaticResource H1}" Margin="20, 15, 10, 0" HorizontalAlignment="Left">Windows Tweaker 5.0</TextBlock>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0, 20, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource H1}" Margin="20, 0, 10, 0" HorizontalAlignment="Left" 
+                       Grid.Column="0" VerticalAlignment="Bottom">Windows Tweaker 5.0</TextBlock>
+            <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Bottom" Grid.Column="1"
+                                      Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
+                                      Padding="2" Margin="0, 0, 20, 0" Watermark="Type &amp; Press Enter to Search"></toolkit:WatermarkTextBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">

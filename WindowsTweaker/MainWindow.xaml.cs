@@ -15,7 +15,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WPFFolderBrowser;
+using Xceed.Wpf.Toolkit;
 using File = System.IO.File;
+using MessageBox = System.Windows.MessageBox;
 
 namespace WindowsTweaker {
 
@@ -1704,5 +1706,19 @@ namespace WindowsTweaker {
         }
         #endregion
 
+        #region Search
+        private void OnSearchTextBoxKeyUp(object sender, KeyEventArgs e) {
+            if (e.Key != Key.Enter) return;
+            WatermarkTextBox txtSearchBox = sender as WatermarkTextBox;
+            if (txtSearchBox == null) return;
+            String searchTxt = txtSearchBox.Text.Trim();
+            if (searchTxt.Length < 3) {
+                _message.Error("Minimum 3 characters should be entered");
+                return;
+            }
+            _message.Hide();
+            new Search.Search(searchTxt);
+        }
+        #endregion
     }
 }

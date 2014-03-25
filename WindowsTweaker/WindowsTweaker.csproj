@@ -123,6 +123,8 @@
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Search\Search.cs" />
+    <Compile Include="Search\SearchItem.cs" />
     <Compile Include="StartupManager.xaml.cs">
       <DependentUpon>StartupManager.xaml</DependentUpon>
     </Compile>
@@ -191,7 +193,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Search\englishTermAndUiElementMap.json" />
+    <EmbeddedResource Include="Search\englishTermAndUiElementMap.json" />
   </ItemGroup>
   <ItemGroup>
     <BlendEmbeddedFont Include="Fonts\Roboto-Black.ttf">
