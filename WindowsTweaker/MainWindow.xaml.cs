@@ -9,13 +9,13 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WindowsTweaker.AppTasks;
 using WindowsTweaker.Models;
+using WindowsTweaker.Search;
 using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WPFFolderBrowser;
-using Xceed.Wpf.Toolkit;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
 
@@ -29,8 +29,12 @@ namespace WindowsTweaker {
         public MainWindow() {
             InitializeComponent();
             _message = new Message(msgContainerBorder, txtMsg);
+            _message.Notify("Initializing search, please wait...");
             _sendToBackgroundWorker = (BackgroundWorker) this.FindResource("sendToBackgroundWorker");
+            _searchBackgroundWorker = (BackgroundWorker) this.FindResource("searchBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
+            _searcher = new Searcher(this);
+            _message.Hide();
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -40,7 +44,9 @@ namespace WindowsTweaker {
         private readonly Color _defaultSelectionColor = Color.FromArgb(255, 0, 102, 204);
         private readonly Message _message;
         private readonly BackgroundWorker _sendToBackgroundWorker;
+        private readonly BackgroundWorker _searchBackgroundWorker;
         private Color _selectionColor;
+        private readonly Searcher _searcher;
 
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
@@ -624,7 +630,11 @@ namespace WindowsTweaker {
                     catch (UriFormatException) {
                         Uri uriLogo;
                         if (Uri.TryCreate("C:" + logoUrl, UriKind.Absolute, out uriLogo)) {
-                            imgProperty.Source = new BitmapImage(uriLogo);
+                            try {
+                                imgProperty.Source = new BitmapImage(uriLogo);
+                            } catch (FileNotFoundException) {
+                                imgProperty.Source = null;
+                            }
                         }
                     }
                 }
@@ -1709,15 +1719,72 @@ namespace WindowsTweaker {
         #region Search
         private void OnSearchTextBoxKeyUp(object sender, KeyEventArgs e) {
             if (e.Key != Key.Enter) return;
-            WatermarkTextBox txtSearchBox = sender as WatermarkTextBox;
-            if (txtSearchBox == null) return;
-            String searchTxt = txtSearchBox.Text.Trim();
+            if (txtSearchInput == null) return;
+            if (_searchBackgroundWorker.IsBusy) {
+                _message.Error("Please wait..., another search is already in progress");
+                return;
+            }
+            Search(txtSearchInput.Text);
+        }
+
+        private void Search(string searchTxt) {
+            searchTxt = searchTxt.Trim();
             if (searchTxt.Length < 3) {
                 _message.Error("Minimum 3 characters should be entered");
                 return;
             }
+            if (searchTxt.Length > 100) {
+                searchTxt = searchTxt.Substring(0, 100);
+            }
+            HideSearchResults();
+            _message.Notify("Searching, please wait...");
+            _searchBackgroundWorker.RunWorkerAsync(searchTxt);
+        }
+
+        private void OnSearchWorkerStarted(object sender, DoWorkEventArgs e) {
+            List<SearchItem> searchItems = ShowSearchResults(e.Argument.ToString());
+            e.Result = searchItems;
+        }
+
+        private void HideSearchResults() {
+            popupSearch.IsOpen = false;
+            lstSearchResults.ItemsSource = null;
+        }
+
+        private void OnSearchWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            List<SearchItem> searchItems = e.Result as List<SearchItem>;
+            if (searchItems == null || !searchItems.Any()) {
+                _message.Error("Nothing found!");
+                return;
+            }
+            popupSearch.IsOpen = true;
+            lstSearchResults.ItemsSource = searchItems;
             _message.Hide();
-            new Search.Search(searchTxt);
+        }
+
+        private List<SearchItem> ShowSearchResults(string searchTxt) {
+            List<SearchItem> searchItems = _searcher.Search(searchTxt);
+            return searchItems;
+        }
+
+        private void OnSearchListItemMouseDown(object sender, MouseButtonEventArgs e) {
+            ListBoxItem listBoxItem = (ListBoxItem) sender;
+            SearchItem searchItem = listBoxItem.Content as SearchItem;
+            if (searchItem == null) return;
+            NavigateTo(searchItem);
+        }
+
+        private void NavigateTo(SearchItem searchItem) {
+            object mainTabItemObj = this.FindName(searchItem.MainTab);
+            object subTabControlObj = this.FindName(searchItem.SubTabControl);
+            object subTabItemObj = this.FindName(searchItem.SubTab);
+            if (mainTabItemObj == null || subTabControlObj == null || subTabItemObj == null) return;
+            TabItem mainTabItem = (TabItem) mainTabItemObj;
+            mainTab.SelectedItem = mainTabItem;
+            TabControl subTabControl = (TabControl) subTabControlObj;
+            TabItem subTabItem = (TabItem) subTabItemObj;
+            subTabControl.SelectedItem = subTabItem;
+            HideSearchResults();
         }
         #endregion
     }

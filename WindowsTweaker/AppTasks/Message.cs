@@ -29,5 +29,11 @@ namespace WindowsTweaker.AppTasks {
             msgContainer.Background = new SolidColorBrush(Colors.Firebrick);
             txtMsg.Text = txt;
         }
+
+        internal void Notify(string txt) {
+            msgContainer.Visibility = Visibility.Visible;
+            msgContainer.Background = new SolidColorBrush(Colors.DodgerBlue);
+            txtMsg.Text = txt;
+        }
     }
 }

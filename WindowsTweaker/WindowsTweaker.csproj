@@ -66,7 +66,13 @@
     <OutputPath>bin\Release\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>WindowsTweaker.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Centivus.EnglishStemmer">
+      <HintPath>Dependencies\Centivus.EnglishStemmer.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>Dependencies\Interop.IWshRuntimeLibrary.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -76,6 +82,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -123,8 +130,9 @@
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Search\Search.cs" />
+    <Compile Include="Search\Searcher.cs" />
     <Compile Include="Search\SearchItem.cs" />
+    <Compile Include="Search\SearchItemEqualityComparer.cs" />
     <Compile Include="StartupManager.xaml.cs">
       <DependentUpon>StartupManager.xaml</DependentUpon>
     </Compile>
@@ -194,6 +202,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <EmbeddedResource Include="Search\englishTermAndUiElementMap.json" />
+    <None Include="WindowsTweaker.manifest" />
   </ItemGroup>
   <ItemGroup>
     <BlendEmbeddedFont Include="Fonts\Roboto-Black.ttf">

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Controls;
-using WindowsTweaker.Models;
 using Microsoft.Win32;
 using Xceed.Wpf.Toolkit;
 

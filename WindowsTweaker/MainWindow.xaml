@@ -9,6 +9,8 @@
     <Window.Resources>
         <cm:BackgroundWorker x:Key="sendToBackgroundWorker" RunWorkerCompleted="OnSendToWorkerCompleted"
                              WorkerSupportsCancellation="True" DoWork="OnSendToWorkerStarted"></cm:BackgroundWorker>
+        <cm:BackgroundWorker x:Key="searchBackgroundWorker" RunWorkerCompleted="OnSearchWorkerCompleted"
+                             WorkerSupportsCancellation="True" DoWork="OnSearchWorkerStarted"></cm:BackgroundWorker>
         <DataTemplate x:Key="TileView">
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>
@@ -36,8 +38,8 @@
                    Margin="0, 20, 0, 0"></Rectangle>
         <Grid Grid.Row="0" Grid.Column="1" Margin="0, 20, 0, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.6*"></ColumnDefinition>
                 <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Style="{StaticResource H1}" Margin="20, 0, 10, 0" HorizontalAlignment="Left" 
                        Grid.Column="0" VerticalAlignment="Bottom">Windows Tweaker 5.0</TextBlock>
@@ -49,7 +51,7 @@
             <TabControl Name="mainTab" Margin="2,15,2,2">
                 <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
                          Tag="explorer" Loaded="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlExplorer">
                         <TabItem Header="drive letter display" Width="180" Name="tabDriveLetterDisplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -450,7 +452,7 @@
                 </TabItem>
                 <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}"
                          Tag="system" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlSystem">
                         <TabItem Header="shutdown configuration" Width="220" Name="tabShutdwnConfig">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -838,7 +840,7 @@
                 </TabItem>
                 <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}"
                          Tag="display" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlDisplay">
                         <TabItem Header="display settings" Width="150" Name="tabDisplaySettings">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -1147,7 +1149,7 @@
                 </TabItem>
                 <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
                          Tag="rightclick" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlRightClick">
                         <TabItem Header="general" Width="90" Name="tabGeneral">
                             <Grid Margin="10, 20, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -1397,7 +1399,7 @@
                 </TabItem>
                 <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="places" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlPlaces">
                         <TabItem Header="god mode" Width="120" Name="tabGodMode">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -1818,7 +1820,7 @@
                 </TabItem>
                 <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="tasks" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlTasks">
                         <TabItem Header="schedule shutdown" Width="180" Name="tabScheduleShutdwn">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -2088,7 +2090,7 @@
                 </TabItem>
                 <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
                          Tag="features" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlFeatures">
                         <TabItem Header="autoplay" Width="100" Name="tabAutoplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -2448,7 +2450,7 @@
                 </TabItem>
                 <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
                          Tag="logon" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlLogon">
                         <TabItem Header="automatic login" Width="150" Name="tabAutoLogin">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -2730,7 +2732,7 @@
                 </TabItem>
                 <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="restrictions" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlRestrictions">
                         <TabItem Header="explorer" Width="90" Name="tabExplorerRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -3078,7 +3080,7 @@
                 </TabItem>
                 <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="maintenance" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
+                    <TabControl Margin="10,-10" Name="tabControlMaintenance">
                         <TabItem Header="memory" Width="90" Name="tabMemory">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
@@ -3212,18 +3214,17 @@
                                             <TextBlock TextWrapping="Wrap">Don't show error reporting dialog, when an app crashes</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <StackPanel Orientation="Horizontal" Margin="30, 10, 5, 5">
-                                        <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center"
-                                          Name="lblErrReportType">
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center"
+                                          Name="lblErrReportType" Margin="30, 10, 5, 5">
                                             Type of report that should be send to Microsoft when an error occurs
-                                        </TextBlock>
-                                        <ComboBox Margin="10, 0, 0, 0" SelectedIndex="0" FontSize="16" Name="cmboBxErrReportTye">
-                                            <ComboBoxItem>Ask, when sending</ComboBoxItem>
-                                            <ComboBoxItem>Send basic data</ComboBoxItem>
-                                            <ComboBoxItem>Send basic and additional data</ComboBoxItem>
-                                            <ComboBoxItem>Never send any data</ComboBoxItem>
-                                        </ComboBox>
-                                    </StackPanel>
+                                    </TextBlock>
+                                    <ComboBox Margin="10, 0, 10, 0" SelectedIndex="0" FontSize="16" Name="cmboBxErrReportTye"
+                                              HorizontalAlignment="Right">
+                                        <ComboBoxItem>Ask, when sending</ComboBoxItem>
+                                        <ComboBoxItem>Send basic data</ComboBoxItem>
+                                        <ComboBoxItem>Send basic and additional data</ComboBoxItem>
+                                        <ComboBoxItem>Never send any data</ComboBoxItem>
+                                    </ComboBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -3475,6 +3476,28 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <Button Click="OnButtonDismissContextMenuListClick" Margin="0, 5, 0, 0">Close</Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup Name="popupSearch" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=txtSearchInput}" 
+                   PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="2">
+                <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="White"
+                        Padding="0">
+                    <StackPanel Margin="0">
+                        <ListBox Name="lstSearchResults" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                 Width="600" MaxHeight="480" BorderBrush="White">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Foreground="Black"
+                                               Margin="5, 5, 2, 5" Text="{Binding Path=UiElementText}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <EventSetter Event="PreviewMouseDown" Handler="OnSearchListItemMouseDown"></EventSetter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
                     </StackPanel>
                 </Border>
             </Popup>

@@ -21,15 +21,17 @@ from stemming import porter2
 EN = "en"
 UI_ELEMENT_NAME = 0
 MAIN_TAB = 1
-SUB_TAB = 2
+SUB_TAB_CONTROL = 2
+SUB_TAB = 3
 
 
 def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
     term_and_ui_element_map = dict()
     ui_element_map_for_term = lambda ui_element_row: \
-        {"uiElement": ui_element_row[UI_ELEMENT_NAME],
-         "mainTab": ui_element_row[MAIN_TAB],
-         "subTab": ui_element_row[SUB_TAB]}
+        {"UiElement": ui_element_row[UI_ELEMENT_NAME].strip(),
+         "MainTab": ui_element_row[MAIN_TAB].strip(),
+         "SubTabControl": ui_element_row[SUB_TAB_CONTROL].strip(),
+         "SubTab": ui_element_row[SUB_TAB].strip()}
     stemmer_func = porter2.stem if lang == EN else lambda x: x
     with open(file_path, 'r') as input_file:
         for line in input_file:
@@ -40,12 +42,12 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
             line_to_stem = row[0]
             stemmed_line = [stemmer_func(_term.lower())
                             for _term in line_to_stem.split(' ')
-                            if _term and _term.isalnum()]
+                            if _term and len(_term) > 3 and _term.isalnum()]
             if not stemmed_line:
                 continue
             for _term in stemmed_line:
                 ui_element_lst = row[1].split(',')
-                if len(ui_element_lst) != 3:
+                if len(ui_element_lst) != 4:
                     continue
                 if _term in term_and_ui_element_map:
                     term_and_ui_element_map[_term].append(

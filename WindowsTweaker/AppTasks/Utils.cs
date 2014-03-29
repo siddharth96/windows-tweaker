@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Documents;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
 
@@ -73,7 +71,6 @@ namespace WindowsTweaker.AppTasks {
         internal static string SentenceJoin(this List<string> lst) {
             if (lst == null || !lst.Any())
                 return String.Empty;
-            string txt = String.Empty;
             int lenLst = lst.Count;
             switch (lenLst) {
                 case 1:

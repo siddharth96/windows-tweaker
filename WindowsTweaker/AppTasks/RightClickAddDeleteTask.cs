@@ -18,8 +18,7 @@ namespace WindowsTweaker.AppTasks {
                 if (File.Exists(assumedFilePath)) {
                     try {
                         shrtPathParam = shrtCtPathInputVal.Substring(lastIndxOfSpace + 1);
-                    }
-                    catch (ArgumentOutOfRangeException) {
+                    } catch (ArgumentOutOfRangeException) {
                         shrtPathParam = null;
                     }
                     shrtCtPathInputVal = assumedFilePath;
