@@ -29,6 +29,9 @@
     <SolidColorBrush x:Key="TabItemTextBrushDisabled" Color="Brown" />
     <SolidColorBrush x:Key="TabItemTextBrushHover" Color="#887A8E8F" />
     <SolidColorBrush x:Key="DarkSelectedBrush" Color="#FF070908" />
+    <SolidColorBrush x:Key="WindowTitleBarButtonPressed" Color="#FF4F7EC5" />
+    <SolidColorBrush x:Key="WindowTitleBarCloseButtonHover" Color="#FFB55551" />
+    <SolidColorBrush x:Key="WindowTitleBarCloseButtonPressed" Color="#FF7D4745" />
 
     <Style TargetType="{x:Type Image}">
         <Setter Property="UseLayoutRounding" Value="True" />

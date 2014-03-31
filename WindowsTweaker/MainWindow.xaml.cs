@@ -641,20 +641,15 @@ namespace WindowsTweaker {
             }
         }
 
-
         private void OnButtonSelectLogoClick(object sender, RoutedEventArgs e) {
-            OpenFileDialog openFileDialog = new OpenFileDialog() {
-                Filter = "Bitmap Images|*.bmp",
-                Multiselect = false
-            };
-            if (openFileDialog.ShowDialog() == true) {
-                using (RegistryKey hklmOEM = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
-                    hklmOEM.SetValue(Constants.Logo, openFileDialog.FileName);
-                    imgProperty.Source = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
-                    btnDeleteLogo.IsEnabled = true;
-                    _message.Success("Image has been successfully applied. If your Computer\'s property windows is already open then" +
-                                    " please close & re-open the window for the changes to be reflected.");
-                }
+            string filePath = Utils.GetUserSelectedFilePath("Bitmap Images|*.bmp");
+            if (filePath == null) return;
+            using (RegistryKey hklmOEM = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\OEMInformation")) {
+                hklmOEM.SetValue(Constants.Logo, filePath);
+                imgProperty.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
+                btnDeleteLogo.IsEnabled = true;
+                _message.Success("Image has been successfully applied. If your Computer\'s property windows is already open then" +
+                                " please close & re-open the window for the changes to be reflected.");
             }
         }
 

@@ -130,6 +130,7 @@
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\WindowDictionary.cs" />
     <Compile Include="Search\Searcher.cs" />
     <Compile Include="Search\SearchItem.cs" />
     <Compile Include="Search\SearchItemEqualityComparer.cs" />
@@ -171,6 +172,10 @@
     <Page Include="Resources\MetroSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\WindowDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartupManager.xaml">
       <SubType>Designer</SubType>

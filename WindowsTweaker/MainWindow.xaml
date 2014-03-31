@@ -4,6 +4,7 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         Title="Windows Tweaker 5.0"
+        Style="{StaticResource MainWindowStyle}"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="750"
         ResizeMode="CanResizeWithGrip">
     <Window.Resources>
@@ -36,17 +37,9 @@
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{StaticResource BlueShadeBackgroundBrush}" Grid.Row="1" Grid.Column="0" Width="10" Height="60" VerticalAlignment="Top"
                    Margin="0, 20, 0, 0"></Rectangle>
-        <Grid Grid.Row="0" Grid.Column="1" Margin="0, 20, 0, 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                <ColumnDefinition Width="0.6*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource H1}" Margin="20, 0, 10, 0" HorizontalAlignment="Left" 
-                       Grid.Column="0" VerticalAlignment="Bottom">Windows Tweaker 5.0</TextBlock>
-            <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Bottom" Grid.Column="1"
-                                      Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
-                                      Padding="2" Margin="0, 0, 20, 0" Watermark="Type &amp; Press Enter to Search"></toolkit:WatermarkTextBox>
-        </Grid>
+        <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"
+                                  Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
+                                  Padding="2" Margin="20, 5, 20, 0" Watermark="Type &amp; Press Enter to Search" />
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
                 <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"

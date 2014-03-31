@@ -1,0 +1,138 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    x:Class="WindowsTweaker.Resources.WindowDictionary"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="CloseButtonTemplate" TargetType="{x:Type Button}">
+        <Border Name="CloseButtonBorder" Padding="6" Width="26" Height="26">
+            <Canvas>
+                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" Name="Cross"
+                      Fill="{StaticResource TitleBarBrush}" StrokeThickness="2">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="3,3" EndPoint="12,12" />
+                            <LineGeometry StartPoint="12,3" EndPoint="3,12" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="CloseButtonBorder" Property="Background" Value="{StaticResource WindowTitleBarCloseButtonHover}" />
+                <Setter TargetName="Cross" Property="Stroke" Value="White" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="CloseButtonBorder" Property="Background" Value="{StaticResource WindowTitleBarCloseButtonPressed}" />
+                <Setter TargetName="Cross" Property="Stroke" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MaximizeButtonTemplate" TargetType="{x:Type Button}">
+        <Border Name="MaximizeButtonBorder" Padding="6" Width="26" Height="26">
+            <Canvas>
+                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" StrokeThickness="2"
+                      Fill="{StaticResource TitleBarBrush}" Name="Cross">
+                    <Path.Data>
+                        <RectangleGeometry Rect="3,3 9,9" />
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="MaximizeButtonBorder" Property="Background" Value="White" />
+                <Setter TargetName="Cross" Property="Fill" Value="White" />
+                <Setter TargetName="Cross" Property="Stroke" Value="{StaticResource WindowTitleBarButtonPressed}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="MaximizeButtonBorder" Property="Background" Value="{StaticResource WindowTitleBarButtonPressed}" />
+                <Setter TargetName="Cross" Property="Fill" Value="{StaticResource WindowTitleBarButtonPressed}" />
+                <Setter TargetName="Cross" Property="Stroke" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MinimizeButtonTemplate" TargetType="{x:Type Button}">
+        <Border Name="MinimizeButtonBorder" Padding="6" Width="26" Height="26">
+            <Canvas>
+                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" StrokeThickness="2"
+                      Name="Cross">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <LineGeometry StartPoint="3,12" EndPoint="12,12" />
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="MinimizeButtonBorder" Property="Background" Value="White" />
+                <Setter TargetName="Cross" Property="Stroke" Value="{StaticResource WindowTitleBarButtonPressed}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="MinimizeButtonBorder" Property="Background" Value="{StaticResource WindowTitleBarButtonPressed}" />
+                <Setter TargetName="Cross" Property="Stroke" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ZuneWindowTemplate" TargetType="{x:Type Window}">
+        <Border Name="windowBorder" BorderBrush="{StaticResource WindowBackgroundBrush}"
+                BorderThickness="0" Background="{StaticResource TitleBarBrush}" Margin="0" Padding="0">
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="4" />
+                </Grid.RowDefinitions>
+                <Grid MouseDown="OnTitlebarDoubleClick" Margin="0" MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="28" />
+                        <ColumnDefinition Width="28" />
+                        <ColumnDefinition Width="28" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource H1}" Margin="10, 10, 10, 4" FontSize="21" HorizontalAlignment="Stretch" 
+                       Grid.Column="0" VerticalAlignment="Bottom" Text="{TemplateBinding Title}" />
+                    <Button Margin="0" Template="{StaticResource MinimizeButtonTemplate}" Grid.Column="1"
+                            Name="btnMin" Click="OnMinimizeButtonClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                    <Button Margin="0" Template="{StaticResource MaximizeButtonTemplate}" Grid.Column="2"
+                            Name="btnMax" Click="OnMaximizeButtonClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                    <Button Margin="0" Template="{StaticResource CloseButtonTemplate}" Grid.Column="3"
+                            Name="btnClose" Click="OnButtonCloseClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                </Grid>
+                <Border Grid.Row="1">
+                    <AdornerDecorator>
+                        <ContentPresenter />
+                    </AdornerDecorator>
+                </Border>
+                <ResizeGrip Name="WindowResizeGrip" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                            Visibility="Collapsed" IsTabStop="False" />
+                <Rectangle Grid.Row="1" Grid.RowSpan="3" Cursor="SizeWE" VerticalAlignment="Stretch"
+                           HorizontalAlignment="Right"
+                           Fill="Transparent" Width="5" MouseLeftButtonDown="OnWindowResizeInitiateWE"
+                           MouseLeftButtonUp="OnWindowResizeEnd" MouseMove="OnWindowResizing" />
+                <Rectangle Grid.Row="2" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                           Fill="Transparent" Height="5" MouseLeftButtonDown="OnWindowResizeInitiateNS"
+                           MouseLeftButtonUp="OnWindowResizeEnd" MouseMove="OnWindowResizing" />
+                <Grid Grid.Row="2" Background="#FFD2D1D1" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="0"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="Template" Value="{StaticResource ZuneWindowTemplate}" />
+    </Style>
+</ResourceDictionary>
