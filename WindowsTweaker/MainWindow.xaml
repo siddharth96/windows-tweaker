@@ -1383,7 +1383,8 @@
                                         <Button Margin="0, 10, 10, 0" Name="btnAddFileToSendTo" Click="OnButtonAddFileToSendToClick">Add File</Button>
                                         <Button Margin="0, 10, 10, 0" Name="btnDeleteFromSendTo" Click="OnButtonDeleteFromSendToClick">Delete Selected</Button>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 50, 0, 0">
-                                            <Hyperlink Click="OnLinkEditSendToExplorerClick" Name="lnkOpenExplorer">Edit in Explorer</Hyperlink></TextBlock>
+                                            <Hyperlink Click="OnLinkEditSendToExplorerClick" Name="lnkOpenExplorer">Edit in Explorer</Hyperlink>
+                                        </TextBlock>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -3374,18 +3375,333 @@
                 </TabItem>
                 <TabItem Header="UTILITIES" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}"
                          Tag="utilities" GotFocus="OnTabLoaded">
-                    <TabControl Margin="10,-10">
-                        <TabItem Header="system" Width="80">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                    <TabControl Margin="10,-10" Name="tabControlUtilities">
+                        <TabItem Header="system" Width="80" Name="tabUtilSystem">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M0,44.993L64,44.993 64,51.735001 0,51.735001z M18.628,37.962999L45.372002,
+                                            37.962999 45.372002,42.269 18.628,42.269z M4.4440002,3.855999L4.4440002,34.444999 
+                                            59.556004,34.444999 59.556004,3.855999z M0.41899967,0L63.581001,0 63.581001,
+                                            37.666 0.41899967,37.666z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <Grid Margin="30, 30, 0, 10" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="gpedit.msc" Name="lnkGpedit">Group Policy Editor</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="dcomcnfg.exe" Name="lnkCmpServices">Component Services</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="devmgmt.msc" Name="lnkDevMgr">Device Manager</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="eventvwr.msc" Name="lnkEventVwr">Event Viewer</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="lusrmgr.msc" Name="lnkLuserMsg">Local Users &amp; Group</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="services.msc" Name="lnkWinServices">Windows Services</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="msconfig.exe" Name="lnkSysConfigUtil">System Configuration Utility</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="shutdown.exe;/i" Name="lnkRemoteShutdown">Remote Shutdown Dialog</Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="syskey.exe" Name="lnkWinSecTool">Windows System Security Tool</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="compmgmt.msc" Name="lnkCompMgmt">Computer Management</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="dxdiag.exe" Name="lnkDxDiag">Direct X Troubleshooter</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="secpol.msc" Name="lnkLocalSecSetting">Local Security Settings</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="regedit.exe" Name="lnkRegedit">Windows Registry Editor</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="sysedit.exe" Name="lnkSysConfigEdt">System Configuration Editor</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="msinfo32.exe" Name="lnkSysInfo">System Information</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="command.com" Name="lnkCmdCom">Old Command Prompt</Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </TabItem>
-                        <TabItem Header="disk" Width="65">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                        <TabItem Header="disk" Width="65" Name="tabUtilDisk">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M11.828322,46.910004C8.2306328,46.912903 5.317831,49.171814
+                                            5.3160009,51.960953 5.3160009,54.750187 8.2332525,57.012001 11.830823,
+                                            57.012001 12.054819,57.012001 12.274116,56.977798 12.494211,
+                                            56.962696L12.494211,57.009602 12.886205,56.928997C13.284498,56.879192,
+                                            13.673392,56.798592,14.043686,56.695583L24.839808,54.488476 37.184,51.963951
+                                            24.843005,49.435028 14.005286,47.222519C13.645792,47.123814,13.278798,
+                                            47.042809,12.895305,46.995907L12.494211,46.910004 12.494211,46.964603C12.273015,
+                                            46.944103,12.056219,46.910004,11.828322,46.910004z M23.86185,17.576C27.669178,
+                                            17.576 30.759,20.660022 30.759,24.474449 30.759,28.288477 27.669178,31.373
+                                            23.86185,31.373 20.053923,31.373 16.964,28.288477 16.964,24.474449 16.964,
+                                            20.660022 20.053923,17.576 23.86185,17.576z M23.862351,7.2279997C14.338279,
+                                            7.2279997 6.6150007,14.950744 6.6150007,24.474236 6.6150007,33.999226 14.338279,
+                                            41.722 23.862351,41.722 33.385725,41.722 41.109003,33.999226 41.109003,24.474236
+                                            41.109003,14.950744 33.385725,7.2279997 23.862351,7.2279997z M0,0L47.725,0
+                                            47.725,64 0,64z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="30, 30, 0, 10">
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="chkdsk.exe" Name="lnkChkDsk">Start Check Disk Utility</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="dfrgui.exe" Name="lnkDskDefrg">Disk Defragment</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="diskpart.exe" Name="lnkDskPart">Disk Partition</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="cleanmgr.exe;/sageset:65535 &amp; /sagerun:65535"
+                                                   Name="lnkAdvDskClean">Advanced Disk Cleanup</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="cleanmgr.exe" Name="lnkDskClean">Disk Cleanup</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="diskmgmt.msc" Name="lnkDskMgmt">Disk Management</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
-                        <TabItem Header="network" Width="95">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                        <TabItem Header="network" Width="95" Name="tabUtilNetwork">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M40.240109,47.294002C39.441779,47.294001 38.787999,47.960467
+                                            38.787998,48.7806 38.787999,49.600735 39.441779,50.266 40.240109,
+                                            50.265999 41.044909,50.266 41.695999,49.600735 41.696,48.7806 
+                                            41.695999,47.960467 41.044909,47.294001 40.240109,47.294002z
+                                            M30.552198,47.047002C31.755343,47.047003 32.723998,48.021003
+                                            32.723999,49.218801 32.723998,50.422002 31.755343,51.392002
+                                            30.552198,51.392002 29.354454,51.392002 28.377999,50.422002 
+                                            28.377999,49.218801 28.377999,48.021003 29.354454,47.047003
+                                            30.552198,47.047002z M22.601849,47.047002C23.802221,47.047003 
+                                            24.770998,48.021003 24.770998,49.218801 24.770998,50.422002
+                                            23.802221,51.392002 22.601849,51.392002 21.401176,51.392002
+                                            20.429999,50.422002 20.429999,49.218801 20.429999,48.021003
+                                            21.401176,47.047003 22.601849,47.047002z M14.651199,47.047002C15.849144,
+                                            47.047003 16.822998,48.021003 16.822998,49.218801 16.822998,50.422002
+                                            15.849144,51.392002 14.651199,51.392001 13.450853,51.392002 12.476999,
+                                            50.422002 12.476999,49.218801 12.476999,48.021003 13.450853,47.047003
+                                            14.651199,47.047002z M37.475598,45.24L62.548788,45.24C63.284393,
+                                            45.240002,63.881998,45.836558,63.881998,46.573528L63.881998,51.175573C63.881998,
+                                            51.912545,63.284393,52.509002,62.548788,52.509002L37.475598,52.509002C36.737316,
+                                            52.509002,36.140999,51.912545,36.140999,51.175573L36.140999,46.573528C36.140999,
+                                            45.836558,36.737316,45.240002,37.475598,45.24z M14.6509,39.366002C15.848679,
+                                            39.366003 16.82,40.33589 16.82,41.536351 16.82,42.736712 15.848679,43.708
+                                            14.6509,43.708 13.45072,43.708 12.476999,42.736712 12.476999,41.536351
+                                            12.476999,40.33589 13.45072,39.366003 14.6509,39.366002z M14.6509,31.411002C15.848679,
+                                            31.411002 16.82,32.383758 16.82,33.584551 16.82,34.783943 15.848679,35.757999
+                                            14.6509,35.757999 13.45072,35.757999 12.476999,34.783943 12.476999,33.584551 
+                                            12.476999,32.383758 13.45072,31.411002 14.6509,31.411002z M39.605688,26.771566C39.147433,
+                                            26.771566,38.77768,27.137413,38.777679,27.591867L38.777679,39.810536C38.77768,
+                                            40.261031,39.147433,40.629427,39.605688,40.629427L60.238867,40.629427C60.690573,
+                                            40.629427,61.064375,40.261031,61.064375,39.810536L61.064375,27.591867C61.064375,
+                                            27.137413,60.690573,26.771566,60.238867,26.771566z M38.305015,24.390001L61.378279,
+                                            24.390001C62.483688,24.390001,63.381998,25.284523,63.381998,26.391319L63.381998,
+                                            40.900324C63.381998,42.004412,62.483688,42.899003,61.378279,42.899003L38.305015,
+                                            42.899003C37.198195,42.899003,36.304999,42.004412,36.304999,40.900324L36.304999,
+                                            26.391319C36.304999,25.284523,37.198195,24.390001,38.305015,24.390001z M23.640848,
+                                            22.903999C22.836122,22.903999 22.185,23.570465 22.185,24.3906 22.185,25.210735 
+                                            22.836122,25.876001 23.640848,25.876001 24.440275,25.876001 25.093998,25.210735
+                                            25.093998,24.3906 25.093998,23.570465 24.440275,22.903999 23.640848,22.903999z 
+                                            M1.3332901,20.850002L26.405716,20.850002C27.142708,20.850002,27.738998,21.446293,
+                                            27.738998,22.183382L27.738998,26.784719C27.738998,27.521811,27.142708,28.118002,
+                                            26.405716,28.118002L1.3332901,28.118002C0.596241,28.118002,0,27.521811,0,
+                                            26.784719L0,22.183382C0,21.446293,0.596241,20.850002,1.3332901,20.850002z
+                                            M3.6430817,2.3814697C3.1899605,2.3814697,2.8174629,2.7473106,2.8174629,
+                                            3.2016602L2.8174629,15.420502C2.8174629,15.871,3.1899605,16.2395,3.6430817,
+                                            16.2395L24.275548,16.2395C24.733841,16.2395,25.103736,15.871,25.103736,
+                                            15.420502L25.103736,3.2016602C25.103736,2.7473106,24.733841,2.3814697,24.275548,
+                                            2.3814697z M2.5024681,0L25.575029,0C26.681812,0,27.575,0.89453125,27.575,2.0013428L27.575,
+                                            16.510401C27.575,17.6145,26.681812,18.509001,25.575029,18.509001L2.5024681,
+                                            18.509001C1.398304,18.509001,0.5,17.6145,0.5,16.510401L0.5,2.0013428C0.5,0.89453125,
+                                            1.398304,0,2.5024681,0z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="30, 30, 0, 10">
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="shrpubw.exe" Name="lnkCrtSharedFldr">Create Shared Folder</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="mstsc.exe" Name="lnkRmtDesktp">Remote Desktop</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="dialer.exe" Name="lnkPhnDialer">Phone Dialer</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="migwiz" Name="lnkWinEsyTrnsfr">Windows Easy Transfer</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="fsmgmt.msc" Name="lnkShrdFldr">Shared Folder</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="rasphone.exe" Name="lnkRmtAccessPhnBuk">Remote Access Phonebook</Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                        <Hyperlink Click="StartProcess" Tag="ncpa.cpl" Name="lnkNtwrkConns">Network Connections</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="140">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
+                        <TabItem Header="miscellaneous" Width="140" Name="tabUtilMisc">
+                            <Grid Margin="10, 50, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                                         Margin="30, 30, 0, 30">
+                                    <Grid>
+                                        <Grid Width="256" Height="256">
+                                            <Ellipse Fill="#FFFFFFFF" />
+                                        </Grid>
+                                        <Path
+                                            Data="M18.660349,20.393C14.879011,20.393 11.806,23.468643 11.806,27.249899
+                                                    11.806,31.026154 14.879011,34.103001 18.660349,34.103001 22.444386,34.103001
+                                                    25.519998,31.026154 25.519998,27.249899 25.519998,23.468643 22.444386,20.393
+                                                    18.660349,20.393z M50.07317,8.7561953C49.408178,8.7706149 48.735172,8.9156297
+                                                    48.090648,9.2053407 45.51765,10.359123 44.36155,13.394207 45.51765,15.96858
+                                                    46.671449,18.541552 49.709146,19.691384 52.283444,18.540251 54.856342,17.378819
+                                                    56.012442,14.352736 54.856342,11.771862 53.990993,9.8450501 52.068145,8.7129386
+                                                    50.07317,8.7561953z M15.597473,8.6000007L21.868224,8.6000007 22.20032,14.327933
+                                                    22.20032,14.531032C23.236712,14.816134,24.218506,15.221134,25.133898,15.736836L25.253695,
+                                                    15.615635 29.675461,11.900828 34.111725,16.338337 30.296556,20.624846 30.165057,
+                                                    20.758946C30.683352,21.674349,31.08955,22.659951,31.378649,23.696451L31.544045,
+                                                    23.696451 37.293999,24.196451 37.293999,30.468565 31.566147,30.803267 31.378649,
+                                                    30.803267C31.08955,31.836972,30.683352,32.821373,30.165057,33.736874L30.280955,
+                                                    33.853974 33.993225,38.274582 29.558261,42.709496 25.271895,38.896988 25.133898,
+                                                    38.758988C24.218506,39.274586,23.236712,39.678185,22.20032,39.963387L22.20032,
+                                                    40.146988 21.868224,45.897 15.597473,45.897 15.093578,40.166485 15.093578,
+                                                    39.959488C14.064985,39.671688,13.084595,39.265385,12.174301,38.749787L12.040102,
+                                                    38.881485 7.7381763,42.709496 3.3033104,38.274582 6.9999428,33.869675 7.1522102,
+                                                    33.721176C6.6379356,32.807072,6.2343292,31.83057,5.9464817,30.803267L5.7499523,
+                                                    30.803267 0,30.468565 0,24.196451 5.7278118,23.696451 5.9464817,23.696451C6.2343292,
+                                                    22.665051,6.6379356,21.687248,7.1522102,20.775946L7.0128822,20.640444 3.1874237,
+                                                    16.338337 7.6209869,11.900828 12.027203,15.600036 12.174301,15.744536C13.084595,
+                                                    15.231535,14.064985,14.825334,15.093578,14.537533L15.093578,14.350033z M52.888157,
+                                                    0L57.259197,1.6601361 56.091211,5.7941664 56.035212,5.937414C56.665401,6.3971274,
+                                                    57.240894,6.9413698,57.753986,7.5533617L57.878984,7.4947021 61.949226,6.0845716
+                                                    63.865797,10.35405 60.071657,12.331821 59.933659,12.393021C60.053354,13.18731,
+                                                    60.075457,13.977598,60.003952,14.758987L60.12245,14.803286 63.999998,16.682059 62.337223,
+                                                    21.053194 58.253977,19.771912 58.12108,19.721113C57.656389,20.352705,57.112095,20.928097,
+                                                    56.496105,21.441189L56.549604,21.556988 57.962284,25.627228 53.691446,27.541302 51.712375,
+                                                    23.744456 51.653774,23.615557C50.862186,23.736756,50.066597,23.760056,49.285309,
+                                                    23.687157L49.241009,23.800455 47.366036,27.678 42.991099,26.017823 44.277584,21.928082
+                                                    44.325682,21.799183C43.696789,21.334391,43.121297,20.784899,42.607106,20.171606L42.487208,
+                                                    20.225006 38.469066,21.753483 36.553693,17.486847 40.297138,15.390477 40.441637,
+                                                    15.327978C40.321941,14.53499,40.299839,13.744601,40.372736,12.963413L40.24384,12.915114
+                                                    36.321998,11.158738 37.984774,6.7851217 42.113513,7.9530752 42.263212,8.009104C42.728206,
+                                                    7.3840535,43.269797,6.8124616,43.879186,6.3033789L43.82189,6.1652506 42.29051,2.1496897
+                                                    46.562749,0.22918414 48.656518,3.977782 48.722916,4.1289099C49.511906,4.0091622,50.299695,
+                                                    3.9843827,51.075585,4.0534113L51.127785,3.9218233z"
+                                            Stretch="Uniform"
+                                            Fill="{StaticResource VectorImageBackground}"
+                                            Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                    </Grid>
+                                </Viewbox>
+                                <Grid Margin="30, 30, 0, 10" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="charmap.exe" Name="lnkCharMap">Character Map</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="verifier.exe" Name="lnkDrvrVerifier">Driver Verifier Utility</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="iexpress.exe" Name="lnkInstallerCrtr">Installer Creator Wizard</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="wab.exe" Name="lnkWab">Windows Address Book</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="eudcedit.exe" Name="lnkPrvtCharEdtr">Private Character Editor</Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="sigverif.exe" Name="lnkFlSigVerfr">File Signature Verification Toolkit</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="intl.cpl" Name="lnkRegSettings">Regional Settings</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="wabmig.exe" Name="lnkDrtX">Direct X Troubleshooter</Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
+                                            <Hyperlink Click="StartProcess" Tag="netplwiz.exe"
+                                                       Name="lnkAdvUserCp">Advanced User Accounts Control Panel</Hyperlink>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>

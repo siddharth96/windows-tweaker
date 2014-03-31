@@ -113,26 +113,6 @@ namespace WindowsTweaker {
         private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
             _message.Hide();
         }
-
-        private void StartProcess(object sender, RoutedEventArgs e) {
-            try {
-                string tagVal = ((Hyperlink) sender).Tag.ToString();
-                if (tagVal.Contains(",")) {
-                    string[] tagArr = tagVal.Split(',');
-                    ProcessWrapper.ExecuteProcess(tagArr[0], tagArr[1]);
-                } else if (tagVal.StartsWith("http")) {
-                    Process.Start(tagVal);
-                } else {
-                    ProcessWrapper.ExecuteProcess(tagVal);
-                }
-            } catch (Win32Exception) {
-                if (((Hyperlink)sender).Tag.ToString().Contains("SystemPropertiesProtection")) {
-                    ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows) 
-                        + @"\system32\Restore\rstrui.exe");
-                } else
-                    _message.Error("This option is not available in your version of Windows");
-            }
-        }
         #endregion
 
         #region Logon
@@ -1780,6 +1760,27 @@ namespace WindowsTweaker {
             TabItem subTabItem = (TabItem) subTabItemObj;
             subTabControl.SelectedItem = subTabItem;
             HideSearchResults();
+        }
+        #endregion
+
+        #region Utilities
+
+        private void StartProcess(object sender, RoutedEventArgs e) {
+            try {
+                string tagVal = ((Hyperlink)sender).Tag.ToString();
+                if (tagVal.Contains(";")) {
+                    string[] tagArr = tagVal.Split(';');
+                    ProcessWrapper.ExecuteProcess(tagArr[0], tagArr[1]);
+                } else {
+                    ProcessWrapper.ExecuteProcess(tagVal);
+                }
+            } catch (Win32Exception) {
+                if (((Hyperlink)sender).Tag.ToString().Contains("SystemPropertiesProtection")) {
+                    ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows)
+                        + @"\system32\Restore\rstrui.exe");
+                } else
+                    _message.Error("This option is not available in your version of Windows");
+            }
         }
         #endregion
     }

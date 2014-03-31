@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Script.Serialization;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using EnglishStemmer;
 
 namespace WindowsTweaker.Search {
@@ -78,6 +79,12 @@ namespace WindowsTweaker.Search {
                         searchItem.UiElementText = ((TextBlock)uiControl).Text;
                     } else if (uiControl is TabItem) {
                         searchItem.UiElementText = ((TabItem)uiControl).Header.ToString();
+                    } else if (uiControl is Hyperlink) {
+                        Hyperlink hyperlink = (Hyperlink) uiControl;
+                        Run run = hyperlink.Inlines.FirstInline as Run;
+                        searchItem.UiElementText = run.Text;
+                    } else if (uiControl is Button) {
+                        searchItem.UiElementText = ((Button) uiControl).Content.ToString();
                     }
                 }
             }

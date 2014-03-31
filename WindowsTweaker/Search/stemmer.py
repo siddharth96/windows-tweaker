@@ -42,7 +42,7 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
             line_to_stem = row[0]
             stemmed_line = [stemmer_func(_term.lower())
                             for _term in line_to_stem.split(' ')
-                            if _term and len(_term) > 3 and _term.isalnum()]
+                            if _term and len(_term) >= 3 and _term.isalnum()]
             if not stemmed_line:
                 continue
             for _term in stemmed_line:
