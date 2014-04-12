@@ -35,6 +35,7 @@ namespace WindowsTweaker {
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
             _message.Hide();
+            _hasTabLoadedDict = new Dictionary<string, bool>();
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -47,10 +48,14 @@ namespace WindowsTweaker {
         private readonly BackgroundWorker _searchBackgroundWorker;
         private Color _selectionColor;
         private readonly Searcher _searcher;
+        private readonly Dictionary<string, bool> _hasTabLoadedDict; 
 
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
             string tagVal = ((TabItem) sender).Tag.ToString();
+            if (_hasTabLoadedDict.ContainsKey(tagVal) && _hasTabLoadedDict[tagVal])
+                return;
+            _hasTabLoadedDict[tagVal] = true;
             switch (tagVal) {
                 case Constants.Explorer:
                     LoadExplorerTab();
@@ -69,6 +74,7 @@ namespace WindowsTweaker {
                     break;
 
                 case Constants.Places:
+                    LoadPlacesTab();
                     break;
 
                 case Constants.Tasks:
@@ -258,8 +264,11 @@ namespace WindowsTweaker {
                 chkHideThumbNailCache.SetCheckedState(hkcuExAdvanced, Constants.DisableThumbnailCache);
                 // Taskbar
                 chkTaskBarAnim.SetCheckedState(hkcuExAdvanced, Constants.TaskBarAnimations);
-                if (_windowsOs != WindowsVer.Windows.Xp) {
+                if (_windowsOs > WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
+                } else {
+                    txtShowIconsTaskBar.Text += " (Only for Windows Vista and onwards)";
+                    chkShowIconsTaskBar.IsEnabled = false;
                 }
                 chkTaskBarNoTooltip.SetCheckedState(hkcuExAdvanced, Constants.ShowInfoTip, true);
 
@@ -269,9 +278,9 @@ namespace WindowsTweaker {
                     // Explorer
                     chkHide3DFlip.SetCheckedState(hkcuDWM, Constants.DisAllowFlip_3D);
                 }
-            }
-            else {
-                chkHide3DFlip.Visibility = Visibility.Collapsed;
+            } else {
+                txtDisableFlip3D.Text += " (Only for Windows Vista and 7)";
+                chkHide3DFlip.IsEnabled = false;
             }
             using (RegistryKey hkcuSystem = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 //System
@@ -315,7 +324,7 @@ namespace WindowsTweaker {
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 hkcuExAdvanced.SetValue(chkHideThumbNailCache, Constants.DisableThumbnailCache);
                 hkcuExAdvanced.SetValue(chkTaskBarAnim, Constants.TaskBarAnimations);
-                if (_windowsOs != WindowsVer.Windows.Xp) {
+                if (_windowsOs > WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
                 }
 
@@ -380,7 +389,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmNamespace = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
-                if (_windowsOs > WindowsVer.Windows.Xp) {
+                if (_windowsOs >= WindowsVer.Windows.Vista) {
                     RegistryKey key = hklmNamespace.OpenSubKey(Constants.Library);
                     if (key != null) {
                         rbtnShowLibraries.IsChecked = true;
@@ -388,9 +397,9 @@ namespace WindowsTweaker {
                     else {
                         rbtnHideLibraries.IsChecked = true;
                     }
-                }
-                else {
-                    tabLibrary.Visibility = Visibility.Collapsed;
+                } else {
+                    txtLibraries.Text += " (Only for Windows Vista and onwards)";
+                    panelLibraries.IsEnabled = false;
                 }
             }
 
@@ -446,6 +455,10 @@ namespace WindowsTweaker {
                 using (RegistryKey hkcuAdvanced = _hkcr.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                     chkReplaceCmdPromptWithPs.SetCheckedState(hkcuAdvanced, Constants.DontUsePowerShellOnWinX, true);
                 }
+            } else {
+                txtStartScreen.Text += " (Only for Windows 8+)";
+                txtNavTweaks.Text += " (Only for Windows 8+)";
+                panelStartScreen.IsEnabled  = panelNavTweaks.IsEnabled= false;
             }
         }
 
@@ -821,6 +834,11 @@ namespace WindowsTweaker {
 
         #region Places
         private void LoadPlacesTab() {
+            // God Mode
+            if (_windowsOs < WindowsVer.Windows.Vista) {
+                lblSetupGodMode.Text += " (Only for Windows Vista & onwards)";
+                panelSetupGodMode.IsEnabled = false;
+            }
             // Power Button
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 int val = (int) hkcuExAdvanced.GetValue(Constants.StartPowerBtnAction);
@@ -862,7 +880,7 @@ namespace WindowsTweaker {
                         rbtnOpenDlgForNoExt.IsChecked = false;
                     } else {
                         rbtnPrgForNoExt.IsChecked = false;
-                        rbtnOpenDlgForNoExt.IsChecked = false;
+                        rbtnOpenDlgForNoExt.IsChecked = true;
                     }
                 }
             }
@@ -878,7 +896,7 @@ namespace WindowsTweaker {
                         rbtnOpenDlgForUnknownExt.IsChecked = false;
                     } else {
                         rbtnPrgForUnknownExt.IsChecked = false;
-                        rbtnOpenDlgForUnknownExt.IsChecked = false;
+                        rbtnOpenDlgForUnknownExt.IsChecked = true;
                     }
                 }
             }
@@ -1074,43 +1092,38 @@ namespace WindowsTweaker {
         #endregion
 
         #region Right-Click
+
         /// <summary>
         /// Checks the name of RegistryKey for Copy-To, Move-To and Send-To Registry Keys, and corrects them if they are wrong.
         /// These names are case-sensitive, eg., "Copy To" will work, but "Copy to" as registry-key's value will fail,
         /// and unfortunately some 3rd party tweaking softwares put in the latter one in the Registry.
         /// </summary>
-        private void ValidateAndFixKeys(RegistryKey rootKey)
-        {
+        private void ValidateAndFixKeys(RegistryKey rootKey) {
             string[] subKeyNames = rootKey.GetSubKeyNames();
-            foreach (string keyName in subKeyNames)
-            {
+            foreach (string keyName in subKeyNames) {
                 RegistryKey keyToValidate = rootKey.OpenSubKey(keyName, true);
-                string copyToVal = (string)keyToValidate.GetValue(Constants.CopyToId);
-                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo))
-                {
+                string copyToVal = (string) keyToValidate.GetValue(Constants.CopyToId);
+                if (copyToVal != null && !keyToValidate.Name.Equals(Constants.CopyTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
                     keyToValidate = rootKey.CreateSubKey(Constants.CopyTo);
                     keyToValidate.SetValue("", Constants.CopyToId);
                     continue;
                 }
-                string moveToVal = (string)keyToValidate.GetValue(Constants.MoveToId);
-                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo))
-                {
+                string moveToVal = (string) keyToValidate.GetValue(Constants.MoveToId);
+                if (moveToVal != null && !keyToValidate.Name.Equals(Constants.MoveTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
                     keyToValidate = rootKey.CreateSubKey(Constants.MoveTo);
                     keyToValidate.SetValue("", Constants.MoveToId);
                     continue;
                 }
-                string sendToVal = (string)keyToValidate.GetValue(Constants.SendToId);
-                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo))
-                {
+                string sendToVal = (string) keyToValidate.GetValue(Constants.SendToId);
+                if (sendToVal != null && !keyToValidate.Name.Equals(Constants.SendTo)) {
                     keyToValidate.Close();
                     rootKey.DeleteSubKeyTree(keyName);
                     keyToValidate = rootKey.CreateSubKey(Constants.SendTo);
                     keyToValidate.SetValue("", Constants.SendToId);
-                    continue;
                 }
             }
         }
@@ -1149,31 +1162,41 @@ namespace WindowsTweaker {
                 chkEncryptAndDecrypt.SetCheckedState(hklmExAdvanced, Constants.EncryptCtxMenu);
             }
 
-            using (RegistryKey hklmClasses = _hklm.CreateSubKey(@"Software\Classes")) {
-                using (RegistryKey hklmDotTxt = _hklm.CreateSubKey(@"Software\Classes\.txt")) {
-                    string txtFile = (string) hklmDotTxt.GetValue("");
-                    RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
-                    RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
+            if (_windowsOs >= WindowsVer.Windows.Seven) {
+                using (RegistryKey hklmClasses = _hklm.CreateSubKey(@"Software\Classes")) {
+                    using (RegistryKey hklmDotTxt = _hklm.CreateSubKey(@"Software\Classes\.txt")) {
+                        string txtFile = (string) hklmDotTxt.GetValue("");
+                        RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
+                        RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
 
-                    if (hklmDotTextShell != null) {
-                        RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
-                        RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
-                        if (hklmTextShell != null) {
-                            chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
-                                                        || hklmTextShell.GetValue(Constants.CopyContents) != null;
+                        if (hklmDotTextShell != null) {
+                            RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
+                            RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
+                            if (hklmTextShell != null) {
+                                chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
+                                                            || hklmTextShell.GetValue(Constants.CopyContents) != null;
+                            }
+                            else {
+                                chkCopyContents.IsChecked = false;
+                            }
+                            hklmTxt.Close();
+                            hklmDotTextShell.Close();
+                            hklmTextFile.Close();
+                            if (hklmTextShell != null)
+                                hklmTextShell.Close();
                         }
-                        else {
-                            chkCopyContents.IsChecked = false;
-                        }
-                        hklmTxt.Close();
-                        hklmDotTextShell.Close();
-                        hklmTextFile.Close();
-                        if (hklmTextShell != null)
-                            hklmTextShell.Close();
                     }
                 }
+            } else {
+                txtCopyContents.Text += " (Only for Windows 7 and onwards)";
+                chkCopyContents.IsEnabled = false;
             }
 
+            // Add Items
+            if (_windowsOs < WindowsVer.Windows.Vista) {
+                txtAddToRightClick.Text += " (Only for Windows Vista and onwards)";
+                panelAddToRightClick.IsEnabled = true;
+            }
             // Send To
             LoadSendTo();
         }
@@ -1262,6 +1285,8 @@ namespace WindowsTweaker {
         }
 
         private void AddToContextMenu() {
+            if (_windowsOs < WindowsVer.Windows.Vista)
+                return;
             string shrtCtName = txtShrtCtName.Text.Trim();
             if (shrtCtName.Length == 0) {
                 _message.Error("Please enter a name for the shortcut");

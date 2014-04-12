@@ -261,8 +261,8 @@
                                             Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelLibraries">
+                                    <TextBlock Style="{StaticResource H1}" Name="txtLibraries">
                                         Specify whether &quot;Libraries&quot; are shown in the left Navigation Pane
                                     </TextBlock>
                                     <RadioButton Margin="30, 30, 5, 5"
@@ -301,8 +301,8 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelStartScreen">
+                                    <TextBlock Style="{StaticResource H1}" Name="txtStartScreen">
                                         Start Screen
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
@@ -378,9 +378,9 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Navigation Tweaks for Windows 8
+                                <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelNavTweaks">
+                                    <TextBlock Style="{StaticResource H1}" Name="txtNavTweaks">
+                                        Navigation Tweaks
                                     </TextBlock>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkCharmsTR"
                                               IsChecked="True" Style="{StaticResource ChkStyle}">
@@ -1216,7 +1216,7 @@
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkCopyContents">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Name="txtCopyContents">
                                                 Add &quot;Copy all Contents&quot;
                                                 to Right-Click menu of all text files
                                             </TextBlock>
@@ -1308,7 +1308,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <Grid Grid.Column="1" Margin="30, 30, 5, 30">
+                                <Grid Grid.Column="1" Margin="30, 30, 5, 30" Name="panelAddToRightClick">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -1319,25 +1319,31 @@
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Margin="30, 10, 5, 5" Style="{StaticResource TxtStyle}">Shortcut Name</TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="txtAddToRightClick"
+                                               Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
+                                        Add shortcuts to right-click
+                                    </TextBlock>
+                                    <TextBlock Margin="30, 15, 5, 5" Style="{StaticResource TxtStyle}" Grid.Column="0"
+                                               Grid.Row="1">Shortcut Name</TextBlock>
                                     <TextBox Margin="10, 10, 5, 5" Grid.Column="1" Style="{StaticResource TxtBoxStyle}"
-                                             Name="txtShrtCtName"></TextBox>
-                                    <TextBlock Margin="30, 10, 5, 5" Grid.Row="1" Style="{StaticResource TxtStyle}">Path or URL</TextBlock>
-                                    <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Grid.Column="1" Grid.Row="1" Style="{StaticResource TxtBoxStyle}"
+                                             Name="txtShrtCtName" Grid.Row="1"></TextBox>
+                                    <TextBlock Margin="30, 10, 5, 5" Grid.Row="2" Grid.Column="0" Style="{StaticResource TxtStyle}">Path or URL</TextBlock>
+                                    <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Grid.Column="1" Grid.Row="2" Style="{StaticResource TxtBoxStyle}"
                                                               Padding="2, 6, 0, 0" Name="txtShrtCtPath">
                                         <toolkit:WatermarkTextBox.Watermark>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}">Use 'Browse' to specify a file, or type in the URL</TextBlock>
                                         </toolkit:WatermarkTextBox.Watermark>
                                     </toolkit:WatermarkTextBox>
-                                    <Button Grid.Row="1" Grid.Column="2" Margin="0, 10, 5, 5" 
+                                    <Button Grid.Row="2" Grid.Column="2" Margin="0, 10, 5, 5" 
                                             Name="btnBrowseFileForRightClick" 
                                             Click="OnButtonBrowseFileForContextMenu">Browse</Button>
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource HelpTxtStyle}" 
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource HelpTxtStyle}" 
                                                Margin="10,0,0,0">eg. C:\\FolderName\file.exe or http://www.google.com</TextBlock>
-                                    <Button Grid.Row="3" Grid.Column="0" Margin="30, 20, 5, 5" Name="btnCreateRightClickShortcut"
+                                    <Button Grid.Row="4" Grid.Column="0" Margin="30, 20, 5, 5" Name="btnCreateRightClickShortcut"
                                             Click="OnButtonContextMenuShortcutClick">Create</Button>
-                                    <Button Grid.Row="3" Grid.Column="1" Margin="10, 20, 5, 5" Name="btnDeleteRightClickShortCut"
+                                    <Button Grid.Row="4" Grid.Column="1" Margin="10, 20, 5, 5" Name="btnDeleteRightClickShortCut"
                                             Click="OnButtonDeleteFromContextMenuClick" HorizontalAlignment="Left">Delete Previously added</Button>
                                 </Grid>
                             </Grid>
@@ -1429,7 +1435,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                     </Grid>
                                 </Viewbox>
-                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" Name="panelSetupGodMode">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                                Name="lblSetupGodMode">
                                         Set up "God-Mode"
@@ -2874,7 +2880,7 @@
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Flip 3D for the current user</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Name="txtDisableFlip3D">Disable Flip 3D for the current user</TextBlock>
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
@@ -3063,8 +3069,11 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarAnim" Click="OnCheckBoxClick"
                                               Content="Disable Taskbar animations" />
-                                    <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar" Click="OnCheckBoxClick"
-                                              Content="Show small icons on TaskBar" />
+                                    <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar" Click="OnCheckBoxClick">
+                                        <CheckBox.Content>
+                                            <TextBlock Name="txtShowIconsTaskBar" TextWrapping="Wrap">Show small icons on TaskBar</TextBlock>
+                                        </CheckBox.Content>
+                                    </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarNoTooltip" Click="OnCheckBoxClick" 
                                               Content="Disable TaskBar Tooltips" />
                                 </StackPanel>
