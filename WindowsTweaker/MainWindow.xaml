@@ -45,7 +45,7 @@
                 <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
                          Tag="explorer" Loaded="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlExplorer">
-                        <TabItem Header="drive letter display" Width="180" Name="tabDriveLetterDisplay">
+                        <TabItem Header="{StaticResource DriveLetterDisplay}" Width="180" Name="tabDriveLetterDisplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -77,20 +77,18 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Specify how the drives are displayed in My Computer
-                                    </TextBlock>
-                                    <RadioButton Margin="30, 30, 5, 5" Content="Show the drive letters before the name"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource SpecifyDriveLetterDisplay}" />
+                                    <RadioButton Margin="30, 30, 5, 5" Content="{StaticResource DriveLetterBeforeName}"
                                                  Style="{StaticResource RbtnStyle}"
                                                  Name="rbtnShowDriveLetterBeforeName" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Show the drive letters after the name"
+                                    <RadioButton Margin="30, 5, 5, 5" Content="{StaticResource DriveLetterAfterName}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnShowDriveLetterAfterName" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Don't Show the drive letters"
+                                    <RadioButton Margin="30, 5, 5, 5" Content="{StaticResource HideDriveLetters}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnHideDriveLetter" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="advanced" Width="100" Name="tabAdvanced">
+                        <TabItem Header="{StaticResource Advanced}" Width="100" Name="tabAdvanced">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -141,31 +139,29 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="100, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Advanced Explorer Tweaks
-                                    </TextBlock>
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Always Show Menubar" Click="OnCheckBoxClick"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource AdvancedExplorerTweaks}"/>
+                                    <CheckBox Margin="30, 20, 5, 5" Content="{StaticResource ShowMenuBar}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkShowMenuBar" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Show hidden files and folders" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="{StaticResource ShowHidden}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkShowHiddenFilesFolders" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Hide extensions for known file types" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="{StaticResource HideExt}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkHideExtension" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Use checkboxes to select items" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="{StaticResource ChkSelectItem}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkSelectItems" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Restore previously opened folders at login" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="{StaticResource RestorePreviousFile}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkRestoreFoldersAtLogin" />
-                                    <CheckBox Margin="30, 5, 5, 5" Content="Show protected operating system files" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 5, 5, 5" Content="{StaticResource ShowOsFiles}" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkShowOSfiles" />
                                     <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Display compressed &amp; encrypted NTFS files in colour"
+                                              Content="{StaticResource DisplayEncDecFile}"
                                               Style="{StaticResource SmallChkStyle}" Name="chkShowNtfsInColor" />
                                     <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Disable expand to current folder in left navigation-pane"
+                                              Content="{StaticResource DisableExpandToCurrent}"
                                               Style="{StaticResource SmallChkStyle}" Name="chkAutoExpand" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="properties" Width="100" Name="tabProperties">
+                        <TabItem Header="{StaticResource Properties}" Width="100" Name="tabProperties">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -221,19 +217,17 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="100, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Hide options in Property Dialog
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource HideOptions}" />
                                     <CheckBox Margin="30, 30, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Hide &quot;Security&quot; in Folders, Files, Shortcuts &amp; Drives"
+                                              Content="{StaticResource HideSecurity}"
                                               Style="{StaticResource ChkStyle}" Name="chkHideSecurity" />
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Hide &quot;Customize&quot; in Folders, Files, Shortcuts &amp; Drives"
+                                              Content="{StaticResource HideCustomize}"
                                               Style="{StaticResource ChkStyle}" Name="chkShowHideCustomize" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="libraries" Width="90" Name="tabLibrary">
+                        <TabItem Header="{StaticResource Libraries}" Width="90" Name="tabLibrary">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -262,19 +256,17 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelLibraries">
-                                    <TextBlock Style="{StaticResource H1}" Name="txtLibraries">
-                                        Specify whether &quot;Libraries&quot; are shown in the left Navigation Pane
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="txtLibraries" Text="{StaticResource ShowLibraries}" />
                                     <RadioButton Margin="30, 30, 5, 5"
-                                                 Content="Show &quot;Libraries&quot; in Navigation Pane"
+                                                 Content="{StaticResource ShowLibrariesInNav}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnShowLibraries" />
                                     <RadioButton Margin="30, 30, 5, 5"
-                                                 Content="Hide &quot;Libraries&quot; in Navigation Pane"
+                                                 Content="{StaticResource HideLibrariesInNav}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnHideLibraries" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="start screen" Width="120" Name="tabStartScreen">
+                        <TabItem Header="{StaticResource StartScreen}" Width="120" Name="tabStartScreen">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -302,56 +294,44 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelStartScreen">
-                                    <TextBlock Style="{StaticResource H1}" Name="txtStartScreen">
-                                        Start Screen
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="txtStartScreen" Text="{StaticResource StartScreenLabel}" />
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Show my desktop background on Start" Name="chkDesktopBkgOnStart"
+                                              Content="{StaticResource ShowDesktopBkg}" Name="chkDesktopBkgOnStart"
                                               Style="{StaticResource SmallChkStyle}" />
                                     <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkNavigateToDesktopOnClose" >
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                When I sign in or close all apps on a screen, go to the desktop instead of Start
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource BootToDesktop}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick" Name="chkStartOnDisplay"
                                               Style="{StaticResource SmallChkStyle}">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Show Start on the display I'm using when I press the Windows logo key
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowStartOnDisplay}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkAppsViewOnStart">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Show the Apps view automatically when I go to Start
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowAppViewOnStart}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkSearchEverywhere">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Search everywhere instead of just my apps when I search from the Apps view
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource SearchEverywhere}" />                                            
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource SmallChkStyle}" Name="chkListDesktopApps">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                List desktop apps first in the Apps view when it's sorted by category
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DesktopAppsFirst}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="navigation" Width="120" Name="tabNavigation">
+                        <TabItem Header="{StaticResource Navigation}" Width="120" Name="tabNavigation">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -379,37 +359,29 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30" Name="panelNavTweaks">
-                                    <TextBlock Style="{StaticResource H1}" Name="txtNavTweaks">
-                                        Navigation Tweaks
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="txtNavTweaks" Text="{StaticResource NavigationTweaks}" />
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkCharmsTR"
                                               IsChecked="True" Style="{StaticResource ChkStyle}">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                When I point to the upper-right corner, show the charms
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowCharms}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick" Name="chkAppsTL"
                                               Style="{StaticResource ChkStyle}" IsChecked="True">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                When I click the upper-left corner, switch between my recent apps
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource RecentApps}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 20, 5, 5" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkReplaceCmdPromptWithPs">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Replace Command Prompt with Windows PowerShell in the menu when I right-click the
-                                                lower-left corner or press Windows key+X</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ReplaceWithPowerShell}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="etc" Width="60" Name="tabEtc">
+                        <TabItem Header="{StaticResource Etc}" Width="60" Name="tabEtc">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -430,13 +402,11 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Extras
-                                    </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Add Recycle Bin to My Computer" Click="OnCheckBoxClick"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource Extras}" />
+                                    <CheckBox Margin="30, 30, 5, 5" Content="{StaticResource AddRecycleBin}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkAddRecycleBinToMyComputer" />
                                     <CheckBox Margin="30, 30, 5, 5" Click="OnCheckBoxClick"
-                                              Content="Add Registry Editor (Regedit) to Control Panel"
+                                              Content="{StaticResource AddRegedit}"
                                               Style="{StaticResource ChkStyle}" Name="chkAddRegeditToControlPanel" />
                                 </StackPanel>
                             </Grid>
@@ -477,19 +447,24 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Configure Windows' behaviour during Shutdown
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource ShutdownBehaviour}" />
                                     <RadioButton Margin="30, 30, 5, 5"
-                                                 Content="Kill applications immediately and shutdown straightaway"
+                                                 Content="{StaticResource KillAppImmediately}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnShutdownImmediately" />
                                     <RadioButton Margin="30, 5, 5, 5"
-                                                 Content="Wait for applications to exit for X milliseconds"
-                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShutdownAfterWaiting" />
+                                                 Style="{StaticResource RbtnStyle}" Name="rbtnShutdownAfterWaiting">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{StaticResource WaitToKill}" />
+                                                <toolkit:IntegerUpDown />
+                                                <TextBlock Text="{StaticResource Milliseconds}"></TextBlock>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="edit information" Width="150" Name="tabEditInfo">
+                        <TabItem Header="{StaticResource EditInfo}" Width="150" Name="tabEditInfo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -540,9 +515,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Specify the support information that is displayed in Computer&quot;s Properties
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource SpecifySupportInfo}" />
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
@@ -554,27 +527,27 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="Manufacturer :" Style="{StaticResource TxtStyle}"
+                                        <TextBlock Text="{StaticResource Manufacturer}" Style="{StaticResource TxtStyle}"
                                                    Margin="5, 10" Name="lblManufacturer" />
                                         <TextBox Name="txtManufacturer" Style="{StaticResource TxtBoxStyle}"
-                                                 Grid.Column="1" Margin="5, 10, 10, 10" />
-                                        <TextBlock Text="Model :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="1" Margin="5, 10" Name="lblModel" />
+                                                 Grid.Column="1" Grid.Row="0" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="{StaticResource Model}" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="1" Grid.Column="0" Margin="5, 10" Name="lblModel" />
                                         <TextBox Name="txtModel" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
-                                        <TextBlock Text="Support Phone:" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="2" Margin="5, 10" Name="lblSupportPh" />
+                                        <TextBlock Text="{StaticResource SupportPhone}" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="2" Grid.Column="0" Margin="5, 10" Name="lblSupportPh" />
                                         <TextBox Name="txtSupportPhone" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
-                                        <TextBlock Text="Support URL:" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="3" Margin="5, 10" Name="lblSupportUrl" />
+                                        <TextBlock Text="{StaticResource SupportUrl}" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="3" Grid.Column="0" Margin="5, 10" Name="lblSupportUrl" />
                                         <TextBox Name="txtSupportUrl" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="3" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows installer" Width="160" Name="tabWinInstaller">
+                        <TabItem Header="{StaticResource WinInstaller}" Width="160" Name="tabWinInstaller">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -620,20 +593,18 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Windows Installer Preferences
-                                    </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Disable Windows Installer service" Click="OnCheckBoxClick"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource WinInstallerPreference}" />
+                                    <CheckBox Margin="30, 30, 5, 5" Content="{StaticResource DisableWinInstaller}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkDisableWinInstaller" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Always install with elevated privileges" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="{StaticResource InstallElevatedPriviledges}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkElevatedInstall" />
                                     <CheckBox Margin="30, 20, 5, 5"
-                                              Content="Turn off creation of System Restore points when installing" Click="OnCheckBoxClick"
+                                              Content="{StaticResource WinInstallerNoSysRestorePt}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkDisableSysRestoreInstall" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="registration" Width="120" Name="tabReg">
+                        <TabItem Header="{StaticResource Registration}" Width="120" Name="tabReg">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -696,8 +667,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Change the User &amp; Company name to whom this system is registered
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource ChangeRegistrationInfo}">
                                     </TextBlock>
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
@@ -709,23 +679,23 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="Owner Name :" Style="{StaticResource TxtStyle}"
+                                        <TextBlock Text="{StaticResource OwnerName}" Style="{StaticResource TxtStyle}"
                                                    Margin="5, 10" Name="lblOwnerName" />
                                         <TextBox Name="txtOwnerName" Style="{StaticResource TxtBoxStyle}"
-                                                 Grid.Column="1" Margin="5, 10, 10, 10" />
-                                        <TextBlock Text="Company Name :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="1" Margin="5, 10" Name="lblCompanyName" />
+                                                 Grid.Column="1" Grid.Row="0" Margin="5, 10, 10, 10" />
+                                        <TextBlock Text="{StaticResource CompanyName}" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="1" Grid.Column="0" Margin="5, 10" Name="lblCompanyName" />
                                         <TextBox Name="txtCompanyName" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="1" Grid.Column="1" Margin="5, 10, 10, 10" />
-                                        <TextBlock Text="Product ID :" Style="{StaticResource TxtStyle}"
-                                                   Grid.Row="2" Margin="5, 10" Name="lblProductId" />
+                                        <TextBlock Text="{StaticResource ProductId}" Style="{StaticResource TxtStyle}"
+                                                   Grid.Row="2" Grid.Column="0" Margin="5, 10" Name="lblProductId" />
                                         <TextBox Name="txtProductId" Style="{StaticResource TxtBoxStyle}"
                                                  Grid.Row="2" Grid.Column="1" Margin="5, 10, 10, 10" />
                                     </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="logo" Width="80" Name="tabLogo">
+                        <TabItem Header="{StaticResource Logo}" Width="80" Name="tabLogo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -799,21 +769,21 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Name="lblImgCompProp">
-                                        Specify the image that will be displayed in Computer's Property
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="lblImgCompProp" Text="{StaticResource ComputerPropertyImg}" />
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <StackPanel>
-                                            <Button Content="Select Logo" Style="{StaticResource LargeButton}"
+                                            <Button Content="{StaticResource SelectLogo}" Style="{StaticResource LargeButton}"
                                                     Name="btnSelectLogo" Click="OnButtonSelectLogoClick" />
-                                            <Button Content="Delete Logo" Style="{StaticResource LargeButton}"
+                                            <Button Content="{StaticResource DeleteLogo}" Style="{StaticResource LargeButton}"
                                                     Name="btnDeleteLogo" IsEnabled="False" Click="OnButtonDeleteLogoClick"/>
                                             <TextBlock HorizontalAlignment="Left" Margin="6, 50, 0, 0">
-                                                <Hyperlink Click="StartProcess" Tag="control,system">View System Properties</Hyperlink>
+                                                <Hyperlink Click="StartProcess" Tag="control,system">
+                                                    <TextBlock Text="{StaticResource ViewSysProps}"></TextBlock>
+                                                </Hyperlink>
                                             </TextBlock>
                                         </StackPanel>
                                         <Grid Grid.Column="1">
@@ -822,7 +792,7 @@
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
                                             <TextBlock HorizontalAlignment="Center"
-                                                       Text="Present image" Style="{StaticResource TxtStyle}" />
+                                                       Text="{StaticResource PresentImg}" Style="{StaticResource TxtStyle}" />
                                             <Image Name="imgProperty" Grid.Row="1" Stretch="None" MaxHeight="200" />
                                         </Grid>
                                     </Grid>
@@ -871,15 +841,13 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Display Settings
-                                    </TextBlock>
-                                    <CheckBox Margin="30, 30, 5, 5" Content="Enable Windows Animation" Click="OnCheckBoxClick"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource DisplaySettings}" />
+                                    <CheckBox Margin="30, 30, 5, 5" Content="{StaticResource EnableWinAnim}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkWindowAnim" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Show Windows' content while dragging" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="{StaticResource ShowDragWinContent}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkShowWindowDrag" />
                                     <CheckBox Margin="30, 20, 5, 5"
-                                              Content="Show Windows' version on the Desktop (In white text)" Click="OnCheckBoxClick"
+                                              Content="{StaticResource ShowWinVer}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkWindowVersion" />
                                     <Grid Margin="30, 20, 5, 5">
                                         <Grid.ColumnDefinitions>
@@ -887,11 +855,11 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblWinBorderWidth">Windows Border Width</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblWinBorderWidth" Text="{StaticResource WinBorderWidth}" />
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudWinBorderWidth" Margin="10, 0, 0, 0"
                                                                Minimum="-750" Maximum="0" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
-                                            <Run>(in</Run> <Hyperlink Tag="http://www.google.com?q=twips" 
+                                            <Run Text="{StaticResource In}" /> <Hyperlink Tag="http://www.google.com?q=twips" 
                                                                       Click="StartProcess">twips</Hyperlink><Run>)</Run>
                                         </TextBlock>
                                     </Grid>
@@ -901,11 +869,11 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblHorzSpace">Horizontal Spacing Between Desktop Icons</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblHorzSpace" Text="{StaticResource HorzDesktopSpace}" />
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconHorizSpace" Margin="10, 0, 0, 0"
                                                                Minimum="-2730" Maximum="-480" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
-                                            (in twips)
+                                            <Run Text="{StaticResource In}" /> twips)
                                         </TextBlock>
                                     </Grid>
                                     <Grid Margin="30, 20, 5, 5">
@@ -914,17 +882,17 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblVertSpace">Vertical Spacing Between Desktop Icons</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Name="lblVertSpace" Text="{StaticResource VertiDesktopSpace}" />
                                         <toolkit:IntegerUpDown Grid.Column="1" Name="iudIconVerSpace" Margin="10, 0, 0, 0"
                                                                Minimum="-2730" Maximum="-480" Increment="1"/>
                                         <TextBlock Grid.Column="2" Margin="10, 0, 0, 0" Style="{StaticResource TxtStyle}">
-                                            (in twips)
+                                            <Run Text="{StaticResource In}" /> twips)
                                         </TextBlock>
                                     </Grid>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="explorer" Width="80" Name="tabDisplayExplorer">
+                        <TabItem Header="{StaticResource ExplorerLabel}" Width="80" Name="tabDisplayExplorer">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -955,17 +923,15 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Windows Explorer Settings
-                                    </TextBlock>
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Show hand icon over shared resources" Click="OnCheckBoxClick"
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource WinExplorerSettings}" />
+                                    <CheckBox Margin="30, 20, 5, 5" Content="{StaticResource SharedHandIcon}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkHandIcon" />
-                                    <CheckBox Margin="30, 20, 5, 5" Content="Display files using old style file-sorting algorithm" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 20, 5, 5" Content="{StaticResource OldStyleFileSort}" Click="OnCheckBoxClick"
                                               Style="{StaticResource ChkStyle}" Name="chkOldStyleFileSort" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="icon title" Width="100" Name="tabIconTitle">
+                        <TabItem Header="{StaticResource IconTitle}" Width="100" Name="tabIconTitle">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -988,24 +954,22 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Name="lblWrapIconTitle">
-                                        Wrap icon title's behaviour
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="lblWrapIconTitle" Text="{StaticResource IconWrapBehaviour}" />
                                     <RadioButton Margin="30, 20, 5, 5" Style="{StaticResource RbtnStyle}" Name="rbtnWrapText">
                                         <RadioButton.Content>
-                                            <TextBlock TextWrapping="Wrap">Split long lines names into several small lines</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource SplitLongToMultiple}" />
                                         </RadioButton.Content>
                                     </RadioButton>
                                     <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnTruncateText">
                                         <RadioButton.Content>
-                                            <TextBlock TextWrapping="Wrap">Show only one line and truncate it when too long</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource OnlyOneAndTruncateRest}" />
                                         </RadioButton.Content>
                                     </RadioButton>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="selection color" Width="140" Name="tabSelectionColor">
+                        <TabItem Header="{StaticResource SelectionColor}" Width="140" Name="tabSelectionColor">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1040,26 +1004,21 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Name="lblSelRect">
-                                        Specify the color for Selection rectangle, used for
-                                        selecting files/folders in Windows Explorer
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Name="lblSelRect" Text="{StaticResource SpecifySelectionColor}" />
                                     <StackPanel Orientation="Horizontal" Margin="30, 30, 5, 5">
-                                        <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 0, 20, 5">Current Color:</TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 0, 20, 5" Text="{StaticResource CurrentColor}" />
                                         <Rectangle Cursor="Hand" Name="rectSelectionColor" Width="16"
                                                    Height="16" Stroke="Black" StrokeThickness="1"
                                                    Margin="15, 0, 20, 5" MouseDown="OnSelectionRectangleMouseDown"
                                                    TouchDown="OnSelectionRectangleTouchEnd"/>
-                                        <Button Style="{StaticResource LargeButton}" Name="btnSelectColor" Click="OnButtonSelectionColorClick">Select Color</Button>
+                                        <Button Style="{StaticResource LargeButton}" Name="btnSelectColor" Click="OnButtonSelectionColorClick" Content="{StaticResource SelectColor}" />
                                     </StackPanel>
                                     <Button Margin="10" Name="btnUseDefaultColor" Click="OnButtonUseDefaultSelectionColorClick"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Right">
-                                        Use Default Color
-                                    </Button>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Right" Content="{StaticResource UseDefaultColor}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="alt-tab" Width="80" Name="tabAltTab">
+                        <TabItem Header="{StaticResource AltTab}" Width="80" Name="tabAltTab">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1097,9 +1056,7 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        Icons in Alt-Tab View
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource IconsAltTab}" />
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -1107,14 +1064,12 @@
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}"
-                                          Name="lblAltTabCols">
-                                            Icons shown in a single row of ALT + Tab switcher
-                                        </TextBlock>
+                                          Name="lblAltTabCols" Text="{StaticResource IconsInRowAltTab}" />
                                         <toolkit:IntegerUpDown Grid.Column="1" Margin="10, 5, 0, 0" VerticalAlignment="Center"
                                                                Padding="5, 3, 5, 5" Value="7" Name="iudAltTabRow" Increment="1"
                                                                Minimum="1" Maximum="15"></toolkit:IntegerUpDown>
                                         <TextBlock Margin="10, 20" Grid.Column="2" Style="{StaticResource SmallTxtStyle}"
-                                                   VerticalAlignment="Center">(Default 7)</TextBlock>
+                                                   VerticalAlignment="Center">(<Run Text="{StaticResource Default}" /> 7)</TextBlock>
                                     </Grid>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -1123,27 +1078,22 @@
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Margin="10, 20" Grid.Column="0" Style="{StaticResource TxtStyle}"
-                                          Name="lblAltTabRows">
-                                            Number of rows shown in ALT + Tab switcher
-                                        </TextBlock>
+                                          Name="lblAltTabRows" Text="{StaticResource NumRowsAltTab}" />
                                         <toolkit:IntegerUpDown Grid.Column="1" Margin="10, 5, 0, 0" VerticalAlignment="Center"
                                                                Padding="5, 3, 5, 5" Value="3" Name="iudNumAltTabRow" Increment="1"
                                                                Minimum="2" Maximum="10"></toolkit:IntegerUpDown>
                                         <TextBlock Margin="10, 20" Grid.Column="2" Style="{StaticResource SmallTxtStyle}"
-                                                   VerticalAlignment="Center">(Default 3)</TextBlock>
+                                                   VerticalAlignment="Center">(<Run Text="{StaticResource Default}" /> 3)</TextBlock>
                                     </Grid>
                                 </StackPanel>
                             </Grid>
-                        </TabItem>
-                        <TabItem Header="shortcut-arrow" Width="140">
-                            <Border TextBlock.Foreground="{StaticResource TabItemTextBrushUnselected}" />
                         </TabItem>
                     </TabControl>
                 </TabItem>
                 <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
                          Tag="rightclick" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlRightClick">
-                        <TabItem Header="general" Width="90" Name="tabGeneral">
+                        <TabItem Header="{StaticResource General}" Width="90" Name="tabGeneral">
                             <Grid Margin="10, 20, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1184,87 +1134,64 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 20, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}">
-                                        General right-click enhancements
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource GeneralRightClickEnhancements}" />
                                     <CheckBox Margin="30, 10, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkCopyToFolder">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add &quot;Copy to Folder&quot;
-                                                to Right-Click menu of every file &amp; folder
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddCopyToFolder}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}"
                                               Name="chkMoveToFolder" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add &quot;Move to Folder&quot;
-                                                to Right-Click menu of every file &amp; folder
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddMoveToFolder}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick" Name="chkSendTo">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add &quot;Send To&quot; to Right-Click
-                                                menu of every file &amp; folder
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddSendToFolder}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkCopyContents">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Name="txtCopyContents">
-                                                Add &quot;Copy all Contents&quot;
-                                                to Right-Click menu of all text files
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Name="txtCopyContents" Text="{StaticResource AddCopyAllContents}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkEncryptAndDecrypt">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add &quot;Encrypt&quot; &amp; &quot;Decrypt&quot;
-                                                to Right-Click menu of every file &amp; folder
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddEncDec}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkOpenWithNotepad">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add Open with Notepad
-                                                to Right-Click menu for all files
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddOpenWithNotepad}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkControlPanelInDesktopMenu">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">
-                                                Add Control Panel to the Desktop
-                                                Right-Click Menu
-                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddControlPanel}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkOpenCmdPrompt">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Make &quot;Open Command Prompt here&quot; always display for folders &amp; drives</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource DisplayOpenCmdPrompt}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 8, 5, 5" Style="{StaticResource ChkStyle}" Click="OnCheckBoxClick"
                                               Name="chkAddDefragInMenu">
                                         <CheckBox.Content>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Add Defragment to the Right-Click menu of drives</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddDefragMenu}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="add items" Width="100" Name="tabAddItems">
+                        <TabItem Header="{StaticResource AddItems}" Width="100" Name="tabAddItems">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1322,18 +1249,16 @@
                                         <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{StaticResource H1}" Name="txtAddToRightClick"
-                                               Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
-                                        Add shortcuts to right-click
-                                    </TextBlock>
+                                               Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Text="{StaticResource AddShortcutsToRightClick}" />
                                     <TextBlock Margin="30, 15, 5, 5" Style="{StaticResource TxtStyle}" Grid.Column="0"
-                                               Grid.Row="1">Shortcut Name</TextBlock>
+                                               Grid.Row="1" Text="{StaticResource ShortcutName}"></TextBlock>
                                     <TextBox Margin="10, 10, 5, 5" Grid.Column="1" Style="{StaticResource TxtBoxStyle}"
                                              Name="txtShrtCtName" Grid.Row="1"></TextBox>
-                                    <TextBlock Margin="30, 10, 5, 5" Grid.Row="2" Grid.Column="0" Style="{StaticResource TxtStyle}">Path or URL</TextBlock>
+                                    <TextBlock Margin="30, 10, 5, 5" Grid.Row="2" Grid.Column="0" Style="{StaticResource TxtStyle}" Text="{StaticResource PathOrUrl}" />
                                     <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Grid.Column="1" Grid.Row="2" Style="{StaticResource TxtBoxStyle}"
                                                               Padding="2, 6, 0, 0" Name="txtShrtCtPath">
                                         <toolkit:WatermarkTextBox.Watermark>
-                                            <TextBlock Style="{StaticResource SmallTxtStyle}">Use 'Browse' to specify a file, or type in the URL</TextBlock>
+                                            <TextBlock Style="{StaticResource SmallTxtStyle}" Text="{StaticResource UseBrowse}" />
                                         </toolkit:WatermarkTextBox.Watermark>
                                     </toolkit:WatermarkTextBox>
                                     <Button Grid.Row="2" Grid.Column="2" Margin="0, 10, 5, 5" 
@@ -1342,13 +1267,13 @@
                                     <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource HelpTxtStyle}" 
                                                Margin="10,0,0,0">eg. C:\\FolderName\file.exe or http://www.google.com</TextBlock>
                                     <Button Grid.Row="4" Grid.Column="0" Margin="30, 20, 5, 5" Name="btnCreateRightClickShortcut"
-                                            Click="OnButtonContextMenuShortcutClick">Create</Button>
+                                            Click="OnButtonContextMenuShortcutClick" Content="{StaticResource Create}" />
                                     <Button Grid.Row="4" Grid.Column="1" Margin="10, 20, 5, 5" Name="btnDeleteRightClickShortCut"
-                                            Click="OnButtonDeleteFromContextMenuClick" HorizontalAlignment="Left">Delete Previously added</Button>
+                                            Click="OnButtonDeleteFromContextMenuClick" HorizontalAlignment="Left" Content="{StaticResource DeletePrevious}" />
                                 </Grid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="send-to menu" Width="150" Name="tabSendTo">
+                        <TabItem Header="{StaticResource SendToMenu}" Width="150" Name="tabSendTo">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1380,16 +1305,16 @@
                                         <RowDefinition Height="*"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Name="txtSendToLoading" Style="{StaticResource TxtStyle}" HorizontalAlignment="Center"
-                                               Grid.Column="0" VerticalAlignment="Center">Loading...</TextBlock>
+                                               Grid.Column="0" VerticalAlignment="Center" Text="{StaticResource Loading}"></TextBlock>
                                     <ListBox Name="lstSendTo" Grid.Column="0" VerticalAlignment="Top" Margin="30, 10, 0, 0"
                                              Height="350" Width="300" ItemTemplate="{StaticResource TileView}"
                                              SelectionMode="Extended" Visibility="Hidden"></ListBox>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="30, 10, 0, 0">
-                                        <Button Margin="0, 0, 10, 0" Name="btnAddFolderToSendTo" Click="OnButtonAddFolderToSendToClick">Add Folder</Button>
-                                        <Button Margin="0, 10, 10, 0" Name="btnAddFileToSendTo" Click="OnButtonAddFileToSendToClick">Add File</Button>
-                                        <Button Margin="0, 10, 10, 0" Name="btnDeleteFromSendTo" Click="OnButtonDeleteFromSendToClick">Delete Selected</Button>
+                                        <Button Margin="0, 0, 10, 0" Name="btnAddFolderToSendTo" Click="OnButtonAddFolderToSendToClick" Content="{StaticResource AddFolder}" />
+                                        <Button Margin="0, 10, 10, 0" Name="btnAddFileToSendTo" Click="OnButtonAddFileToSendToClick" Content="{StaticResource AddFile}" />
+                                        <Button Margin="0, 10, 10, 0" Name="btnDeleteFromSendTo" Click="OnButtonDeleteFromSendToClick" Content="{StaticResource DeleteSelected}" />
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 50, 0, 0">
-                                            <Hyperlink Click="OnLinkEditSendToExplorerClick" Name="lnkOpenExplorer">Edit in Explorer</Hyperlink>
+                                            <Hyperlink Click="OnLinkEditSendToExplorerClick" Name="lnkOpenExplorer"><Run Text="{StaticResource EditInExplorer}" /></Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
                                 </Grid>
@@ -1400,7 +1325,7 @@
                 <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="places" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlPlaces">
-                        <TabItem Header="god mode" Width="120" Name="tabGodMode">
+                        <TabItem Header="{StaticResource GodMode}" Width="120" Name="tabGodMode">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1437,29 +1362,17 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" Name="panelSetupGodMode">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
-                                               Name="lblSetupGodMode">
-                                        Set up "God-Mode"
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Setting a "God-Mode/Finder" allows you to access all Control Panel settings at a Common place, sorted alphabetically. (God Mode)
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
-                                        Click the "Browse" button to set the Name and Location for this folder.
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
-                                        In the dialog select "Make new Folder" and enter the desired name.
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
-                                        Please don't select any existing folder, you must create a new folder.
-                                    </TextBlock>
+                                               Name="lblSetupGodMode" Text="{StaticResource SetupGodMode}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource GodModeDescLine1}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5" Text="{StaticResource GodModeDescLine2}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5" Text="{StaticResource GodModeDescLine3}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5" Text="{StaticResource GodModeDescLine4}" />
                                     <Button Margin="30, 20, 10, 10" Click="OnButtonSetupGodModeClick"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                        Browse &amp; Create New Folder
-                                    </Button>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource BrowseCreateFolder}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="open with" Width="110" Name="tabOpenWith">
+                        <TabItem Header="{StaticResource OpenWith}" Width="110" Name="tabOpenWith">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1526,21 +1439,13 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
-                                               Name="lblOpenWith">
-                                        Customize "Open With" shown in Right-Click Menu
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Whenever you click the &quot;Open With&quot; Menu, you see a list of programs to choose
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5">
-                                        User this option to add another program, that should always appear in the list, so that you don't need to click 'Browse' everytime.
-                                    </TextBlock>
+                                               Name="lblOpenWith" Text="{StaticResource OpenWithDescLine1}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource OpenWithDescLine2}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 8, 5, 5" Text="{StaticResource OpenWithDescLine3}" />
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 10, 5, 5" Name="btnOpenWithDialog"
-                                            Click="OnButtonOpenWithDialogClick"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                            Customize Open With
-                                        </Button>
+                                            Click="OnButtonOpenWithDialogClick" Content="{StaticResource CustomizeOpenWith}"
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left" />
                                         <Viewbox>
                                             <Grid Margin="20, 0, 0, 0" MouseDown="OnAddToOpenWithImageMouseDown"
                                                   TouchDown="OnAddToOpenWithImageTouchEnd" Name="gridAddToOpenWith" Cursor="Hand">
@@ -1592,7 +1497,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="power button" Width="130" Name="tabPowerBtn">
+                        <TabItem Header="{StaticResource PowerBtn}" Width="130" Name="tabPowerBtn">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1622,23 +1527,21 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
-                                      Name="lblPowerBtnAction">
-                                        Power Button action on Start Menu
-                                    </TextBlock>
+                                      Name="lblPowerBtnAction" Text="{StaticResource PowerBtnAction}" />
                                     <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
                                               SelectedIndex="0" Name="cmboBxPowerBtnAction">
-                                        <ComboBoxItem>Shutdown</ComboBoxItem>
-                                        <ComboBoxItem>Hibernate</ComboBoxItem>
-                                        <ComboBoxItem>Sleep</ComboBoxItem>
-                                        <ComboBoxItem>Restart</ComboBoxItem>
-                                        <ComboBoxItem>Lock</ComboBoxItem>
-                                        <ComboBoxItem>Log Off</ComboBoxItem>
-                                        <ComboBoxItem>Switch User</ComboBoxItem>
+                                        <ComboBoxItem Content="{StaticResource Shutdown}" />
+                                        <ComboBoxItem Content="{StaticResource Hibernate}" />
+                                        <ComboBoxItem Content="{StaticResource Sleep}" />
+                                        <ComboBoxItem Content="{StaticResource Restart}" />
+                                        <ComboBoxItem Content="{StaticResource Lock}" />
+                                        <ComboBoxItem Content="{StaticResource LogOff}" />
+                                        <ComboBoxItem Content="{StaticResource SwitchUser}"></ComboBoxItem>
                                     </ComboBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="default opening" Width="150" Name="tabDefaultOpening">
+                        <TabItem Header="{StaticResource DefaultOpening}" Width="150" Name="tabDefaultOpening">
                             <Grid Margin="10, 30, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1666,13 +1569,9 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Name="lblNoExt">
-                                        Default app for file with no extension
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Name="lblNoExt" Text="{StaticResource AppNoExt}" />
                                     <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="NoExtension"
-                                                 IsChecked="True" Name="rbtnOpenDlgForNoExt">
-                                        Show &quot;Open With &quot; dialog
-                                    </RadioButton>
+                                                 IsChecked="True" Name="rbtnOpenDlgForNoExt" Content="{StaticResource ShowOpenWithDlg}" />
                                     <Grid Margin="30, 10, 5, 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -1681,9 +1580,7 @@
                                         </Grid.ColumnDefinitions>
                                         <RadioButton Style="{StaticResource RbtnStyle}" GroupName="NoExtension"
                                                      VerticalAlignment="Center"
-                                                     Name="rbtnPrgForNoExt">
-                                            Use this as default application
-                                        </RadioButton>
+                                                     Name="rbtnPrgForNoExt" Content="{StaticResource UseAsDefaultApp}" />
                                         <TextBox Style="{StaticResource TxtBoxStyle}" Grid.Column="1"
                                                  Margin="5, 0" Name="txtPrgForNoExt"
                                                  VerticalAlignment="Center">notepad.exe %1</TextBox>
@@ -1691,13 +1588,9 @@
                                                 Margin="0, 1, 0, 0" Click="OnButtonBrowseProgramForNoExtensionClick">...</Button>
                                     </Grid>
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5"
-                                      Name="lblUnknownExt">
-                                        Default app for file with unkown extension
-                                    </TextBlock>
+                                      Name="lblUnknownExt" Text="{StaticResource AppUnknownExt}" />
                                     <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5" GroupName="UnknownExtension"
-                                                 IsChecked="True" Name="rbtnOpenDlgForUnknownExt">
-                                        Show &quot;Open With &quot; dialog
-                                    </RadioButton>
+                                                 IsChecked="True" Name="rbtnOpenDlgForUnknownExt" Content="{StaticResource ShowOpenWithDlg}" />
                                     <Grid Margin="30, 10, 5, 5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -1705,9 +1598,7 @@
                                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <RadioButton Style="{StaticResource RbtnStyle}" GroupName="UnknownExtension"
-                                                     VerticalAlignment="Center" Name="rbtnPrgForUnknownExt">
-                                            Use this as default application
-                                        </RadioButton>
+                                                     VerticalAlignment="Center" Name="rbtnPrgForUnknownExt" Content="{StaticResource UseAsDefaultApp}" />
                                         <TextBox Style="{StaticResource TxtBoxStyle}" Grid.Column="1"
                                                  Margin="5, 0"
                                                  VerticalAlignment="Center" Name="txtPrgForUnknownExt">notepad.exe %1</TextBox>
@@ -1717,7 +1608,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup manager" Width="160" Name="tabStartupMgr">
+                        <TabItem Header="{StaticResource StartupManager}" Width="160" Name="tabStartupMgr">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1753,18 +1644,12 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Startup Manager
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource StartupManagerLabel}" />
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5"
-                                      Name="lblStartupMgr">
-                                        Manage programs ,that are executed when Windows starts and also Add/Remove programs from startup.
-                                    </TextBlock>
+                                      Name="lblStartupMgr" Text="{StaticResource StartupManagerDesc}" />
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 20, 10, 10" Click="OnLaunchStartupManagerBtnClick"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                            Launch Startup Manager
-                                        </Button>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource LaunchStartupManager}" />
                                         <Viewbox>
                                             <Grid Margin="20, 0, 0, 0" MouseDown="OnAddToStartupImageMouseDown"
                                                   TouchDown="OnAddToStartupImageTouchEnd" Name="gridAddToStartup" Cursor="Hand">
@@ -1821,7 +1706,7 @@
                 <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="tasks" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlTasks">
-                        <TabItem Header="schedule shutdown" Width="180" Name="tabScheduleShutdwn">
+                        <TabItem Header="{StaticResource ScheduleShutdown}" Width="180" Name="tabScheduleShutdwn">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1888,22 +1773,22 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" >
-                                    <TextBlock Style="{StaticResource H1}">Schedule Action</TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Text="{StaticResource ScheduleAction}" />
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
                                         <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction">
-                                            <ComboBoxItem>ShutDown</ComboBoxItem>
-                                            <ComboBoxItem>Restart</ComboBoxItem>
+                                            <ComboBoxItem Content="{StaticResource Shutdown}" />
+                                            <ComboBoxItem Content="{StaticResource Restart}" />
                                         </ComboBox>
                                         <toolkit:DateTimePicker Margin="30, 0, 5, 0" Name="dateTimePickerScheduleShutdown"></toolkit:DateTimePicker>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <Button Name="btnScheduleShutdown" Click="OnScheduleShutdownButtonClick">Schedule</Button>
-                                        <Button Name="btnCancelShutdown" Click="OnCancelShutdownButtonClick">Cancel Scheduled Action</Button>
+                                        <Button Name="btnScheduleShutdown" Click="OnScheduleShutdownButtonClick" Content="{StaticResource Schedule}" />
+                                        <Button Name="btnCancelShutdown" Click="OnCancelShutdownButtonClick" Content="{StaticResource CancelScheduledAction}" />
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="special hiding" Width="150" Name="tabSpecialHiding">
+                        <TabItem Header="{StaticResource SpecialHiding}" Width="150" Name="tabSpecialHiding">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -1968,24 +1853,16 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
-                                      Name="lblHideSysPrivileges">
-                                        Use this option to hide files/folders with System Privileges
-                                    </TextBlock>
+                                               Name="lblHideSysPrivileges" Text="{StaticResource UseOptionHideFileFolder}" />
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                        Hide
-                                    </Button>
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5" Name="lblUnhideSysPrivileges">
-                                        Use this option to Un-hide files/folders with System Privileges
-                                    </TextBlock>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource Hide}" />
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5" Name="lblUnhideSysPrivileges" Text="{StaticResource UseOptionUnHideFileFolder}" />
                                     <Button Margin="30, 20, 10, 10"
-                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left">
-                                        Un-hide
-                                    </Button>
+                                            Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource UnHide}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="special folder names" Width="190" Name="tabSpecialFolderNames">
+                        <TabItem Header="{StaticResource SpecialFolderNames}" Width="190" Name="tabSpecialFolderNames">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2036,13 +1913,8 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
-                                      Name="lblSpecialFolders">
-                                        Create Special Folders
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Windows doesn't allows you to create folders having  names (reserved) like "con","aux", etc.
-                                        Use this option  to select the Name, and Parent Folder under which you wish to these special named folders.
-                                    </TextBlock>
+                                      Name="lblSpecialFolders" Text="{StaticResource CreateSpecialFolders}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource SpecialFolderDesc}" />
                                     <StackPanel Orientation="Horizontal">
                                         <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
                                                   SelectedIndex="0" Name="cmboBxSpecialFolderNames">
@@ -2070,19 +1942,11 @@
                                             <ComboBoxItem>LPT9</ComboBoxItem>
                                         </ComboBox>
                                         <Button Margin="30, 10, 10, 10" Name="btnCreateSpecialParentFolder" Click="OnButtonBrowseSpecialFolderParentClick"
-                                                HorizontalAlignment="Left">
-                                            Select the Parent Folder to save the Special Folder
-                                        </Button>
+                                                HorizontalAlignment="Left" Content="{StaticResource SpecialFolderParent}" />
                                     </StackPanel>
-
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 20, 5, 5">
-                                        Use this option to delete a special folder.
-                                        Make sure the Folder is empty before you delete it.
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 20, 5, 5" Text="{StaticResource UseOptionDeleteSpecialFolder}" />
                                     <Button Margin="30, 10, 10, 10" Name="btnDeleteSpecialFolder" Click="OnButtonDeleteSpecialFolderClick"
-                                            HorizontalAlignment="Left">
-                                        Browse &amp; Delete
-                                    </Button>
+                                            HorizontalAlignment="Left" Content="{StaticResource BrowseAndDelete}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -2091,7 +1955,7 @@
                 <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
                          Tag="features" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlFeatures">
-                        <TabItem Header="autoplay" Width="100" Name="tabAutoplay">
+                        <TabItem Header="{StaticResource Autoplay}" Width="100" Name="tabAutoplay">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2135,23 +1999,17 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Choose what happens when you insert a CD/DVD or a USB device.
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource ChooseCdDvdAction}" />
                                     <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
-                                                 Content="Use Autoplay for all devices"
-                                                 Name="rbtnEnableAutoPlay"
+                                                 Content="{StaticResource UseAutoplayForAll}" Name="rbtnEnableAutoPlay"
                                                  Style="{StaticResource RbtnStyle}" />
                                     <RadioButton Margin="30, 5, 5, 5" Name="rbtnEnableCdUsbAutoPlay"
-                                                 Content="Turn-off Autoplay for CD-ROM and removable devices"
-                                                 Style="{StaticResource RbtnStyle}" />
-                                    <RadioButton Margin="30, 5, 5, 5" Content="Turn-off Autoplay for all devices"
+                                                 Content="{StaticResource TurnOffAutoplayRemovable}" Style="{StaticResource RbtnStyle}" />
+                                    <RadioButton Margin="30, 5, 5, 5" Content="{StaticResource TurnOffAutoplay}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnDisableAutoPlay"/>
                                     <StackPanel Orientation="Horizontal">
                                         <Button Margin="30, 10, 10, 10" Name="btnAutoPlayViaGP"
-                                                HorizontalAlignment="Left">
-                                            Configure Autoplay via Group Policy Editor
-                                        </Button>
+                                                HorizontalAlignment="Left" Content="{StaticResource ConfigureAutoplayViaGp}" />
                                         <Viewbox>
                                             <Grid>
                                                 <Grid Width="24" Height="24">
@@ -2192,7 +2050,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows update" Width="160" Name="tabWinUpdate">
+                        <TabItem Header="{StaticResource WinUpdate}" Width="160" Name="tabWinUpdate">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2247,46 +2105,43 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
-                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        When your computer is online, Windows automatically checks for available updates.
-                                        You can configure this behaviour from here.
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource WinUpdateDesc}" />
                                     <ComboBox Margin="30, 5, 5, 5" SelectedIndex="0" Name="cmboBxWinUpdate">
-                                        <ComboBoxItem>Install updates automatically (Recommended)</ComboBoxItem>
-                                        <ComboBoxItem>Download Updates but let me choose whether to install them</ComboBoxItem>
-                                        <ComboBoxItem>Check for updates but let me choose whether to download &amp; install them</ComboBoxItem>
-                                        <ComboBoxItem>Never check for updates (Not Recommended)</ComboBoxItem>
+                                        <ComboBoxItem Content="{StaticResource InstallAutomatically}" />
+                                        <ComboBoxItem Content="{StaticResource OnlyDownload}" />
+                                        <ComboBoxItem Content="{StaticResource OnlyCheck}" />
+                                        <ComboBoxItem Content="{StaticResource NeverCheck}" />
                                     </ComboBox>
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">Other options</TextBlock>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkUpdateReboot">
                                         <!-- TODO: Implement Registry handling for this tweak -->
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Prevent Windows Update from forcibly rebooting Windows</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource PreventForcedReboot}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkRecommenedUpdates">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Give me recommended updates the same way I receive important updates</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource GiveRecommenedUpdates}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkAllowAllInstallUpdate">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Allow all users to install updates to this computer</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource AllowAllUsersToInstallUpdate}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkNotifyNewMSSw">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Show detailed notifications when new Microsoft software is available</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowDetailedNotification}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="administrator account" Width="200" Name="tabAdminAccount">
+                        <TabItem Header="{StaticResource AdminAccount}" Width="200" Name="tabAdminAccount">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2315,27 +2170,19 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Administrator account
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Windows consists of an built-in account named "Administrator" which is deactivated by default. Activate/deactivate this account
-                                        by using the options below
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource AdminAccountLabel}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource AdminAccountDescLine1}" />
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink Name="lnkActivateAdminAccount" Click="OnLinkActivateAdminClick">Activate the built in Administrator account (Not recommended)</Hyperlink>
+                                        <Hyperlink Name="lnkActivateAdminAccount" Click="OnLinkActivateAdminClick"><Run Text="{StaticResource ActivateAdminAcc}"/></Hyperlink>
                                     </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Activating this account grants you elevated privileges. However,it also exposes your computer to security risks.
-                                        Hence, it is recommended to use this account only to perform special tasks and then de-activate it
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource AdminAccountDescLine2}" />
                                     <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
-                                        <Hyperlink Name="lnkDeactivateAdminAccount" Click="OnLinkDeactivateAdminAccountClick">De-activate the built in Administrator account</Hyperlink>
+                                        <Hyperlink Name="lnkDeactivateAdminAccount" Click="OnLinkDeactivateAdminAccountClick"><Run Text="{StaticResource DeActivateAdminAcc}" />    </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="windows-dvd burner" Width="190" Name="tabWinDvdBurner">
+                        <TabItem Header="{StaticResource WinDvdBurner}" Width="190" Name="tabWinDvdBurner">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2384,20 +2231,14 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Disable Windows DVD Burner
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner.
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource DisableWinDvdBurner}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource DisableWinDvdBurnerDescLine2}" />
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
-                                              Name="chkWinDvdBurner">
-                                        Use Windows built in DVD Burner
-                                    </CheckBox>
+                                              Name="chkWinDvdBurner" Content="{StaticResource UseWinDvdBurner}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="system beeps" Width="135" Name="tabSysBeeps">
+                        <TabItem Header="{StaticResource SystemBeeps}" Width="135" Name="tabSysBeeps">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2432,17 +2273,10 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Manage system beeps
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5">
-                                        Use this option to turn on/off System beeps such as sound produced
-                                        when using the Volume control or sounds produced by error dialogs etc.
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource ManageSystemBeeps}" />
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource ManageSystemBeepsDescLine2}" />
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
-                                              Name="chkSystemBeep">
-                                        Turn off System Beeps
-                                    </CheckBox>
+                                              Name="chkSystemBeep" Content="{StaticResource TurnOffSystemBeeps}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -2451,7 +2285,7 @@
                 <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
                          Tag="logon" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlLogon">
-                        <TabItem Header="automatic login" Width="150" Name="tabAutoLogin">
+                        <TabItem Header="{StaticResource AutoLogin}" Width="150" Name="tabAutoLogin">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3822,7 +3656,7 @@
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource LargeButton}" Name="btnApply">S_ave</Button>
+                <Button Style="{StaticResource LargeButton}" Name="btnApply" Content="{StaticResource Save}" />
                 <Button Style="{StaticResource LargeButton}" Name="btnOk">_Save &amp; Exit</Button>
                 <Button Style="{StaticResource LargeButton}" Name="btnCancel">_Don't Save &amp; Exit</Button>
             </StackPanel>
