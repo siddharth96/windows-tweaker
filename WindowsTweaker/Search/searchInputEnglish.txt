@@ -188,5 +188,5 @@ Windows Address Book => lnkWab,tabUtilities,tabControlUtilities,tabUtilMisc
 Private Character Editor => lnkPrvtCharEdtr,tabUtilities,tabControlUtilities,tabUtilMisc
 File Signature Verification Toolkit => lnkFlSigVerfr,tabUtilities,tabControlUtilities,tabUtilMisc
 Regional Settings => lnkRegSettings,tabUtilities,tabControlUtilities,tabUtilMisc
-Direct X Troubleshooter => lnkDrtX,tabUtilities,tabControlUtilities,tabUtilMisc
+Address Book Import Utility => lnkDrtX,tabUtilities,tabControlUtilities,tabUtilMisc
 Advanced User Accounts Control Panel => lnkAdvUserCp,tabUtilities,tabControlUtilities,tabUtilMisc

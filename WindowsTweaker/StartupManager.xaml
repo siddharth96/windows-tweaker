@@ -114,7 +114,8 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <TextBlock Name="txtLoading" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TxtStyle}">Loading...</TextBlock>
+        <TextBlock Name="txtLoading" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Style="{StaticResource TxtStyle}" Text="{StaticResource Loading}"></TextBlock>
         <ListBox Margin="5" Name="lstStartupItems" ItemTemplate="{StaticResource ToggleBtnTileView}" HorizontalAlignment="Stretch" 
                  HorizontalContentAlignment="Stretch" Visibility="Collapsed">
             <ListBox.ItemContainerStyle>

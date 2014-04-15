@@ -42,7 +42,7 @@
                                   Padding="2" Margin="20, 5, 20, 0" Watermark="Type &amp; Press Enter to Search" />
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
-                <TabItem Header="EXPLORER" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelExplorer}" Name="tabExplorer" Width="90" Style="{StaticResource MainTabStyle}"
                          Tag="explorer" Loaded="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlExplorer">
                         <TabItem Header="{StaticResource DriveLetterDisplay}" Width="180" Name="tabDriveLetterDisplay">
@@ -413,7 +413,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="SYSTEM" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelSystem}" Name="tabSystem" Width="80" Style="{StaticResource MainTabStyle}"
                          Tag="system" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlSystem">
                         <TabItem Header="shutdown configuration" Width="220" Name="tabShutdwnConfig">
@@ -801,7 +801,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="DISPLAY" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelDisplay}" Name="tabDisplay" Width="75" Style="{StaticResource MainTabStyle}"
                          Tag="display" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlDisplay">
                         <TabItem Header="display settings" Width="150" Name="tabDisplaySettings">
@@ -1090,7 +1090,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="RIGHT-CLICK" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelRtClk}" Name="tabRightClick" Width="100" Style="{StaticResource MainTabStyle}"
                          Tag="rightclick" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlRightClick">
                         <TabItem Header="{StaticResource General}" Width="90" Name="tabGeneral">
@@ -1322,7 +1322,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="PLACES" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelPlaces}" Name="tabPlaces" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="places" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlPlaces">
                         <TabItem Header="{StaticResource GodMode}" Width="120" Name="tabGodMode">
@@ -1703,7 +1703,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="TASKS" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelTasks}" Name="tabTasks" Width="70" Style="{StaticResource MainTabStyle}"
                          Tag="tasks" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlTasks">
                         <TabItem Header="{StaticResource ScheduleShutdown}" Width="180" Name="tabScheduleShutdwn">
@@ -1952,7 +1952,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="FEATURES" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelFeatures}" Name="tabFeatures" Width="85" Style="{StaticResource MainTabStyle}"
                          Tag="features" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlFeatures">
                         <TabItem Header="{StaticResource Autoplay}" Width="100" Name="tabAutoplay">
@@ -2282,7 +2282,7 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="LOGON" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelLogon}" Name="tabLogon" Width="65" Style="{StaticResource MainTabStyle}"
                          Tag="logon" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlLogon">
                         <TabItem Header="{StaticResource AutoLogin}" Width="150" Name="tabAutoLogin">
@@ -2314,11 +2314,9 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Automatic Login
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource AutoLoginLabel}" />
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
-                                              Name="chkEnableAutoLogin" Content="Enable Automatic Login" />
+                                              Name="chkEnableAutoLogin" Content="{StaticResource EnableAutoLogin}" />
                                     <Border BorderBrush="{DynamicResource TabItemTextBrushHover}" Name="borderAutoLogin"
                                             BorderThickness="1" Margin="30,5,5,10" Padding="5" CornerRadius="2">
                                         <Grid>
@@ -2332,23 +2330,17 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center" Name="lblAutoLoginUserName">
-                                                Username
-                                            </TextBlock>
-                                            <TextBox Name="txtAutoLoginUserName" Grid.Column="1" Margin="5" />
+                                                       VerticalAlignment="Center" Name="lblAutoLoginUserName" Text="{StaticResource Username}" />
+                                            <TextBox Name="txtAutoLoginUserName" Grid.Column="1" Margin="5" Grid.Row="0" />
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                       VerticalAlignment="Center" Grid.Row="1"
-                                                       Name="lblAutoLoginPasswd">
-                                                Password
-                                            </TextBlock>
+                                                       VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"
+                                                       Name="lblAutoLoginPasswd" Text="{StaticResource Password}" />
                                             <PasswordBox Name="txtAutoLoginPasswd"
                                                          Style="{StaticResource SmallPwBxStyle}" Margin="5"
                                                          VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
                                             <TextBlock Style="{StaticResource SmallTxtStyle}" Grid.Row="2"
-                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center"
-                                                       Name="lblDomainName">
-                                                Domain Name
-                                            </TextBlock>
+                                                       Margin="10, 5, 5, 5" VerticalAlignment="Center" Grid.Column="0"
+                                                       Name="lblDomainName" Text="{StaticResource DomainName}" />
                                             <TextBox Name="txtAutoLoginDomainName" Grid.Row="2" Grid.Column="1"
                                                      Margin="5,3,5,7" />
                                         </Grid>
@@ -2356,19 +2348,19 @@
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkPreventShiftPress">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Prevent stopping automatic logon by pressing shift key</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource PreventShiftOverride}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Style="{StaticResource SmallChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkAutoLogonAfterLogoff">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Logon automatically after Logoff</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource LogonAfterLogoff}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup sound" Width="150" Name="tabStartupSound">
+                        <TabItem Header="{StaticResource StartupSound}" Width="150" Name="tabStartupSound">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2401,16 +2393,13 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Specify whether Windows should play sound when starting up
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource StartupSoundDesc}" />
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
-                                              Name="chkLoginSound"
-                                              Content="Play a sound when Windows starts up" IsChecked="True" />
+                                              Name="chkLoginSound" Content="{StaticResource PlaySoundOnStart}" IsChecked="True" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="screensaver lock" Width="155" Name="tabScreenLk">
+                        <TabItem Header="{StaticResource ScreensaverLock}" Width="155" Name="tabScreenLk">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2445,22 +2434,17 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Screensave Lock
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource ScreensaverLockLabel}" />
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
                                               Name="chkScreenSaverLock">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Make screensaver password protected and prevent users from
-                                                changing this setting
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ScreensaverLockDesc}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="message" Width="100" Name="tabLoginMsg">
+                        <TabItem Header="{StaticResource Message}" Width="100" Name="tabLoginMsg">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2480,15 +2464,11 @@
                                     </Grid>
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5">
-                                        Login Message
-                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource LoginMsg}" />
                                     <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5"
                                               Name="chkEnableLoginMsg" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">
-                                                Show a message before user logs on
-                                            </TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowMsgBeforeLogin}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <Grid Margin="30, 10, 5, 5">
@@ -2501,14 +2481,10 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                   VerticalAlignment="Center">
-                                            Title
-                                        </TextBlock>
-                                        <TextBox Name="txtLoginMsgTitle" Grid.Column="1" Margin="5" />
-                                        <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5"
-                                                   VerticalAlignment="Center" Grid.Row="1">
-                                            Content
-                                        </TextBlock>
+                                                   VerticalAlignment="Center" Text="{StaticResource Title}" />
+                                        <TextBox Name="txtLoginMsgTitle" Grid.Column="1" Margin="5" Grid.Row="0" />
+                                        <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 5, 5, 5" Grid.Column="0"
+                                                   VerticalAlignment="Center" Grid.Row="1" Text="{StaticResource Content}" />
                                         <TextBox Name="txtLoginMsgContent"
                                                  Style="{StaticResource SmallTxtBoxStyle}" Margin="5"
                                                  VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
@@ -2516,7 +2492,7 @@
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="140" Name="tabLoginMisc">
+                        <TabItem Header="{StaticResource Miscellaneous}" Width="140" Name="tabLoginMisc">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2546,17 +2522,17 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Name="chkRequireCtrlAltDlt" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Require users to press Ctrl+Alt+Delete before logon</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource RequireCad}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Name="chkRestrictLastLoginUser" Margin="30, 10, 5, 5" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Show classic login screen</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowClassicLogon}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Name="chkShowShutdownBtn" Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Show shutdown button on login screen</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowShutdownOnLoginScreen}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
@@ -2564,10 +2540,10 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="RESTRICTIONS" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelRestrictions}" Name="tabRestrictions" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="restrictions" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlRestrictions">
-                        <TabItem Header="explorer" Width="90" Name="tabExplorerRestrictions">
+                        <TabItem Header="{StaticResource ExplorerLabel}" Width="90" Name="tabExplorerRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2678,49 +2654,49 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideFileMenu" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable &quot;File&quot; menu in Explorer</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableFileMenu}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideFolderOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Folder options</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableFolderOp}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkRightClick" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Right-Click</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableRtClk}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkTasbarAndStartMenuRightClick" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Right-Click for Taskbar &amp; Start Menu</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableTaskbarStartMenuRtClk}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <!-- TODO Add help description here-->
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideAppearanceOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Hide Appearance option under Display Menu</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource HideAppearance}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangeScreensaver" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable changes to screensaver</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableScreensaverChanges}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideThumbNailCache" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable thumbnail caching</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableThumbnailCache}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHide3DFlip" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap" Name="txtDisableFlip3D">Disable Flip 3D for the current user</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Name="txtDisableFlip3D" Text="{StaticResource DisableFlip3D}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="start menu" Width="120" Name="tabStartMenuRestrictions">
+                        <TabItem Header="{StaticResource StartMenu}" Width="120" Name="tabStartMenuRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2754,33 +2730,33 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideShutDownOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Shutdown option</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableShutdown}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideRecentDocs" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Hide recent documents</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource HideRecent}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideChangesStartMenu" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable changes to start menu</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableStartMenuChanges}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideLogOff" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable log-off option</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource HideLogoff}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideControlPanel" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Hide Control Panel</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource HideControlPanel}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="system" Width="90" Name="tabSystemRestrictions">
+                        <TabItem Header="{StaticResource System}" Width="90" Name="tabSystemRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2828,48 +2804,48 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableDeletionPrinters" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable deletion of printers</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisablePrinterDel}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAddNewPrinter" Click="OnCheckBoxClick"> 
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable addition of new printers</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisablePrinterAdd}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindUpdate" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Windows update</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableWinUpdate}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableChangeToVirtualMem" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable changes to Virtual Memory</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableVmChanges}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableWindowRegEditTool" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Windows' Registry editing tools</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableRegedit}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableTaskManager" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Task Manager</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableTaskMgr}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableEditSettUnderMyComp" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable editing of settings under &quot;My Computer&quot;</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableComputerSettings}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkDisableAdminShares" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable administrative shares</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableAdminShares}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="taskbar" Width="90" Name="tabTaskbarRestrictions">
+                        <TabItem Header="{StaticResource Taskbar}" Width="90" Name="tabTaskbarRestrictions">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -2905,17 +2881,17 @@
                                               Content="Disable Taskbar animations" />
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkShowIconsTaskBar" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
-                                            <TextBlock Name="txtShowIconsTaskBar" TextWrapping="Wrap">Show small icons on TaskBar</TextBlock>
+                                            <TextBlock Name="txtShowIconsTaskBar" TextWrapping="Wrap" Text="{StaticResource SmallTaskbarIcons}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkTaskBarNoTooltip" Click="OnCheckBoxClick" 
-                                              Content="Disable TaskBar Tooltips" />
+                                              Content="{StaticResource DisableTaskbarTooltip}" />
                                 </StackPanel>
                             </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="MAINTENANCE" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelMaintenance}" Name="tabMaintenance" Width="120" Style="{StaticResource MainTabStyle}"
                          Tag="maintenance" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlMaintenance">
                         <TabItem Header="memory" Width="90" Name="tabMemory">
@@ -2950,18 +2926,18 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkDisableGroupPolicy">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable Group Policy update during startup</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableGroupPolicyUpdate}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkUnloadUnsedDLL">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Unload unused DLLs after an application is closed</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource UnloadUnusedDlls}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="error" Width="70" Name="tabError">
+                        <TabItem Header="{StaticResource Error}" Width="70" Name="tabError">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3048,24 +3024,22 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkHideErrReporting">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Don't show error reporting dialog, when an app crashes</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource HideErrorDlg}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <TextBlock Style="{StaticResource SmallTxtStyle}" VerticalAlignment="Center"
-                                          Name="lblErrReportType" Margin="30, 10, 5, 5">
-                                            Type of report that should be send to Microsoft when an error occurs
-                                    </TextBlock>
+                                          Name="lblErrReportType" Margin="30, 10, 5, 5" Text="{StaticResource ErrReportType}" />
                                     <ComboBox Margin="10, 0, 10, 0" SelectedIndex="0" FontSize="16" Name="cmboBxErrReportTye"
                                               HorizontalAlignment="Right">
-                                        <ComboBoxItem>Ask, when sending</ComboBoxItem>
-                                        <ComboBoxItem>Send basic data</ComboBoxItem>
-                                        <ComboBoxItem>Send basic and additional data</ComboBoxItem>
-                                        <ComboBoxItem>Never send any data</ComboBoxItem>
+                                        <ComboBoxItem Content="{StaticResource AskWhenSending}" />
+                                        <ComboBoxItem Content="{StaticResource SendBasic}" />
+                                        <ComboBoxItem Content="{StaticResource SendBasicAndAdd}" />
+                                        <ComboBoxItem Content="{StaticResource NeverSend}" />
                                     </ComboBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="startup settings" Width="150" Name="tabStartupSettings">
+                        <TabItem Header="{StaticResource StartupSettings}" Width="150" Name="tabStartupSettings">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3118,18 +3092,18 @@
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick" Name="chkEnableBootDefrag">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Enable boot defragmentation (Recommended)</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource EnableBootDefrag}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                     <CheckBox Margin="30, 10, 5, 5" Click="OnCheckBoxClick" Name="chkDisableLKGC">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Disable creation of last known good configuration (Not Recommended)</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource EnableLkgc}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="auto reboot" Width="160" Name="tabAutoReboot">
+                        <TabItem Header="{StaticResource AutoReboot}" Width="160" Name="tabAutoReboot">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3198,17 +3172,16 @@
                                 </Viewbox>
                                 <StackPanel Grid.Column="1" Margin="50, 30, 5, 30">
                                     <StackPanel Orientation="Horizontal" Margin="30, 10, 5, 5">
-                                        <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center" Name="lblWinCrashAction">
-                                            Default action to perform, when Windows crashes
-                                        </TextBlock>
+                                        <TextBlock Style="{StaticResource TxtStyle}" FontSize="18" VerticalAlignment="Center" 
+                                                   Name="lblWinCrashAction" Text="{StaticResource DefaultWinCrashAction}" />
                                         <ComboBox SelectedIndex="0" Margin="10, 0, 0, 0" FontSize="16" Name="cmboBxWinCrashAction">
-                                            <ComboBoxItem>Automatically restart</ComboBoxItem>
-                                            <ComboBoxItem>Show error message (Blue Screen of Death)</ComboBoxItem>
+                                            <ComboBoxItem Content="{StaticResource AutoRestart}" />
+                                            <ComboBoxItem Content="{StaticResource ShowBsod}" />
                                         </ComboBox>
                                     </StackPanel>
                                     <CheckBox Margin="30, 10, 5, 5" IsChecked="True" Click="OnCheckBoxClick" Name="chkRecordCrashEvent">
                                         <CheckBox.Content>
-                                            <TextBlock TextWrapping="Wrap">Record event in system log</TextBlock>
+                                            <TextBlock TextWrapping="Wrap" Text="{StaticResource RecordInSysLog}" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
@@ -3216,10 +3189,10 @@
                         </TabItem>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="UTILITIES" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}"
+                <TabItem Header="{StaticResource LabelUtil}" Name="tabUtilities" Width="80" Style="{StaticResource MainTabStyle}"
                          Tag="utilities" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlUtilities">
-                        <TabItem Header="system" Width="80" Name="tabUtilSystem">
+                        <TabItem Header="{StaticResource System}" Width="80" Name="tabUtilSystem">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3248,60 +3221,92 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Vertical" Grid.Column="0">
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="gpedit.msc" Name="lnkGpedit">Group Policy Editor</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="gpedit.msc" Name="lnkGpedit">
+                                                <Run Text="{StaticResource GroupPolicyEdit}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="dcomcnfg.exe" Name="lnkCmpServices">Component Services</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="dcomcnfg.exe" Name="lnkCmpServices">
+                                                <Run Text="{StaticResource CompServices}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="devmgmt.msc" Name="lnkDevMgr">Device Manager</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="devmgmt.msc" Name="lnkDevMgr">
+                                                <Run Text="{StaticResource DevMgmt}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="eventvwr.msc" Name="lnkEventVwr">Event Viewer</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="eventvwr.msc" Name="lnkEventVwr">
+                                                <Run Text="{StaticResource EvtVwr}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="lusrmgr.msc" Name="lnkLuserMsg">Local Users &amp; Group</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="lusrmgr.msc" Name="lnkLuserMsg">
+                                                <Run Text="{StaticResource LuserMgr}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="services.msc" Name="lnkWinServices">Windows Services</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="services.msc" Name="lnkWinServices">
+                                                <Run Text="{StaticResource WinServices}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="msconfig.exe" Name="lnkSysConfigUtil">System Configuration Utility</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="msconfig.exe" Name="lnkSysConfigUtil">
+                                                <Run Text="{StaticResource SysConfigUtil}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="shutdown.exe;/i" Name="lnkRemoteShutdown">Remote Shutdown Dialog</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="shutdown.exe;/i" Name="lnkRemoteShutdown">
+                                                <Run Text="{StaticResource RmtShutdownDlg}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Grid.Column="1">
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="syskey.exe" Name="lnkWinSecTool">Windows System Security Tool</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="syskey.exe" Name="lnkWinSecTool">
+                                                <Run Text="{StaticResource WinSecTool}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="compmgmt.msc" Name="lnkCompMgmt">Computer Management</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="compmgmt.msc" Name="lnkCompMgmt">
+                                                <Run Text="{StaticResource CompMgmt}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="dxdiag.exe" Name="lnkDxDiag">Direct X Troubleshooter</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="dxdiag.exe" Name="lnkDxDiag">
+                                                <Run Text="{StaticResource DxDiag}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="secpol.msc" Name="lnkLocalSecSetting">Local Security Settings</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="secpol.msc" Name="lnkLocalSecSetting">
+                                                <Run Text="{StaticResource SecPol}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="regedit.exe" Name="lnkRegedit">Windows Registry Editor</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="regedit.exe" Name="lnkRegedit">
+                                                <Run Text="{StaticResource Regedit}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="sysedit.exe" Name="lnkSysConfigEdt">System Configuration Editor</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="sysedit.exe" Name="lnkSysConfigEdt">
+                                                <Run Text="{StaticResource SysConfigEdit}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="msinfo32.exe" Name="lnkSysInfo">System Information</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="msinfo32.exe" Name="lnkSysInfo">
+                                                <Run Text="{StaticResource SysInfo}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="command.com" Name="lnkCmdCom">Old Command Prompt</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="command.com" Name="lnkCmdCom">
+                                                <Run Text="{StaticResource OldCmdPrmpt}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="disk" Width="65" Name="tabUtilDisk">
+                        <TabItem Header="{StaticResource Disk}" Width="65" Name="tabUtilDisk">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3336,28 +3341,40 @@
                                 </Viewbox>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="30, 30, 0, 10">
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="chkdsk.exe" Name="lnkChkDsk">Start Check Disk Utility</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="chkdsk.exe" Name="lnkChkDsk">
+                                            <Run Text="{StaticResource StartChkDsk}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="dfrgui.exe" Name="lnkDskDefrg">Disk Defragment</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="dfrgui.exe" Name="lnkDskDefrg">
+                                            <Run Text="{StaticResource DiskDefrag}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="diskpart.exe" Name="lnkDskPart">Disk Partition</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="diskpart.exe" Name="lnkDskPart">
+                                            <Run Text="{StaticResource DiskPart}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
                                         <Hyperlink Click="StartProcess" Tag="cleanmgr.exe;/sageset:65535 &amp; /sagerun:65535"
-                                                   Name="lnkAdvDskClean">Advanced Disk Cleanup</Hyperlink>
+                                                   Name="lnkAdvDskClean">
+                                            <Run Text="{StaticResource AdvancedDskClnup}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="cleanmgr.exe" Name="lnkDskClean">Disk Cleanup</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="cleanmgr.exe" Name="lnkDskClean">
+                                            <Run Text="{StaticResource DskClnup}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="diskmgmt.msc" Name="lnkDskMgmt">Disk Management</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="diskmgmt.msc" Name="lnkDskMgmt">
+                                            <Run Text="{StaticResource DskMgmt}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="network" Width="95" Name="tabUtilNetwork">
+                        <TabItem Header="{StaticResource Network}" Width="95" Name="tabUtilNetwork">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3427,30 +3444,44 @@
                                 </Viewbox>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" Margin="30, 30, 0, 10">
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="shrpubw.exe" Name="lnkCrtSharedFldr">Create Shared Folder</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="shrpubw.exe" Name="lnkCrtSharedFldr">
+                                            <Run Text="{StaticResource CrtSharedFldr}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="mstsc.exe" Name="lnkRmtDesktp">Remote Desktop</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="mstsc.exe" Name="lnkRmtDesktp">
+                                            <Run Text="{StaticResource RmtDesktop}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="dialer.exe" Name="lnkPhnDialer">Phone Dialer</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="dialer.exe" Name="lnkPhnDialer">
+                                            <Run Text="{StaticResource PhoneDialer}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="migwiz" Name="lnkWinEsyTrnsfr">Windows Easy Transfer</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="migwiz" Name="lnkWinEsyTrnsfr">
+                                            <Run Text="{StaticResource WinTransfer}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="fsmgmt.msc" Name="lnkShrdFldr">Shared Folder</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="fsmgmt.msc" Name="lnkShrdFldr">
+                                            <Run Text="{StaticResource ShrdFldr}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="rasphone.exe" Name="lnkRmtAccessPhnBuk">Remote Access Phonebook</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="rasphone.exe" Name="lnkRmtAccessPhnBuk">
+                                            <Run Text="{StaticResource RmtPhoneBuk}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                     <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                        <Hyperlink Click="StartProcess" Tag="ncpa.cpl" Name="lnkNtwrkConns">Network Connections</Hyperlink>
+                                        <Hyperlink Click="StartProcess" Tag="ncpa.cpl" Name="lnkNtwrkConns">
+                                            <Run Text="{StaticResource NetworkConns}" />
+                                        </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="miscellaneous" Width="140" Name="tabUtilMisc">
+                        <TabItem Header="{StaticResource Miscellaneous}" Width="140" Name="tabUtilMisc">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3513,34 +3544,52 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Orientation="Vertical" Grid.Column="0">
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 5, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="charmap.exe" Name="lnkCharMap">Character Map</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="charmap.exe" Name="lnkCharMap">
+                                                <Run Text="{StaticResource CharMap}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="verifier.exe" Name="lnkDrvrVerifier">Driver Verifier Utility</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="verifier.exe" Name="lnkDrvrVerifier">
+                                                <Run Text="{StaticResource DrvrVerfiy}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="iexpress.exe" Name="lnkInstallerCrtr">Installer Creator Wizard</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="iexpress.exe" Name="lnkInstallerCrtr">
+                                                <Run Text="{StaticResource InstallCreatr}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="wab.exe" Name="lnkWab">Windows Address Book</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="wab.exe" Name="lnkWab">
+                                                <Run Text="{StaticResource WinAddrBook}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="eudcedit.exe" Name="lnkPrvtCharEdtr">Private Character Editor</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="eudcedit.exe" Name="lnkPrvtCharEdtr">
+                                                <Run Text="{StaticResource PvtCharEdit}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Grid.Column="1">
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="sigverif.exe" Name="lnkFlSigVerfr">File Signature Verification Toolkit</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="sigverif.exe" Name="lnkFlSigVerfr">
+                                                <Run Text="{StaticResource SigVerfiy}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="intl.cpl" Name="lnkRegSettings">Regional Settings</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="intl.cpl" Name="lnkRegSettings">
+                                                <Run Text="{StaticResource RegSettings}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
-                                            <Hyperlink Click="StartProcess" Tag="wabmig.exe" Name="lnkDrtX">Direct X Troubleshooter</Hyperlink>
+                                            <Hyperlink Click="StartProcess" Tag="wabmig.exe" Name="lnkDrtX">
+                                                <Run Text="{StaticResource AddrBookImpUtil}"></Run>
+                                            </Hyperlink>
                                         </TextBlock>
                                         <TextBlock HorizontalAlignment="Left" Margin="2, 10, 0, 0">
                                             <Hyperlink Click="StartProcess" Tag="netplwiz.exe"
-                                                       Name="lnkAdvUserCp">Advanced User Accounts Control Panel</Hyperlink>
+                                                       Name="lnkAdvUserCp">
+                                                <Run Text="{StaticResource AdAcCntrolPanel}" />
+                                            </Hyperlink>
                                         </TextBlock>
                                     </StackPanel>
                                 </Grid>
@@ -3554,19 +3603,19 @@
                 <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="{StaticResource WhiteBackgroudBrush}"
                         Padding="2, 2, 10, 5">
                     <StackPanel>
-                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}">Add file to Open With</TextBlock>
+                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddFileOpenWith}"></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Style="{StaticResource TxtBoxStyle}" Width="250" FontSize="14" 
                                                       Name="txtOpenWithFilePath">
                                 <toolkit:WatermarkTextBox.Watermark>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14">Browse the file, or input file-path</TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14" Text="{StaticResource BrowseOrInputFile}" />
                                 </toolkit:WatermarkTextBox.Watermark>
                             </toolkit:WatermarkTextBox>
                             <Button Content="..." Padding="10, 2" VerticalAlignment="Center" Margin="0, 5, 0, 0" Click="OnBrowseFileForOpenWithBtnClick"></Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
-                            <Button Name="btnAddToOpenWith" Padding="10, 5" Click="OnAddToOpenWithBtnClick">Add</Button>
-                            <Button Name="btnCloseOpenWith" Padding="10, 5" Click="OnCancelAddToOpenWithBtnClick">Cancel</Button>
+                            <Button Name="btnAddToOpenWith" Padding="10, 5" Click="OnAddToOpenWithBtnClick" Content="{StaticResource Add}" />
+                            <Button Name="btnCloseOpenWith" Padding="10, 5" Click="OnCancelAddToOpenWithBtnClick" Content="{StaticResource Cancel}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -3576,12 +3625,12 @@
                 <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="{StaticResource WhiteBackgroudBrush}"
                         Padding="2, 2, 10, 5">
                     <StackPanel>
-                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}">Add file to Startup</TextBlock>
+                        <TextBlock Margin="10, 10, 0, 0" Style="{StaticResource SmallTxtStyle}" Text="{StaticResource AddToStartup}" />
                         <StackPanel Orientation="Horizontal">
                             <toolkit:WatermarkTextBox Margin="10, 10, 5, 5" Style="{StaticResource TxtBoxStyle}" Width="250" FontSize="14" 
                                                       Name="txtStartupFilePath">
                                 <toolkit:WatermarkTextBox.Watermark>
-                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14">Browse the file, or input file-path</TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTxtStyle}" FontSize="14" Text="{StaticResource BrowseOrInputFile}" />
                                 </toolkit:WatermarkTextBox.Watermark>
                             </toolkit:WatermarkTextBox>
                             <Button Content="..." Padding="10, 2" VerticalAlignment="Center" Margin="0, 5, 0, 0" 
@@ -3590,13 +3639,13 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10, 2, 0, 0">For</TextBlock>
                             <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForCurrentUser" IsChecked="True"
-                                         Margin="10, 1, 10, 0">Current User</RadioButton>
+                                         Margin="10, 1, 10, 0" Content="{StaticResource CurrentUsr}" />
                             <RadioButton Style="{StaticResource SmallRbtnStyle}" Name="rbtnStartupForAllUser"
-                                         Margin="0, 1, 0, 0">All Users</RadioButton>
+                                         Margin="0, 1, 0, 0" Content="{StaticResource AllUsers}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
-                            <Button Name="btnAddToStartup" Padding="10, 5" Click="OnAddToStartupBtnClick">Add</Button>
-                            <Button Name="btnCancelAddToStartup" Padding="10, 5" Click="OnCancelAddToStartupBtnClick">Cancel</Button>
+                            <Button Name="btnAddToStartup" Padding="10, 5" Click="OnAddToStartupBtnClick" Content="{StaticResource Add}" />
+                            <Button Name="btnCancelAddToStartup" Padding="10, 5" Click="OnCancelAddToStartupBtnClick" Content="{StaticResource Cancel}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -3657,8 +3706,8 @@
         <Grid Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource LargeButton}" Name="btnApply" Content="{StaticResource Save}" />
-                <Button Style="{StaticResource LargeButton}" Name="btnOk">_Save &amp; Exit</Button>
-                <Button Style="{StaticResource LargeButton}" Name="btnCancel">_Don't Save &amp; Exit</Button>
+                <Button Style="{StaticResource LargeButton}" Name="btnOk" Content="{StaticResource SaveExit}" />
+                <Button Style="{StaticResource LargeButton}" Name="btnCancel" Content="{StaticResource DntSaveExit}" />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="0" Grid.Column="1"

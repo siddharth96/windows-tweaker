@@ -23,10 +23,14 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" Margin="5, 10">File</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" Name="txtAppFileName" IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" Margin="5, 10">Path</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" Name="txtAppFilePath" IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" 
+                       Margin="5, 10" Text="{StaticResource File}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" Name="txtAppFileName" 
+                     IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource SmallTxtStyle}" 
+                       Margin="5, 10" Text="{StaticResource Path}"></TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallTxtBoxStyle}" 
+                     Name="txtAppFilePath" IsReadOnly="True" Margin="5, 10, 10, 10"></TextBox>
         </Grid>
     </Grid>
 </Window>
