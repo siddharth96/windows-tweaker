@@ -41,7 +41,7 @@ namespace WindowsTweaker {
             }
             else {
                 string msg = e.Result as string;
-                txtLoading.Text = msg ?? "An error occured";
+                txtLoading.Text = msg ?? this.FindResource("ErrorOccurred") as string;
             }
         }
 
@@ -61,7 +61,7 @@ namespace WindowsTweaker {
                 e.Result = fileItemList;
             }
             else {
-                e.Result = "Nothing to show";
+                e.Result = this.FindResource("EmptyData") as string;
             }
         }
 

@@ -14,22 +14,25 @@ namespace WindowsTweaker {
     public partial class App : Application {
 
         private void SetUiCulture(string cultureName = "en-US") {
-            CultureInfo ci = new CultureInfo(cultureName);
-            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = ci;
+            try {
+                CultureInfo ci = new CultureInfo(cultureName);
+                Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = ci;
+            } catch (CultureNotFoundException) {
+                
+            }
         }
 
         private void SetLanguageDictionary() {
             List<ResourceDictionary> resourceDictionaries = new List<ResourceDictionary>();
-            foreach (ResourceDictionary mergedDictionary in
-                this.Resources.MergedDictionaries) {
+            foreach (ResourceDictionary mergedDictionary in this.Resources.MergedDictionaries) {
                 resourceDictionaries.Add(mergedDictionary);
             }
             string culture = Thread.CurrentThread.CurrentCulture.ToString();
             string lang = culture.Contains("-") ? culture.Split('-')[0] : culture;
-            string requestedCulture = String.Format("Resources/StringResources.{0}.xaml", lang);
+            string requestedCulture = String.Format("Resources/Strings/StringResources.{0}.xaml", lang);
             ResourceDictionary resourceDictionary = resourceDictionaries.FirstOrDefault(x => x.Source.OriginalString == requestedCulture);
             if (resourceDictionary == null) {
-                requestedCulture = "Resources/StringResources.xaml";
+                requestedCulture = "Resources/Strings/StringResources.xaml";
                 resourceDictionary = resourceDictionaries.FirstOrDefault(x => x.Source.OriginalString == requestedCulture);
             }
             if (resourceDictionary != null) {
@@ -39,7 +42,8 @@ namespace WindowsTweaker {
         }
 
         private void OnApplicationStartup(object sender, StartupEventArgs e) {
-            SetUiCulture("ru-RU");
+            //SetUiCulture("de-DE");
+            //SetUiCulture("ru-RU");
             SetLanguageDictionary();
         }
     }

@@ -70,7 +70,6 @@
     </Style>
 
     <Style TargetType="{x:Type TabItem}" x:Key="MainTabStyle">
-        <Setter Property="Margin" Value="5,0,5,0" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="FontWeight" Value="400" />
         <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
@@ -78,7 +77,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid Height="35" VerticalAlignment="Bottom">
+                    <Grid Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
                         <ContentPresenter x:Name="ContentSite"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
@@ -120,16 +119,14 @@
     </Style>
 
     <Style TargetType="{x:Type TabItem}">
-        <Setter Property="Margin" Value="5,0,5,0" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="Width" Value="200" />
         <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid Height="35" VerticalAlignment="Bottom">
+                    <Grid Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
                         <ContentPresenter x:Name="ContentSite"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"

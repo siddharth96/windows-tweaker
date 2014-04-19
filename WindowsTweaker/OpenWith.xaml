@@ -30,7 +30,7 @@
                                    ThumbWidth="30"
                                    BorderThickness="2"
                                    CheckedForeground="White"
-                                   CheckedText="Show"
+                                   CheckedText="{StaticResource Show}"
                                    CornerRadius="8"
                                    FontFamily="/WindowsTweaker;component/Fonts/#RobotoTahoma"
                                    FontSize="14"
@@ -45,9 +45,9 @@
                                    ThumbShineCornerRadius="6,6,3,3"
                                    Tag="{Binding}"
                                    UncheckedForeground="Black"
-                                   UncheckedText="Hide"
+                                   UncheckedText="{StaticResource Hide}"
                                    VerticalAlignment="Top"
-                                   Width="68"
+                                   Width="98"
                                    Checked="OnToggleButtonChecked"
                                    Unchecked="OnToggleButtonUnchecked"
                                    CheckedToolTip="True"
@@ -114,7 +114,7 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <TextBlock Name="txtLoading" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TxtStyle}">Loading...</TextBlock>
+        <TextBlock Name="txtLoading" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TxtStyle}" Text="{StaticResource Loading}" />
         <ListBox Margin="5" Name="lstOpenWithBox" ItemTemplate="{StaticResource ToggleBtnTileView}" HorizontalAlignment="Stretch" 
                  HorizontalContentAlignment="Stretch" Visibility="Collapsed">
             <ListBox.ItemContainerStyle>

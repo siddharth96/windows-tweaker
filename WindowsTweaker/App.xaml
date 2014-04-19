@@ -10,9 +10,8 @@
                 <ResourceDictionary Source="Resources/WindowDictionary.xaml"></ResourceDictionary>
 				<ResourceDictionary Source="Resources/AeroSkin.xaml"></ResourceDictionary>
 				<ResourceDictionary Source="Resources/Strings/StringResources.ru.xaml"></ResourceDictionary>
-				<ResourceDictionary Source="Resources/Strings/StringResources.de.xaml"></ResourceDictionary>
-				<ResourceDictionary Source="Resources/Strings/StringResources.hi.xaml"></ResourceDictionary>
-				<ResourceDictionary Source="Resources/Strings/StringResources.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Strings/StringResources.de.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Strings/StringResources.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>         
     </Application.Resources>

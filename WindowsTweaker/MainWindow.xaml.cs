@@ -29,7 +29,8 @@ namespace WindowsTweaker {
         public MainWindow() {
             InitializeComponent();
             _message = new Message(msgContainerBorder, txtMsg);
-            _message.Notify("Initializing search, please wait...");
+            string initializeSearch = GetResourceString("InitializingSearch");
+            _message.Notify(initializeSearch);
             _sendToBackgroundWorker = (BackgroundWorker) this.FindResource("sendToBackgroundWorker");
             _searchBackgroundWorker = (BackgroundWorker) this.FindResource("searchBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
@@ -100,6 +101,10 @@ namespace WindowsTweaker {
                 case Constants.Utilities:
                     break;
             }
+        }
+
+        private string GetResourceString(string key) {
+            return this.FindResource(key) as string;
         }
 
         private void OnCheckBoxClick(object sender, RoutedEventArgs e) {
@@ -267,7 +272,7 @@ namespace WindowsTweaker {
                 if (_windowsOs > WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
                 } else {
-                    txtShowIconsTaskBar.Text += " (Only for Windows Vista and onwards)";
+                    txtShowIconsTaskBar.Text += " " + GetResourceString("OnlyVistaAndOnwards");
                     chkShowIconsTaskBar.IsEnabled = false;
                 }
                 chkTaskBarNoTooltip.SetCheckedState(hkcuExAdvanced, Constants.ShowInfoTip, true);
@@ -279,7 +284,7 @@ namespace WindowsTweaker {
                     chkHide3DFlip.SetCheckedState(hkcuDWM, Constants.DisAllowFlip_3D);
                 }
             } else {
-                txtDisableFlip3D.Text += " (Only for Windows Vista and 7)";
+                txtDisableFlip3D.Text += " " + GetResourceString("OnlyVistaAnd7");
                 chkHide3DFlip.IsEnabled = false;
             }
             using (RegistryKey hkcuSystem = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
@@ -398,7 +403,7 @@ namespace WindowsTweaker {
                         rbtnHideLibraries.IsChecked = true;
                     }
                 } else {
-                    txtLibraries.Text += " (Only for Windows Vista and onwards)";
+                    txtLibraries.Text += " " + GetResourceString("OnlyVistaAndOnwards");
                     panelLibraries.IsEnabled = false;
                 }
             }
@@ -456,8 +461,8 @@ namespace WindowsTweaker {
                     chkReplaceCmdPromptWithPs.SetCheckedState(hkcuAdvanced, Constants.DontUsePowerShellOnWinX, true);
                 }
             } else {
-                txtStartScreen.Text += " (Only for Windows 8+)";
-                txtNavTweaks.Text += " (Only for Windows 8+)";
+                txtStartScreen.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+                txtNavTweaks.Text += " " + GetResourceString("OnlyWin8AndOnwards");
                 panelStartScreen.IsEnabled  = panelNavTweaks.IsEnabled= false;
             }
         }
@@ -641,8 +646,7 @@ namespace WindowsTweaker {
                 hklmOEM.SetValue(Constants.Logo, filePath);
                 imgProperty.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
                 btnDeleteLogo.IsEnabled = true;
-                _message.Success("Image has been successfully applied. If your Computer\'s property windows is already open then" +
-                                " please close & re-open the window for the changes to be reflected.");
+                _message.Success(GetResourceString("ImageApplied"));
             }
         }
 
@@ -653,7 +657,7 @@ namespace WindowsTweaker {
                     hklmOEM.SetValue(Constants.Logo, "");
                     btnDeleteLogo.IsEnabled = false;
                     imgProperty.Source = null;
-                    _message.Success("Image has been successfully removed");
+                    _message.Success(GetResourceString("ImageRemoved"));
                 }
             }
         }
@@ -671,8 +675,6 @@ namespace WindowsTweaker {
             }
 
             using (RegistryKey hklmWinInstaller = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\Installer")) {
-                //RegistryKey hklmPWindows = HKLM.CreateSubKey(@"Software\Policies\Microsoft\Windows");
-
                 // Windows Installer
                 if (chkDisableWinInstaller.IsChecked == true) {
                     hklmWinInstaller.SetValue(Constants.DisableMsi, 2);
@@ -836,7 +838,7 @@ namespace WindowsTweaker {
         private void LoadPlacesTab() {
             // God Mode
             if (_windowsOs < WindowsVer.Windows.Vista) {
-                lblSetupGodMode.Text += " (Only for Windows Vista & onwards)";
+                lblSetupGodMode.Text += " " + GetResourceString("OnlyVistaAndOnwards");
                 panelSetupGodMode.IsEnabled = false;
             }
             // Power Button
@@ -940,19 +942,17 @@ namespace WindowsTweaker {
                         try {
                             selectedFolderDirectoryInfo.Delete(true);
                             Directory.CreateDirectory(godModeFolderPath);
-                            _message.Success("Successfully created folder in " + parentDir +
-                                            ". Please note that if on clicking the folder you get an error, " +
-                                            "then you need to refresh that window for changes to be reflected.");
+                            _message.Success(GetResourceString("SuccessfullyFolderCreate") + " " + parentDir +
+                                            ". " + GetResourceString("PleaseNoteWinRefresh"));
                         } catch (UnauthorizedAccessException ex) {
-                            _message.Error("Permission Denied!");
+                            _message.Error(GetResourceString("PermissionDenied"));
                         }
                     } else {
-                        _message.Error("You can't make " + selectedFolderName + " a \'God\' folder. " +
-                                      "Please select an empty folder or create a new one");
+                        _message.Error(GetResourceString("YoCantMake") + " " + selectedFolderName + " . " + GetResourceString("AGodFolder") +
+                                       GetResourceString("PleaseSelectAnEmptyFolderOrCreate"));
                     }
                 } else {
-                    _message.Error(selectedFolderName + " is not an empty folder. You must create an " +
-                                  "empty folder, to set God Mode");
+                    _message.Error(selectedFolderName + " " + GetResourceString("IsNotEmptyForGod"));
                 }
             }
         }
@@ -994,17 +994,17 @@ namespace WindowsTweaker {
                 OpenWithTask.AddStatus status = OpenWithTask.Add(filePath);
                 switch (status) {
                     case OpenWithTask.AddStatus.Success:
-                        _message.Success("Successfully added to open-with");
+                        _message.Success(GetResourceString("AddedToOpenWith"));
                         break;
                     case OpenWithTask.AddStatus.AlreadyPresent:
-                        _message.Success("This file is already present in open-with");
+                        _message.Success(GetResourceString("FileAlreadyPresentInOpenWith"));
                         break;
                     case OpenWithTask.AddStatus.Failed:
-                        _message.Error("Failed to add this file to open-with");
+                        _message.Error(GetResourceString("FailedToAddToOpenWith"));
                         break;
                 }
             } else {
-                _message.Error("The specified file doesn't exist.");
+                _message.Error(GetResourceString("FileNotExist"));
             }
             txtOpenWithFilePath.Text = String.Empty;
         }
@@ -1046,17 +1046,17 @@ namespace WindowsTweaker {
                 StartupManagerTask.AddStatus status = StartupManagerTask.Add(filePath, onlyCurrentUser);
                 switch (status) {
                     case StartupManagerTask.AddStatus.Success:
-                        _message.Success("Successfully added to startup");
+                        _message.Success(GetResourceString("AddedToStartup"));
                         break;
                     case StartupManagerTask.AddStatus.AlreadyPresent:
-                        _message.Error("This file is already present in startup");
+                        _message.Error(GetResourceString("FilePresentInStartup"));
                         break;
                     case StartupManagerTask.AddStatus.Failed:
-                        _message.Error("Failed to add this file to startup");
+                        _message.Error(GetResourceString("FailedToAddToStartup"));
                         break;
                 }
             } else {
-                _message.Error("The specified file doesn't exist");
+                _message.Error(GetResourceString("FileNotExist"));
             }
             txtStartupFilePath.Text = String.Empty;
         }
@@ -1188,13 +1188,13 @@ namespace WindowsTweaker {
                     }
                 }
             } else {
-                txtCopyContents.Text += " (Only for Windows 7 and onwards)";
+                txtCopyContents.Text += " " + GetResourceString("OnlyVistaAndOnwards");
                 chkCopyContents.IsEnabled = false;
             }
 
             // Add Items
             if (_windowsOs < WindowsVer.Windows.Vista) {
-                txtAddToRightClick.Text += " (Only for Windows Vista and onwards)";
+                txtAddToRightClick.Text += " " + GetResourceString("Only7AndOnwards");
                 panelAddToRightClick.IsEnabled = true;
             }
             // Send To
@@ -1238,10 +1238,10 @@ namespace WindowsTweaker {
                     ReloadSendTo();
                 }
             } catch (BadImageFormatException) {
-                _message.Error("Because of an error, add operations for operations have been disabled");
+                _message.Error(GetResourceString("SendToAddDisabled"));
                 btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
             } catch (FileNotFoundException) {
-                _message.Error("File path is not valid, hence not creating any shortcut");
+                _message.Error("InvalidFilePath");
             }
         }
 
@@ -1251,10 +1251,10 @@ namespace WindowsTweaker {
                     ReloadSendTo();
                 }
             } catch (BadImageFormatException) {
-                _message.Error("Because of an error, add operations for operations have been disabled");
+                _message.Error(GetResourceString("SendToAddDisabled"));
                 btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
             } catch (FileNotFoundException) {
-                _message.Error("File path is not valid, hence not creating any shortcut");
+                _message.Error(GetResourceString("InvalidFilePath"));
             }
         }
 
@@ -1268,7 +1268,7 @@ namespace WindowsTweaker {
             try {
                 Process.Start(sendToPath);
             } catch (Win32Exception) {
-                _message.Error("The SendTo Path is different on your Windows");
+                _message.Error(GetResourceString("DifferentSendToPath"));
             }
         }
         #endregion
@@ -1289,22 +1289,22 @@ namespace WindowsTweaker {
                 return;
             string shrtCtName = txtShrtCtName.Text.Trim();
             if (shrtCtName.Length == 0) {
-                _message.Error("Please enter a name for the shortcut");
+                _message.Error(GetResourceString("MissingShortcutName"));
                 return;
             }
             if (shrtCtName == "cmd") {
-                _message.Error("Can't create shortcut with name \"cmd\" since it is reserved by Windows. Please try a different name.");
+                _message.Error(GetResourceString("CmdNotAvailable"));
             }
             string shrtCtPath = txtShrtCtPath.Text.Trim();
             if (shrtCtPath.Length == 0) {
-                _message.Error("Please enter a valid file-path or url");
+                _message.Error(GetResourceString("ValidFilePath"));
                 return;
             }
             bool result = RightClickAddDeleteTask.Add(shrtCtName, shrtCtPath);
             if (!result) {
-                string msg = String.Format("Unable to identify \"{0}\" as a valid file-path or url." +
-                                           "\n Do you still want to proceed anyways and create a shortcut?" +
-                                           "\n PS : You might want to do this if this file is added to your PATH.", shrtCtPath);
+                string msg = GetResourceString("UnableToIndentify") + " \"" + shrtCtPath + "\"" + " " + GetResourceString("AsValidFilePath") + "." +
+                                           Environment.NewLine + " " + GetResourceString("ProceedAndCreateShortcut") +
+                                           Environment.NewLine + " " + GetResourceString("AddedToPath");
                 if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo,
                         MessageBoxImage.Warning) == MessageBoxResult.Yes) {
                     RightClickAddDeleteTask.AddToRegistry(shrtCtName, shrtCtPath);
@@ -1312,9 +1312,9 @@ namespace WindowsTweaker {
                 }
             }
             if (!result) {
-                _message.Error("Please enter a valid file-path or url");
+                _message.Error(GetResourceString("ValidFilePath"));
             } else {
-                _message.Success("Successfully added " + shrtCtName + " to Right-Click");
+                _message.Success(GetResourceString("SuccessfullyAdded") + " " + shrtCtName + " " + GetResourceString("ToRightClick"));
                 ClearAddToContextMenuInput();
             }
         }
@@ -1334,7 +1334,7 @@ namespace WindowsTweaker {
                 popupRightClickList.IsOpen = true;
             } else {
                 popupRightClickList.IsOpen = false;
-                _message.Error("You haven't added anything to the Right-Click");
+                _message.Error(GetResourceString("EmptyRightLick"));
             }
         }
 
@@ -1361,7 +1361,7 @@ namespace WindowsTweaker {
             if (!rightClickItems.Any()) {
                 popupRightClickList.IsOpen = false;
             }
-            _message.Success("Sucessfully deleted " + fileItem.Tag + " from Right-Click menu");
+            _message.Success(GetResourceString("SuccessfullyDeleted") + " " + fileItem.Tag + " " + GetResourceString("FromRightClick"));
         }
         #endregion
 
@@ -1386,34 +1386,33 @@ namespace WindowsTweaker {
                 if (timeout >= 0) {
                     string shutdwnComd = String.Format("shutdown {0} /t {1}", param, timeout);
                     ProcessWrapper.ExecuteDosCmd(shutdwnComd);
-                    _message.Success("Shutdown has been scheduled on " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
-                        + " at " + selectedDateTime.Value.ToString("hh:mm tt"));
+                    _message.Success(GetResourceString("ShutdownScheduled") + " " + selectedDateTime.Value.ToString("MMMM d, yyyy ") 
+                        + " " + GetResourceString("At") + " " + selectedDateTime.Value.ToString("hh:mm tt"));
                 }
                 else {
-                    _message.Error("Invalid Timeout!\n The time can\'t be less than the current time. Also the time can\'t" +
-                                  " exceed the limit of 10 years.");
+                    _message.Error(GetResourceString("InvalidTimeout"));
                 }
             }
             else {
-                _message.Error("Please select a date!");
+                _message.Error(GetResourceString("SelectDate"));
             }
         }
 
         private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
             ProcessWrapper.ExecuteDosCmd("shutdown /a");
-            _message.Success("Previously scheduled shutdown has been cancelled");
+            _message.Success("ShutdownCancelled");
         }
         #endregion
 
         #region Task -> Special Folder
         private void OnButtonBrowseSpecialFolderParentClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDlg = new WPFFolderBrowserDialog();
-            folderBrowserDlg.Title = "Select a Parent Folder";
+            folderBrowserDlg.Title = GetResourceString("SelectParentFolder");
             if (folderBrowserDlg.ShowDialog() == true) {
                 string parentPath = folderBrowserDlg.FileName;
                 string createCmd = String.Format("md \"\\\\.\\{0}\\{1}\"", parentPath, cmboBxSpecialFolderNames.SelectionBoxItem);
                 ProcessWrapper.ExecuteDosCmd(createCmd);
-               _message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " created successfully at " + parentPath);
+                _message.Success(cmboBxSpecialFolderNames.SelectionBoxItem + " " + GetResourceString("CreatedSuccessFullyAt") + " " + parentPath);
             }
         }
 
@@ -1530,12 +1529,12 @@ namespace WindowsTweaker {
 
         private void OnLinkActivateAdminClick(object sender, RoutedEventArgs e) {
             ProcessWrapper.ExecuteProcess("net", "user administrator /active:yes");
-            _message.Success("Successfully activated the Administrator account");
+            _message.Success(GetResourceString("ActivatedAdminAcc"));
         }
 
         private void OnLinkDeactivateAdminAccountClick(object sender, RoutedEventArgs e) {
             ProcessWrapper.ExecuteProcess("net", "user administrator /active:no");
-            _message.Success("Successfully de-activated the Administrator account");
+            _message.Success(GetResourceString("DeactivatedAdminAcc"));
         }
 
         private void UpdateRegistryFromFeatures() {
@@ -1721,7 +1720,7 @@ namespace WindowsTweaker {
             if (e.Key != Key.Enter) return;
             if (txtSearchInput == null) return;
             if (_searchBackgroundWorker.IsBusy) {
-                _message.Error("Please wait..., another search is already in progress");
+                _message.Error(GetResourceString("SearchInProgress"));
                 return;
             }
             Search(txtSearchInput.Text);
@@ -1730,14 +1729,14 @@ namespace WindowsTweaker {
         private void Search(string searchTxt) {
             searchTxt = searchTxt.Trim();
             if (searchTxt.Length < 3) {
-                _message.Error("Minimum 3 characters should be entered");
+                _message.Error(GetResourceString("Min3Chars"));
                 return;
             }
             if (searchTxt.Length > 100) {
                 searchTxt = searchTxt.Substring(0, 100);
             }
             HideSearchResults();
-            _message.Notify("Searching, please wait...");
+            _message.Notify(GetResourceString("Searching"));
             _searchBackgroundWorker.RunWorkerAsync(searchTxt);
         }
 
@@ -1754,7 +1753,7 @@ namespace WindowsTweaker {
         private void OnSearchWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             List<SearchItem> searchItems = e.Result as List<SearchItem>;
             if (searchItems == null || !searchItems.Any()) {
-                _message.Error("Nothing found!");
+                _message.Error(GetResourceString("Nothing"));
                 return;
             }
             popupSearch.IsOpen = true;
@@ -1804,7 +1803,7 @@ namespace WindowsTweaker {
                     ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows)
                         + @"\system32\Restore\rstrui.exe");
                 } else
-                    _message.Error("This option is not available in your version of Windows");
+                    _message.Error(GetResourceString("OptionNotAvailable"));
             }
         }
         #endregion
