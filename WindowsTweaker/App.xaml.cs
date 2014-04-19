@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
+using System.IO;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using WindowsTweaker.AppTasks;
+using WindowsTweaker.Models;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -13,13 +14,40 @@ namespace WindowsTweaker {
     /// </summary>
     public partial class App : Application {
 
-        private void SetUiCulture(string cultureName = "en-US") {
+        private void OnApplicationStartup(object sender, StartupEventArgs e) {
+            DoLocalization();
+        }
+
+        private void DoLocalization() {
+            Config config = LocalizationHandler.ReadConfig();
+            if (config != null) {
+                string cultureName = config.CultureName;
+                if (cultureName != null) {
+                    bool result = SetUiCulture(cultureName);
+                    if (result) {
+                        // If the culture name in config file is a valid culture-name, and not some garbage text
+                        LocalizationHandler.UpdateCultureInConfig(cultureName);
+                    }
+                }
+            }
+            SetLanguageDictionary();
+        }
+
+        private bool SetUiCulture(string cultureName = "en-US") {
             try {
                 CultureInfo ci = new CultureInfo(cultureName);
                 Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = ci;
-            } catch (CultureNotFoundException) {
-                
+                return true;
             }
+            catch (CultureNotFoundException) {
+                string configFile = Utils.GetConfigFilePath();
+                if (configFile != null && File.Exists(configFile)) {
+                    try {
+                        File.Delete(configFile);
+                    } catch (IOException) { } catch (UnauthorizedAccessException) { }
+                }
+            }
+            return false;
         }
 
         private void SetLanguageDictionary() {
@@ -27,7 +55,7 @@ namespace WindowsTweaker {
             foreach (ResourceDictionary mergedDictionary in this.Resources.MergedDictionaries) {
                 resourceDictionaries.Add(mergedDictionary);
             }
-            string culture = Thread.CurrentThread.CurrentCulture.ToString();
+            string culture = Thread.CurrentThread.CurrentUICulture.ToString();
             string lang = culture.Contains("-") ? culture.Split('-')[0] : culture;
             string requestedCulture = String.Format("Resources/Strings/StringResources.{0}.xaml", lang);
             ResourceDictionary resourceDictionary = resourceDictionaries.FirstOrDefault(x => x.Source.OriginalString == requestedCulture);
@@ -39,12 +67,6 @@ namespace WindowsTweaker {
                 this.Resources.MergedDictionaries.Remove(resourceDictionary);
                 this.Resources.MergedDictionaries.Add(resourceDictionary);
             }
-        }
-
-        private void OnApplicationStartup(object sender, StartupEventArgs e) {
-            //SetUiCulture("de-DE");
-            //SetUiCulture("ru-RU");
-            SetLanguageDictionary();
         }
     }
 }

@@ -377,4 +377,11 @@
     <system:String x:Key="ErrorOccurred">An error occurred</system:String>
     <system:String x:Key="EmptyData">Nothing to show</system:String>
     <system:String x:Key="DisableTaskbarAnim">Disable Taskbar animations</system:String>
+    <system:String x:Key="Options">OPTIONS</system:String>
+    <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="About">About</system:String>
+    <system:String x:Key="Help">Help</system:String>
+    <system:String x:Key="ReportIssue">Report Issue</system:String>
+    <system:String x:Key="Success">Success</system:String>
+    <system:String x:Key="RestartForLangChange">Windows Tweaker will now exit. Please launch the application again, to view the language change.</system:String>
 </ResourceDictionary>

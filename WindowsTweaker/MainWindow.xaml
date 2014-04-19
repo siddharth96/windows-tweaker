@@ -3806,10 +3806,26 @@
             </Popup>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Menu Grid.Column="0" Background="{StaticResource WindowBackgroudBrushEnd}" Margin="10, 0, 0, 0" VerticalAlignment="Center">
+                <MenuItem Header="{StaticResource Options}" Style="{StaticResource MenuItemStyle}">
+                    <MenuItem Header="{StaticResource Language}">
+                        <MenuItem Header="English" IsCheckable="True" Name="menuItemEnglish" Click="OnLanguageMenuItemClick" Tag="en-US"></MenuItem>
+                        <MenuItem Header="Deutsch" IsCheckable="True" Name="menuItemGerman" Click="OnLanguageMenuItemClick" Tag="de-DE"></MenuItem>
+                        <MenuItem Header="русский" IsCheckable="True" Name="menuItemRussian" Click="OnLanguageMenuItemClick" Tag="ru-RU"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="{StaticResource Help}"></MenuItem>
+                    <MenuItem Header="{StaticResource ReportIssue}"></MenuItem>
+                    <MenuItem Header="{StaticResource About}"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                 <Button Style="{StaticResource LargeButton}" Name="btnApply" Content="{StaticResource Save}" />
                 <Button Style="{StaticResource LargeButton}" Name="btnOk" Content="{StaticResource SaveExit}" />
-                <Button Style="{StaticResource LargeButton}" Name="btnCancel" Content="{StaticResource DntSaveExit}" />
+                <Button Style="{StaticResource LargeButton}" Name="btnCancel" Content="{StaticResource DntSaveExit}" Click="OnCancelButtonClick" />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="3" HorizontalAlignment="Stretch" Margin="0" Grid.Column="1"

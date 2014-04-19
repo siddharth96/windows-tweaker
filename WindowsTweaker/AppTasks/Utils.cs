@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
@@ -101,6 +102,11 @@ namespace WindowsTweaker.AppTasks {
                                                                         != null &&
                                                                         containedFilePath.Equals(filePath,
                                                                             StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        internal static string GetConfigFilePath() {
+            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return folderPath != null ? Path.Combine(folderPath, Constants.ConfigFileName) : null;
         }
     }
 }

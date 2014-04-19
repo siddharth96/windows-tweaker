@@ -21,6 +21,7 @@ namespace WindowsTweaker.Models
         public const string SuccessMsgTitle = "Mission Accomplished!!";
         public const byte HasUserInteracted = 1;
         public const string InternetExplorer = "iexplore.exe";
+        public const string ConfigFileName = "WindowsTweaker.config.xml";
 
         // Explorer Tab Keys/Value
         // Drive Letter Display

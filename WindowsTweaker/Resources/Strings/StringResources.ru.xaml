@@ -377,4 +377,11 @@
     <system:String x:Key="ErrorOccurred">Произошла ошибка</system:String>
     <system:String x:Key="EmptyData">Ничего, чтобы показать</system:String>
     <system:String x:Key="DisableTaskbarAnim">Отключение панели задач анимации</system:String>
+    <system:String x:Key="Options">опции</system:String>
+    <system:String x:Key="Language">язык</system:String>
+    <system:String x:Key="About">о</system:String>
+    <system:String x:Key="Help">Помогите</system:String>
+    <system:String x:Key="ReportIssue">Сообщить выпуск</system:String>
+    <system:String x:Key="Success">успех</system:String>
+    <system:String x:Key="RestartForLangChange">Теперь Windows Tweaker выйдет. Пожалуйста, запустить приложение снова, чтобы посмотреть изменение языковых.</system:String>
 </ResourceDictionary>

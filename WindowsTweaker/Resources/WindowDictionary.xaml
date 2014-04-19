@@ -78,7 +78,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="ZuneWindowTemplate" TargetType="{x:Type Window}">
+    <ControlTemplate x:Key="WindowTemplate" TargetType="{x:Type Window}">
         <Border Name="windowBorder" BorderBrush="{StaticResource WindowBackgroundBrush}"
                 BorderThickness="0" Background="{StaticResource TitleBarBrush}" Margin="0" Padding="0">
             <Grid Margin="0">
@@ -94,7 +94,7 @@
                         <ColumnDefinition Width="28" />
                         <ColumnDefinition Width="28" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Style="{StaticResource H1}" Margin="10, 10, 10, 4" FontSize="21" HorizontalAlignment="Stretch" 
+                    <TextBlock Style="{StaticResource H1}" Margin="20, 10, 10, 4" FontSize="21" HorizontalAlignment="Stretch" 
                        Grid.Column="0" VerticalAlignment="Bottom" Text="{TemplateBinding Title}" />
                     <Button Margin="0" Template="{StaticResource MinimizeButtonTemplate}" Grid.Column="1"
                             Name="btnMin" Click="OnMinimizeButtonClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
@@ -133,6 +133,6 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Margin" Value="0"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
-        <Setter Property="Template" Value="{StaticResource ZuneWindowTemplate}" />
+        <Setter Property="Template" Value="{StaticResource WindowTemplate}" />
     </Style>
 </ResourceDictionary>

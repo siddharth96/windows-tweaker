@@ -37,6 +37,7 @@ namespace WindowsTweaker {
             _searcher = new Searcher(this);
             _message.Hide();
             _hasTabLoadedDict = new Dictionary<string, bool>();
+            UpdateLanguageMenu();
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -123,6 +124,10 @@ namespace WindowsTweaker {
 
         private void OnMessageViewCloseTouchDown(object sender, TouchEventArgs e) {
             _message.Hide();
+        }
+
+        private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
+            Environment.Exit(1);
         }
         #endregion
 
@@ -1804,6 +1809,49 @@ namespace WindowsTweaker {
                         + @"\system32\Restore\rstrui.exe");
                 } else
                     _message.Error(GetResourceString("OptionNotAvailable"));
+            }
+        }
+        #endregion
+
+        #region Menu
+        private void UpdateLanguageMenu() {
+            LocalizationHandler.Language language = LocalizationHandler.GetCurrentLanguage();
+            switch (language) {
+                case LocalizationHandler.Language.English:
+                    SetLanguageMenuState(true, false, false);
+                    break;
+                case LocalizationHandler.Language.German:
+                    SetLanguageMenuState(false, true, false);
+                    break;
+                case LocalizationHandler.Language.Russian:
+                    SetLanguageMenuState(false, false, true);
+                    break;
+                default:
+                    SetLanguageMenuState(true, false, false);
+                    break;
+            }
+        }
+
+        private void SetLanguageMenuState(bool englishMenuState, bool germanMenuState, bool russianMenuState) {
+            menuItemEnglish.IsChecked = englishMenuState;
+            menuItemGerman.IsChecked = germanMenuState;
+            menuItemRussian.IsChecked = russianMenuState;
+        }
+
+        private void OnLanguageMenuItemClick(object sender, RoutedEventArgs e) {
+            MenuItem languageMenuItem = sender as MenuItem;
+            if (languageMenuItem == null)
+                return;
+            string cultureName = languageMenuItem.Tag.ToString();
+            if (cultureName == LocalizationHandler.ToLanguageString(LocalizationHandler.GetCurrentLanguage())) {
+                // Selected language is same as current language, hence do nothing
+                languageMenuItem.IsChecked = true;
+                return;
+            }
+            LocalizationHandler.UpdateCultureInConfig(cultureName);
+            string msg = GetResourceString("RestartForLangChange");
+            if (MessageBox.Show(msg, GetResourceString("Success"), MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK) {
+                Environment.Exit(1);
             }
         }
         #endregion
