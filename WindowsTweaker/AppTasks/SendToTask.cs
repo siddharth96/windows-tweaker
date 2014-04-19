@@ -11,16 +11,27 @@ using WPFFolderBrowser;
 
 namespace WindowsTweaker.AppTasks
 {
-    internal static class SendToTask
+    internal class SendToTask
     {
-        private static string _cachedSendToPath;
+        internal SendToTask(MainWindow mainWindow) {
+            _window = mainWindow;
+        }
 
-        internal static Func<WindowsVer.Windows, string> GetFolderPath = (windowsOs) =>   _cachedSendToPath ?? (_cachedSendToPath = windowsOs == WindowsVer.Windows.Xp
-                ? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\SendTo"
-                : Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\SendTo");
+        private readonly MainWindow _window;
+        private string _cachedSendToPath;
 
-        internal static bool AddFolder(WindowsVer.Windows windowsOs) {
-            string sendToPath = GetFolderPath(windowsOs);
+        internal string GetSendToFolderPath(WindowsVer.Windows windowsOs) {
+            if (!String.IsNullOrEmpty(_cachedSendToPath))
+                return _cachedSendToPath;
+            if (windowsOs == WindowsVer.Windows.Xp)
+                _cachedSendToPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\SendTo";
+            else
+                _cachedSendToPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Microsoft\Windows\SendTo";
+            return _cachedSendToPath;
+        }
+
+        internal bool AddFolder(WindowsVer.Windows windowsOs) {
+            string sendToPath = GetSendToFolderPath(windowsOs);
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == true) {
                 string folderPath = folderBrowserDialog.FileName;
@@ -30,8 +41,8 @@ namespace WindowsTweaker.AppTasks
             return false;
         }
 
-        internal static bool AddFile(WindowsVer.Windows windowsOs) {
-            string sendToPath = GetFolderPath(windowsOs);
+        internal bool AddFile(WindowsVer.Windows windowsOs) {
+            string sendToPath = GetSendToFolderPath(windowsOs);
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true) {
                 string folderPath = openFileDialog.FileName;
@@ -41,7 +52,7 @@ namespace WindowsTweaker.AppTasks
             return false;
         }
 
-        internal static void CreateShortcut(string sendToPath, string fullPath) {
+        internal void CreateShortcut(string sendToPath, string fullPath) {
             string fileName = Path.GetFileNameWithoutExtension(fullPath);
             IWshShortcut shortcut;
             if (WindowsVer.Is64BitMachine) {
@@ -56,16 +67,16 @@ namespace WindowsTweaker.AppTasks
             shortcut.Save();
         }
 
-        internal static void Delete(ListBox lstBoxSendTo, Message message) {
+        internal void Delete(ListBox lstBoxSendTo, Message message) {
             if (lstBoxSendTo.SelectedItems.Count == 0) {
-                message.Error("Please select at least one item to delete");
+                message.Error(_window.FindResource("SelectedOnItem") as string);
                 return;
             }
             FileItem[] sendToListItems = new FileItem[lstBoxSendTo.SelectedItems.Count];
             lstBoxSendTo.SelectedItems.CopyTo(sendToListItems, 0);
             string msg = sendToListItems.Length == 1
-                ? "Are you sure you want to delete \"" + sendToListItems[0].Name + "\" from Send To Menu?"
-                : "Are you sure you want to delete all these " + sendToListItems.Length + " items from Send To Menu?";
+                ? _window.FindResource("SureToDelete") + " \"" + sendToListItems[0].Name + "\" " + _window.FindResource("FromSendToMenu")
+                : _window.FindResource("SureToDeleteMultiple") + " " + sendToListItems.Length + " " + _window.FindResource("FromSendToMenuMultiple");
             if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) !=
                 MessageBoxResult.Yes) return;
             List<string> failedFiles = new List<string>();
@@ -94,10 +105,10 @@ namespace WindowsTweaker.AppTasks
             }
             if (!failedFiles.Any()) return;
             string failedMsg = failedFiles.Count > 1
-                ? "Failed to delete " + failedFiles.SentenceJoin() +
-                  " because they are either System files or are not shortcuts"
-                : "Failed to delete " + failedFiles.SentenceJoin() +
-                  " because it is either a System file or is not a valid shortcut.";
+                ? _window.FindResource("FailedToDelete") + " " + failedFiles.SentenceJoin() +
+                  " " + _window.FindResource("AreNotShortcutsMultiple")
+                : _window.FindResource("FailedToDelete") + " " + failedFiles.SentenceJoin() +
+                  " " + _window.FindResource("AreNotShortcuts");
             message.Error(failedMsg);
         }
     }

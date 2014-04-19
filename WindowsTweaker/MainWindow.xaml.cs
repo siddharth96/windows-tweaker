@@ -38,6 +38,7 @@ namespace WindowsTweaker {
             _message.Hide();
             _hasTabLoadedDict = new Dictionary<string, bool>();
             UpdateLanguageMenu();
+            _sendToTask = new SendToTask(this);
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -50,7 +51,8 @@ namespace WindowsTweaker {
         private readonly BackgroundWorker _searchBackgroundWorker;
         private Color _selectionColor;
         private readonly Searcher _searcher;
-        private readonly Dictionary<string, bool> _hasTabLoadedDict; 
+        private readonly Dictionary<string, bool> _hasTabLoadedDict;
+        private readonly SendToTask _sendToTask;
 
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
@@ -126,8 +128,49 @@ namespace WindowsTweaker {
             _message.Hide();
         }
 
+        private void OnApplyButtonClick(object sender, RoutedEventArgs e) {
+            SaveSettings();
+        }
+
+        private void OnOkButtonClick(object sender, RoutedEventArgs e) {
+            SaveSettings();
+            Environment.Exit(1);
+        }
+
         private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
             Environment.Exit(1);
+        }
+
+        private void SaveSettings() {
+            var userInteractedTabs = _hasTabLoadedDict.Where(kvp => kvp.Value);
+            foreach (var userInteractedTab in userInteractedTabs) {
+                switch (userInteractedTab.Key) {
+                    case Constants.Explorer:
+                        UpdateRegistryFromExplorer();
+                        break;
+                    case Constants.System:
+                        UpdateRegistryFromSystem();
+                        break;
+                    case Constants.Display:
+                        UpdateRegistryFromDisplay();
+                        break;
+                    case Constants.RightClick:
+                        UpdateRegistryFromRightClick();
+                        break;
+                    case Constants.Features:
+                        UpdateRegistryFromFeatures();
+                        break;
+                    case Constants.Logon:
+                        UpdateRegistryFromLogon();
+                        break;
+                    case Constants.Restrictions:
+                        UpdateRegistryFromRestrictions();
+                        break;
+                    case Constants.Maintenance:
+                        UpdateSettingsFromMaintenance();
+                        break;
+                }
+            }
         }
         #endregion
 
@@ -302,7 +345,7 @@ namespace WindowsTweaker {
             }
         }
 
-        private void UpdateRegistryRestrictions() {
+        private void UpdateRegistryFromRestrictions() {
 
             using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Explorer
@@ -478,14 +521,11 @@ namespace WindowsTweaker {
                 int val = 0;
                 if (rbtnShowDriveLetterAfterName.IsChecked == true) {
                     val = 0;
-                }
-                else if (rbtnHideDriveLetter.IsChecked == true) {
+                } else if (rbtnHideDriveLetter.IsChecked == true) {
                     val = 2;
-                }
-                else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
+                } else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
                     val = 4;
-                }
-                else {
+                } else {
                     val = 0;
                 }
                 hkcuCvExplorer.SetValue(Constants.ShowDriveLetters, val);
@@ -1231,7 +1271,7 @@ namespace WindowsTweaker {
         }
 
         private void OnSendToWorkerStarted(object sender, DoWorkEventArgs e) {
-            string sendToPath = SendToTask.GetFolderPath(_windowsOs);
+            string sendToPath = _sendToTask.GetSendToFolderPath(_windowsOs);
             FileReader fileReader = new FileReader(sendToPath, new List<string>() { ".ini" });
             ObservableCollection<FileItem> sendToFileItems = fileReader.GetAllFiles();
             e.Result = sendToFileItems;
@@ -1239,7 +1279,7 @@ namespace WindowsTweaker {
 
         private void OnButtonAddFolderToSendToClick(object sender, RoutedEventArgs e) {
             try {
-                if (SendToTask.AddFolder(_windowsOs)) {
+                if (_sendToTask.AddFolder(_windowsOs)) {
                     ReloadSendTo();
                 }
             } catch (BadImageFormatException) {
@@ -1252,7 +1292,7 @@ namespace WindowsTweaker {
 
         private void OnButtonAddFileToSendToClick(object sender, RoutedEventArgs e) {
             try {
-                if (SendToTask.AddFile(_windowsOs)) {
+                if (_sendToTask.AddFile(_windowsOs)) {
                     ReloadSendTo();
                 }
             } catch (BadImageFormatException) {
@@ -1264,12 +1304,12 @@ namespace WindowsTweaker {
         }
 
         private void OnButtonDeleteFromSendToClick(object sender, RoutedEventArgs e) {
-            SendToTask.Delete(lstSendTo, _message);
+            _sendToTask.Delete(lstSendTo, _message);
             ReloadSendTo();
         }
 
         private void OnLinkEditSendToExplorerClick(object sender, RoutedEventArgs e) {
-            string sendToPath = SendToTask.GetFolderPath(_windowsOs);
+            string sendToPath = _sendToTask.GetSendToFolderPath(_windowsOs);
             try {
                 Process.Start(sendToPath);
             } catch (Win32Exception) {
@@ -1407,6 +1447,69 @@ namespace WindowsTweaker {
             ProcessWrapper.ExecuteDosCmd("shutdown /a");
             _message.Success("ShutdownCancelled");
         }
+        #endregion
+
+        #region Task -> Special Hiding
+
+        private void OnButtonHideFileFolderClick(object sender, RoutedEventArgs e) {
+            switch (cmboxHideSelection.SelectedIndex) {
+                case 0:
+                    HideFile();
+                    break;
+                case 1:
+                    HideFolder();
+                    break;
+            }
+        }
+
+        private void OnButtonUnhideFileFolderClick(object sender, RoutedEventArgs e) {
+            switch (cmboxUnHideSelection.SelectedIndex) {
+                case 0:
+                    UnhideFile();
+                    break;
+                case 1:
+                    UnhideFolder();
+                    break;
+            }
+        }
+
+        private void HideFolder() {
+            string folderName = Utils.GetUserSelectedFolder();
+            if (folderName == null) return;
+            string cmd = Utils.GetHideCmd(folderName);
+            ProcessWrapper.ExecuteDosCmd(cmd);
+            _message.Success(GetResourceString("SuccessfullyHidden") + " " + folderName + " " + GetResourceString("WithSysAttribs"));
+        }
+
+        private void HideFile() {
+            string[] fileList = Utils.GetUserSelectedFilePathList("All files|*.*");
+            if (fileList == null) return;
+            foreach (string cmd in fileList.Select(fileName => Utils.GetHideCmd(fileName))) {
+                ProcessWrapper.ExecuteDosCmd(cmd);
+            }
+            _message.Success(GetResourceString("SuccessfullyHidden") + " " +
+                fileList.Select(Path.GetFileName).ToList().SentenceJoin(GetResourceString("And")) + " " + GetResourceString("WithSysAttribs"));
+        }
+
+        private void UnhideFolder() {
+            string folderName = Utils.GetUserSelectedFolder();
+            if (folderName == null) return;
+            string cmd = Utils.GetUnhideCmd(folderName);
+            ProcessWrapper.ExecuteDosCmd(cmd);
+            _message.Success(folderName + " " + GetResourceString("Is") + " " + GetResourceString("NowVisible"));
+        }
+
+        private void UnhideFile() {
+            string[] fileList = Utils.GetUserSelectedFilePathList("All files|*.*");
+            if (fileList == null) return;
+            foreach (string cmd in fileList.Select(fileName => Utils.GetUnhideCmd(fileName))) {
+                ProcessWrapper.ExecuteDosCmd(cmd);
+            }
+            List<string> fileNameList = fileList.Select(Path.GetFileName).ToList();
+            string verb = fileNameList.Count > 1 ? GetResourceString("Are") : GetResourceString("Is");
+            _message.Success(fileNameList.SentenceJoin(GetResourceString("And")) + " " + verb + " " + GetResourceString("NowVisible"));
+        }
+
         #endregion
 
         #region Task -> Special Folder

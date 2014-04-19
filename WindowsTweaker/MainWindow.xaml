@@ -1862,7 +1862,7 @@
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" >
                                     <TextBlock Style="{StaticResource H1}" Text="{StaticResource ScheduleAction}" />
                                     <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
-                                        <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction">
+                                        <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction" IsReadOnly="True">
                                             <ComboBoxItem Content="{StaticResource Shutdown}" />
                                             <ComboBoxItem Content="{StaticResource Restart}" />
                                         </ComboBox>
@@ -1941,11 +1941,26 @@
                                 <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
                                     <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                                Name="lblHideSysPrivileges" Text="{StaticResource UseOptionHideFileFolder}" />
-                                    <Button Margin="30, 20, 10, 10"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="30, 20, 10, 10" Name="btnHideFileFolder" Click="OnButtonHideFileFolderClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource Hide}" />
-                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5" Name="lblUnhideSysPrivileges" Text="{StaticResource UseOptionUnHideFileFolder}" />
-                                    <Button Margin="30, 20, 10, 10"
+                                        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 15, 5, 5" VerticalAlignment="Center"
+                                                  SelectedIndex="0" Name="cmboxHideSelection">
+                                            <ComboBoxItem Content="{StaticResource File}" />
+                                            <ComboBoxItem Content="{StaticResource Folder}" />
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <TextBlock Style="{StaticResource H1}" Margin="30, 20, 5, 5" 
+                                               Name="lblUnhideSysPrivileges" Text="{StaticResource UseOptionUnHideFileFolder}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="30, 20, 10, 10" Name="btnUnhideFileFolder" Click="OnButtonUnhideFileFolderClick"
                                             Style="{StaticResource LargeButton}" HorizontalAlignment="Left" Content="{StaticResource UnHide}" />
+                                        <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 15, 5, 5" VerticalAlignment="Center"
+                                                  SelectedIndex="0" Name="cmboxUnHideSelection">
+                                            <ComboBoxItem Content="{StaticResource File}" />
+                                            <ComboBoxItem Content="{StaticResource Folder}" />
+                                        </ComboBox>
+                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </TabItem>
@@ -3823,8 +3838,8 @@
                 </MenuItem>
             </Menu>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                <Button Style="{StaticResource LargeButton}" Name="btnApply" Content="{StaticResource Save}" />
-                <Button Style="{StaticResource LargeButton}" Name="btnOk" Content="{StaticResource SaveExit}" />
+                <Button Style="{StaticResource LargeButton}" Name="btnApply" Content="{StaticResource Save}" Click="OnApplyButtonClick" />
+                <Button Style="{StaticResource LargeButton}" Name="btnOk" Content="{StaticResource SaveExit}" Click="OnOkButtonClick" />
                 <Button Style="{StaticResource LargeButton}" Name="btnCancel" Content="{StaticResource DntSaveExit}" Click="OnCancelButtonClick" />
             </StackPanel>
         </Grid>

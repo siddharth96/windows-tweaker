@@ -384,4 +384,19 @@
     <system:String x:Key="ReportIssue">Сообщить выпуск</system:String>
     <system:String x:Key="Success">успех</system:String>
     <system:String x:Key="RestartForLangChange">Теперь Windows Tweaker выйдет. Пожалуйста, запустить приложение снова, чтобы посмотреть изменение языковых.</system:String>
+    <system:String x:Key="Folder">папка</system:String>
+    <system:String x:Key="SuccessfullyHidden">Успешно скрыто</system:String>
+    <system:String x:Key="WithSysAttribs">с атрибутами системы</system:String>
+    <system:String x:Key="NowVisible">теперь видны</system:String>
+    <system:String x:Key="Is">является</system:String>
+    <system:String x:Key="Are">являются</system:String>
+    <system:String x:Key="And">и</system:String>
+    <system:String x:Key="SelectedOnItem">Пожалуйста, выберите хотя бы один элемент для удаления</system:String>
+    <system:String x:Key="SureToDelete">Вы уверены, что хотите удалить</system:String>
+    <system:String x:Key="FromSendToMenu">от Отправить меню?</system:String>
+    <system:String x:Key="SureToDeleteMultiple">Вы уверены, что хотите удалить все эти</system:String>
+    <system:String x:Key="FromSendToMenuMultiple">элементов из меню Отправить?</system:String>
+    <system:String x:Key="FailedToDelete">Не удалось удалить</system:String>
+    <system:String x:Key="AreNotShortcutsMultiple">потому что они являются либо системные файлы или не ярлыки</system:String>
+    <system:String x:Key="AreNotShortcuts">так как она либо файловая система или не является допустимым ярлык</system:String>
 </ResourceDictionary>

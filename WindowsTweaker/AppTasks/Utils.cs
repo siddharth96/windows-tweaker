@@ -69,7 +69,22 @@ namespace WindowsTweaker.AppTasks {
                 openFileDialog.FileName.Trim() : null;
         }
 
-        internal static string SentenceJoin(this List<string> lst) {
+        public static string[] GetUserSelectedFilePathList(string filter = "Executable files|*.exe|Batch files|*.bat|Command files|*.com|Jar Files|*.jar|All files|*.*") {
+            OpenFileDialog openFileDialog = new OpenFileDialog {
+                Filter = filter,
+                Multiselect = true
+            };
+            return openFileDialog.ShowDialog() == true && openFileDialog.FileNames.Any() ?
+                openFileDialog.FileNames : null;
+        }
+
+        public static string GetUserSelectedFolder() {
+            WPFFolderBrowser.WPFFolderBrowserDialog folderBrowser = new WPFFolderBrowser.WPFFolderBrowserDialog();
+            return folderBrowser.ShowDialog() == true && !String.IsNullOrEmpty(folderBrowser.FileName) ? 
+                folderBrowser.FileName : null;
+        }
+
+        internal static string SentenceJoin(this List<string> lst, string separator="and") {
             if (lst == null || !lst.Any())
                 return String.Empty;
             int lenLst = lst.Count;
@@ -77,9 +92,9 @@ namespace WindowsTweaker.AppTasks {
                 case 1:
                     return lst[0];
                 case 2:
-                    return lst[0] + " and " + lst[1];
+                    return lst[0] + " " + separator + " " + lst[1];
                 default:
-                    return String.Join(", ", lst.Take(lenLst - 1)) + " and " + lst[lenLst - 1];
+                    return String.Join(", ", lst.Take(lenLst - 1)) + " " + separator + " " + lst[lenLst - 1];
             }
         }
 
@@ -108,5 +123,9 @@ namespace WindowsTweaker.AppTasks {
             string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             return folderPath != null ? Path.Combine(folderPath, Constants.ConfigFileName) : null;
         }
+
+        internal static Func<string, string> GetHideCmd = val => String.Format("attrib +h +s \"{0}\"", val);
+
+        internal static Func<string, string> GetUnhideCmd = val => String.Format("attrib -h -s \"{0}\"", val);
     }
 }

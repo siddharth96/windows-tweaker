@@ -384,4 +384,19 @@
     <system:String x:Key="ReportIssue">Report Issue</system:String>
     <system:String x:Key="Success">Success</system:String>
     <system:String x:Key="RestartForLangChange">Windows Tweaker will now exit. Please launch the application again, to view the language change.</system:String>
+    <system:String x:Key="Folder">Folder</system:String>
+    <system:String x:Key="SuccessfullyHidden">Successfully hidden</system:String>
+    <system:String x:Key="WithSysAttribs">with system attributes</system:String>
+    <system:String x:Key="NowVisible">now visible</system:String>
+    <system:String x:Key="Is">is</system:String>
+    <system:String x:Key="Are">are</system:String>
+    <system:String x:Key="And">and</system:String>
+    <system:String x:Key="SelectedOnItem">Please select at least one item to delete</system:String>
+    <system:String x:Key="SureToDelete">Are you sure you want to delete</system:String>
+    <system:String x:Key="FromSendToMenu">from Send To Menu?</system:String>
+    <system:String x:Key="SureToDeleteMultiple">Are you sure you want to delete all these</system:String>
+    <system:String x:Key="FromSendToMenuMultiple">items from Send To Menu?</system:String>
+    <system:String x:Key="FailedToDelete">Failed to delete</system:String>
+    <system:String x:Key="AreNotShortcutsMultiple">because they are either system files or are not shortcuts</system:String>
+    <system:String x:Key="AreNotShortcuts">because it is either a system file or is not a valid shortcut</system:String>
 </ResourceDictionary>

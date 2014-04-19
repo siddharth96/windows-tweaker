@@ -384,4 +384,19 @@
     <system:String x:Key="ReportIssue">Report Ausgabe</system:String>
     <system:String x:Key="Success">Erfolg</system:String>
     <system:String x:Key="RestartForLangChange">Windows-Tweaker wird nun verlassen. Bitte starten Sie die Anwendung erneut, um die Änderung der Sprache sehen.</system:String>
+    <system:String x:Key="Folder">Mappe</system:String>
+    <system:String x:Key="SuccessfullyHidden">Erfolgreich versteckt</system:String>
+    <system:String x:Key="WithSysAttribs">mit Systemattribute</system:String>
+    <system:String x:Key="NowVisible">jetzt sichtbar</system:String>
+    <system:String x:Key="Is">ist</system:String>
+    <system:String x:Key="Are">sind</system:String>
+    <system:String x:Key="And">und</system:String>
+    <system:String x:Key="SelectedOnItem">Bitte wählen Sie mindestens einen Artikel zu löschen</system:String>
+    <system:String x:Key="SureToDelete">Sind Sie sicher, dass Sie löschen möchten</system:String>
+    <system:String x:Key="FromSendToMenu">von Senden an Menü?</system:String>
+    <system:String x:Key="SureToDeleteMultiple">Sind Sie sicher, dass Sie alle diese löschen möchten</system:String>
+    <system:String x:Key="FromSendToMenuMultiple">Artikel aus Senden an Menü?</system:String>
+    <system:String x:Key="FailedToDelete">Fehler beim Löschen</system:String>
+    <system:String x:Key="AreNotShortcutsMultiple">denn sie sind entweder Systemdateien oder Verknüpfungen sind nicht</system:String>
+    <system:String x:Key="AreNotShortcuts">weil es entweder eine Systemdatei oder ist keine gültige Verknüpfung</system:String>
 </ResourceDictionary>

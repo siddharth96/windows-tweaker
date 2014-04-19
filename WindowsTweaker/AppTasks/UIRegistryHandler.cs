@@ -58,8 +58,7 @@ namespace WindowsTweaker.AppTasks {
             int defaultVal = Int32.Parse(defaultValStr);
             try {
                 iudVal = Int32.Parse((string) registryKey.GetValue(valueName, defaultVal));
-            }
-            catch (FormatException) {
+            } catch (FormatException) {
                 iudVal = defaultVal;
             }
             iud.Value = iudVal <= maxVal &&  iudVal >= minVal  ? iudVal : defaultVal;
