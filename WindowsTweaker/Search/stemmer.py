@@ -17,6 +17,7 @@ import argparse
 import json
 import Stemmer
 
+from collections import defaultdict
 from stemming import porter2
 
 EN = "en"
@@ -42,7 +43,7 @@ def stemmer_meth(lang):
 
 
 def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
-    term_and_ui_element_map = dict()
+    term_and_ui_element_map = defaultdict(list)
     ui_element_map_for_term = lambda ui_element_row: \
         {"UiElement": ui_element_row[UI_ELEMENT_NAME].strip(),
          "MainTab": ui_element_row[MAIN_TAB].strip(),
@@ -66,12 +67,8 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
                 ui_element_lst = row[1].split(',')
                 if len(ui_element_lst) != 4:
                     continue
-                if _term in term_and_ui_element_map:
-                    term_and_ui_element_map[_term].append(
-                        ui_element_map_for_term(ui_element_lst))
-                else:
-                    term_and_ui_element_map[_term] = \
-                        [ui_element_map_for_term(ui_element_lst)]
+                term_and_ui_element_map[_term].append(
+                    ui_element_map_for_term(ui_element_lst))
     if output_file_path:
         with open(output_file_path, 'w') as output_file:
             json.dump(term_and_ui_element_map, output_file,
