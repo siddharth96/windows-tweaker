@@ -206,7 +206,7 @@
     <system:String x:Key="PlaySoundOnStart">Play a sound when Windows starts up</system:String>
     <system:String x:Key="ScreensaverLock">screensaver lock</system:String>
     <system:String x:Key="ScreensaverLockLabel">Screensaver Lock</system:String>
-    <system:String x:Key="ScreensaverLockDesc">Screensaver Lock</system:String>
+    <system:String x:Key="ScreensaverLockDesc">Make screensaver password protected and prevent users from changing this setting</system:String>
     <system:String x:Key="Message">message</system:String>
     <system:String x:Key="LoginMsg">Login Message</system:String>
     <system:String x:Key="ShowMsgBeforeLogin">Show a message before user logs on</system:String>
@@ -399,4 +399,7 @@
     <system:String x:Key="FailedToDelete">Failed to delete</system:String>
     <system:String x:Key="AreNotShortcutsMultiple">because they are either system files or are not shortcuts</system:String>
     <system:String x:Key="AreNotShortcuts">because it is either a system file or is not a valid shortcut</system:String>
+    <system:String x:Key="ShutdwnConfig">shutdown configuration</system:String>
+    <system:String x:Key="MemLabel">memory</system:String>
+    <system:String x:Key="SearchHint">Type &amp; Press Enter to Search</system:String>
 </ResourceDictionary>

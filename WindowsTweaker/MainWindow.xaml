@@ -39,7 +39,7 @@
                    Margin="0, 20, 0, 0"></Rectangle>
         <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"
                                   Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
-                                  Padding="2" Margin="20, 5, 20, 0" Watermark="Type &amp; Press Enter to Search" />
+                                  Padding="2" Margin="20, 5, 20, 0" Watermark="{StaticResource SearchHint}" />
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
                 <TabItem Header="{StaticResource LabelExplorer}" Name="tabExplorer" Style="{StaticResource MainTabStyle}"
@@ -480,7 +480,7 @@
                 <TabItem Header="{StaticResource LabelSystem}" Name="tabSystem" Style="{StaticResource MainTabStyle}"
                          Tag="system" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlSystem">
-                        <TabItem Header="shutdown configuration" Name="tabShutdwnConfig">
+                        <TabItem Header="{StaticResource ShutdwnConfig}" Name="tabShutdwnConfig">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -3011,7 +3011,7 @@
                 <TabItem Header="{StaticResource LabelMaintenance}" Name="tabMaintenance" Style="{StaticResource MainTabStyle}"
                          Tag="maintenance" GotFocus="OnTabLoaded">
                     <TabControl Margin="10,-10" Name="tabControlMaintenance">
-                        <TabItem Header="memory" Name="tabMemory">
+                        <TabItem Header="{StaticResource MemLabel}" Name="tabMemory">
                             <Grid Margin="10, 50, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />

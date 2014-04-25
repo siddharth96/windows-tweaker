@@ -22,6 +22,9 @@ namespace WindowsTweaker.Models
         public const byte HasUserInteracted = 1;
         public const string InternetExplorer = "iexplore.exe";
         public const string ConfigFileName = "WindowsTweaker.config.xml";
+        public const string EnglishSearchInputFileName = "WindowsTweaker.Search.englishTermAndUiElementMap.json";
+        public const string GermanSearchInputFileName = "WindowsTweaker.Search.germanTermAndUiElementMap.json";
+        public const string RussianSearchInputFileName = "WindowsTweaker.Search.russianTermAndUiElementMap.json";
 
         // Explorer Tab Keys/Value
         // Drive Letter Display

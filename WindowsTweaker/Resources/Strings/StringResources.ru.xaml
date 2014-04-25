@@ -200,13 +200,13 @@
     <system:String x:Key="Password">пароль</system:String>
     <system:String x:Key="DomainName">Доменное имя</system:String>
     <system:String x:Key="PreventShiftOverride">Предотвращение остановки автоматического входа нажатием клавиши переключения</system:String>
-    <system:String x:Key="LogonAfterLogoff">Введите логин и пароль автоматически после Log Off</system:String>
-    <system:String x:Key="StartupSound">запуск звук</system:String>
+    <system:String x:Key="LogonAfterLogoff">Введите логин и пароль автоматически после Вход с</system:String>
+    <system:String x:Key="StartupSound">запуZск звук</system:String>
     <system:String x:Key="StartupSoundDesc">Укажите, следует ли для Windows воспроизведения звука при запуске</system:String>
     <system:String x:Key="PlaySoundOnStart">Воспроизведение звука при запуске системы</system:String>
     <system:String x:Key="ScreensaverLock">заставки замок</system:String>
     <system:String x:Key="ScreensaverLockLabel">Заставка Блокировка</system:String>
-    <system:String x:Key="ScreensaverLockDesc">Заставка Блокировка</system:String>
+    <system:String x:Key="ScreensaverLockDesc">Сделать заставка защищена паролем и запретить пользователям изменять этот параметр</system:String>
     <system:String x:Key="Message">сообщение</system:String>
     <system:String x:Key="LoginMsg">Войти Сообщение</system:String>
     <system:String x:Key="ShowMsgBeforeLogin">Показать сообщение перед входе пользователя в систему</system:String>
@@ -399,4 +399,7 @@
     <system:String x:Key="FailedToDelete">Не удалось удалить</system:String>
     <system:String x:Key="AreNotShortcutsMultiple">потому что они являются либо системные файлы или не ярлыки</system:String>
     <system:String x:Key="AreNotShortcuts">так как она либо файловая система или не является допустимым ярлык</system:String>
+    <system:String x:Key="ShutdwnConfig">конфигурация выключение</system:String>
+    <system:String x:Key="MemLabel">память</system:String>
+    <system:String x:Key="SearchHint">Введите и нажмите клавишу ВВОД для поиска</system:String>
 </ResourceDictionary>

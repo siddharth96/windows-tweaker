@@ -1,28 +1,44 @@
 #!/usr/bin/env python
 """
 Script Usage:
-Write to a file with indentation: python %(scriptName)s --input
-    <input-file-path> --output englishTermAndUiElementMap.json --indent=4
+Write to a file with indentation: 
+python %(scriptName)s --input <input-file> --output englishTermAndUiElementMap.json --indent=4
 
-Write to a file without any indentation: python %(scriptName)s --input
-    <input-file-path> --output englishTermAndUiElementMap.json
+Write to a file without any indentation:
+python %(scriptName)s --input <input-file> --output englishTermAndUiElementMap.json
 
-Write to stdout with indentation: python %(scriptName)s --input
-    <input-file-path> --indent=4
+Write to stdout with indentation:
+python %(scriptName)s --input <input-file> --indent=4
 
-Write to stdout without any indentation: python %(scriptName)s
-    --input <input-file-path>
+Write to stdout without any indentation:
+python %(scriptName)s --input <input-file-path>
 """
 import argparse
 import json
+import Stemmer
 
 from stemming import porter2
 
 EN = "en"
+DE = "de"
+RU = "ru"
 UI_ELEMENT_NAME = 0
 MAIN_TAB = 1
 SUB_TAB_CONTROL = 2
 SUB_TAB = 3
+
+
+def stemmer_meth(lang):
+    if lang == EN:
+        print 'Returning eng stem'
+        return porter2.stem
+    if lang == DE:
+        print 'Returning german stem'
+        return Stemmer.Stemmer('german').stemWord
+    if lang == RU:
+        print 'Returning russian stem'
+        return Stemmer.Stemmer('russian').stemWord
+    return lambda x: x
 
 
 def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
@@ -32,7 +48,7 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
          "MainTab": ui_element_row[MAIN_TAB].strip(),
          "SubTabControl": ui_element_row[SUB_TAB_CONTROL].strip(),
          "SubTab": ui_element_row[SUB_TAB].strip()}
-    stemmer_func = porter2.stem if lang == EN else lambda x: x
+    stemmer_func = stemmer_meth(lang)
     with open(file_path, 'r') as input_file:
         for line in input_file:
             if not line or separator not in line:
@@ -42,7 +58,8 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
             line_to_stem = row[0]
             stemmed_line = [stemmer_func(_term.lower())
                             for _term in line_to_stem.split(' ')
-                            if _term and len(_term) >= 3 and _term.isalnum()]
+                            if _term and len(_term) >= 3 and 
+                            (_term.isalnum() or lang != EN)]
             if not stemmed_line:
                 continue
             for _term in stemmed_line:
@@ -68,8 +85,8 @@ def main():
     parser = argparse.ArgumentParser("Stemmer")
     parser.add_argument('--input', dest='input', default=None,
                         type=str, help='Input text file to be stemmed')
-    parser.add_argument('--lang', dest='lang', action='store_const',
-                        const=EN, default=EN)
+    parser.add_argument('--lang', dest='lang',
+                        type=str, default=EN)
     parser.add_argument('--indent', dest='indent', type=int,
                         default=0)
     parser.add_argument('--output', dest='output', default=None,

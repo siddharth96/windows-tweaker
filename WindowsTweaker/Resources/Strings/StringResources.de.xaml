@@ -206,7 +206,7 @@
     <system:String x:Key="PlaySoundOnStart">Spielen Sie einen Ton, wenn Windows gestartet wird</system:String>
     <system:String x:Key="ScreensaverLock">Bildschirmsperre</system:String>
     <system:String x:Key="ScreensaverLockLabel">Bildschirmsperre</system:String>
-    <system:String x:Key="ScreensaverLockDesc">Bildschirmsperre</system:String>
+    <system:String x:Key="ScreensaverLockDesc">Machen Sie Bildschirmschoner Passwort geschützt und verhindern, dass Benutzer diese Einstellung ändern</system:String>
     <system:String x:Key="Message">Nachricht</system:String>
     <system:String x:Key="LoginMsg">Einloggen Nachricht</system:String>
     <system:String x:Key="ShowMsgBeforeLogin">Zeigen Sie eine Nachricht vor dem Benutzer anmeldet</system:String>
@@ -399,4 +399,7 @@
     <system:String x:Key="FailedToDelete">Fehler beim Löschen</system:String>
     <system:String x:Key="AreNotShortcutsMultiple">denn sie sind entweder Systemdateien oder Verknüpfungen sind nicht</system:String>
     <system:String x:Key="AreNotShortcuts">weil es entweder eine Systemdatei oder ist keine gültige Verknüpfung</system:String>
+    <system:String x:Key="ShutdwnConfig">Shutdown-Konfiguration</system:String>
+    <system:String x:Key="MemLabel">Speicher</system:String>
+    <system:String x:Key="SearchHint">Art und Enter drücken, um Suche</system:String>
 </ResourceDictionary>
