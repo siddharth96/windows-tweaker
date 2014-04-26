@@ -6,7 +6,7 @@
         Title="Windows Tweaker 5.0"
         Style="{StaticResource MainWindowStyle}"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="750"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip" Name="mainWindow">
     <Window.Resources>
         <cm:BackgroundWorker x:Key="sendToBackgroundWorker" RunWorkerCompleted="OnSendToWorkerCompleted"
                              WorkerSupportsCancellation="True" DoWork="OnSendToWorkerStarted"></cm:BackgroundWorker>

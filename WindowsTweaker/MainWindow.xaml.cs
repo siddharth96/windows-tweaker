@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -18,6 +19,7 @@ using System.Windows.Media;
 using WPFFolderBrowser;
 using File = System.IO.File;
 using MessageBox = System.Windows.MessageBox;
+using WinInterop = System.Windows.Interop;
 
 namespace WindowsTweaker {
 
@@ -39,6 +41,7 @@ namespace WindowsTweaker {
             _hasTabLoadedDict = new Dictionary<string, bool>();
             UpdateLanguageMenu();
             _sendToTask = new SendToTask(this);
+            mainWindow.SourceInitialized += new EventHandler(OnWindowSourceInitialized);
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -53,6 +56,204 @@ namespace WindowsTweaker {
         private readonly Searcher _searcher;
         private readonly Dictionary<string, bool> _hasTabLoadedDict;
         private readonly SendToTask _sendToTask;
+
+        #region MaximizeButtonHandling
+
+        // http://blogs.msdn.com/b/llobo/archive/2006/08/01/maximizing-window-_2800_with-windowstyle_3d00_none_2900_-considering-taskbar.aspx
+        private void OnWindowSourceInitialized(object sender, EventArgs e) {
+            IntPtr handle = (new WinInterop.WindowInteropHelper(this)).Handle;
+            var hwndSource = WinInterop.HwndSource.FromHwnd(handle);
+            if (hwndSource != null) hwndSource.AddHook(WindowProc);
+        }
+
+        private static IntPtr WindowProc(
+            IntPtr hwnd,
+            int msg,
+            IntPtr wParam,
+            IntPtr lParam,
+            ref bool handled) {
+            switch (msg) {
+                case 0x0024:
+                    WmGetMinMaxInfo(hwnd, lParam);
+                    handled = true;
+                    break;
+            }
+
+            return (IntPtr) 0;
+        }
+
+        private static void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam) {
+            Minmaxinfo mmi = (Minmaxinfo) Marshal.PtrToStructure(lParam, typeof (Minmaxinfo));
+
+            // Adjust the maximized size and position to fit the work area of the correct monitor
+            const int monitorDefaulttonearest = 0x00000002;
+            IntPtr monitor = MonitorFromWindow(hwnd, monitorDefaulttonearest);
+
+            if (monitor != IntPtr.Zero) {
+                Monitorinfo monitorInfo = new Monitorinfo();
+                GetMonitorInfo(monitor, monitorInfo);
+                MRect rcWorkArea = monitorInfo.rcWork;
+                MRect rcMonitorArea = monitorInfo.rcMonitor;
+                mmi.ptMaxPosition.x = Math.Abs(rcWorkArea.left - rcMonitorArea.left);
+                mmi.ptMaxPosition.y = Math.Abs(rcWorkArea.top - rcMonitorArea.top);
+                mmi.ptMaxSize.x = Math.Abs(rcWorkArea.right - rcWorkArea.left);
+                mmi.ptMaxSize.y = Math.Abs(rcWorkArea.bottom - rcWorkArea.top);
+            }
+
+            Marshal.StructureToPtr(mmi, lParam, true);
+        }
+
+
+        /// <summary>
+        ///     MPoint aka POINTAPI
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MPoint {
+            /// <summary>
+            ///     x coordinate of point.
+            /// </summary>
+            public int x;
+
+            /// <summary>
+            ///     y coordinate of point.
+            /// </summary>
+            public int y;
+
+            /// <summary>
+            ///     Construct a point of coordinates (x,y).
+            /// </summary>
+            public MPoint(int x, int y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Minmaxinfo {
+            public MPoint ptReserved;
+            public MPoint ptMaxSize;
+            public MPoint ptMaxPosition;
+            public MPoint ptMinTrackSize;
+            public MPoint ptMaxTrackSize;
+        };
+
+
+        /// <summary>
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public class Monitorinfo {
+            /// <summary>
+            /// </summary>
+            public int cbSize = Marshal.SizeOf(typeof (Monitorinfo));
+
+            /// <summary>
+            /// </summary>
+            public MRect rcMonitor = new MRect();
+
+            /// <summary>
+            /// </summary>
+            public MRect rcWork = new MRect();
+
+            /// <summary>
+            /// </summary>
+            public int dwFlags = 0;
+        }
+
+
+        /// <summary> Win32 </summary>
+        [StructLayout(LayoutKind.Sequential, Pack = 0)]
+        public struct MRect {
+            /// <summary> Win32 </summary>
+            public int left;
+
+            /// <summary> Win32 </summary>
+            public int top;
+
+            /// <summary> Win32 </summary>
+            public int right;
+
+            /// <summary> Win32 </summary>
+            public int bottom;
+
+            /// <summary> Win32 </summary>
+            public static readonly MRect Empty = new MRect();
+
+            /// <summary> Win32 </summary>
+            public int Width {
+                get { return Math.Abs(right - left); } // Abs needed for BIDI OS
+            }
+
+            /// <summary> Win32 </summary>
+            public int Height {
+                get { return bottom - top; }
+            }
+
+            /// <summary> Win32 </summary>
+            public MRect(int left, int top, int right, int bottom) {
+                this.left = left;
+                this.top = top;
+                this.right = right;
+                this.bottom = bottom;
+            }
+
+
+            /// <summary> Win32 </summary>
+            public MRect(MRect rcSrc) {
+                left = rcSrc.left;
+                top = rcSrc.top;
+                right = rcSrc.right;
+                bottom = rcSrc.bottom;
+            }
+
+            /// <summary> Win32 </summary>
+            public bool IsEmpty {
+                get {
+                    // BUGBUG : On Bidi OS (hebrew arabic) left > right
+                    return left >= right || top >= bottom;
+                }
+            }
+
+            /// <summary> Return a user friendly representation of this struct </summary>
+            public override string ToString() {
+                if (this == MRect.Empty) {
+                    return "MRect {Empty}";
+                }
+                return "MRect { left : " + left + " / top : " + top + " / right : " + right + " / bottom : " + bottom + " }";
+            }
+
+            /// <summary> Determine if 2 MRect are equal (deep compare) </summary>
+            public override bool Equals(object obj) {
+                if (!(obj is Rect)) {
+                    return false;
+                }
+                return (this == (MRect) obj);
+            }
+
+            /// <summary>Return the HashCode for this struct (not garanteed to be unique)</summary>
+            public override int GetHashCode() {
+                return left.GetHashCode() + top.GetHashCode() + right.GetHashCode() + bottom.GetHashCode();
+            }
+
+
+            /// <summary> Determine if 2 MRect are equal (deep compare)</summary>
+            public static bool operator ==(MRect rect1, MRect rect2) {
+                return (rect1.left == rect2.left && rect1.top == rect2.top && rect1.right == rect2.right && rect1.bottom == rect2.bottom);
+            }
+
+            /// <summary> Determine if 2 MRect are different(deep compare)</summary>
+            public static bool operator !=(MRect rect1, MRect rect2) {
+                return !(rect1 == rect2);
+            }
+        }
+
+        [DllImport("user32")]
+        internal static extern bool GetMonitorInfo(IntPtr hMonitor, Monitorinfo lpmi);
+
+        /// <summary>
+        /// </summary>
+        [DllImport("User32")]
+        internal static extern IntPtr MonitorFromWindow(IntPtr handle, int flags);
+        #endregion
 
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
