@@ -766,19 +766,30 @@ namespace WindowsTweaker {
                 hklmNamespace.SetSubKey(chkAddRecycleBinToMyComputer, Constants.RecycleBin);
             }
 
-            RegistryKey hkcrCLSID = _hkcr.OpenSubKey(@"CLSID");
+            RegistryKey hkcrCLSID = _hkcr.OpenSubKey(@"CLSID", true);
             RegistryKey hklmCPNamespace =
-                _hklm.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
+                _hklm.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace", true);
             if (chkAddRegeditToControlPanel.IsChecked == true) {
                 if (hkcrCLSID == null)
                     hkcrCLSID = _hkcr.CreateSubKey(@"CLSID");
                 if (hklmCPNamespace == null)
                     hklmCPNamespace =
                         _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace");
-                hkcrCLSID.SetSubKey(Constants.Regedit, true);
-                hklmCPNamespace.SetSubKey(Constants.Regedit, true);
-                hkcrCLSID.Close();
-                hklmCPNamespace.Close();
+                using (RegistryKey cp = hkcrCLSID.CreateSubKey(Constants.Regedit)) {
+                    cp.SetValue("", "Registry Editor");
+                    cp.SetValue("InfoTip", "Start the Registry Editor");
+                    cp.SetValue("System.ControlPanel.Category", "5");
+                    RegistryKey defaultIcon = cp.CreateSubKey("DefaultIcon");
+                    defaultIcon.SetValue("", @"%SYSTEMROOT%\regedit.exe");
+                    RegistryKey cmd = hkcrCLSID.CreateSubKey(Constants.Regedit + @"\Shell\Open\command");
+                    cmd.SetValue("", Environment.ExpandEnvironmentVariables("%SystemRoot%\\regedit.exe"));
+                    cmd.Close();
+                    defaultIcon.Close();
+                    RegistryKey cpNameSpace = hklmCPNamespace.CreateSubKey(Constants.Regedit);
+                    cpNameSpace.SetValue("", "Add Registry Editor to Control Panel");
+                    cpNameSpace.Close();
+                }
+
             }
             else {
                 if (hkcrCLSID != null) {
