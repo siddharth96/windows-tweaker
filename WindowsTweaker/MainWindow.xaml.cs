@@ -845,7 +845,13 @@ namespace WindowsTweaker {
                 }
 
                 val = (string) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
-                if (val != null) {
+                if (!String.IsNullOrEmpty(val)) {
+                    try {
+                        nudAppKillTimeout.Value = Int32.Parse(val);
+                    }
+                    catch (InvalidCastException) {
+                        nudAppKillTimeout.Value = 4000;
+                    }
                     rbtnShutdownAfterWaiting.IsChecked = !rbtnShutdownImmediately.IsChecked;
                 }
                 else {
@@ -926,7 +932,7 @@ namespace WindowsTweaker {
                     string val = Utils.BoolToString(rbtnShutdownImmediately.IsChecked);
                     hkcuDesktop.SetValue(Constants.AutoEndTasks, val);
                     if (rbtnShutdownAfterWaiting.IsChecked == true) {
-                        // TODO : set timeout
+                        hkcuDesktop.SetValue(Constants.WaitToKillAppTimeout, nudAppKillTimeout.Value.ToString());
                     }
                 }
             }
@@ -1060,7 +1066,13 @@ namespace WindowsTweaker {
             }
 
             using (RegistryKey hklmExplorer = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
-                chkOldStyleFileSort.SetCheckedState(hklmExplorer, Constants.OldStyleFileSort);
+                hklmExplorer.SetValue(chkOldStyleFileSort, Constants.OldStyleFileSort);
+            }
+
+            // Icon Title
+            using (RegistryKey hkcuWinMet = _hkcu.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
+                string val = rbtnWrapText.IsChecked == true ? "0" : "1";
+                hkcuWinMet.SetValue(Constants.IconTitleWrap, val);
             }
         }
         #endregion

@@ -523,7 +523,7 @@
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="{StaticResource WaitToKill}" TextWrapping="Wrap" />
-                                                <toolkit:IntegerUpDown />
+                                                <toolkit:IntegerUpDown AllowSpin="True" AllowDrop="False" Increment="20" Maximum="20000" Minimum="20" Value="4000" Name="nudAppKillTimeout" />
                                                 <TextBlock Text="{StaticResource Milliseconds}" TextWrapping="Wrap"></TextBlock>
                                             </StackPanel>
                                         </RadioButton.Content>
@@ -2783,7 +2783,6 @@
                                             <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableTaskbarStartMenuRtClk}" />
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <!-- TODO Add help description here-->
                                     <CheckBox Margin="30, 10, 5, 5" Name="chkHideAppearanceOpt" Click="OnCheckBoxClick">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap" Text="{StaticResource HideAppearance}" />
