@@ -124,6 +124,7 @@ namespace WindowsTweaker.Models
         public const string Cmd = "command";
         public const string TextFile = "textfile";
         public const string ControlPanelCreatePath = "rundll32.exe shell32.dll,Control_RunDLL";
+        public const string DefragVal = "defrag %1 -v";
 
         //Restrictions Tab Key/Values
         //Explorer

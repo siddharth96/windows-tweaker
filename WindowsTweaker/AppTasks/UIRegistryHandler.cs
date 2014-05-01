@@ -17,10 +17,20 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="registryKey"></param>
         /// <param name="valueName"></param>
         /// <param name="inverse"></param>
+        /// <param name="nullAsTrue"></param>
         internal static void SetCheckedState(this CheckBox chk, RegistryKey registryKey, 
-            string valueName, bool inverse=false) {
-            int? val = (int?)registryKey.GetValue(valueName);
-            chk.IsChecked = inverse ? Utils.ReversedIntToBool(val) : Utils.IntToBool(val);
+            string valueName, bool inverse=false, bool nullAsTrue=false) {
+            try {
+                int? val = (int?) registryKey.GetValue(valueName);
+                if (inverse && !val.HasValue && nullAsTrue) {
+                    chk.IsChecked = true;
+                    return;
+                }
+                chk.IsChecked = inverse ? Utils.ReversedIntToBool(val) : Utils.IntToBool(val);
+            } catch (InvalidCastException) {
+                registryKey.DeleteValue(valueName, false);
+                chk.IsChecked = false;
+            }
         }
 
         /// <summary>
@@ -35,8 +45,13 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="inverse"></param>
         internal static void SetCheckedStateFromString(this CheckBox chk, RegistryKey registryKey,
             string valueName, bool inverse = false) {
-            string val = (string) registryKey.GetValue(valueName);
-            chk.IsChecked = inverse ? Utils.ReversedStringToBool(val) : Utils.StringToBool(val);
+            try {
+                string val = (string) registryKey.GetValue(valueName);
+                chk.IsChecked = inverse ? Utils.ReversedStringToBool(val) : Utils.StringToBool(val);
+            } catch (InvalidCastException) {
+                registryKey.DeleteValue(valueName, false);
+                chk.IsChecked = false;
+            }
         }
 
         /// <summary>

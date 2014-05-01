@@ -355,6 +355,9 @@ namespace WindowsTweaker {
                     case Constants.Display:
                         UpdateRegistryFromDisplay();
                         break;
+                    case Constants.Places:
+                        UpdateRegistryFromPlaces();
+                        break;
                     case Constants.RightClick:
                         UpdateRegistryFromRightClick();
                         break;
@@ -375,11 +378,11 @@ namespace WindowsTweaker {
         }
         #endregion
 
-        #region Logon
+        #region Login
         private void LoadLogonTab() {
             // Auto Login
             using (RegistryKey hklmWinLogon = _hklm.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
-                chkEnableAutoLogin.SetCheckedState(hklmWinLogon, Constants.AutoAdminLogon);
+                chkEnableAutoLogin.SetCheckedStateFromString(hklmWinLogon, Constants.AutoAdminLogon);
                 if (chkEnableAutoLogin.IsChecked == true) {
                     txtAutoLoginUserName.SetText(hklmWinLogon, Constants.DefaultUserName);
                     txtAutoLoginPasswd.SetPassword(hklmWinLogon, Constants.DefaultPassword);
@@ -389,6 +392,8 @@ namespace WindowsTweaker {
 
                 chkPreventShiftPress.SetCheckedStateFromString(hklmWinLogon, Constants.IgnoreShiftOverride);
                 chkAutoLogonAfterLogoff.SetCheckedStateFromString(hklmWinLogon, Constants.ForceAutoLogon);
+                // Miscellaneous
+                chkRequireCtrlAltDlt.SetCheckedState(hklmWinLogon, Constants.DisableCtrlAltDlt, true);
             }
 
             // Startup Sound
@@ -402,12 +407,6 @@ namespace WindowsTweaker {
             }
 
             using (RegistryKey hklmSystem = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
-                // Miscellaneous
-                if (hklmSystem.GetValue(Constants.DisableCtrlAltDlt) != null) {
-                    chkRequireCtrlAltDlt.SetCheckedState(hklmSystem, Constants.DisableCtrlAltDlt, true);    
-                } else {
-                    chkRequireCtrlAltDlt.IsChecked = false;
-                }
                 chkRestrictLastLoginUser.SetCheckedState(hklmSystem, Constants.NoLastUserName);
                 chkShowShutdownBtn.SetCheckedState(hklmSystem, Constants.ShutdownWithoutLogon);
 
@@ -427,12 +426,13 @@ namespace WindowsTweaker {
         private void UpdateRegistryFromLogon() {
             // Auto Login
             using (RegistryKey hklmWinLogon = _hklm.CreateSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Winlogon")) {
-                hklmWinLogon.SetValue(chkEnableAutoLogin, Constants.AutoAdminLogon);
+                hklmWinLogon.SetStringValue(chkEnableAutoLogin, Constants.AutoAdminLogon);
                 hklmWinLogon.SetValue(txtAutoLoginUserName, Constants.DefaultUserName);
                 hklmWinLogon.SetValue(txtAutoLoginPasswd, Constants.DefaultPassword);
                 hklmWinLogon.SetValue(txtAutoLoginDomainName, Constants.DefaultDomainName);
-                hklmWinLogon.SetValue(chkPreventShiftPress, Constants.IgnoreShiftOverride);
-                hklmWinLogon.SetValue(chkAutoLogonAfterLogoff, Constants.ForceAutoLogon);
+                hklmWinLogon.SetStringValue(chkPreventShiftPress, Constants.IgnoreShiftOverride);
+                hklmWinLogon.SetStringValue(chkAutoLogonAfterLogoff, Constants.ForceAutoLogon);
+                hklmWinLogon.SetValue(chkRequireCtrlAltDlt, Constants.DisableCtrlAltDlt, true);
             }
 
             // Startup Sound
@@ -447,7 +447,6 @@ namespace WindowsTweaker {
 
             using (RegistryKey hklmSystem = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\System")) {
                 // Miscellaneous
-                hklmSystem.SetValue(chkRequireCtrlAltDlt, Constants.DisableCtrlAltDlt, true);
                 hklmSystem.SetValue(chkRestrictLastLoginUser, Constants.NoLastUserName);
                 hklmSystem.SetValue(chkShowShutdownBtn, Constants.ShutdownWithoutLogon);
 
@@ -517,9 +516,9 @@ namespace WindowsTweaker {
                 // Explorer
                 chkHideThumbNailCache.SetCheckedState(hkcuExAdvanced, Constants.DisableThumbnailCache);
                 // Taskbar
-                chkTaskBarAnim.SetCheckedState(hkcuExAdvanced, Constants.TaskBarAnimations);
+                chkTaskBarAnim.SetCheckedState(hkcuExAdvanced, Constants.TaskBarAnimations, true);
                 if (_windowsOs > WindowsVer.Windows.Xp) {
-                    hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
+                    chkShowIconsTaskBar.SetCheckedState(hkcuExAdvanced, Constants.TaskBarSmallIcons);
                 } else {
                     txtShowIconsTaskBar.Text += " " + GetResourceString("OnlyVistaAndOnwards");
                     chkShowIconsTaskBar.IsEnabled = false;
@@ -577,10 +576,11 @@ namespace WindowsTweaker {
             }
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 hkcuExAdvanced.SetValue(chkHideThumbNailCache, Constants.DisableThumbnailCache);
-                hkcuExAdvanced.SetValue(chkTaskBarAnim, Constants.TaskBarAnimations);
+                hkcuExAdvanced.SetValue(chkTaskBarAnim, Constants.TaskBarAnimations, true);
                 if (_windowsOs > WindowsVer.Windows.Xp) {
                     hkcuExAdvanced.SetValue(chkShowIconsTaskBar, Constants.TaskBarSmallIcons);
                 }
+                hkcuExAdvanced.SetValue(chkTaskBarNoTooltip, Constants.ShowInfoTip, true);
 
             }
             if (_windowsOs > WindowsVer.Windows.Xp && _windowsOs < WindowsVer.Windows.Eight) {
@@ -1173,7 +1173,7 @@ namespace WindowsTweaker {
             }
         }
 
-        private void UpdateFromPlaces() {
+        private void UpdateRegistryFromPlaces() {
             int val = cmboBxPowerBtnAction.SelectedIndex;
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 switch (val) {
@@ -1470,7 +1470,91 @@ namespace WindowsTweaker {
             LoadSendTo();
         }
 
-        private void UpdateRegistryFromRightClick() {}
+        private void UpdateRegistryFromRightClick() {
+            // General
+            using (RegistryKey hkcrContextMenuHandlers = _hkcr.CreateSubKey(@"AllFilesystemObjects\shellex\ContextMenuHandlers")) {
+                hkcrContextMenuHandlers.SetSubKey(chkCopyToFolder, Constants.CopyTo);
+                hkcrContextMenuHandlers.SetSubKey(chkMoveToFolder, Constants.MoveTo);
+                hkcrContextMenuHandlers.SetSubKey(chkSendTo, Constants.SendTo);
+            }
+
+            using (RegistryKey hkcrFileShell = _hkcr.CreateSubKey(@"*\shell")) {
+                hkcrFileShell.SetSubKey(chkOpenWithNotepad, Constants.OpenNotepad);
+            }
+
+            using (RegistryKey hkcrShell = _hkcr.CreateSubKey(@"Directory\Background\shell")) {
+                hkcrShell.SetSubKey(chkControlPanelInDesktopMenu, Constants.ControlPanel);
+            }
+
+            using (RegistryKey hkcrDirShell = _hkcr.CreateSubKey(@"Directory\shell")) {
+                if (chkOpenCmdPrompt.HasUserInteracted()) {
+                    if (chkOpenCmdPrompt.IsChecked == true) {
+                        if (!hkcrDirShell.HasValueInShellCommand(Constants.OpenCmdPromptVal)) {
+                            RegistryKey key = hkcrDirShell.CreateSubKey(@"Open Command Prompt here\command");
+                            key.SetValue("", Constants.OpenCmdPromptVal);
+                        }
+                    } else {
+                        hkcrDirShell.DeleteSubKey(@"Open Command Prompt here", false);
+                    }
+                }
+            }
+
+            using (RegistryKey hkcrDriveShell = _hkcr.CreateSubKey(@"Drive\shell")) {
+                if (chkOpenCmdPrompt.HasUserInteracted()) {
+                    if (chkOpenCmdPrompt.IsChecked == true) {
+                        if (!hkcrDriveShell.HasValueInShellCommand(Constants.OpenCmdPromptVal)) {
+                            RegistryKey key = hkcrDriveShell.CreateSubKey(@"Open Command Prompt here\command");
+                            key.SetValue("", Constants.OpenCmdPromptVal);
+                            key.Close();
+                        }
+                    } else {
+                        hkcrDriveShell.DeleteSubKey(@"Open Command Prompt here", false);
+                    }
+                }
+                if (chkAddDefragInMenu.IsChecked == true) {
+                    RegistryKey key = hkcrDriveShell.CreateSubKey(Constants.RunAs);
+                    key.SetValue("", "Defragment");
+                    RegistryKey cmdKey = key.CreateSubKey(Constants.Cmd);
+                    cmdKey.SetValue("", Constants.DefragVal);
+                    cmdKey.Close();
+                    key.Close();
+                } else {
+                    hkcrDriveShell.DeleteSubKeyTree(Constants.RunAs, false);
+                }
+            }
+
+
+            using (RegistryKey hklmExAdvanced = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                hklmExAdvanced.SetValue(chkEncryptAndDecrypt, Constants.EncryptCtxMenu);
+            }
+
+//            if (_windowsOs >= WindowsVer.Windows.Seven) {
+//                using (RegistryKey hklmClasses = _hklm.CreateSubKey(@"Software\Classes")) {
+//                    using (RegistryKey hklmDotTxt = _hklm.CreateSubKey(@"Software\Classes\.txt")) {
+//                        string txtFile = (string)hklmDotTxt.GetValue("");
+//                        RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
+//                        RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
+//
+//                        if (hklmDotTextShell != null) {
+//                            RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
+//                            RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
+//                            if (hklmTextShell != null) {
+//                                chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
+//                                                            || hklmTextShell.GetValue(Constants.CopyContents) != null;
+//                            } else {
+//                                chkCopyContents.IsChecked = false;
+//                            }
+//                            hklmTxt.Close();
+//                            hklmDotTextShell.Close();
+//                            hklmTextFile.Close();
+//                            if (hklmTextShell != null)
+//                                hklmTextShell.Close();
+//                        }
+//                    }
+//                }
+//            }
+        }
+
         #endregion
 
         #region Right-Click -> Send To
@@ -1788,7 +1872,7 @@ namespace WindowsTweaker {
 
             using (RegistryKey hkcuExplorer = _hkcu.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Windows DVD Burner
-                chkWinDvdBurner.SetCheckedState(hkcuExplorer, Constants.NoDvdBurning, true);
+                chkWinDvdBurner.SetCheckedState(hkcuExplorer, Constants.NoDvdBurning, true, true);
                 
                 // AutoPlay
                 RegistryKey hkcuAutoplayHandlers = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers");
