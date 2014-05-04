@@ -113,6 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppTasks\ColorPickerDialog.cs" />
     <Compile Include="AppTasks\LocalizationHandler.cs" />
     <Compile Include="AppTasks\ProcessWrapper.cs" />
@@ -146,6 +149,10 @@
     <Compile Include="AppTasks\UIRegistryHandler.cs" />
     <Compile Include="AppTasks\Utils.cs" />
     <Compile Include="AppTasks\WindowsVer.cs" />
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HelpCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

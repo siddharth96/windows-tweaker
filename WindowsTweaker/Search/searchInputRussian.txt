@@ -9,6 +9,7 @@
 Защищены Показать файлы операционной системы => chkShowOSfiles,tabExplorer,tabControlExplorer,tabAdvanced
 Показать сжатые и зашифрованные файлы NTFS в цвете => chkShowNtfsInColor,tabExplorer,tabControlExplorer,tabAdvanced
 Отключение расширить в текущую папку в левой навигационной панели щелкните => chkAutoExpand,tabExplorer,tabControlExplorer,tabAdvanced
+Отключить у вас есть новые приложения, которые могут открыть этот тип файла уведомление => chkNoNewAppAlert,tabExplorer,tabControlExplorer,tabAdvanced
 Спрятать "Безопасность" в папки, файлы, ярлыки и диски => chkHideSecurity,tabExplorer,tabControlExplorer,tabProperties
 Скрыть "Настроить" в папки, файлы, ярлыки и диски => chkShowHideCustomize,tabExplorer,tabControlExplorer,tabProperties
 Показать «Библиотеки» в области переходов => rbtnShowLibraries,tabExplorer,tabControlExplorer,tabLibrary

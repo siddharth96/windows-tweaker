@@ -641,6 +641,16 @@ namespace WindowsTweaker {
                 chkShowHideCustomize.SetCheckedState(hkcuExAdvanced, Constants.NoCustomizeTab);
             }
 
+            // Advanced
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmExplorer = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\Explorer")) {
+                    chkNoNewAppAlert.SetCheckedState(hklmExplorer, Constants.NoNewAppAlert);
+                }
+            } else {
+                chkNoNewAppAlert.IsEnabled = false;
+                txtNoNewAppAlert.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+            }
+
             using (RegistryKey hklmNamespace = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
                 // Libraries
                 if (_windowsOs >= WindowsVer.Windows.Vista) {
@@ -748,6 +758,14 @@ namespace WindowsTweaker {
                 // Properties
                 hkcuExAdvanced.SetValue(chkHideSecurity, Constants.NoSecurityTab);
                 hkcuExAdvanced.SetValue(chkShowHideCustomize, Constants.NoCustomizeTab);
+            }
+
+            // Advanced
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmExplorer = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\Explorer")) {
+                    chkNoNewAppAlert.SetCheckedState(hklmExplorer, Constants.NoNewAppAlert);
+                    hklmExplorer.SetValue(chkNoNewAppAlert, Constants.NoNewAppAlert);
+                }
             }
 
             using (RegistryKey hklmNamespace = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace")) {
@@ -2264,6 +2282,11 @@ namespace WindowsTweaker {
             if (MessageBox.Show(msg, GetResourceString("Success"), MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK) {
                 Environment.Exit(1);
             }
+        }
+        
+        private void OnAboutMenuItemClick(object sender, RoutedEventArgs e) {
+            About about = new About();
+            about.ShowDialog();
         }
         #endregion
     }

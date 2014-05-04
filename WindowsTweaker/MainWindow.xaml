@@ -100,7 +100,7 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="{StaticResource Advanced}" Name="tabAdvanced">
-                            <Grid Margin="10, 50, 0, 10">
+                            <Grid Margin="10, 20, 0, 10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -197,6 +197,12 @@
                                               Style="{StaticResource SmallChkStyle}" Name="chkAutoExpand">
                                         <CheckBox.Content>
                                             <TextBlock Text="{StaticResource DisableExpandToCurrent}" TextWrapping="Wrap" />
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox Margin="30, 5, 5, 5" Click="OnCheckBoxClick"
+                                              Style="{StaticResource SmallChkStyle}" Name="chkNoNewAppAlert">
+                                        <CheckBox.Content>
+                                            <TextBlock Text="{StaticResource DisableNewAppNotify}" TextWrapping="Wrap" Name="txtNoNewAppAlert" />
                                         </CheckBox.Content>
                                     </CheckBox>
                                 </StackPanel>
@@ -3833,7 +3839,7 @@
                     </MenuItem>
                     <MenuItem Header="{StaticResource Help}"></MenuItem>
                     <MenuItem Header="{StaticResource ReportIssue}"></MenuItem>
-                    <MenuItem Header="{StaticResource About}"></MenuItem>
+                    <MenuItem Header="{StaticResource About}" Click="OnAboutMenuItemClick"></MenuItem>
                 </MenuItem>
             </Menu>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">

@@ -38,6 +38,7 @@ namespace WindowsTweaker.Models
         public const string SuperHidden = "ShowSuperHidden";
         public const string CompressedColor = "ShowCompColor";
         public const string NavPaneExpandToCurrentFolder = "NavPaneExpandToCurrentFolder";
+        public const string NoNewAppAlert = "NoNewAppAlert";
         // Property Dialog
         public const string NoSecurityTab = "NoSecurityTab";
         public const string NoCustomizeTab = "NoCustomizeThisFolder";

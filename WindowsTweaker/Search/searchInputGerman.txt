@@ -9,6 +9,7 @@ Wiederherstellen zuvor geöffneten Ordner bei der Anmeldung => chkRestoreFolders
 Betriebssystemdateien anzeigen geschützt => chkShowOSfiles,tabExplorer,tabControlExplorer,tabAdvanced
 Anzeige komprimierten und verschlüsselten NTFS-Dateien in Farbe => chkShowNtfsInColor,tabExplorer,tabControlExplorer,tabAdvanced
 Deaktivieren erweitern, um aktuellen Ordner in der linken Navigationsbereich => chkAutoExpand,tabExplorer,tabControlExplorer,tabAdvanced
+Deaktivieren Sie haben neue Apps die diese Art von Datei öffnen Benachrichtigung => chkNoNewAppAlert,tabExplorer,tabControlExplorer,tabAdvanced
 Ausblenden "Sicherheit" im Ordner, Dateien, Verknüpfungen und Antriebe => chkHideSecurity,tabExplorer,tabControlExplorer,tabProperties
 Ausblenden "Anpassen" in Ordnern, Dateien, Verknüpfungen und Antriebe => chkShowHideCustomize,tabExplorer,tabControlExplorer,tabProperties
 Anzeigen "Bibliotheken" in Navigationsbereich => rbtnShowLibraries,tabExplorer,tabControlExplorer,tabLibrary

@@ -402,4 +402,5 @@
     <system:String x:Key="ShutdwnConfig">shutdown configuration</system:String>
     <system:String x:Key="MemLabel">memory</system:String>
     <system:String x:Key="SearchHint">Type &amp; Press Enter to Search</system:String>
+    <system:String x:Key="DisableNewAppNotify">Disable "you have new apps that can open this type of file" notification</system:String>
 </ResourceDictionary>

@@ -9,6 +9,7 @@ Restore previously opened folders at login => chkRestoreFoldersAtLogin,tabExplor
 Show protected operating system files => chkShowOSfiles,tabExplorer,tabControlExplorer,tabAdvanced
 Display compressed and encrypted NTFS files in colour => chkShowNtfsInColor,tabExplorer,tabControlExplorer,tabAdvanced
 Disable expand to current folder in left navigation-pane => chkAutoExpand,tabExplorer,tabControlExplorer,tabAdvanced
+Disable you have new apps that can open this type of file notification => chkNoNewAppAlert,tabExplorer,tabControlExplorer,tabAdvanced
 Hide Security in Folders, Files, Shortcuts and Drives => chkHideSecurity,tabExplorer,tabControlExplorer,tabProperties
 Hide Customize in Folders, Files, Shortcuts and Drives => chkShowHideCustomize,tabExplorer,tabControlExplorer,tabProperties
 Show Libraries in Navigation Pane => rbtnShowLibraries,tabExplorer,tabControlExplorer,tabLibrary

@@ -402,4 +402,5 @@
     <system:String x:Key="ShutdwnConfig">Shutdown-Konfiguration</system:String>
     <system:String x:Key="MemLabel">Speicher</system:String>
     <system:String x:Key="SearchHint">Art und Enter drücken, um Suche</system:String>
+    <system:String x:Key="DisableNewAppNotify">Deaktivieren Sie "Sie haben neue Apps, die diese Art von Datei öffnen"-Benachrichtigung</system:String>
 </ResourceDictionary>

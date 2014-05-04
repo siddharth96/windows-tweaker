@@ -402,4 +402,5 @@
     <system:String x:Key="ShutdwnConfig">конфигурация выключение</system:String>
     <system:String x:Key="MemLabel">память</system:String>
     <system:String x:Key="SearchHint">Введите и нажмите клавишу ВВОД для поиска</system:String>
+    <system:String x:Key="DisableNewAppNotify">Отключить "у вас есть новые приложения, которые могут открыть этот тип файла" уведомление</system:String>
 </ResourceDictionary>
