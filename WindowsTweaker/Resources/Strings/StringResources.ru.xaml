@@ -245,6 +245,7 @@
     <system:String x:Key="DisableGroupPolicyUpdate">Отключение обновления групповой политики во время запуска</system:String>
     <system:String x:Key="UnloadUnusedDlls">Выгружать неиспользуемые библиотеки DLL после закрытия приложения</system:String>
     <system:String x:Key="Error">ошибка</system:String>
+    <system:String x:Key="ErrorLabel">ошибка</system:String>
     <system:String x:Key="HideErrorDlg">Не показывать диалог отчетов об ошибках, когда приложение падает</system:String>
     <system:String x:Key="ErrReportType">Тип доклада, который должен быть отправлен в корпорацию Майкрософт при возникновении ошибки</system:String>
     <system:String x:Key="AskWhenSending">Спросите, при отправке</system:String>
@@ -403,4 +404,14 @@
     <system:String x:Key="MemLabel">память</system:String>
     <system:String x:Key="SearchHint">Введите и нажмите клавишу ВВОД для поиска</system:String>
     <system:String x:Key="DisableNewAppNotify">Отключить "у вас есть новые приложения, которые могут открыть этот тип файла" уведомление</system:String>
+    <system:String x:Key="WarningMsgTitle">Вы уверены?</system:String>
+    <system:String x:Key="SomethingWrong">Извините, но что-то пошло не так. Хотел бы сообщить об этом?</system:String>
+    <system:String x:Key="NoPersonalInfo">Мы уважаем вашу конфиденциальность и не будет собирать личную информацию о вас.</system:String>
+    <system:String x:Key="AllWeNeed">Все что нам нужно это трассировки стека программы и некоторую информацию о вашем Windows.</system:String>
+    <system:String x:Key="UhOh">Uh-oh</system:String>
+    <system:String x:Key="UnableToReport">Невозможно представить исключение из-за ошибки в сети.</system:String>
+    <system:String x:Key="BadBadInternet">Это может быть из-за плохой доступ в Интернет.</system:String>
+    <system:String x:Key="ThanksForTime">Спасибо за ваше время.</system:String>
+    <system:String x:Key="ReportError">Сообщить об ошибке</system:String>
+    <system:String x:Key="WillExit">Окна Tweaker выйдет, как только отчет отправляется.</system:String>
 </ResourceDictionary>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="WindowsTweaker.ReportError"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
+        Title="{StaticResource UhOh}" SizeToContent="WidthAndHeight" Padding="0">
+    <Window.Resources>
+        <cm:BackgroundWorker x:Key="reportErrorBackgroundWorker" RunWorkerCompleted="OnReportErrorWorkerCompleted"
+                             WorkerSupportsCancellation="True" DoWork="OnReportErrorDoWork"></cm:BackgroundWorker>
+    </Window.Resources>
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="10" Name="txtErrorMsg" TextWrapping="Wrap" Grid.Row="0" />
+        <ProgressBar Margin="10" Height="20" IsIndeterminate="True" Name="progressBar" Visibility="Collapsed" Grid.Row="1" />
+        <Grid Background="#AAF1F1F1" Margin="0"  Grid.Row="2" HorizontalAlignment="Stretch">
+            <StackPanel Margin="0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Style="{x:Null}" Margin="100, 10, 10, 10" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Padding="10, 5" Content="{StaticResource ReportError}" Click="OnReportErrorButtonClick" />
+                <Button Style="{x:Null}" Margin="10, 0, 10, 0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                        Padding="10, 5" Content="{StaticResource Cancel}" Click="OnButtonCancelClick" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -18,6 +18,7 @@
     <WarningLevel>4</WarningLevel>
     <Utf8Output>true</Utf8Output>
     <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,7 +31,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -60,14 +60,23 @@
     <OutputPath>bin\Debug\</OutputPath>
     <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>WindowsTweaker.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mainIconBig.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Centivus.EnglishStemmer">
@@ -117,6 +126,7 @@
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppTasks\ColorPickerDialog.cs" />
+    <Compile Include="AppTasks\ErrorReportTask.cs" />
     <Compile Include="AppTasks\LocalizationHandler.cs" />
     <Compile Include="AppTasks\ProcessWrapper.cs" />
     <Compile Include="AppTasks\RightClickAddDeleteTask.cs" />
@@ -125,6 +135,8 @@
     <Compile Include="AppTasks\SendToTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
     <Compile Include="AppTasks\UserInteractionMarker.cs" />
+    <Compile Include="Keys.cs" />
+    <Compile Include="Keys.Local.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\FileItem.cs" />
@@ -137,6 +149,9 @@
     </Compile>
     <Compile Include="OpenWith.xaml.cs">
       <DependentUpon>OpenWith.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportError.xaml.cs">
+      <DependentUpon>ReportError.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\WindowDictionary.cs" />
     <Compile Include="Search\Searcher.cs" />
@@ -174,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OpenWith.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +353,8 @@
   <ItemGroup>
     <Resource Include="Search\searchInputGerman.txt" />
     <Resource Include="Search\searchInputRussian.txt" />
+    <Resource Include="Images\mainIconBig.png" />
+    <Resource Include="mainIconBig.ico" />
     <Content Include="Search\stemmer.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

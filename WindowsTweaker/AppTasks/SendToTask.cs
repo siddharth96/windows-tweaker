@@ -55,7 +55,7 @@ namespace WindowsTweaker.AppTasks
         internal void CreateShortcut(string sendToPath, string fullPath) {
             string fileName = Path.GetFileNameWithoutExtension(fullPath);
             IWshShortcut shortcut;
-            if (WindowsVer.Is64BitMachine) {
+            if (WindowsVer.Is64BitOs()) {
                 WshShell wshShell = new WshShell();
                 shortcut = (IWshShortcut)wshShell.CreateShortcut(Path.Combine(sendToPath, fileName + ".lnk"));
             } else {
@@ -77,7 +77,7 @@ namespace WindowsTweaker.AppTasks
             string msg = sendToListItems.Length == 1
                 ? _window.FindResource("SureToDelete") + " \"" + sendToListItems[0].Name + "\" " + _window.FindResource("FromSendToMenu")
                 : _window.FindResource("SureToDeleteMultiple") + " " + sendToListItems.Length + " " + _window.FindResource("FromSendToMenuMultiple");
-            if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo, MessageBoxImage.Question) !=
+            if (MessageBox.Show(msg, _window.FindResource("WarningMsgTitle").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) !=
                 MessageBoxResult.Yes) return;
             List<string> failedFiles = new List<string>();
             foreach (FileItem sendToFileItem in sendToListItems) {

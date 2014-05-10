@@ -48,7 +48,7 @@ namespace WindowsTweaker.AppTasks {
             Uri uriPath;
             if (!Uri.TryCreate(val, UriKind.Absolute, out uriPath)) return false;
             formattedUri = uriPath.AbsoluteUri;
-            return true;
+            return !formattedUri.StartsWith("file:");
         }
 
         internal static void Delete(FileItem fileItem, ObservableCollection<FileItem> rightClickFileItems) {

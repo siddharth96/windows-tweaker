@@ -245,6 +245,7 @@
     <system:String x:Key="DisableGroupPolicyUpdate">Deaktivieren Gruppenrichtlinienaktualisierung während der Inbetriebnahme</system:String>
     <system:String x:Key="UnloadUnusedDlls">Entladen Sie ungenutzte DLLs, nachdem eine Anwendung geschlossen wird</system:String>
     <system:String x:Key="Error">Fehler</system:String>
+    <system:String x:Key="ErrorLabel">Fehler</system:String>
     <system:String x:Key="HideErrorDlg">Fehlerbericht -Dialog, wenn eine Anwendung abstürzt, nicht mehr anzeigen</system:String>
     <system:String x:Key="ErrReportType">Art des Berichts, der an Microsoft gesendet werden soll, wenn ein Fehler auftritt</system:String>
     <system:String x:Key="AskWhenSending">Stellen Sie beim Senden</system:String>
@@ -403,4 +404,14 @@
     <system:String x:Key="MemLabel">Speicher</system:String>
     <system:String x:Key="SearchHint">Art und Enter drücken, um Suche</system:String>
     <system:String x:Key="DisableNewAppNotify">Deaktivieren Sie "Sie haben neue Apps, die diese Art von Datei öffnen"-Benachrichtigung</system:String>
+    <system:String x:Key="WarningMsgTitle">Sind Sie sicher?</system:String>
+    <system:String x:Key="SomethingWrong">Sorry, aber etwas schief gegangen ist. Möchten Sie diesen Bericht?</system:String>
+    <system:String x:Key="NoPersonalInfo">Wir respektieren Ihre Privatsphäre und persönliche Daten über Sie werden nicht erfasst.</system:String>
+    <system:String x:Key="AllWeNeed">Alles, was wir brauchen, ist der Stack-Trace des Programms und einige Informationen über Ihr Windows.</system:String>
+    <system:String x:Key="UhOh">Uh-oh</system:String>
+    <system:String x:Key="UnableToReport">Kann nicht die Ausnahme aufgrund eines Netzwerkfehlers zu melden.</system:String>
+    <system:String x:Key="BadBadInternet">Dies kann wegen einer schlechten Internet-Verbindung sein.</system:String>
+    <system:String x:Key="ThanksForTime">Vielen Dank für Ihre Zeit.</system:String>
+    <system:String x:Key="ReportError">Fehler melden</system:String>
+    <system:String x:Key="WillExit">Windows-Tweaker wird beendet, wenn der Bericht gesendet.</system:String>
 </ResourceDictionary>

@@ -15,10 +15,6 @@ namespace WindowsTweaker.Models
         public const string Restrictions = "restrictions";
         public const string Maintenance = "maintenance";
         public const string Utilities = "utilities";
-        public const string ErrorMsgTitle = "On My God!!";
-        public const string WarningMsgTitle = "Hey!!";
-        public const string AlertMsgTitle = "Mind You!!";
-        public const string SuccessMsgTitle = "Mission Accomplished!!";
         public const byte HasUserInteracted = 1;
         public const string InternetExplorer = "iexplore.exe";
         public const string ConfigFileName = "WindowsTweaker.config.xml";

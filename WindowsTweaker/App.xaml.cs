@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using System.Linq;
+using System.Security.Permissions;
 using System.Threading;
 using System.Windows;
 using WindowsTweaker.AppTasks;
@@ -14,8 +15,17 @@ namespace WindowsTweaker {
     /// </summary>
     public partial class App : Application {
 
+        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         private void OnApplicationStartup(object sender, StartupEventArgs e) {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             DoLocalization();
+        }
+
+        private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs) {
+            ErrorReportTask.ReportError(unhandledExceptionEventArgs.ExceptionObject as Exception);
+            if (unhandledExceptionEventArgs.IsTerminating) {
+                Environment.Exit(1);
+            }
         }
 
         private void DoLocalization() {

@@ -245,6 +245,7 @@
     <system:String x:Key="DisableGroupPolicyUpdate">Disable Group Policy update during startup</system:String>
     <system:String x:Key="UnloadUnusedDlls">Unload unused DLLs after an application is closed</system:String>
     <system:String x:Key="Error">error</system:String>
+    <system:String x:Key="ErrorLabel">Error</system:String>
     <system:String x:Key="HideErrorDlg">Don't show error reporting dialog, when an app crashes</system:String>
     <system:String x:Key="ErrReportType">Type of report that should be sent to Microsoft when an error occurs</system:String>
     <system:String x:Key="AskWhenSending">Ask, when sending</system:String>
@@ -403,4 +404,14 @@
     <system:String x:Key="MemLabel">memory</system:String>
     <system:String x:Key="SearchHint">Type &amp; Press Enter to Search</system:String>
     <system:String x:Key="DisableNewAppNotify">Disable "you have new apps that can open this type of file" notification</system:String>
+    <system:String x:Key="WarningMsgTitle">Are you sure?</system:String>
+    <system:String x:Key="SomethingWrong">Sorry, but something has gone wrong. Would like to report this?</system:String>
+    <system:String x:Key="NoPersonalInfo">We respect your privacy, and will not collect any personal information about you.</system:String>
+    <system:String x:Key="AllWeNeed">All we need is the program's stack trace and some information about your Windows.</system:String>
+    <system:String x:Key="UhOh">Uh-oh</system:String>
+    <system:String x:Key="UnableToReport">Unable to report the exception due to a network error.</system:String>
+    <system:String x:Key="BadBadInternet">This can be because of a bad internet connection.</system:String>
+    <system:String x:Key="ThanksForTime">Thanks for your time.</system:String>
+    <system:String x:Key="ReportError">Report Error</system:String>
+    <system:String x:Key="WillExit">Windows Tweaker will exit, once the report is sent.</system:String>
 </ResourceDictionary>

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace WindowsTweaker.AppTasks {
 
     internal class WindowsVer {
-        public static readonly bool Is64BitMachine = IntPtr.Size == 8;
         private static Windows? _cachedName;
 
         public enum Windows { 
@@ -18,15 +19,15 @@ namespace WindowsTweaker.AppTasks {
         public static string AsString(Windows windows) {
             switch (windows) {
                 case Windows.Xp:
-                    return "XP";
+                    return "Windows XP";
                 case Windows.Vista:
-                    return "Vista";
+                    return "Windows Vista";
                 case Windows.Seven:
-                    return "7";
+                    return "Windows 7";
                 case Windows.Eight:
-                    return "8";
+                    return "Windows 8";
                 case Windows.Blue:
-                    return "8.1";
+                    return "Windows 8.1";
                 default:
                     return "older than XP";
             }
@@ -69,6 +70,33 @@ namespace WindowsTweaker.AppTasks {
                     return Windows.Blue;
             }
             return Windows.Other;
+        }
+
+        // http://stackoverflow.com/a/336729/1293716
+        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsWow64Process(
+            [In] IntPtr hProcess,
+            [Out] out bool wow64Process
+        );
+
+        private static bool InternalCheckIsWow64() {
+            if ((Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor >= 1) ||
+                Environment.OSVersion.Version.Major >= 6) {
+                using (Process p = Process.GetCurrentProcess()) {
+                    bool retVal;
+                    if (!IsWow64Process(p.Handle, out retVal)) {
+                        return false;
+                    }
+                    return retVal;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        internal static bool Is64BitOs() {
+            return IntPtr.Size == 8 || InternalCheckIsWow64();
         }
     }
 }

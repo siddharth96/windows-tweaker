@@ -5,3 +5,4 @@ WindowsTweaker/obj/*
 *.user
 *.psess
 .idea/
+WindowsTweaker/Keys.Local.cs

@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Windows Tweaker")]
 [assembly: AssemblyDescription("Tweaker Your Windows the Expert's Way")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SuRe Softwares")]
+[assembly: AssemblyCompany("Windows Tweaker")]
 [assembly: AssemblyProduct("WindowsTweaker")]
-[assembly: AssemblyCopyright("Copyright ©  2013, Siddharth Srivastava")]
+[assembly: AssemblyCopyright("Licensed under GNU/GPL v3")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("5.1.0.0")]
-[assembly: AssemblyFileVersion("5.1.0.0")]
+[assembly: AssemblyVersion("5.0.0.0")]
+[assembly: AssemblyFileVersion("5.0.0.0")]

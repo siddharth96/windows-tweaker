@@ -335,11 +335,11 @@ namespace WindowsTweaker {
 
         private void OnOkButtonClick(object sender, RoutedEventArgs e) {
             SaveSettings();
-            Environment.Exit(1);
+            Environment.Exit(0);
         }
 
         private void OnCancelButtonClick(object sender, RoutedEventArgs e) {
-            Environment.Exit(1);
+            Environment.Exit(0);
         }
 
         private void SaveSettings() {
@@ -481,10 +481,7 @@ namespace WindowsTweaker {
         #endregion
 
         #region Restrictions
-        private void LoadRestrictionsTab()
-        {
-
-
+        private void LoadRestrictionsTab() {
             using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Explorer
                 chkHideFileMenu.SetCheckedState(hkcuExplorer, Constants.NoFileMenu);
@@ -1217,30 +1214,29 @@ namespace WindowsTweaker {
         #region Places -> GodMode
         private void OnButtonSetupGodModeClick(object sender, RoutedEventArgs e) {
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == true) {
-                string selectedFolderName = folderBrowserDialog.FileName;
-                if (Utils.IsEmptyDirectory(selectedFolderName)) {
-                    if (Directory.GetParent(selectedFolderName) != null) {
-                        string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
-                        if (Directory.Exists(godModeFolderPath))
-                            Directory.Delete(godModeFolderPath);
-                        DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
-                        string parentDir = selectedFolderDirectoryInfo.Parent.FullName;
-                        try {
-                            selectedFolderDirectoryInfo.Delete(true);
-                            Directory.CreateDirectory(godModeFolderPath);
-                            _message.Success(GetResourceString("SuccessfullyFolderCreate") + " " + parentDir +
-                                            ". " + GetResourceString("PleaseNoteWinRefresh"));
-                        } catch (UnauthorizedAccessException ex) {
-                            _message.Error(GetResourceString("PermissionDenied"));
-                        }
-                    } else {
-                        _message.Error(GetResourceString("YoCantMake") + " " + selectedFolderName + " . " + GetResourceString("AGodFolder") +
-                                       GetResourceString("PleaseSelectAnEmptyFolderOrCreate"));
+            if (folderBrowserDialog.ShowDialog() != true) return;
+            string selectedFolderName = folderBrowserDialog.FileName;
+            if (Utils.IsEmptyDirectory(selectedFolderName)) {
+                if (Directory.GetParent(selectedFolderName) != null) {
+                    string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
+                    if (Directory.Exists(godModeFolderPath))
+                        Directory.Delete(godModeFolderPath);
+                    DirectoryInfo selectedFolderDirectoryInfo = new DirectoryInfo(selectedFolderName);
+                    string parentDir = selectedFolderDirectoryInfo.Parent.FullName;
+                    try {
+                        selectedFolderDirectoryInfo.Delete(true);
+                        Directory.CreateDirectory(godModeFolderPath);
+                        _message.Success(GetResourceString("SuccessfullyFolderCreate") + " " + parentDir +
+                                         ". " + GetResourceString("PleaseNoteWinRefresh"));
+                    } catch (UnauthorizedAccessException) {
+                        _message.Error(GetResourceString("PermissionDenied"));
                     }
                 } else {
-                    _message.Error(selectedFolderName + " " + GetResourceString("IsNotEmptyForGod"));
+                    _message.Error(GetResourceString("YoCantMake") + " " + selectedFolderName + " . " + GetResourceString("AGodFolder") +
+                                   GetResourceString("PleaseSelectAnEmptyFolderOrCreate"));
                 }
+            } else {
+                _message.Error(selectedFolderName + " " + GetResourceString("IsNotEmptyForGod"));
             }
         }
         #endregion
@@ -1676,7 +1672,7 @@ namespace WindowsTweaker {
                 string msg = GetResourceString("UnableToIndentify") + " \"" + shrtCtPath + "\"" + " " + GetResourceString("AsValidFilePath") + "." +
                                            Environment.NewLine + " " + GetResourceString("ProceedAndCreateShortcut") +
                                            Environment.NewLine + " " + GetResourceString("AddedToPath");
-                if (MessageBox.Show(msg, Constants.WarningMsgTitle, MessageBoxButton.YesNo,
+                if (MessageBox.Show(msg, GetResourceString("WarningMsgTitle"), MessageBoxButton.YesNo,
                         MessageBoxImage.Warning) == MessageBoxResult.Yes) {
                     RightClickAddDeleteTask.AddToRegistry(shrtCtName, shrtCtPath);
                     result = true;
@@ -2280,7 +2276,7 @@ namespace WindowsTweaker {
             LocalizationHandler.UpdateCultureInConfig(cultureName);
             string msg = GetResourceString("RestartForLangChange");
             if (MessageBox.Show(msg, GetResourceString("Success"), MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK) {
-                Environment.Exit(1);
+                Environment.Exit(0);
             }
         }
         
