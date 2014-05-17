@@ -1914,7 +1914,7 @@ namespace WindowsTweaker {
         #region Features
         private void LoadFeaturesTab() {
             // System Beep
-            using (RegistryKey hkcuSound = _hkcu.OpenSubKey(@"Control Panel\Sound")) {
+            using (RegistryKey hkcuSound = _hkcu.CreateSubKey(@"Control Panel\Sound")) {
                 if (hkcuSound != null) {
                     string val = (string) hkcuSound.GetValue(Constants.Beep);
                     if (val != null) {
@@ -1939,7 +1939,7 @@ namespace WindowsTweaker {
                 }
             }
 
-            using (RegistryKey hkcuExplorer = _hkcu.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+            using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
                 // Windows DVD Burner
                 chkWinDvdBurner.SetCheckedState(hkcuExplorer, Constants.NoDvdBurning, true, true);
                 
