@@ -76,6 +76,7 @@ ID продукта => lblProductId,tabSystem,tabControlSystem,tabReg
 Используйте эту опцию, чтобы скрыть файлы / папки с правами системного администратора => lblHideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Используйте эту опцию, чтобы показать файлы / папки с правами системного администратора => lblUnhideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Создание специальных папок CON => lblSpecialFolders,tabTasks,tabControlTasks,tabSpecialFolderNames
+Создать большой файл размером => txtCreateFile,tabTasks,tabControlTasks,tabCreateFile
 Использовать автозапуск для всех устройств => rbtnEnableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Выключения автозапуска для CD-ROM и съемные устройства => rbtnEnableCdUsbAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Выключения автозапуска для всех устройств => rbtnDisableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay

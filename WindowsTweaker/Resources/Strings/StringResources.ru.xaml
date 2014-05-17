@@ -415,7 +415,8 @@
     <system:String x:Key="ReportError">Сообщить об ошибке</system:String>
     <system:String x:Key="WillExit">Окна Tweaker выйдет, как только отчет отправляется.</system:String>
     <system:String x:Key="CreateFile">создать файл</system:String>
-    <system:String x:Key="CreateFileLabel">Создайте файл размером</system:String>
+    <system:String x:Key="CreateFileLabel">Создать большой файл</system:String>
+    <system:String x:Key="CreateFileDesc">Создайте файл размером</system:String>
     <system:String x:Key="PreventStaleShortcutSearch">Не ищите Windows, когда я нажимаю на ярлык, программа которого больше не существует</system:String>
     <system:String x:Key="PreventStaleShortcutDiskSearch">Остановить Окна из ищете диска (ов), чтобы решить ярлык</system:String>
     <system:String x:Key="PreventUseOfNtfsTrack">Предотвращение Окна от использования отслеживания особенность NTFS файловой системы, чтобы решить ярлык</system:String>
@@ -425,4 +426,6 @@
     <system:String x:Key="SearchLabel">Улучшения поиска для Windows</system:String>
     <system:String x:Key="LockScreen">блокировка экрана</system:String>
     <system:String x:Key="LockScreenLabel">Блокировка экрана</system:String>
+    <system:String x:Key="SuccessfullyCreated">Успешно создан</system:String>
+    <system:String x:Key="FailedToCreate">Не удалось создать</system:String>
 </ResourceDictionary>

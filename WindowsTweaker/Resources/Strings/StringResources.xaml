@@ -415,7 +415,8 @@
     <system:String x:Key="ReportError">Report Error</system:String>
     <system:String x:Key="WillExit">Windows Tweaker will exit, once the report is sent.</system:String>
     <system:String x:Key="CreateFile">create file</system:String>
-    <system:String x:Key="CreateFileLabel">Create a file of size</system:String>
+    <system:String x:Key="CreateFileLabel">Create a large file</system:String>
+    <system:String x:Key="CreateFileDesc">Create a file of size</system:String>
     <system:String x:Key="PreventStaleShortcutSearch">Don't search Windows, when I click a shortcut whose program no longer exists</system:String>
     <system:String x:Key="PreventStaleShortcutDiskSearch">Stop Windows from searching disk(s) to resolve a shortcut</system:String>
     <system:String x:Key="PreventUseOfNtfsTrack">Prevent Windows from using NTFS file system's tracking feature to resolve a shortcut</system:String>
@@ -425,4 +426,6 @@
     <system:String x:Key="SearchLabel">Windows search improvements</system:String>
     <system:String x:Key="LockScreen">lock screen</system:String>
     <system:String x:Key="LockScreenLabel">Lock Screen</system:String>
+    <system:String x:Key="SuccessfullyCreated">Successfully created</system:String>
+    <system:String x:Key="FailedToCreate">Failed to create</system:String>
 </ResourceDictionary>

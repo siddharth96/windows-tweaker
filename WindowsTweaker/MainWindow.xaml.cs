@@ -42,6 +42,7 @@ namespace WindowsTweaker {
             UpdateLanguageMenu();
             _sendToTask = new SendToTask(this);
             mainWindow.SourceInitialized += new EventHandler(OnWindowSourceInitialized);
+            cmboBxFileSizes.ItemsSource = CreateFileTask.SizeDataDict;
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -1894,6 +1895,19 @@ namespace WindowsTweaker {
                 string createCmd = String.Format("rd \"\\\\.\\{0}\"", path);
                 ProcessWrapper.ExecuteDosCmd(createCmd);
             }
+        }
+        #endregion
+
+        #region Task -> Create File
+        private void OnCreateFileButtonClick(object sender, RoutedEventArgs e) {
+            SaveFileDialog saveFileDialog = new SaveFileDialog() {
+                Filter = "All files|*.*"
+            };
+            if (saveFileDialog.ShowDialog() != true) return;
+            string filePath = saveFileDialog.FileName;
+            if (filePath == null || String.IsNullOrEmpty(filePath)) return;
+            KeyValuePair<String, long> sizeKeyValuePair = (KeyValuePair<String, long>) cmboBxFileSizes.SelectedItem;
+            CreateFileTask.Create(filePath, sizeKeyValuePair.Value, _message, this);
         }
         #endregion
 

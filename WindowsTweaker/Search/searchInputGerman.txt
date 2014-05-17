@@ -76,6 +76,7 @@ besondere Versteck => tabSpecialHiding,tabTasks,tabControlTasks,tabSpecialHiding
 Verwenden Sie diese Option, um Dateien / Ordner mit Systemrechten verstecken => lblHideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Verwenden Sie diese Option, um Dateien / Ordner mit Systemprivilegien zeigen => lblUnhideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Spezielle Ordner erstellen CON => lblSpecialFolders,tabTasks,tabControlTasks,tabSpecialFolderNames
+Erstellen von großen Dateigröße => txtCreateFile,tabTasks,tabControlTasks,tabCreateFile
 Verwenden Sie Autoplay für alle Geräte => rbtnEnableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Autoplay deaktivieren für CD-ROM und Wechselmedien => rbtnEnableCdUsbAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Autoplay deaktivieren für alle Geräte => rbtnDisableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay

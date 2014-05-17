@@ -126,6 +126,7 @@
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppTasks\ColorPickerDialog.cs" />
+    <Compile Include="AppTasks\CreateFileTask.cs" />
     <Compile Include="AppTasks\ErrorReportTask.cs" />
     <Compile Include="AppTasks\LocalizationHandler.cs" />
     <Compile Include="AppTasks\ProcessWrapper.cs" />

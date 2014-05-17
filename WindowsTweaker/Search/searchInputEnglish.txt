@@ -76,6 +76,7 @@ Special hiding special hide => tabSpecialHiding,tabTasks,tabControlTasks,tabSpec
 Use this option to hide files / folders with System Privileges => lblHideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Use this option to Un-hide files / folders with System Privileges => lblUnhideSysPrivileges,tabTasks,tabControlTasks,tabSpecialHiding
 Create Special Folders CON => lblSpecialFolders,tabTasks,tabControlTasks,tabSpecialFolderNames
+Create large file of size => txtCreateFile,tabTasks,tabControlTasks,tabCreateFile
 Use Autoplay for all devices => rbtnEnableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Turn-off Autoplay for CD-ROM and removable devices => rbtnEnableCdUsbAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay
 Turn-off Autoplay for all devices => rbtnDisableAutoPlay,tabFeatures,tabControlFeatures,tabAutoplay

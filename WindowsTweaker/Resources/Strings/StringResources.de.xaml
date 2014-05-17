@@ -415,7 +415,8 @@
     <system:String x:Key="ReportError">Fehler melden</system:String>
     <system:String x:Key="WillExit">Windows-Tweaker wird beendet, wenn der Bericht gesendet.</system:String>
     <system:String x:Key="CreateFile">Datei erstellen</system:String>
-    <system:String x:Key="CreateFileLabel">Erstellen Sie eine Datei von der Größe</system:String>
+    <system:String x:Key="CreateFileLabel">Erstellen Sie eine große Datei</system:String>
+    <system:String x:Key="CreateFileDesc">Erstellen Sie eine Datei von der Größe</system:String>
     <system:String x:Key="PreventStaleShortcutSearch">Suchen Sie nicht Windows, wenn ich auf eine Verknüpfung, deren Programm nicht mehr gibt</system:String>
     <system:String x:Key="PreventStaleShortcutDiskSearch">Beenden von Windows von der Suche Platte (n), um eine Verknüpfung zu lösen</system:String>
     <system:String x:Key="PreventUseOfNtfsTrack">Verhindern, dass Windows mit Tracking-Funktion des NTFS-Dateisystem, um eine Verknüpfung zu lösen</system:String>
@@ -425,4 +426,6 @@
     <system:String x:Key="SearchLabel">Windows-Suche Verbesserungen</system:String>
     <system:String x:Key="LockScreen">Bildschirm sperren</system:String>
     <system:String x:Key="LockScreenLabel">Bildschirm sperren</system:String>
+    <system:String x:Key="SuccessfullyCreated">erfolgreich erstellt</system:String>
+    <system:String x:Key="FailedToCreate">Konnte nicht erstellt</system:String>
 </ResourceDictionary>
