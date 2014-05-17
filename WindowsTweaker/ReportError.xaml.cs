@@ -92,12 +92,11 @@ namespace WindowsTweaker {
 
         private void OnReportErrorWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             progressBar.Visibility = Visibility.Collapsed;
-            if (!e.Cancelled) {
-                if (!((bool) e.Result)) {
-                    ShowNetworkErrorDialog();
-                }
-                this.Close();
+            if (e.Cancelled) return;
+            if (!((bool) e.Result)) {
+                ShowNetworkErrorDialog();
             }
+            this.Close();
         }
 
         private void OnReportErrorDoWork(object sender, DoWorkEventArgs e) {

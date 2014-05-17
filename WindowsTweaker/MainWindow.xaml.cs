@@ -421,6 +421,17 @@ namespace WindowsTweaker {
                     txtLoginMsgContent.IsEnabled = txtLoginMsgTitle.IsEnabled = false;
                 }
             }
+
+            // Lock Screen
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmPersonalization = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\Personalization")) {
+                    chkLockScreenImg.SetCheckedState(hklmPersonalization, Constants.NoChangingLockScreen);
+                    chkLockScreen.SetCheckedState(hklmPersonalization, Constants.NoScreenLock);
+                }
+            } else {
+                chkLockScreen.IsEnabled = chkLockScreenImg.IsEnabled = false;
+                txtLockScreen.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+            }
         }
 
         private void UpdateRegistryFromLogon() {
@@ -453,6 +464,14 @@ namespace WindowsTweaker {
                 // Login Message
                 hklmSystem.SetValue(txtLoginMsgTitle, Constants.LoginMsgTitle);
                 hklmSystem.SetValue(txtLoginMsgContent, Constants.LoginMsgContent);
+            }
+
+            // Lock Screen
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmPersonalization = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\Personalization")) {
+                    hklmPersonalization.SetValue(chkLockScreenImg, Constants.NoChangingLockScreen);
+                    hklmPersonalization.SetValue(chkLockScreen, Constants.NoScreenLock);
+                }
             }
         }
 
@@ -915,6 +934,19 @@ namespace WindowsTweaker {
                     }
                 }
             }
+
+            // Search
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                    chkPreventStaleShortcutSearch.SetCheckedState(hkcuExplorer, Constants.LinkResolveIgnoreLinkInfo);
+                    chkPreventStateShortcutDiskSearch.SetCheckedState(hkcuExplorer, Constants.NoResolveSearch);
+                    chkPreventUseOfNtfsTrack.SetCheckedState(hkcuExplorer, Constants.NoResolveTrack);
+                }
+            }
+            else {
+                chkPreventStateShortcutDiskSearch.IsEnabled = chkPreventStaleShortcutSearch.IsEnabled = chkPreventUseOfNtfsTrack.IsEnabled = false;
+                txtSearchLabel.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+            }
         }
 
         private void OnButtonSelectLogoClick(object sender, RoutedEventArgs e) {
@@ -986,6 +1018,15 @@ namespace WindowsTweaker {
                 hklmOEM.SetValue(txtModel, Constants.Model);
                 hklmOEM.SetValue(txtSupportPhone, Constants.SupportPhone);
                 hklmOEM.SetValue(txtSupportUrl, Constants.SupportUrl);
+            }
+
+            // Search
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                    hkcuExplorer.SetValue(chkPreventStaleShortcutSearch, Constants.LinkResolveIgnoreLinkInfo);
+                    hkcuExplorer.SetValue(chkPreventStateShortcutDiskSearch, Constants.NoResolveSearch);
+                    hkcuExplorer.SetValue(chkPreventUseOfNtfsTrack, Constants.NoResolveTrack);
+                }
             }
         }
         #endregion

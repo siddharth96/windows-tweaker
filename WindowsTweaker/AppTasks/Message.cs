@@ -6,34 +6,34 @@ using System.Windows.Media;
 namespace WindowsTweaker.AppTasks {
     internal class Message {
         internal Message(Panel msgContainer, TextBlock txtMsg) {
-            this.msgContainer = msgContainer;
-            this.txtMsg = txtMsg;
+            this._msgContainer = msgContainer;
+            this._txtMsg = txtMsg;
         }
 
-        private Panel msgContainer;
-        private TextBlock txtMsg;
+        private readonly Panel _msgContainer;
+        private readonly TextBlock _txtMsg;
 
         internal void Hide() {
-            msgContainer.Visibility = Visibility.Hidden;
-            txtMsg.Text = String.Empty;
+            _msgContainer.Visibility = Visibility.Hidden;
+            _txtMsg.Text = String.Empty;
         }
 
         internal void Success(string txt) {
-            msgContainer.Visibility = Visibility.Visible;
-            msgContainer.Background = new SolidColorBrush(Colors.ForestGreen);
-            txtMsg.Text = txt;
+            _msgContainer.Visibility = Visibility.Visible;
+            _msgContainer.Background = new SolidColorBrush(Colors.ForestGreen);
+            _txtMsg.Text = txt;
         }
 
         internal void Error(string txt) {
-            msgContainer.Visibility = Visibility.Visible;
-            msgContainer.Background = new SolidColorBrush(Colors.Firebrick);
-            txtMsg.Text = txt;
+            _msgContainer.Visibility = Visibility.Visible;
+            _msgContainer.Background = new SolidColorBrush(Colors.Firebrick);
+            _txtMsg.Text = txt;
         }
 
         internal void Notify(string txt) {
-            msgContainer.Visibility = Visibility.Visible;
-            msgContainer.Background = new SolidColorBrush(Colors.DodgerBlue);
-            txtMsg.Text = txt;
+            _msgContainer.Visibility = Visibility.Visible;
+            _msgContainer.Background = new SolidColorBrush(Colors.DodgerBlue);
+            _txtMsg.Text = txt;
         }
     }
 }

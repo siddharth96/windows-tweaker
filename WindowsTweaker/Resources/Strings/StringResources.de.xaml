@@ -329,7 +329,7 @@
     <system:String x:Key="OnlyVistaAndOnwards">(Nur für Windows Vista und aufwärts)</system:String>
     <system:String x:Key="Only7AndOnwards">(Nur für Windows 7 und folgende)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Nur für Windows Vista und 7)</system:String>
-    <system:String x:Key="OnlyWin8AndOnwards">(Nur für Windows 8 +)</system:String>
+    <system:String x:Key="OnlyWin8AndOnwards">(Nur für Windows 8 und weiter)</system:String>
     <system:String x:Key="ImageApplied">Bild wurde bereits erfolgreich angewendet. Wenn Ihr Computer-Eigentum Fenster bereits geöffnet ist, dann bitte schließen und erneut öffnen das Fenster, damit die Änderungen berücksichtigt werden</system:String>
     <system:String x:Key="ImageRemoved">Bild wurde erfolgreich entfernt</system:String>
     <system:String x:Key="SuccessfullyFolderCreate">Erfolgreich im erstellten Ordner</system:String>
@@ -414,4 +414,15 @@
     <system:String x:Key="ThanksForTime">Vielen Dank für Ihre Zeit.</system:String>
     <system:String x:Key="ReportError">Fehler melden</system:String>
     <system:String x:Key="WillExit">Windows-Tweaker wird beendet, wenn der Bericht gesendet.</system:String>
+    <system:String x:Key="CreateFile">Datei erstellen</system:String>
+    <system:String x:Key="CreateFileLabel">Erstellen Sie eine Datei von der Größe</system:String>
+    <system:String x:Key="PreventStaleShortcutSearch">Suchen Sie nicht Windows, wenn ich auf eine Verknüpfung, deren Programm nicht mehr gibt</system:String>
+    <system:String x:Key="PreventStaleShortcutDiskSearch">Beenden von Windows von der Suche Platte (n), um eine Verknüpfung zu lösen</system:String>
+    <system:String x:Key="PreventUseOfNtfsTrack">Verhindern, dass Windows mit Tracking-Funktion des NTFS-Dateisystem, um eine Verknüpfung zu lösen</system:String>
+    <system:String x:Key="LockLockScreenImg">Lassen Sie keine Änderungen an Bild Bildschirmsperre</system:String>
+    <system:String x:Key="NoLockScreen">Direkt Bildschirm sperren, und direkt öffnen Anmelden-Bildschirm, wenn ich Windows starten</system:String>
+    <system:String x:Key="Search">Suche</system:String>
+    <system:String x:Key="SearchLabel">Windows-Suche Verbesserungen</system:String>
+    <system:String x:Key="LockScreen">Bildschirm sperren</system:String>
+    <system:String x:Key="LockScreenLabel">Bildschirm sperren</system:String>
 </ResourceDictionary>

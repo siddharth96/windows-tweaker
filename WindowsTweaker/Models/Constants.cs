@@ -216,5 +216,12 @@ namespace WindowsTweaker.Models
         public const string DontShowUi = "DontShowUI";
         public const string DefaultConsent = "DefaultConsent";
         public const string Disabled = "Disabled";
+
+        public const string HungAppTimeout = "HungAppTimeout";
+        public const string LinkResolveIgnoreLinkInfo = "LinkResolveIgnoreLinkInfo";
+        public const string NoResolveSearch = "NoResolveSearch";
+        public const string NoResolveTrack = "NoResolveTrack";
+        public const string NoChangingLockScreen = "NoChangingLockScreen";
+        public const string NoScreenLock = "NoScreenLock";
     }
 }

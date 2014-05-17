@@ -348,14 +348,17 @@
     <Resource Include="Images\Garbage-Closed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Search\searchInputEnglish.txt" />
+    <None Include="Search\searchInputEnglish.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Search\searchInputGerman.txt" />
-    <Resource Include="Search\searchInputRussian.txt" />
+    <None Include="Search\searchInputGerman.txt" />
+    <None Include="Search\searchInputRussian.txt" />
     <Resource Include="Images\mainIconBig.png" />
     <Resource Include="mainIconBig.ico" />
-    <Content Include="Search\stemmer.py" />
+    <None Include="Search\stemmer.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Search\generateSearchInput.py" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

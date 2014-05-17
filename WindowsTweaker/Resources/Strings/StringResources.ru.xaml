@@ -329,7 +329,7 @@
     <system:String x:Key="OnlyVistaAndOnwards">(Только для Windows Vista и выше)</system:String>
     <system:String x:Key="Only7AndOnwards">(Только для Windows 7 и выше)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Только для Windows Vista и 7)</system:String>
-    <system:String x:Key="OnlyWin8AndOnwards">(Только для Windows 8 +)</system:String>
+    <system:String x:Key="OnlyWin8AndOnwards">(Только для Windows 8 и далее)</system:String>
     <system:String x:Key="ImageApplied">Изображение успешно применяется. Если окна собственности вашего компьютера уже открыт, то закройте и снова откройте окно для изменения должны быть отражены</system:String>
     <system:String x:Key="ImageRemoved">Изображение было успешно устранено</system:String>
     <system:String x:Key="SuccessfullyFolderCreate">Успешно создан папку, в</system:String>
@@ -414,4 +414,15 @@
     <system:String x:Key="ThanksForTime">Спасибо за ваше время.</system:String>
     <system:String x:Key="ReportError">Сообщить об ошибке</system:String>
     <system:String x:Key="WillExit">Окна Tweaker выйдет, как только отчет отправляется.</system:String>
+    <system:String x:Key="CreateFile">создать файл</system:String>
+    <system:String x:Key="CreateFileLabel">Создайте файл размером</system:String>
+    <system:String x:Key="PreventStaleShortcutSearch">Не ищите Windows, когда я нажимаю на ярлык, программа которого больше не существует</system:String>
+    <system:String x:Key="PreventStaleShortcutDiskSearch">Остановить Окна из ищете диска (ов), чтобы решить ярлык</system:String>
+    <system:String x:Key="PreventUseOfNtfsTrack">Предотвращение Окна от использования отслеживания особенность NTFS файловой системы, чтобы решить ярлык</system:String>
+    <system:String x:Key="LockLockScreenImg">Не допускайте никаких изменений для блокировки экрана изображение</system:String>
+    <system:String x:Key="NoLockScreen">Перейти блокировки экрана, так и непосредственно с открытым Вход на экране, когда я начинаю Окна</system:String>
+    <system:String x:Key="Search">поиск</system:String>
+    <system:String x:Key="SearchLabel">Улучшения поиска для Windows</system:String>
+    <system:String x:Key="LockScreen">блокировка экрана</system:String>
+    <system:String x:Key="LockScreenLabel">Блокировка экрана</system:String>
 </ResourceDictionary>

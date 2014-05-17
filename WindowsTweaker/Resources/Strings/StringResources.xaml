@@ -329,7 +329,7 @@
     <system:String x:Key="OnlyVistaAndOnwards">(Only for Windows Vista and onwards)</system:String>
     <system:String x:Key="Only7AndOnwards">(Only for Windows 7 and onwards)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Only for Windows Vista and 7)</system:String>
-    <system:String x:Key="OnlyWin8AndOnwards">(Only for Windows 8+)</system:String>
+    <system:String x:Key="OnlyWin8AndOnwards">(Only for Windows 8 &amp; onwards)</system:String>
     <system:String x:Key="ImageApplied">Image has been successfully applied. If your Computer's property windows is already open then please close and re-open the window for the changes to be reflected</system:String>
     <system:String x:Key="ImageRemoved">Image has been successfully removed</system:String>
     <system:String x:Key="SuccessfullyFolderCreate">Successfully created folder in</system:String>
@@ -414,4 +414,15 @@
     <system:String x:Key="ThanksForTime">Thanks for your time.</system:String>
     <system:String x:Key="ReportError">Report Error</system:String>
     <system:String x:Key="WillExit">Windows Tweaker will exit, once the report is sent.</system:String>
+    <system:String x:Key="CreateFile">create file</system:String>
+    <system:String x:Key="CreateFileLabel">Create a file of size</system:String>
+    <system:String x:Key="PreventStaleShortcutSearch">Don't search Windows, when I click a shortcut whose program no longer exists</system:String>
+    <system:String x:Key="PreventStaleShortcutDiskSearch">Stop Windows from searching disk(s) to resolve a shortcut</system:String>
+    <system:String x:Key="PreventUseOfNtfsTrack">Prevent Windows from using NTFS file system's tracking feature to resolve a shortcut</system:String>
+    <system:String x:Key="LockLockScreenImg">Don't allow any changes to Lock Screen image</system:String>
+    <system:String x:Key="NoLockScreen">Skip lock screen, and directly open Sign in screen, when I start Windows</system:String>
+    <system:String x:Key="Search">search</system:String>
+    <system:String x:Key="SearchLabel">Windows search improvements</system:String>
+    <system:String x:Key="LockScreen">lock screen</system:String>
+    <system:String x:Key="LockScreenLabel">Lock Screen</system:String>
 </ResourceDictionary>
