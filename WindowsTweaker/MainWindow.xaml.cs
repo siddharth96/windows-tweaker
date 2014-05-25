@@ -18,7 +18,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using WPFFolderBrowser;
 using File = System.IO.File;
-using MessageBox = System.Windows.MessageBox;
 using WinInterop = System.Windows.Interop;
 
 namespace WindowsTweaker {
@@ -35,6 +34,7 @@ namespace WindowsTweaker {
             _message.Notify(initializeSearch);
             _sendToBackgroundWorker = (BackgroundWorker) this.FindResource("sendToBackgroundWorker");
             _searchBackgroundWorker = (BackgroundWorker) this.FindResource("searchBackgroundWorker");
+            _updateCheckBackgroundWorker = (BackgroundWorker)this.FindResource("updateCheckBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
             _message.Hide();
@@ -43,6 +43,7 @@ namespace WindowsTweaker {
             _sendToTask = new SendToTask(this);
             mainWindow.SourceInitialized += new EventHandler(OnWindowSourceInitialized);
             cmboBxFileSizes.ItemsSource = CreateFileTask.SizeDataDict;
+            CheckForUpdate();
         }
 
         private readonly RegistryKey _hkcu = Registry.CurrentUser;
@@ -53,6 +54,7 @@ namespace WindowsTweaker {
         private readonly Message _message;
         private readonly BackgroundWorker _sendToBackgroundWorker;
         private readonly BackgroundWorker _searchBackgroundWorker;
+        private readonly BackgroundWorker _updateCheckBackgroundWorker;
         private Color _selectionColor;
         private readonly Searcher _searcher;
         private readonly Dictionary<string, bool> _hasTabLoadedDict;
@@ -2341,6 +2343,46 @@ namespace WindowsTweaker {
         private void OnAboutMenuItemClick(object sender, RoutedEventArgs e) {
             About about = new About();
             about.ShowDialog();
+        }
+        #endregion
+
+        #region Update Check
+
+        private void CheckForUpdate() {
+            if (String.IsNullOrEmpty(Keys.UpdateApiUrl)) return;
+            _updateCheckBackgroundWorker.RunWorkerAsync();
+        }
+
+        private TweakerUpdate GetLastestVersionInfo() {
+            String response = UpdateCheckTask.GetUpdateInfoFile();
+            if (String.IsNullOrEmpty(response)) return null;
+            TweakerUpdate tweakerUpdate = UpdateCheckTask.ReadTweakerUpdateInfo(response);
+            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            try {
+                Version latestVersion = new Version(tweakerUpdate.Version);
+                if (applicationVersion.CompareTo(latestVersion) < 0) {
+                    return tweakerUpdate;
+                }
+            } catch (ArgumentException) { } catch (FormatException) { } catch (OverflowException) { }
+            return null;
+        }
+
+        private void OnUpdateCheckBackgroundWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            TweakerUpdate tweakerUpdate = e.Result as TweakerUpdate;
+            if (tweakerUpdate == null) return;
+            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            string msg = GetResourceString("NewVersionAvailable") + " " + tweakerUpdate.Version + " " + GetResourceString("IsAvailableForDw") + " " +
+                         "(" + GetResourceString("CurrentVersion") + " " + applicationVersion +").";
+            InfoBox infoBox = new InfoBox(msg, GetResourceString("Download"), GetResourceString("UpdateAvailable"),
+                InfoBox.DialogType.Information);
+            if (infoBox.ShowDialog() == true) {
+                Process.Start(tweakerUpdate.Url);
+            }
+        }
+
+        private void OnUpdaeWorkerStarted(object sender, DoWorkEventArgs e) {
+            TweakerUpdate result = GetLastestVersionInfo();
+            e.Result = result;
         }
         #endregion
     }

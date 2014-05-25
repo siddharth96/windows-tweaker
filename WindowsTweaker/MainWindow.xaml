@@ -12,6 +12,8 @@
                              WorkerSupportsCancellation="True" DoWork="OnSendToWorkerStarted"></cm:BackgroundWorker>
         <cm:BackgroundWorker x:Key="searchBackgroundWorker" RunWorkerCompleted="OnSearchWorkerCompleted"
                              WorkerSupportsCancellation="True" DoWork="OnSearchWorkerStarted"></cm:BackgroundWorker>
+        <cm:BackgroundWorker x:Key="updateCheckBackgroundWorker" RunWorkerCompleted="OnUpdateCheckBackgroundWorkerCompleted"
+                             DoWork="OnUpdaeWorkerStarted"></cm:BackgroundWorker>
         <DataTemplate x:Key="TileView">
             <Grid Margin="3">
                 <Grid.ColumnDefinitions>

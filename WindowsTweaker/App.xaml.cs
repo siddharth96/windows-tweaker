@@ -17,7 +17,9 @@ namespace WindowsTweaker {
 
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         private void OnApplicationStartup(object sender, StartupEventArgs e) {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+            if (!String.IsNullOrEmpty(Keys.ErrorApiKey) && !String.IsNullOrEmpty(Keys.ErrorApiUrl)) {
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+            }
             DoLocalization();
         }
 

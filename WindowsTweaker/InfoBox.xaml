@@ -16,8 +16,8 @@
             </Grid.ColumnDefinitions>
             <Image Name="imgInfoBox" Margin="10" Width="64" Height="64" 
                    Stretch="None" Grid.Column="0"></Image>
-            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10" Foreground="Black"
-                       Name="txtMsg" Grid.Column="1" />
+            <TextBlock Margin="10" Foreground="Black"
+                       Name="txtMsg" Grid.Column="1" FontSize="14" TextWrapping="Wrap" />
         </Grid>
         <Grid Grid.Row="1" Background="{StaticResource WindowBackgroudBrushEnd}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

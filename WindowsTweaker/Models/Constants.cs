@@ -1,9 +1,7 @@
 ﻿using WindowsTweaker.AppTasks;
 
-namespace WindowsTweaker.Models
-{
-    internal static class Constants
-    {
+namespace WindowsTweaker.Models {
+    internal static class Constants {
         public const string Explorer = "explorer";
         public const string System = "system";
         public const string Display = "display";
@@ -127,31 +125,31 @@ namespace WindowsTweaker.Models
         //Explorer
         public const string NoFileMenu = "NoFileMenu";
         public const string NoFolderOption = "NoFolderOptions";
-        public const string NoViewContextMenu="NoViewContextMenu";
+        public const string NoViewContextMenu = "NoViewContextMenu";
         public const string NoTrayContextMenu = "NoTrayContextMenu";
-        public const string NoDispAppearancePage="NoDispAppearancePage";
+        public const string NoDispAppearancePage = "NoDispAppearancePage";
         public const string NoDispScrSavPage = "NoDispScrSavPage";
-        public const string DisableThumbnailCache="DisableThumbnailCache";
-        public const string DisAllowFlip_3D= "DisallowFlip3D";
+        public const string DisableThumbnailCache = "DisableThumbnailCache";
+        public const string DisAllowFlip_3D = "DisallowFlip3D";
         //Start Menu
-        public const string NoClose="NoClose";
-        public const string NoRecentDocsMenu="NoRecentDocsMenu";
-        public const string NoChangeStartMenu="NoChangeStartMenu";
-        public const string NoLogOff="NoLogoff";
-        public const string NoDispCpl="NoDispCPL";
+        public const string NoClose = "NoClose";
+        public const string NoRecentDocsMenu = "NoRecentDocsMenu";
+        public const string NoChangeStartMenu = "NoChangeStartMenu";
+        public const string NoLogOff = "NoLogoff";
+        public const string NoDispCpl = "NoDispCPL";
         //System
-        public const string NoDeletePrinter="NoDeletePrinter";
-        public const string NoAddPrinter="NoAddPrinter";
-        public const string NoWindowUpdate="NoWindowsUpdate";
-        public const string NoVirtMemPage="NoVirtMemPage";
-        public const string DisbaleRegistryTools="DisableRegistryTools";
-        public const string DisableTaskMgr="DisableTaskMgr";
-        public const string NoPropertiesMyComputer="NoPropertiesMyComputer";
+        public const string NoDeletePrinter = "NoDeletePrinter";
+        public const string NoAddPrinter = "NoAddPrinter";
+        public const string NoWindowUpdate = "NoWindowsUpdate";
+        public const string NoVirtMemPage = "NoVirtMemPage";
+        public const string DisbaleRegistryTools = "DisableRegistryTools";
+        public const string DisableTaskMgr = "DisableTaskMgr";
+        public const string NoPropertiesMyComputer = "NoPropertiesMyComputer";
         //Special case 
         public const string AutoShreWks = "AutoShareWks";
         //Taskbar
         public const string TaskBarAnimations = "TaskbarAnimations";
-        public const string TaskBarSmallIcons="TaskbarSmallIcons";
+        public const string TaskBarSmallIcons = "TaskbarSmallIcons";
         public const string ShowInfoTip = "ShowInfoTip";
 
 

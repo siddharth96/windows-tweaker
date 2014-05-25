@@ -135,6 +135,7 @@
     <Compile Include="AppTasks\OpenWithTask.cs" />
     <Compile Include="AppTasks\SendToTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
+    <Compile Include="AppTasks\UpdateCheckTask.cs" />
     <Compile Include="AppTasks\UserInteractionMarker.cs" />
     <Compile Include="InfoBox.xaml.cs">
       <DependentUpon>InfoBox.xaml</DependentUpon>
@@ -148,6 +149,7 @@
     <Compile Include="HelpCheckBox.xaml.cs">
       <DependentUpon>HelpCheckBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\TweakerUpdate.cs" />
     <Compile Include="MoreInfo.xaml.cs">
       <DependentUpon>MoreInfo.xaml</DependentUpon>
     </Compile>

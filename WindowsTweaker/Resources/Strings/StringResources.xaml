@@ -432,4 +432,9 @@
     <system:String x:Key="CreateAnyways">Create Anyways</system:String>
     <system:String x:Key="Ok">Ok</system:String>
     <system:String x:Key="CloseNLaunch">Close and launch</system:String>
+    <system:String x:Key="Download">Download</system:String>
+    <system:String x:Key="NewVersionAvailable">A newer version of Windows Tweaker</system:String>
+    <system:String x:Key="IsAvailableForDw">is available for download</system:String>
+    <system:String x:Key="CurrentVersion">You are currently using version</system:String>
+    <system:String x:Key="UpdateAvailable">Update available</system:String>
 </ResourceDictionary>

@@ -432,4 +432,9 @@
     <system:String x:Key="CreateAnyways">Создать в любом случае</system:String>
     <system:String x:Key="Ok">Хорошо</system:String>
     <system:String x:Key="CloseNLaunch">Закрыть и запуск</system:String>
+    <system:String x:Key="Download">скачать</system:String>
+    <system:String x:Key="NewVersionAvailable">Новая версия ОС Windows Tweaker</system:String>
+    <system:String x:Key="IsAvailableForDw">доступна для скачивания</system:String>
+    <system:String x:Key="CurrentVersion">Вы используете версию</system:String>
+    <system:String x:Key="UpdateAvailable">доступно обновление</system:String>
 </ResourceDictionary>
