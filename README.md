@@ -1,4 +1,4 @@
-Windows Tweaker 5.0 has been written in C# and WPF using .net Framework 4.5.1, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
+Windows Tweaker 5.0 has been written in C# and WPF using .net Framework 4.5.2, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
 
 Window Tweaker 4.0 (used .net 4.0) was released on March-4, 2012.
 The latest version 5.0 is currently under development, and is a complete re-write from scratch.
@@ -7,6 +7,8 @@ The latest version 5.0 is currently under development, and is a complete re-writ
 Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-i-use-github "Lifehacker") if you don't know how to setup git on Windows.
 
 1. Download [Visual Studio Express 2013 for Windows Desktop](http://msdn.microsoft.com/en-us/dn369242), in case you don't have a paid license for Visual Studio 2013. 
+
+2. Download .net Framework 4.5.2 Developer Pack from [here](http://www.microsoft.com/en-us/download/details.aspx?id=42637)
 
 2. Clone the repository
 
