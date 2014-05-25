@@ -74,22 +74,27 @@
         <Setter Property="FontWeight" Value="400" />
         <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         <ContentPresenter x:Name="ContentSite"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
                                           ContentSource="Header"
                                           Margin="0"
-                                          RecognizesAccessKey="True" />
+                                          RecognizesAccessKey="True" Grid.Row="0" />
+                        <Border Name="Border" Grid.Row="1" BorderBrush="{StaticResource BlueShadeBackgroundBrush}"
+                                BorderThickness="0 0 0 4" Visibility="Collapsed"></Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter Property="Panel.ZIndex" Value="90" />
-                            <Setter Property="TextBlock.Foreground"
-                                    Value="{StaticResource TabItemTextBrushUnselected}" />
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
@@ -109,8 +114,7 @@
 
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Panel.ZIndex" Value="100" />
-                            <Setter Property="TextBlock.Foreground"
-                                    Value="{StaticResource TabItemTextBrushSelected}" />
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -126,14 +130,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Grid Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
+                    <Border Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
                         <ContentPresenter x:Name="ContentSite"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
                                           ContentSource="Header"
                                           Margin="0"
                                           RecognizesAccessKey="True" />
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter Property="Panel.ZIndex" Value="90" />
