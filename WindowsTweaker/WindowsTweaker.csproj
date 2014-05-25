@@ -136,6 +136,9 @@
     <Compile Include="AppTasks\SendToTask.cs" />
     <Compile Include="AppTasks\StartupManagerTask.cs" />
     <Compile Include="AppTasks\UserInteractionMarker.cs" />
+    <Compile Include="InfoBox.xaml.cs">
+      <DependentUpon>InfoBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Keys.cs" />
     <Compile Include="Keys.Local.cs" />
     <Compile Include="Models\Config.cs" />
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HelpCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

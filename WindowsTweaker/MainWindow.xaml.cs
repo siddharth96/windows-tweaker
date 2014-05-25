@@ -1714,8 +1714,9 @@ namespace WindowsTweaker {
                 string msg = GetResourceString("UnableToIndentify") + " \"" + shrtCtPath + "\"" + " " + GetResourceString("AsValidFilePath") + "." +
                                            Environment.NewLine + " " + GetResourceString("ProceedAndCreateShortcut") +
                                            Environment.NewLine + " " + GetResourceString("AddedToPath");
-                if (MessageBox.Show(msg, GetResourceString("WarningMsgTitle"), MessageBoxButton.YesNo,
-                        MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                InfoBox infoBox = new InfoBox(msg, GetResourceString("CreateAnyways"), 
+                    GetResourceString("WarningMsgTitle"), InfoBox.DialogType.Warning);
+                if (infoBox.ShowDialog() == true) {
                     RightClickAddDeleteTask.AddToRegistry(shrtCtName, shrtCtPath);
                     result = true;
                 }
@@ -2330,7 +2331,9 @@ namespace WindowsTweaker {
             }
             LocalizationHandler.UpdateCultureInConfig(cultureName);
             string msg = GetResourceString("RestartForLangChange");
-            if (MessageBox.Show(msg, GetResourceString("Success"), MessageBoxButton.OK, MessageBoxImage.Information) == MessageBoxResult.OK) {
+            InfoBox infoBox = new InfoBox(msg, GetResourceString("CloseNLaunch"), GetResourceString("Success"),
+                InfoBox.DialogType.Information);
+            if (infoBox.ShowDialog() == true) {
                 Environment.Exit(0);
             }
         }

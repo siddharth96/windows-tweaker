@@ -1,0 +1,31 @@
+﻿<Window x:Class="WindowsTweaker.InfoBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows Tweaker" SizeToContent="Height" Width="400"
+        Icon="Images/mainIconBig.png"
+        ResizeMode="NoResize" Name="infoBoxWindow" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Name="imgInfoBox" Margin="10" Width="64" Height="64" 
+                   Stretch="None" Grid.Column="0"></Image>
+            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="10" Foreground="Black"
+                       Name="txtMsg" Grid.Column="1" />
+        </Grid>
+        <Grid Grid.Row="1" Background="{StaticResource WindowBackgroudBrushEnd}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{x:Null}" Name="btnOk" Margin="10" Padding="8 5" IsDefault="True" 
+                        Click="OnOkButtonClick" />
+                <Button Style="{x:Null}" Name="btnCancel" Content="{StaticResource Cancel}" Margin="10" 
+                        Padding="8 5" IsCancel="True" Click="OnCancelButtonClick" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

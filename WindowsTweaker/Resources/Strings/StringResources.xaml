@@ -428,4 +428,8 @@
     <system:String x:Key="LockScreenLabel">Lock Screen</system:String>
     <system:String x:Key="SuccessfullyCreated">Successfully created</system:String>
     <system:String x:Key="FailedToCreate">Failed to create</system:String>
+    <system:String x:Key="Delete">Delete</system:String>
+    <system:String x:Key="CreateAnyways">Create Anyways</system:String>
+    <system:String x:Key="Ok">Ok</system:String>
+    <system:String x:Key="CloseNLaunch">Close and launch</system:String>
 </ResourceDictionary>

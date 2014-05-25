@@ -77,8 +77,9 @@ namespace WindowsTweaker.AppTasks
             string msg = sendToListItems.Length == 1
                 ? _window.FindResource("SureToDelete") + " \"" + sendToListItems[0].Name + "\" " + _window.FindResource("FromSendToMenu")
                 : _window.FindResource("SureToDeleteMultiple") + " " + sendToListItems.Length + " " + _window.FindResource("FromSendToMenuMultiple");
-            if (MessageBox.Show(msg, _window.FindResource("WarningMsgTitle").ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) !=
-                MessageBoxResult.Yes) return;
+            InfoBox infoBox = new InfoBox(msg, _window.FindResource("Delete").ToString(), 
+                _window.FindResource("WarningMsgTitle").ToString(), InfoBox.DialogType.Question);
+            if (infoBox.ShowDialog() != true) return;
             List<string> failedFiles = new List<string>();
             foreach (FileItem sendToFileItem in sendToListItems) {
                 string filePath = sendToFileItem.FullName;

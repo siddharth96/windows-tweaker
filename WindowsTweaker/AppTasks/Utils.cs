@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using WindowsTweaker.Models;
 using Microsoft.Win32;
 
@@ -127,5 +134,22 @@ namespace WindowsTweaker.AppTasks {
         internal static Func<string, string> GetHideCmd = val => String.Format("attrib +h +s \"{0}\"", val);
 
         internal static Func<string, string> GetUnhideCmd = val => String.Format("attrib -h -s \"{0}\"", val);
+
+        [DllImport("gdi32.dll", SetLastError = true)]
+        private static extern bool DeleteObject(IntPtr hObject);
+
+        public static ImageSource ToImageSource(this Bitmap bitmap) {
+            IntPtr hBitmap = bitmap.GetHbitmap();
+            ImageSource wpfBitmap = Imaging.CreateBitmapSourceFromHBitmap(
+                hBitmap,
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions());
+
+            if (!DeleteObject(hBitmap)) {
+                throw new Win32Exception();
+            }
+            return wpfBitmap;
+        }
     }
 }

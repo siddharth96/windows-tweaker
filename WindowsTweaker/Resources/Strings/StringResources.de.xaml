@@ -428,4 +428,8 @@
     <system:String x:Key="LockScreenLabel">Bildschirm sperren</system:String>
     <system:String x:Key="SuccessfullyCreated">erfolgreich erstellt</system:String>
     <system:String x:Key="FailedToCreate">Konnte nicht erstellt</system:String>
+    <system:String x:Key="Delete">löschen</system:String>
+    <system:String x:Key="CreateAnyways">erstellen Sie sowieso</system:String>
+    <system:String x:Key="Ok">Ok</system:String>
+    <system:String x:Key="CloseNLaunch">Schließen und starten</system:String>
 </ResourceDictionary>

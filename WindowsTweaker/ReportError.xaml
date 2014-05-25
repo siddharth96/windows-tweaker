@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
+        Icon="Images/mainIconBig.png"
         Title="{StaticResource UhOh}" SizeToContent="WidthAndHeight" Padding="0">
     <Window.Resources>
         <cm:BackgroundWorker x:Key="reportErrorBackgroundWorker" RunWorkerCompleted="OnReportErrorWorkerCompleted"

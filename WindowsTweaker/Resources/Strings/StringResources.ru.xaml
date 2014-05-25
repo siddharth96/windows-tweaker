@@ -428,4 +428,8 @@
     <system:String x:Key="LockScreenLabel">Блокировка экрана</system:String>
     <system:String x:Key="SuccessfullyCreated">Успешно создан</system:String>
     <system:String x:Key="FailedToCreate">Не удалось создать</system:String>
+    <system:String x:Key="Delete">удалять</system:String>
+    <system:String x:Key="CreateAnyways">Создать в любом случае</system:String>
+    <system:String x:Key="Ok">Хорошо</system:String>
+    <system:String x:Key="CloseNLaunch">Закрыть и запуск</system:String>
 </ResourceDictionary>
