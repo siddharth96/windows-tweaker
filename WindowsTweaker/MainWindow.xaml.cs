@@ -1170,31 +1170,36 @@ namespace WindowsTweaker {
                 panelSetupGodMode.IsEnabled = false;
             }
             // Power Button
-            using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
-                int val = (int) hkcuExAdvanced.GetValue(Constants.StartPowerBtnAction);
-                switch (val) {
-                    case 2:
-                        cmboBxPowerBtnAction.SelectedIndex = 0;
-                        break;
-                    case 64:
-                        cmboBxPowerBtnAction.SelectedIndex = 1;
-                        break;
-                    case 16:
-                        cmboBxPowerBtnAction.SelectedIndex = 2;
-                        break;
-                    case 4:
-                        cmboBxPowerBtnAction.SelectedIndex = 3;
-                        break;
-                    case 512:
-                        cmboBxPowerBtnAction.SelectedIndex = 4;
-                        break;
-                    case 1:
-                        cmboBxPowerBtnAction.SelectedIndex = 5;
-                        break;
-                    case 256:
-                        cmboBxPowerBtnAction.SelectedIndex = 6;
-                        break;
+            if (_windowsOs <= WindowsVer.Windows.Seven) {
+                using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                    int val = (int) hkcuExAdvanced.GetValue(Constants.StartPowerBtnAction, 2);
+                    switch (val) {
+                        case 2:
+                            cmboBxPowerBtnAction.SelectedIndex = 0;
+                            break;
+                        case 64:
+                            cmboBxPowerBtnAction.SelectedIndex = 1;
+                            break;
+                        case 16:
+                            cmboBxPowerBtnAction.SelectedIndex = 2;
+                            break;
+                        case 4:
+                            cmboBxPowerBtnAction.SelectedIndex = 3;
+                            break;
+                        case 512:
+                            cmboBxPowerBtnAction.SelectedIndex = 4;
+                            break;
+                        case 1:
+                            cmboBxPowerBtnAction.SelectedIndex = 5;
+                            break;
+                        case 256:
+                            cmboBxPowerBtnAction.SelectedIndex = 6;
+                            break;
+                    }
                 }
+            } else {
+                lblPowerBtnAction.Text += GetResourceString("Only7AndBelow");
+                cmboBxPowerBtnAction.IsEnabled = false;
             }
 
             // Default Opening
@@ -1233,23 +1238,32 @@ namespace WindowsTweaker {
         }
 
         private void UpdateRegistryFromPlaces() {
-            int val = cmboBxPowerBtnAction.SelectedIndex;
-            using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
-                switch (val) {
-                    case 0 : hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 2);
-                        break;
-                    case 1: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 64);
-                        break;
-                    case 2: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 16);
-                        break;
-                    case 3: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 4);
-                        break;
-                    case 4: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 512);
-                        break;
-                    case 5: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 1);
-                        break;
-                    case 6: hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 256);
-                        break;
+            if (_windowsOs <= WindowsVer.Windows.Seven) {
+                int val = cmboBxPowerBtnAction.SelectedIndex;
+                using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                    switch (val) {
+                        case 0:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 2);
+                            break;
+                        case 1:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 64);
+                            break;
+                        case 2:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 16);
+                            break;
+                        case 3:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 4);
+                            break;
+                        case 4:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 512);
+                            break;
+                        case 5:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 1);
+                            break;
+                        case 6:
+                            hkcuExAdvanced.SetValue(Constants.StartPowerBtnAction, 256);
+                            break;
+                    }
                 }
             }
         }
@@ -1483,40 +1497,9 @@ namespace WindowsTweaker {
             }
             chkOpenCmdPrompt.IsChecked = openCmdDirVal || openCmdDriveVal;
 
-            using (
-                RegistryKey hklmExAdvanced =
+            using (RegistryKey hklmExAdvanced =
                     _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 chkEncryptAndDecrypt.SetCheckedState(hklmExAdvanced, Constants.EncryptCtxMenu);
-            }
-
-            if (_windowsOs >= WindowsVer.Windows.Seven) {
-                using (RegistryKey hklmClasses = _hklm.CreateSubKey(@"Software\Classes")) {
-                    using (RegistryKey hklmDotTxt = _hklm.CreateSubKey(@"Software\Classes\.txt")) {
-                        string txtFile = (string) hklmDotTxt.GetValue("");
-                        RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
-                        RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
-
-                        if (hklmDotTextShell != null) {
-                            RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
-                            RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
-                            if (hklmTextShell != null) {
-                                chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
-                                                            || hklmTextShell.GetValue(Constants.CopyContents) != null;
-                            }
-                            else {
-                                chkCopyContents.IsChecked = false;
-                            }
-                            hklmTxt.Close();
-                            hklmDotTextShell.Close();
-                            hklmTextFile.Close();
-                            if (hklmTextShell != null)
-                                hklmTextShell.Close();
-                        }
-                    }
-                }
-            } else {
-                txtCopyContents.Text += " " + GetResourceString("OnlyVistaAndOnwards");
-                chkCopyContents.IsEnabled = false;
             }
 
             // Add Items
@@ -1585,32 +1568,6 @@ namespace WindowsTweaker {
             using (RegistryKey hklmExAdvanced = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                 hklmExAdvanced.SetValue(chkEncryptAndDecrypt, Constants.EncryptCtxMenu);
             }
-
-//            if (_windowsOs >= WindowsVer.Windows.Seven) {
-//                using (RegistryKey hklmClasses = _hklm.CreateSubKey(@"Software\Classes")) {
-//                    using (RegistryKey hklmDotTxt = _hklm.CreateSubKey(@"Software\Classes\.txt")) {
-//                        string txtFile = (string)hklmDotTxt.GetValue("");
-//                        RegistryKey hklmTxt = hklmClasses.CreateSubKey(txtFile);
-//                        RegistryKey hklmDotTextShell = hklmTxt.OpenSubKey(Constants.Shell, true);
-//
-//                        if (hklmDotTextShell != null) {
-//                            RegistryKey hklmTextFile = hklmClasses.CreateSubKey(Constants.TextFile);
-//                            RegistryKey hklmTextShell = hklmTextFile.OpenSubKey(Constants.Shell, true);
-//                            if (hklmTextShell != null) {
-//                                chkCopyContents.IsChecked = hklmDotTextShell.GetValue(Constants.CopyContents) != null
-//                                                            || hklmTextShell.GetValue(Constants.CopyContents) != null;
-//                            } else {
-//                                chkCopyContents.IsChecked = false;
-//                            }
-//                            hklmTxt.Close();
-//                            hklmDotTextShell.Close();
-//                            hklmTextFile.Close();
-//                            if (hklmTextShell != null)
-//                                hklmTextShell.Close();
-//                        }
-//                    }
-//                }
-//            }
         }
 
         #endregion
@@ -2380,7 +2337,7 @@ namespace WindowsTweaker {
             }
         }
 
-        private void OnUpdaeWorkerStarted(object sender, DoWorkEventArgs e) {
+        private void OnUpdateWorkerStarted(object sender, DoWorkEventArgs e) {
             TweakerUpdate result = GetLastestVersionInfo();
             e.Result = result;
         }

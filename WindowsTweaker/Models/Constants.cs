@@ -111,7 +111,6 @@ namespace WindowsTweaker.Models {
         public const string OpenCmdPromptVal = "cmd.exe /k cd %1";
         public const string RunAs = "runas";
         public const string EncryptCtxMenu = "EncryptionContextMenu";
-        public const string CopyContents = "copycontents";
         public const string Shell = "shell";
         public const string Open = "Open";
         public const string Edit = "edit";

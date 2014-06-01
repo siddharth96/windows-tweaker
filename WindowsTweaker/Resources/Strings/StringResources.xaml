@@ -328,6 +328,7 @@
     <system:String x:Key="InitializingSearch">Initializing search, please wait...</system:String>
     <system:String x:Key="OnlyVistaAndOnwards">(Only for Windows Vista and onwards)</system:String>
     <system:String x:Key="Only7AndOnwards">(Only for Windows 7 and onwards)</system:String>
+    <system:String x:Key="Only7AndBelow">(Only for Windows 7 and below)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Only for Windows Vista and 7)</system:String>
     <system:String x:Key="OnlyWin8AndOnwards">(Only for Windows 8 &amp; onwards)</system:String>
     <system:String x:Key="ImageApplied">Image has been successfully applied. If your Computer's property windows is already open then please close and re-open the window for the changes to be reflected</system:String>
@@ -437,4 +438,5 @@
     <system:String x:Key="IsAvailableForDw">is available for download</system:String>
     <system:String x:Key="CurrentVersion">You are currently using version</system:String>
     <system:String x:Key="UpdateAvailable">Update available</system:String>
+    <system:String x:Key="CreateRestorePt">Create system restore point</system:String>
 </ResourceDictionary>

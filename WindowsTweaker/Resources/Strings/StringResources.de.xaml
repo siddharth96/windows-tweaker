@@ -328,6 +328,7 @@
     <system:String x:Key="InitializingSearch">Initialisieren Suche, bitte warten ...</system:String>
     <system:String x:Key="OnlyVistaAndOnwards">(Nur für Windows Vista und aufwärts)</system:String>
     <system:String x:Key="Only7AndOnwards">(Nur für Windows 7 und folgende)</system:String>
+    <system:String x:Key="Only7AndBelow">(Nur für Windows 7 und unten)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Nur für Windows Vista und 7)</system:String>
     <system:String x:Key="OnlyWin8AndOnwards">(Nur für Windows 8 und weiter)</system:String>
     <system:String x:Key="ImageApplied">Bild wurde bereits erfolgreich angewendet. Wenn Ihr Computer-Eigentum Fenster bereits geöffnet ist, dann bitte schließen und erneut öffnen das Fenster, damit die Änderungen berücksichtigt werden</system:String>

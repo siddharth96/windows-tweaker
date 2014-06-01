@@ -328,6 +328,7 @@
     <system:String x:Key="InitializingSearch">Инициализация поиска, пожалуйста, подождите ...</system:String>
     <system:String x:Key="OnlyVistaAndOnwards">(Только для Windows Vista и выше)</system:String>
     <system:String x:Key="Only7AndOnwards">(Только для Windows 7 и выше)</system:String>
+    <system:String x:Key="Only7AndBelow">(Только для Windows 7 и ниже)</system:String>
     <system:String x:Key="OnlyVistaAnd7">(Только для Windows Vista и 7)</system:String>
     <system:String x:Key="OnlyWin8AndOnwards">(Только для Windows 8 и далее)</system:String>
     <system:String x:Key="ImageApplied">Изображение успешно применяется. Если окна собственности вашего компьютера уже открыт, то закройте и снова откройте окно для изменения должны быть отражены</system:String>
