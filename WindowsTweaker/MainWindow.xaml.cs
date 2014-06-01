@@ -1198,7 +1198,7 @@ namespace WindowsTweaker {
                     }
                 }
             } else {
-                lblPowerBtnAction.Text += GetResourceString("Only7AndBelow");
+                lblPowerBtnAction.Text += " " + GetResourceString("Only7AndBelow");
                 cmboBxPowerBtnAction.IsEnabled = false;
             }
 
