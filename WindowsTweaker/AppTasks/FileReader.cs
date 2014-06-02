@@ -71,19 +71,19 @@ namespace WindowsTweaker.AppTasks {
         }
 
         private FileItem GetFileItem(string filePath, bool isChecked, string name) {
-            try {
-                FileInfo fInfo = new FileInfo(filePath);
-                if (fInfo.Exists) {
+            FileInfo fInfo = new FileInfo(filePath);
+            if (fInfo.Exists) {
+                ImageSource imageSource = null;
+                try {
                     Icon fileIcon = Icon.ExtractAssociatedIcon(filePath);
-                    ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle,
+                    imageSource = Imaging.CreateBitmapSourceFromHIcon(fileIcon.Handle,
                         new Int32Rect(0, 0,
                             fileIcon.Width, fileIcon.Height), BitmapSizeOptions.FromEmptyOptions());
                     imageSource.Freeze();
-                    return new FileItem(filePath, imageSource, isChecked, name);
+                } catch (ArgumentException) {
+                    imageSource = null;
                 }
-            }
-            catch (ArgumentException) {
-                //Invalid filePath
+                return new FileItem(filePath, imageSource, isChecked, name);
             }
             return null;
         }

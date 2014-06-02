@@ -34,7 +34,7 @@ namespace WindowsTweaker {
             _message.Notify(initializeSearch);
             _sendToBackgroundWorker = (BackgroundWorker) this.FindResource("sendToBackgroundWorker");
             _searchBackgroundWorker = (BackgroundWorker) this.FindResource("searchBackgroundWorker");
-            _updateCheckBackgroundWorker = (BackgroundWorker)this.FindResource("updateCheckBackgroundWorker");
+            _updateCheckBackgroundWorker = (BackgroundWorker) this.FindResource("updateCheckBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
             _message.Hide();
@@ -1769,7 +1769,7 @@ namespace WindowsTweaker {
 
         private void OnCancelShutdownButtonClick(object sender, RoutedEventArgs e) {
             ProcessWrapper.ExecuteDosCmd("shutdown /a");
-            _message.Success("ShutdownCancelled");
+            _message.Success(GetResourceString("ShutdownCancelled"));
         }
         #endregion
 

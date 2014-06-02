@@ -34,7 +34,7 @@ namespace WindowsTweaker {
         private void OnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             if (e.Cancelled) return;
             ObservableCollection<FileItem> fileItemList = e.Result as ObservableCollection<FileItem>;
-            if (fileItemList != null) {
+            if (fileItemList != null && fileItemList.Count > 0) {
                 lstStartupItems.ItemsSource = fileItemList;
                 txtLoading.Visibility = Visibility.Collapsed;
                 lstStartupItems.Visibility = Visibility.Visible;

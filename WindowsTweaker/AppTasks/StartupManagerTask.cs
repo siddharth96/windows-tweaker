@@ -96,6 +96,11 @@ namespace WindowsTweaker.AppTasks {
             using (RegistryKey hklmRunDisabled = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run-")) {
                 startupItemHolderClass.UpdateStartupDictionaryForKey(hklmRunDisabled, false);
             }
+            if (WindowsVer.Is64BitOs()) {
+                using (RegistryKey hklmWowRun = Registry.LocalMachine.OpenSubKey(@"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run")) {
+                    startupItemHolderClass.UpdateStartupDictionaryForKey(hklmWowRun, true);
+                }
+            }
             return startupItemHolderClass.StartupItemDictionary;
         }
 
