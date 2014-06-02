@@ -735,7 +735,7 @@ namespace WindowsTweaker {
                     chkAppsTL.SetCheckedState(hkcuEdgeUi, Constants.DisableTlCorner, true);
                 }
 
-                using (RegistryKey hkcuAdvanced = _hkcr.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                using (RegistryKey hkcuAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                     chkReplaceCmdPromptWithPs.SetCheckedState(hkcuAdvanced, Constants.DontUsePowerShellOnWinX, true);
                 }
             } else {
@@ -861,7 +861,7 @@ namespace WindowsTweaker {
                     hkcuEdgeUi.SetValue(chkAppsTL, Constants.DisableTlCorner, true);
                 }
 
-                using (RegistryKey hkcuAdvanced = _hkcr.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
+                using (RegistryKey hkcuAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
                     hkcuAdvanced.SetValue(chkReplaceCmdPromptWithPs, Constants.DontUsePowerShellOnWinX, true);
                 }
             }
@@ -939,16 +939,10 @@ namespace WindowsTweaker {
             }
 
             // Search
-            if (_windowsOs >= WindowsVer.Windows.Eight) {
-                using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
-                    chkPreventStaleShortcutSearch.SetCheckedState(hkcuExplorer, Constants.LinkResolveIgnoreLinkInfo);
-                    chkPreventStateShortcutDiskSearch.SetCheckedState(hkcuExplorer, Constants.NoResolveSearch);
-                    chkPreventUseOfNtfsTrack.SetCheckedState(hkcuExplorer, Constants.NoResolveTrack);
-                }
-            }
-            else {
-                chkPreventStateShortcutDiskSearch.IsEnabled = chkPreventStaleShortcutSearch.IsEnabled = chkPreventUseOfNtfsTrack.IsEnabled = false;
-                txtSearchLabel.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+            using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                chkPreventStaleShortcutSearch.SetCheckedState(hkcuExplorer, Constants.LinkResolveIgnoreLinkInfo);
+                chkPreventStateShortcutDiskSearch.SetCheckedState(hkcuExplorer, Constants.NoResolveSearch);
+                chkPreventUseOfNtfsTrack.SetCheckedState(hkcuExplorer, Constants.NoResolveTrack);
             }
         }
 
@@ -1024,12 +1018,10 @@ namespace WindowsTweaker {
             }
 
             // Search
-            if (_windowsOs >= WindowsVer.Windows.Eight) {
-                using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
-                    hkcuExplorer.SetValue(chkPreventStaleShortcutSearch, Constants.LinkResolveIgnoreLinkInfo);
-                    hkcuExplorer.SetValue(chkPreventStateShortcutDiskSearch, Constants.NoResolveSearch);
-                    hkcuExplorer.SetValue(chkPreventUseOfNtfsTrack, Constants.NoResolveTrack);
-                }
+            using (RegistryKey hkcuExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+                hkcuExplorer.SetValue(chkPreventStaleShortcutSearch, Constants.LinkResolveIgnoreLinkInfo);
+                hkcuExplorer.SetValue(chkPreventStateShortcutDiskSearch, Constants.NoResolveSearch);
+                hkcuExplorer.SetValue(chkPreventUseOfNtfsTrack, Constants.NoResolveTrack);
             }
         }
         #endregion
@@ -2249,6 +2241,15 @@ namespace WindowsTweaker {
                         + @"\system32\Restore\rstrui.exe");
                 } else
                     _message.Error(GetResourceString("OptionNotAvailable"));
+            }
+        }
+
+        private void RunAsDosCmd(object sender, RoutedEventArgs e) {
+            try {
+                string tagVal = ((Hyperlink)sender).Tag.ToString();
+                ProcessWrapper.ExecuteDosCmd(tagVal);
+            } catch (Win32Exception) {
+                _message.Error(GetResourceString("OptionNotAvailable"));
             }
         }
         #endregion

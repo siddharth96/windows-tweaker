@@ -32,6 +32,7 @@ namespace WindowsTweaker {
         private void OnReportErrorButtonClick(object sender, RoutedEventArgs e) {
             if (!_reportErrorBackgroundWorker.IsBusy) {
                 progressBar.Visibility = Visibility.Visible;
+                btnReportError.IsEnabled = false;
                 _reportErrorBackgroundWorker.RunWorkerAsync();
             }
         }
@@ -92,6 +93,7 @@ namespace WindowsTweaker {
 
         private void OnReportErrorWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             progressBar.Visibility = Visibility.Collapsed;
+            btnReportError.IsEnabled = true;
             if (e.Cancelled) return;
             if (!((bool) e.Result)) {
                 ShowNetworkErrorDialog();

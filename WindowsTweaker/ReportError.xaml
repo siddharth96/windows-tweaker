@@ -20,7 +20,7 @@
         <Grid Background="#AAF1F1F1" Margin="0"  Grid.Row="2" HorizontalAlignment="Stretch">
             <StackPanel Margin="0" HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button Style="{x:Null}" Margin="100, 10, 10, 10" HorizontalAlignment="Right" VerticalAlignment="Center"
-                        Padding="10, 5" Content="{StaticResource ReportError}" Click="OnReportErrorButtonClick" />
+                        Padding="10, 5" Content="{StaticResource ReportError}" Click="OnReportErrorButtonClick" Name="btnReportError" />
                 <Button Style="{x:Null}" Margin="10, 0, 10, 0" VerticalAlignment="Center" HorizontalAlignment="Right"
                         Padding="10, 5" Content="{StaticResource Cancel}" Click="OnButtonCancelClick" />
             </StackPanel>

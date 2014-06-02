@@ -384,7 +384,8 @@
                                             <TextBlock TextWrapping="Wrap" Text="{StaticResource ShowAppViewOnStart}" />
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick"
+                                    <CheckBox Margin="30, 15, 5, 5" Click="OnCheckBoxClick" 
+                                              IsEnabled="{Binding ElementName=chkAppsViewOnStart, Path=IsChecked, Mode=OneWay}"
                                               Style="{StaticResource SmallChkStyle}" Name="chkSearchEverywhere">
                                         <CheckBox.Content>
                                             <TextBlock TextWrapping="Wrap" Text="{StaticResource SearchEverywhere}" />                                            
@@ -870,7 +871,7 @@
                                             <Button Content="{StaticResource DeleteLogo}" Style="{StaticResource LargeButton}"
                                                     Name="btnDeleteLogo" IsEnabled="False" Click="OnButtonDeleteLogoClick"/>
                                             <TextBlock HorizontalAlignment="Left" Margin="6, 50, 0, 0">
-                                                <Hyperlink Click="StartProcess" Tag="control,system">
+                                                <Hyperlink Click="RunAsDosCmd" Tag="control system">
                                                     <Run Text="{StaticResource ViewSysProps}"></Run>
                                                 </Hyperlink>
                                             </TextBlock>
