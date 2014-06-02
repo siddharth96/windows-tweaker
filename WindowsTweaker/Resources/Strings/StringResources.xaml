@@ -439,4 +439,5 @@
     <system:String x:Key="CurrentVersion">You are currently using version</system:String>
     <system:String x:Key="UpdateAvailable">Update available</system:String>
     <system:String x:Key="CreateRestorePt">Create system restore point</system:String>
+    <system:String x:Key="Contact">Contact</system:String>
 </ResourceDictionary>

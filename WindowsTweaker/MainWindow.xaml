@@ -4026,8 +4026,7 @@
                         <MenuItem Header="Deutsch" IsCheckable="True" Name="menuItemGerman" Click="OnLanguageMenuItemClick" Tag="de-DE"></MenuItem>
                         <MenuItem Header="русский" IsCheckable="True" Name="menuItemRussian" Click="OnLanguageMenuItemClick" Tag="ru-RU"></MenuItem>
                     </MenuItem>
-                    <MenuItem Header="{StaticResource Help}"></MenuItem>
-                    <MenuItem Header="{StaticResource ReportIssue}"></MenuItem>
+                    <MenuItem Header="{StaticResource Contact}" Click="OnContactMenuClick"></MenuItem>
                     <MenuItem Header="{StaticResource About}" Click="OnAboutMenuItemClick"></MenuItem>
                 </MenuItem>
             </Menu>

@@ -2302,6 +2302,11 @@ namespace WindowsTweaker {
             About about = new About();
             about.ShowDialog();
         }
+
+        private void OnContactMenuClick(object sender, RoutedEventArgs e) {
+            if (String.IsNullOrEmpty(Keys.ContactUrl)) return;
+            Process.Start(Keys.ContactUrl);
+        }
         #endregion
 
         #region Update Check

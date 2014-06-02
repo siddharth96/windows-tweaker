@@ -19,12 +19,7 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 4. Create a new class called ```Keys.Local.cs```, and paste in the following code:-
 ```csharp
 namespace WindowsTweaker {
-    internal static partial class Keys {
-        static Keys() {
-            ErrorApiKey = "";
-            ErrorApiUrl = "";
-        }
-    }
+    internal static partial class Keys { }
 }
 ```
 
