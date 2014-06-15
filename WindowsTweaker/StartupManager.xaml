@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         Title="StartupManager" Height="525" Width="517"
-        ShowInTaskbar="False"
+        Icon="Images/mainIconBig.png"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         Loaded="OnWindowLoaded" Closing="OnWindowClosing"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">

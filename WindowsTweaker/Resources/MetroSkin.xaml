@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:windowsTweaker="clr-namespace:WindowsTweaker">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <SolidColorBrush x:Key="TitleBarBrush" Color="#FFF0F0F0" />
 
@@ -276,17 +275,6 @@
     </Style>
 
     <Style TargetType="{x:Type CheckBox}" x:Key="SmallChkStyle" BasedOn="{StaticResource ChkStyle}">
-        <Setter Property="FontSize" Value="18" />
-    </Style>
-
-    <Style TargetType="{x:Type windowsTweaker:HelpCheckBox}" x:Key="HelpChkStyle">
-        <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="FontSize" Value="21.333" />
-        <Setter Property="Foreground" Value="{StaticResource TabItemTextBrushUnselected}" />
-    </Style>
-
-    <Style TargetType="{x:Type windowsTweaker:HelpCheckBox}" x:Key="SmallHelpChkStyle"
-           BasedOn="{StaticResource HelpChkStyle}">
         <Setter Property="FontSize" Value="18" />
     </Style>
 

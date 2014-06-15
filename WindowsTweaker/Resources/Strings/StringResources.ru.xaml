@@ -440,4 +440,8 @@
     <system:String x:Key="CreateRestorePt">Создать точку восстановления системы</system:String>
     <system:String x:Key="Contact">контакт</system:String>
     <system:String x:Key="ShowingResults">Отображение результатов для</system:String>
+    <system:String x:Key="VisitUs">Приходите к нам</system:String>
+    <system:String x:Key="LikeOnFb">Как на Facebook</system:String>
+    <system:String x:Key="ViewSource">Просмотр исходного кода</system:String>
+    <system:String x:Key="Version">версия</system:String>
 </ResourceDictionary>

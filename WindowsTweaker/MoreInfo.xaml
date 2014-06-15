@@ -1,8 +1,8 @@
 ﻿<Window x:Class="WindowsTweaker.MoreInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        ShowInTaskbar="False"
         WindowStyle="ToolWindow"
+        Icon="Images/mainIconBig.png"
         WindowStartupLocation="CenterOwner"
         Title="MoreInfo" Height="250" Width="600">
     <Grid Background="{StaticResource WindowBackgroundBrush}">

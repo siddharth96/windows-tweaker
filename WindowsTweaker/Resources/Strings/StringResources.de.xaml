@@ -440,4 +440,8 @@
     <system:String x:Key="CreateRestorePt">Systemwiederherstellungspunkt erstellen</system:String>
     <system:String x:Key="Contact">Kontakt</system:String>
     <system:String x:Key="ShowingResults">Ergebnisse für</system:String>
+    <system:String x:Key="VisitUs">besuchen Sie uns</system:String>
+    <system:String x:Key="LikeOnFb">Wie auf Facebook</system:String>
+    <system:String x:Key="ViewSource">Quelltext anzeigen</system:String>
+    <system:String x:Key="Version">Version</system:String>
 </ResourceDictionary>

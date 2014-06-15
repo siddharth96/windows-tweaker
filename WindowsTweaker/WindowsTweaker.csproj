@@ -146,9 +146,6 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\FileItem.cs" />
     <Compile Include="AppTasks\FileReader.cs" />
-    <Compile Include="HelpCheckBox.xaml.cs">
-      <DependentUpon>HelpCheckBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\TweakerUpdate.cs" />
     <Compile Include="MoreInfo.xaml.cs">
       <DependentUpon>MoreInfo.xaml</DependentUpon>
@@ -171,10 +168,6 @@
     <Compile Include="AppTasks\Utils.cs" />
     <Compile Include="AppTasks\WindowsVer.cs" />
     <Page Include="About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HelpCheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

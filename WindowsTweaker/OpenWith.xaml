@@ -4,7 +4,8 @@
         xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         Title="&quot;Open With&quot; Customization" Height="525" Width="517"
-        ShowInTaskbar="False" Loaded="OnWindowLoaded"
+        Loaded="OnWindowLoaded"
+        Icon="Images/mainIconBig.png"
         Closing="OnWindowClosing"
         WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True">
     <Window.Resources>
