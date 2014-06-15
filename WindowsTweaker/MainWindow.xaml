@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:search="clr-namespace:UISearchTextBox;assembly=UISearchTextBox"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         Title="Windows Tweaker 5.0"
         Style="{StaticResource MainWindowStyle}"
@@ -39,9 +40,12 @@
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{StaticResource BlueShadeBackgroundBrush}" Grid.Row="1" Grid.Column="0" Width="10" Height="60" VerticalAlignment="Top"
                    Margin="0, 20, 0, 0"></Rectangle>
-        <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"
+        <StackPanel Orientation="Vertical" Margin="20, 5, 20, 0" Grid.Row="0" Grid.Column="1">
+            <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Top"
                                   Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
                                   Padding="2" Margin="20, 5, 20, 0" Watermark="{StaticResource SearchHint}" />
+            <search:SearchTextBox />
+        </StackPanel>
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
                 <TabItem Header="{StaticResource LabelExplorer}" Name="tabExplorer" Style="{StaticResource MainTabStyle}"

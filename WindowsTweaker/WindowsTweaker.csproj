@@ -373,6 +373,12 @@
   <ItemGroup>
     <Resource Include="Images\exe.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UISearchTextBox\UISearchTextBox.csproj">
+      <Project>{a8e2bbc4-63b4-497d-bde6-f6b8a27e45c0}</Project>
+      <Name>UISearchTextBox</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

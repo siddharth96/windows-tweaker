@@ -6,3 +6,5 @@ WindowsTweaker/obj/*
 *.psess
 .idea/
 WindowsTweaker/Keys.Local.cs
+UISearchTextBox/obj/*
+UISearchTextBox/bin/*
