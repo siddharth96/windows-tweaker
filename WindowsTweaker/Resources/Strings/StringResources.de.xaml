@@ -437,6 +437,7 @@
     <system:String x:Key="IsAvailableForDw">steht zum Download bereit</system:String>
     <system:String x:Key="CurrentVersion">Sie sind zur Zeit Version</system:String>
     <system:String x:Key="UpdateAvailable">Update verfügbar</system:String>
+    <system:String x:Key="CreateRestorePt">Systemwiederherstellungspunkt erstellen</system:String>
     <system:String x:Key="Contact">Kontakt</system:String>
     <system:String x:Key="ShowingResults">Ergebnisse für</system:String>
 </ResourceDictionary>

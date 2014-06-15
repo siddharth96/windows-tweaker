@@ -2187,6 +2187,7 @@ namespace WindowsTweaker {
         private void HideSearchResults() {
             popupSearch.IsOpen = false;
             lstSearchResults.ItemsSource = null;
+            stxtSearchInput.Text = "";
             _message.Hide();
         }
 
