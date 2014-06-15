@@ -4033,6 +4033,11 @@
                     </MenuItem>
                     <MenuItem Header="{StaticResource Contact}" Click="OnContactMenuClick"></MenuItem>
                     <MenuItem Header="{StaticResource About}" Click="OnAboutMenuItemClick"></MenuItem>
+                    <MenuItem Header="{StaticResource UpdateChk}">
+                        <MenuItem Header="{StaticResource Auto}" IsCheckable="True" Name="menuItemAutoUpdate" Click="OnAutomaticUpdateMethodMenuClick"></MenuItem>
+                        <MenuItem Header="{StaticResource Manual}" IsCheckable="True" Name="menuItemManualUpdate" Click="OnManualUpdateMethodMenuClick"></MenuItem>
+                        <MenuItem Header="{StaticResource ChkNow}" Click="OnUpdateCheckMenuClick"></MenuItem>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
             

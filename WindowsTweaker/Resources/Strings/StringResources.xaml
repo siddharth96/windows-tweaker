@@ -444,4 +444,9 @@
     <system:String x:Key="LikeOnFb">Like on Facebook</system:String>
     <system:String x:Key="ViewSource">View Source</system:String>
     <system:String x:Key="Version">Version</system:String>
+    <system:String x:Key="UpdateChk">Update Check</system:String>
+    <system:String x:Key="Auto">Automatic</system:String>
+    <system:String x:Key="Manual">Manual</system:String>
+    <system:String x:Key="ChkNow">Check Now</system:String>
+    <system:String x:Key="AlrdyLatest">You are already using the latest version</system:String>
 </ResourceDictionary>

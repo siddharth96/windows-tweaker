@@ -444,4 +444,9 @@
     <system:String x:Key="LikeOnFb">Wie auf Facebook</system:String>
     <system:String x:Key="ViewSource">Quelltext anzeigen</system:String>
     <system:String x:Key="Version">Version</system:String>
+    <system:String x:Key="UpdateChk">Update-Prüfung</system:String>
+    <system:String x:Key="Auto">automatisch</system:String>
+    <system:String x:Key="Manual">Handbuch</system:String>
+    <system:String x:Key="ChkNow">jetzt prüfen</system:String>
+    <system:String x:Key="AlrdyLatest">Sie sind bereits mit der neuesten Version</system:String>
 </ResourceDictionary>

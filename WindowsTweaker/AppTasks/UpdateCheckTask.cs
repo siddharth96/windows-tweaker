@@ -9,6 +9,20 @@ using WindowsTweaker.Models;
 namespace WindowsTweaker.AppTasks {
     internal static class UpdateCheckTask {
 
+        internal const string Manual = "Manual";
+        internal const string Auto = "Auto";
+        internal const long UpdateInterval = 21600; // 6 hours
+
+        internal static bool IsTimeToCheck(long lastUpdateChkVal) {
+            if (lastUpdateChkVal <= 0) {
+                return true;
+            }
+            long ticks = DateTime.UtcNow.Ticks;
+            ticks /= 10000000; // Convert to seconds
+            long interval = ticks - lastUpdateChkVal;
+            return interval < UpdateInterval;
+        }
+
         internal static string GetUpdateInfoFile() {
             using (WebClient webClient = new WebClient()) {
                 try {

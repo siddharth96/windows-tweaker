@@ -2170,7 +2170,6 @@ namespace WindowsTweaker {
             if (searchTxt.Length > 100) {
                 searchTxt = searchTxt.Substring(0, 100);
             }
-            HideSearchResults();
             _message.Notify(GetResourceString("Searching"));
             _searchBackgroundWorker.RunWorkerAsync(searchTxt);
         }
@@ -2268,15 +2267,15 @@ namespace WindowsTweaker {
 
         #region Menu
         private void UpdateLanguageMenu() {
-            LocalizationHandler.Language language = LocalizationHandler.GetCurrentLanguage();
+            ConfigHandler.Language language = ConfigHandler.GetCurrentLanguage();
             switch (language) {
-                case LocalizationHandler.Language.English:
+                case ConfigHandler.Language.English:
                     SetLanguageMenuState(true, false, false);
                     break;
-                case LocalizationHandler.Language.German:
+                case ConfigHandler.Language.German:
                     SetLanguageMenuState(false, true, false);
                     break;
-                case LocalizationHandler.Language.Russian:
+                case ConfigHandler.Language.Russian:
                     SetLanguageMenuState(false, false, true);
                     break;
                 default:
@@ -2296,12 +2295,12 @@ namespace WindowsTweaker {
             if (languageMenuItem == null)
                 return;
             string cultureName = languageMenuItem.Tag.ToString();
-            if (cultureName == LocalizationHandler.ToLanguageString(LocalizationHandler.GetCurrentLanguage())) {
+            if (cultureName == ConfigHandler.ToLanguageString(ConfigHandler.GetCurrentLanguage())) {
                 // Selected language is same as current language, hence do nothing
                 languageMenuItem.IsChecked = true;
                 return;
             }
-            LocalizationHandler.UpdateCultureInConfig(cultureName);
+            ConfigHandler.SetCulture(cultureName);
             string msg = GetResourceString("RestartForLangChange");
             InfoBox infoBox = new InfoBox(msg, GetResourceString("CloseNLaunch"), GetResourceString("Success"),
                 InfoBox.DialogType.Information);
@@ -2324,8 +2323,18 @@ namespace WindowsTweaker {
         #region Update Check
 
         private void CheckForUpdate() {
+            Config config = ConfigHandler.GetConfig();
+            SetMenuItemsCheckedState();
+            long lastUpdateChkVal = config.LastUpdateChk == null ? 0 : config.LastUpdateChk.Value;
+            if (config.UpdateMethod == UpdateCheckTask.Auto && UpdateCheckTask.IsTimeToCheck(lastUpdateChkVal)) {
+                ConfigHandler.SetLastUpdateChkVal();
+                StartUpdateCheck(true);
+            }
+        }
+
+        private void StartUpdateCheck(bool failSilently) {
             if (String.IsNullOrEmpty(Keys.UpdateApiUrl)) return;
-            _updateCheckBackgroundWorker.RunWorkerAsync();
+            _updateCheckBackgroundWorker.RunWorkerAsync(failSilently);
         }
 
         private TweakerUpdate GetLastestVersionInfo() {
@@ -2343,8 +2352,16 @@ namespace WindowsTweaker {
         }
 
         private void OnUpdateCheckBackgroundWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            TweakerUpdate tweakerUpdate = e.Result as TweakerUpdate;
-            if (tweakerUpdate == null) return;
+            Dictionary<string, object> retDict = e.Result as Dictionary<string, object>;
+            if (retDict == null) return;
+            TweakerUpdate tweakerUpdate = retDict["result"] as TweakerUpdate;
+            if (tweakerUpdate == null) {
+                bool failSilently = (bool) retDict["failSilently"];
+                if (!failSilently) {
+                    _message.Success(GetResourceString("AlrdyLatest"));
+                }
+                return;
+            }
             Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             string msg = GetResourceString("NewVersionAvailable") + " " + tweakerUpdate.Version + " " + GetResourceString("IsAvailableForDw") + " " +
                          "(" + GetResourceString("CurrentVersion") + " " + applicationVersion +").";
@@ -2357,7 +2374,36 @@ namespace WindowsTweaker {
 
         private void OnUpdateWorkerStarted(object sender, DoWorkEventArgs e) {
             TweakerUpdate result = GetLastestVersionInfo();
-            e.Result = result;
+            bool failSilently = (bool) e.Argument;
+            e.Result = new Dictionary<string, object> {
+                {"result", result},
+                {"failSilently", failSilently}
+            };
+        }
+
+        private void OnAutomaticUpdateMethodMenuClick(object sender, RoutedEventArgs e) {
+            ConfigHandler.SetUpdateChkMethod(UpdateCheckTask.Auto);
+            SetMenuItemsCheckedState();
+        }
+
+        private void OnManualUpdateMethodMenuClick(object sender, RoutedEventArgs e) {
+            ConfigHandler.SetUpdateChkMethod(UpdateCheckTask.Manual);
+            SetMenuItemsCheckedState();
+        }
+
+        private void SetMenuItemsCheckedState() {
+            Config config = ConfigHandler.GetConfig();
+            if (config.UpdateMethod == UpdateCheckTask.Auto) {
+                menuItemAutoUpdate.IsChecked = true;
+                menuItemManualUpdate.IsChecked = false;
+            } else {
+                menuItemAutoUpdate.IsChecked = false;
+                menuItemManualUpdate.IsChecked = true;
+            }
+        }
+
+        private void OnUpdateCheckMenuClick(object sender, RoutedEventArgs e) {
+            StartUpdateCheck(false);
         }
         #endregion
     }

@@ -16,11 +16,11 @@ namespace WindowsTweaker.Search {
     internal class Searcher {
         private readonly Dictionary<string, List<SearchItem>> _termUiDictionary;
         private readonly MainWindow _window;
-        private readonly LocalizationHandler.Language _language;
+        private readonly ConfigHandler.Language _language;
 
         internal Searcher(MainWindow window) {
             _window = window;
-            _language = LocalizationHandler.GetCurrentLanguage();
+            _language = ConfigHandler.GetCurrentLanguage();
             _termUiDictionary = LoadSearchDictionary();
             _termUiDictionary = AddTextToSearchItems(_termUiDictionary);
         }
@@ -54,13 +54,13 @@ namespace WindowsTweaker.Search {
             string massagedTerm = term.Trim().ToLower();
             if (String.IsNullOrEmpty(massagedTerm)) return null;
             switch (_language) {
-                case LocalizationHandler.Language.English:
+                case ConfigHandler.Language.English:
                     EnglishWord englishWord = new EnglishWord(massagedTerm);
                     return englishWord.Stem;
-                case LocalizationHandler.Language.German:
+                case ConfigHandler.Language.German:
                     GermanStemmer germanStemmer = new GermanStemmer();
                     return germanStemmer.Stem(massagedTerm);
-                case LocalizationHandler.Language.Russian:
+                case ConfigHandler.Language.Russian:
                     RussianStemmer russianStemmer = new RussianStemmer();
                     return russianStemmer.Stem(massagedTerm);
                 default:
@@ -124,11 +124,11 @@ namespace WindowsTweaker.Search {
 
         private string GetResourceName() {
             switch (_language) {
-                case LocalizationHandler.Language.English:
+                case ConfigHandler.Language.English:
                     return Constants.EnglishSearchInputFileName;
-                case LocalizationHandler.Language.German:
+                case ConfigHandler.Language.German:
                     return Constants.GermanSearchInputFileName;
-                case LocalizationHandler.Language.Russian:
+                case ConfigHandler.Language.Russian:
                     return Constants.RussianSearchInputFileName;
                 default:
                     return Constants.EnglishSearchInputFileName;
@@ -137,7 +137,7 @@ namespace WindowsTweaker.Search {
 
         private Dictionary<string, List<SearchItem>> ConvertStringKeyToNativeString(Dictionary<string, List<SearchItem>> termUiDictionary) {
             if (termUiDictionary == null || !termUiDictionary.Any()) return null;
-            if (_language != LocalizationHandler.Language.German && _language != LocalizationHandler.Language.Russian) return termUiDictionary;
+            if (_language != ConfigHandler.Language.German && _language != ConfigHandler.Language.Russian) return termUiDictionary;
             Dictionary<string, List<SearchItem>> newTermUiDictionary = new Dictionary<string, List<SearchItem>>();
             foreach (KeyValuePair<string, List<SearchItem>> keyValuePair in termUiDictionary) {
                 newTermUiDictionary[AsNativeString(keyValuePair.Key)] = keyValuePair.Value;

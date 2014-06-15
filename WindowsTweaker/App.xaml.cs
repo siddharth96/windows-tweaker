@@ -31,14 +31,14 @@ namespace WindowsTweaker {
         }
 
         private void DoLocalization() {
-            Config config = LocalizationHandler.ReadConfig();
+            Config config = ConfigHandler.GetConfig();
             if (config != null) {
                 string cultureName = config.CultureName;
                 if (cultureName != null) {
                     bool result = SetUiCulture(cultureName);
                     if (result) {
                         // If the culture name in config file is a valid culture-name, and not some garbage text
-                        LocalizationHandler.UpdateCultureInConfig(cultureName);
+                        ConfigHandler.SetCulture(cultureName);
                     }
                 }
             }
