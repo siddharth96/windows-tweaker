@@ -2153,20 +2153,18 @@ namespace WindowsTweaker {
         #endregion
 
         #region Search
-        private void OnSearchTextBoxKeyUp(object sender, KeyEventArgs e) {
-            if (e.Key != Key.Enter) return;
-            if (txtSearchInput == null) return;
+
+        private void OnSearchEvent(object sender, RoutedEventArgs e) {
             if (_searchBackgroundWorker.IsBusy) {
-                _message.Error(GetResourceString("SearchInProgress"));
+                _searchBackgroundWorker.CancelAsync();
                 return;
             }
-            Search(txtSearchInput.Text);
+            Search(stxtSearchInput.Text);
         }
 
         private void Search(string searchTxt) {
             searchTxt = searchTxt.Trim();
             if (searchTxt.Length < 3) {
-                _message.Error(GetResourceString("Min3Chars"));
                 return;
             }
             if (searchTxt.Length > 100) {
@@ -2178,24 +2176,32 @@ namespace WindowsTweaker {
         }
 
         private void OnSearchWorkerStarted(object sender, DoWorkEventArgs e) {
-            List<SearchItem> searchItems = ShowSearchResults(e.Argument.ToString());
-            e.Result = searchItems;
+            string searchTxt = e.Argument.ToString();
+            List<SearchItem> searchItems = ShowSearchResults(searchTxt);
+            e.Result = new Dictionary<string, object>() {
+                {"result", searchItems},
+                {"term", searchTxt}
+            };
         }
 
         private void HideSearchResults() {
             popupSearch.IsOpen = false;
             lstSearchResults.ItemsSource = null;
+            _message.Hide();
         }
 
         private void OnSearchWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            List<SearchItem> searchItems = e.Result as List<SearchItem>;
+            if (e.Cancelled) return;
+            Dictionary<string, object> retDict = e.Result as Dictionary<string, object>;
+            if (retDict == null) return;
+            List<SearchItem> searchItems = retDict["result"] as List<SearchItem>;
             if (searchItems == null || !searchItems.Any()) {
-                _message.Error(GetResourceString("Nothing"));
+                _message.Error(GetResourceString("NothingStart") + " " + retDict["term"] + " " + GetResourceString("NothingEnd"));
                 return;
             }
+            _message.Success(GetResourceString("ShowingResults") + " " + retDict["term"]);
             popupSearch.IsOpen = true;
             lstSearchResults.ItemsSource = searchItems;
-            _message.Hide();
         }
 
         private List<SearchItem> ShowSearchResults(string searchTxt) {
@@ -2222,6 +2228,11 @@ namespace WindowsTweaker {
             subTabControl.SelectedItem = subTabItem;
             HideSearchResults();
         }
+
+        private void OnSearchDismiss(object sender, RoutedEventArgs e) {
+            HideSearchResults();
+        }
+
         #endregion
 
         #region Utilities

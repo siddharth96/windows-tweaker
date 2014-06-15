@@ -41,10 +41,10 @@
         <Rectangle Fill="{StaticResource BlueShadeBackgroundBrush}" Grid.Row="1" Grid.Column="0" Width="10" Height="60" VerticalAlignment="Top"
                    Margin="0, 20, 0, 0"></Rectangle>
         <StackPanel Orientation="Vertical" Margin="20, 5, 20, 0" Grid.Row="0" Grid.Column="1">
-            <toolkit:WatermarkTextBox Style="{StaticResource TxtBoxStyle}" VerticalAlignment="Top"
-                                  Name="txtSearchInput" KeyUp="OnSearchTextBoxKeyUp"
-                                  Padding="2" Margin="20, 5, 20, 0" Watermark="{StaticResource SearchHint}" />
-            <search:SearchTextBox />
+            <search:SearchTextBox  Background="White" HorizontalAlignment="Stretch" Margin="20, 5, 20, 0"
+                                   Search="OnSearchEvent" Style="{StaticResource TxtBoxStyle}"
+                                   SearchDismiss="OnSearchDismiss"
+                                   LabelText="{StaticResource SearchHint}" Name="stxtSearchInput"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="1">
             <TabControl Name="mainTab" Margin="2,15,2,2">
@@ -3991,7 +3991,7 @@
                     </StackPanel>
                 </Border>
             </Popup>
-            <Popup Name="popupSearch" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=txtSearchInput}" 
+            <Popup Name="popupSearch" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=stxtSearchInput}" 
                    PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="2">
                 <Border BorderBrush="{StaticResource TabItemTextBrushHover}" Background="White"
                         Padding="0">

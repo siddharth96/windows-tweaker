@@ -372,10 +372,9 @@
     <system:String x:Key="ActivatedAdminAcc">Successfully activated the Administrator account</system:String>
     <system:String x:Key="DeactivatedAdminAcc">Successfully de-activated the Administrator account</system:String>
     <system:String x:Key="OptionNotAvailable">This option is not available in your version of Windows</system:String>
-    <system:String x:Key="SearchInProgress">Please wait..., another search is already in progress</system:String>
-    <system:String x:Key="Min3Chars">Minimum 3 characters should be entered</system:String>
     <system:String x:Key="Searching">Searching, please wait...</system:String>
-    <system:String x:Key="Nothing">Nothing found!</system:String>
+    <system:String x:Key="NothingStart">Nothing found for</system:String>
+    <x:Static x:Key="NothingEnd" Member="system:String.Empty" />
     <system:String x:Key="ErrorOccurred">An error occurred</system:String>
     <system:String x:Key="EmptyData">Nothing to show</system:String>
     <system:String x:Key="DisableTaskbarAnim">Disable Taskbar animations</system:String>
@@ -403,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">because it is either a system file or is not a valid shortcut</system:String>
     <system:String x:Key="ShutdwnConfig">shutdown configuration</system:String>
     <system:String x:Key="MemLabel">memory</system:String>
-    <system:String x:Key="SearchHint">Type &amp; Press Enter to Search</system:String>
+    <system:String x:Key="SearchHint">Search (Min 3 characters)</system:String>
     <system:String x:Key="DisableNewAppNotify">Disable "you have new apps that can open this type of file" notification</system:String>
     <system:String x:Key="WarningMsgTitle">Are you sure?</system:String>
     <system:String x:Key="SomethingWrong">Sorry, but something has gone wrong. Would like to report this?</system:String>
@@ -440,4 +439,5 @@
     <system:String x:Key="UpdateAvailable">Update available</system:String>
     <system:String x:Key="CreateRestorePt">Create system restore point</system:String>
     <system:String x:Key="Contact">Contact</system:String>
+    <system:String x:Key="ShowingResults">Showing results for</system:String>
 </ResourceDictionary>

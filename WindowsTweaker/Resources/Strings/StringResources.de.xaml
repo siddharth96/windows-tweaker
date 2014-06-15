@@ -372,10 +372,9 @@
     <system:String x:Key="ActivatedAdminAcc">Erfolgreich aktiviert das Administrator-Konto</system:String>
     <system:String x:Key="DeactivatedAdminAcc">Erfolgreich deaktiviert das Administratorkonto</system:String>
     <system:String x:Key="OptionNotAvailable">Diese Option ist in Ihrer Windows-Version nicht verfügbar</system:String>
-    <system:String x:Key="SearchInProgress">Bitte warten Sie ..., ist eine andere Suche bereits im Gange</system:String>
-    <system:String x:Key="Min3Chars">Mindestens 3 Zeichen eingegeben werden</system:String>
     <system:String x:Key="Searching">Suchen, bitte warten ...</system:String>
-    <system:String x:Key="Nothing">Nichts gefunden!</system:String>
+    <system:String x:Key="NothingStart">Nichts für</system:String>
+    <system:String x:Key="NothingEnd">gefunden</system:String>
     <system:String x:Key="ErrorOccurred">Ein Fehler ist aufgetreten</system:String>
     <system:String x:Key="EmptyData">Nichts zu zeigen,</system:String>
     <system:String x:Key="DisableTaskbarAnim">Deaktivieren Taskbar Animationen</system:String>
@@ -403,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">weil es entweder eine Systemdatei oder ist keine gültige Verknüpfung</system:String>
     <system:String x:Key="ShutdwnConfig">Shutdown-Konfiguration</system:String>
     <system:String x:Key="MemLabel">Speicher</system:String>
-    <system:String x:Key="SearchHint">Art und Enter drücken, um Suche</system:String>
+    <system:String x:Key="SearchHint">Suche (Minimum 3 Zeichen)</system:String>
     <system:String x:Key="DisableNewAppNotify">Deaktivieren Sie "Sie haben neue Apps, die diese Art von Datei öffnen"-Benachrichtigung</system:String>
     <system:String x:Key="WarningMsgTitle">Sind Sie sicher?</system:String>
     <system:String x:Key="SomethingWrong">Sorry, aber etwas schief gegangen ist. Möchten Sie diesen Bericht?</system:String>
@@ -439,4 +438,5 @@
     <system:String x:Key="CurrentVersion">Sie sind zur Zeit Version</system:String>
     <system:String x:Key="UpdateAvailable">Update verfügbar</system:String>
     <system:String x:Key="Contact">Kontakt</system:String>
+    <system:String x:Key="ShowingResults">Ergebnisse für</system:String>
 </ResourceDictionary>

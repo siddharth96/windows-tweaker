@@ -372,10 +372,9 @@
     <system:String x:Key="ActivatedAdminAcc">Успешно активировал учетную запись администратора</system:String>
     <system:String x:Key="DeactivatedAdminAcc">Успешно отключили учетную запись администратора</system:String>
     <system:String x:Key="OptionNotAvailable">Эта опция не доступна в вашей версии ОС Windows</system:String>
-    <system:String x:Key="SearchInProgress">Пожалуйста, подождите ..., другой поиск уже идет</system:String>
-    <system:String x:Key="Min3Chars">Не ранее 3 символы должны быть введены</system:String>
     <system:String x:Key="Searching">Поиск, пожалуйста, подождите ...</system:String>
-    <system:String x:Key="Nothing">Ничего не найдено!</system:String>
+    <system:String x:Key="NothingStart">Ничего не найдено для</system:String>
+    <x:Static x:Key="NothingEnd" Member="system:String.Empty" />
     <system:String x:Key="ErrorOccurred">Произошла ошибка</system:String>
     <system:String x:Key="EmptyData">Ничего, чтобы показать</system:String>
     <system:String x:Key="DisableTaskbarAnim">Отключение панели задач анимации</system:String>
@@ -403,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">так как она либо файловая система или не является допустимым ярлык</system:String>
     <system:String x:Key="ShutdwnConfig">конфигурация выключение</system:String>
     <system:String x:Key="MemLabel">память</system:String>
-    <system:String x:Key="SearchHint">Введите и нажмите клавишу ВВОД для поиска</system:String>
+    <system:String x:Key="SearchHint">Поиск (не менее 3 символов)</system:String>
     <system:String x:Key="DisableNewAppNotify">Отключить "у вас есть новые приложения, которые могут открыть этот тип файла" уведомление</system:String>
     <system:String x:Key="WarningMsgTitle">Вы уверены?</system:String>
     <system:String x:Key="SomethingWrong">Извините, но что-то пошло не так. Хотел бы сообщить об этом?</system:String>
@@ -439,4 +438,5 @@
     <system:String x:Key="CurrentVersion">Вы используете версию</system:String>
     <system:String x:Key="UpdateAvailable">доступно обновление</system:String>
     <system:String x:Key="Contact">контакт</system:String>
+    <system:String x:Key="ShowingResults">Отображение результатов для</system:String>
 </ResourceDictionary>
