@@ -10,11 +10,9 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 
 2. Download .net Framework 4.5.2 Developer Pack from [here](http://www.microsoft.com/en-us/download/details.aspx?id=42637)
 
-2. Clone the repository
+3. Clone the repository
 
     ```git clone git@github.com:siddharth96/windows-tweaker.git```
-
-3. Add references to all the DLLs located in ```WindowsTweaker/Dependencies``` directory. Also, install [Microsoft Blend SDK](http://www.microsoft.com/en-us/download/details.aspx?id=10801).
 
 4. Create a new class called ```Keys.Local.cs```, and paste in the following code:-
 ```csharp
