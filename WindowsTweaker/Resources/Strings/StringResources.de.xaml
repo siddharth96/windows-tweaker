@@ -449,4 +449,8 @@
     <system:String x:Key="Manual">Handbuch</system:String>
     <system:String x:Key="ChkNow">jetzt prüfen</system:String>
     <system:String x:Key="AlrdyLatest">Sie sind bereits mit der neuesten Version</system:String>
+    <system:String x:Key="RestartBoxHeading">Möchten Sie Windows neu zu starten?</system:String>
+    <system:String x:Key="RestartBoxText">Ihre Einstellungen wurden angewendet. Doch einige Einstellungen möglicherweise nicht wirksam, bis Sie Ihr Windows neu zu starten</system:String>
+    <system:String x:Key="RestartBoxOkBtnTxt">Starten Sie jetzt</system:String>
+    <system:String x:Key="RestartBoxCancelTxt">Starten Sie später</system:String>
 </ResourceDictionary>

@@ -7,8 +7,14 @@
         Title="Windows Tweaker 5.0"
         Icon="Images/mainIconBig.png"
         Style="{StaticResource MainWindowStyle}"
-        WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Width="1024" Height="750"
-        ResizeMode="CanResizeWithGrip" Name="mainWindow">
+        MinHeight="200"
+        MinWidth="200"
+        WindowStartupLocation="CenterScreen" 
+        SnapsToDevicePixels="True" 
+        Width="1024" 
+        Height="750"
+        ResizeMode="CanResizeWithGrip" 
+        Name="mainWindow">
     <Window.Resources>
         <cm:BackgroundWorker x:Key="sendToBackgroundWorker" RunWorkerCompleted="OnSendToWorkerCompleted"
                              WorkerSupportsCancellation="True" DoWork="OnSendToWorkerStarted"></cm:BackgroundWorker>
@@ -4021,9 +4027,6 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1" Margin="30, 0, 0, 0" VerticalAlignment="Center" FontSize="14">
-                <Hyperlink Click="StartProcess" Tag="SystemPropertiesProtection.exe"><Run Text="{StaticResource CreateRestorePt}"></Run></Hyperlink>
-            </TextBlock>
             <Menu Grid.Column="0" Background="{StaticResource WindowBackgroudBrushEnd}" Margin="10, 5, 0, 0" VerticalAlignment="Center">
                 <MenuItem Header="{StaticResource Options}" Style="{StaticResource MenuItemStyle}">
                     <MenuItem Header="{StaticResource Language}">
@@ -4038,6 +4041,7 @@
                         <MenuItem Header="{StaticResource Manual}" IsCheckable="True" Name="menuItemManualUpdate" Click="OnManualUpdateMethodMenuClick"></MenuItem>
                         <MenuItem Header="{StaticResource ChkNow}" Click="OnUpdateCheckMenuClick"></MenuItem>
                     </MenuItem>
+                    <MenuItem Header="{StaticResource CreateRestorePt}" Click="OnCreateRestorePtMenuClick"></MenuItem>
                 </MenuItem>
             </Menu>
             

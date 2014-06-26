@@ -378,6 +378,12 @@ namespace WindowsTweaker {
                         break;
                 }
             }
+            InfoBox restartInfoBox = new InfoBox(GetResourceString("RestartBoxText"), GetResourceString("RestartBoxOkBtnTxt"), 
+                GetResourceString("RestartBoxCancelTxt"), GetResourceString("RestartBoxHeading"), InfoBox.DialogType.Question);
+            if (restartInfoBox.ShowDialog() == true) {
+                ProcessWrapper.ExecuteProcess("shutdown.exe", "/r");
+                Environment.Exit(0);
+            }
         }
         #endregion
 
@@ -2247,11 +2253,7 @@ namespace WindowsTweaker {
                     ProcessWrapper.ExecuteProcess(tagVal);
                 }
             } catch (Win32Exception) {
-                if (((Hyperlink)sender).Tag.ToString().Contains("SystemPropertiesProtection")) {
-                    ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows)
-                        + @"\system32\Restore\rstrui.exe");
-                } else
-                    _message.Error(GetResourceString("OptionNotAvailable"));
+                _message.Error(GetResourceString("OptionNotAvailable"));
             }
         }
 
@@ -2317,6 +2319,16 @@ namespace WindowsTweaker {
         private void OnContactMenuClick(object sender, RoutedEventArgs e) {
             if (String.IsNullOrEmpty(Keys.ContactUrl)) return;
             Process.Start(Keys.ContactUrl);
+        }
+
+        private void OnCreateRestorePtMenuClick(object sender, RoutedEventArgs e) {
+            try {
+                ProcessWrapper.ExecuteProcess("SystemPropertiesProtection.exe");
+            }
+            catch (Win32Exception) {
+                ProcessWrapper.ExecuteProcess(Environment.GetFolderPath(Environment.SpecialFolder.Windows)
+                                                + @"\system32\Restore\rstrui.exe");
+            }
         }
         #endregion
 

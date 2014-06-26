@@ -449,4 +449,8 @@
     <system:String x:Key="Manual">Manual</system:String>
     <system:String x:Key="ChkNow">Check Now</system:String>
     <system:String x:Key="AlrdyLatest">You are already using the latest version</system:String>
+    <system:String x:Key="RestartBoxHeading">Would you like to restart Windows?</system:String>
+    <system:String x:Key="RestartBoxText">Your settings have been applied. However, some settings might not take effect till you restart your Windows</system:String>
+    <system:String x:Key="RestartBoxOkBtnTxt">Restart Now</system:String>
+    <system:String x:Key="RestartBoxCancelTxt">Restart Later</system:String>
 </ResourceDictionary>

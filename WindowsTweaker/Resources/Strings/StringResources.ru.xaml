@@ -449,4 +449,8 @@
     <system:String x:Key="Manual">руководство</system:String>
     <system:String x:Key="ChkNow">Проверить сейчас</system:String>
     <system:String x:Key="AlrdyLatest">Вы уже используете последнюю версию</system:String>
+    <system:String x:Key="RestartBoxHeading">Хотите, чтобы перезагрузить Windows?</system:String>
+    <system:String x:Key="RestartBoxText">Ваши настройки были применены. Тем не менее, некоторые параметры могут не вступить в силу до перезагрузки ОС Windows</system:String>
+    <system:String x:Key="RestartBoxOkBtnTxt">Перезагрузить сейчас</system:String>
+    <system:String x:Key="RestartBoxCancelTxt">Перезагрузить позже</system:String>
 </ResourceDictionary>

@@ -30,7 +30,9 @@ namespace WindowsTweaker.Search {
             Dictionary<SearchItem, int> searchItemAndCntDict = GetMatches(term.Split(' '));
             return searchItemAndCntDict != null && searchItemAndCntDict.Any() ? 
                 (from entry in searchItemAndCntDict orderby entry.Value descending select entry).
-                Select(keyValuePair => keyValuePair.Key).ToList() : null;
+                Select(keyValuePair => keyValuePair.Key)
+                .Where(searchItem => !String.IsNullOrEmpty(searchItem.UiElementText))
+                .ToList() : null;
         }
 
         private Dictionary<SearchItem, int> GetMatches(string[] individualTerms) {
@@ -88,10 +90,18 @@ namespace WindowsTweaker.Search {
                     object uiControl = _window.FindName(searchItem.UiElement);
                     if (uiControl is CheckBox) {
                         CheckBox chkBox = (CheckBox)uiControl;
-                        searchItem.UiElementText = chkBox.Content is TextBlock ? ((TextBlock)chkBox.Content).Text : chkBox.Content.ToString();
+                        if (chkBox.Content is TextBlock) {
+                            searchItem.UiElementText = ((TextBlock) chkBox.Content).Text;
+                        } else if (!(chkBox.Content is StackPanel) && !(chkBox.Content is Grid)) {
+                            searchItem.UiElementText = chkBox.Content.ToString();
+                        }
                     } else if (uiControl is RadioButton) {
                         RadioButton rbtn = (RadioButton)uiControl;
-                        searchItem.UiElementText = rbtn.Content is TextBlock ? ((TextBlock)rbtn.Content).Text : rbtn.Content.ToString();
+                        if (rbtn.Content is TextBlock) {
+                            searchItem.UiElementText = ((TextBlock)rbtn.Content).Text;
+                        } else if (!(rbtn.Content is StackPanel) && !(rbtn.Content is Grid)) {
+                            searchItem.UiElementText = rbtn.Content.ToString();
+                        }
                     } else if (uiControl is TextBlock) {
                         searchItem.UiElementText = ((TextBlock)uiControl).Text;
                     } else if (uiControl is TabItem) {
