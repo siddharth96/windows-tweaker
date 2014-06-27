@@ -2306,6 +2306,7 @@ namespace WindowsTweaker {
             string msg = GetResourceString("RestartForLangChange");
             InfoBox infoBox = new InfoBox(msg, GetResourceString("CloseNLaunch"), GetResourceString("Success"),
                 InfoBox.DialogType.Information);
+            infoBox.HideCancelButton();
             if (infoBox.ShowDialog() == true) {
                 Environment.Exit(0);
             }

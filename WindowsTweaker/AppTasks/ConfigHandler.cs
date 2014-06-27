@@ -48,6 +48,7 @@ namespace WindowsTweaker.AppTasks {
             _config = GetConfig();
             if (_config.CultureName == cultureName) return;
             _config.CultureName = cultureName;
+
             UpdateConfig();
         }
 

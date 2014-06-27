@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WindowsTweaker</RootNamespace>
     <AssemblyName>WindowsTweaker</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -371,6 +371,9 @@
       <Project>{a8e2bbc4-63b4-497d-bde6-f6b8a27e45c0}</Project>
       <Name>UISearchTextBox</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Images\splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

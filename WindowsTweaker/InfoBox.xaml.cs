@@ -1,11 +1,6 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using WindowsTweaker.AppTasks;
-using WindowsTweaker.Models;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -43,6 +38,10 @@ namespace WindowsTweaker {
                     imgInfoBox.Source = SystemIcons.Warning.ToBitmap().ToImageSource();
                     break;
             }
+        }
+
+        public void HideCancelButton() {
+            btnCancel.Visibility = Visibility.Collapsed;
         }
 
         public InfoBox(string msg, string okText, string cancelText, string caption, DialogType dialogType) 

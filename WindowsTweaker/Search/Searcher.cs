@@ -122,12 +122,19 @@ namespace WindowsTweaker.Search {
             Dictionary<string, List<SearchItem>> termUiDictionary;
             Assembly assembly = Assembly.GetExecutingAssembly();
             string resourceName = GetResourceName();
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName)) {
+            Stream stream = null;
+            try {
+                stream = assembly.GetManifestResourceStream(resourceName);
                 if (stream == null) return null;
                 using (StreamReader reader = new StreamReader(stream)) {
+                    stream = null;
                     JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-                    termUiDictionary = javaScriptSerializer.Deserialize<Dictionary<string, List<SearchItem>>>(reader.ReadToEnd());
+                    termUiDictionary =
+                        javaScriptSerializer.Deserialize<Dictionary<string, List<SearchItem>>>(reader.ReadToEnd());
                 }
+            } finally {
+                if (stream != null) 
+                    stream.Dispose();
             }
             return ConvertStringKeyToNativeString(termUiDictionary);
         }
