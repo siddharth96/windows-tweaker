@@ -1132,6 +1132,14 @@ namespace WindowsTweaker {
                 hkcuWinMet.SetValue(Constants.IconTitleWrap, val);
             }
         }
+
+        private void OnShowHelpForOldStyleFileSortClick(object sender, MouseButtonEventArgs e) {
+            Process.Start("http://support.microsoft.com/kb/319827");
+        }
+
+        private void OnShowHelpForWrapIconTitle(object sender, MouseButtonEventArgs e) {
+            Process.Start("http://technet.microsoft.com/en-us/library/cc959648.aspx");
+        }
         #endregion
 
         #region Display -> Selection Color
