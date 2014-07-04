@@ -2258,10 +2258,10 @@
                                     <RadioButton Margin="30, 5, 5, 5" Content="{StaticResource TurnOffAutoplay}"
                                                  Style="{StaticResource RbtnStyle}" Name="rbtnDisableAutoPlay"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Margin="30, 10, 10, 10" Name="btnAutoPlayViaGP"
+                                        <Button Margin="30, 10, 10, 10" Name="btnAutoPlayViaGP" Click="OnConfigureAutoplayViaGrpPolicyBtnClick"
                                                 HorizontalAlignment="Left" Content="{StaticResource ConfigureAutoplayViaGp}" />
                                         <Viewbox>
-                                            <Grid>
+                                            <Grid MouseDown="OnShowHelpToConfigAutoplayMouseDown" Cursor="Hand">
                                                 <Grid Width="24" Height="24">
                                                     <Ellipse Fill="#FFFFFFFF" Name="Fill" />
                                                 </Grid>

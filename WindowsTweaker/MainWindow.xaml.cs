@@ -2038,6 +2038,45 @@ namespace WindowsTweaker {
                 }
             }
         }
+
+        private void OnConfigureAutoplayViaGrpPolicyBtnClick(object sender, RoutedEventArgs e) {
+            ProcessWrapper.ExecuteProcess("gpedit.msc");
+        }
+
+        private void OnShowHelpToConfigAutoplayMouseDown(object sender, MouseButtonEventArgs e) {
+            // Unable to figure out how to put new-lines in XAML, so doing the ugly way
+            String msg;
+            ConfigHandler.Language language = ConfigHandler.GetCurrentLanguage();
+            switch (language) {
+                case ConfigHandler.Language.German:
+                    msg = "Klicken Sie auf den \"Configure Autoplay über die Gruppenrichtlinien -Editor\" klicken." +
+                          "\nJetzt, in der linken Seitenleiste navigieren Sie zu:" +
+                          "\nBenutzerkonfiguration-> Administrative Vorlagen-> Windows-Komponenten-> Autoplay-Richtlinien." +
+                          "\n\nNun überprüfen Sie die verfügbaren Optionen in der rechten Hand." +
+                          "\n\nBitte beachten Sie, dass Gruppenrichtlinien nicht in Windows 7 Home Premium / Basic / Starter Edition und " +
+                          "Windows Vista Home Basic Edition verfügbar.";
+                    break;
+                case ConfigHandler.Language.Russian:
+                    msg = "Нажмите на эту кнопку \"Настроить автозапуск через редакторе групповой политики\"." +
+                          "\nТеперь, в левой боковой панели перейдите к:" +
+                          "\nКонфигурация пользователя-> Административные шаблоны-> Компоненты Windows-> Политика Autoplay." +
+                          "\n\nТеперь проверьте опции, доступные в правой части клавиатуры." +
+                          "\n\nПожалуйста, обратите внимание, что групповая политика не доступна в Windows 7 Home Premium / Basic /" +
+                          " Starter Edition и в Windows Vista Home Basic Edition.";
+                    break;
+                default:
+                    msg = "Click on this \"Configure Autoplay via Group Policy Editor\" button." +
+                          "\nNow, in the left sidebar navigate to:" +
+                          "\nUser Configuration->Administrative Templates->Windows Components->Autoplay Policies" +
+                          "\n\nNow check out the options available in the right hand area." +
+                          "\n\nPlease note that Group Policy is NOT available in Windows 7 Home Premium/Basic/Starter Edition(s) and" +
+                          " in Windows Vista Home Basic Edition(s).";
+                    break;
+            }
+            InfoBox infoBox = new InfoBox(msg, GetResourceString("Ok"), GetResourceString("Help"), InfoBox.DialogType.Information);
+            infoBox.ShowDialog();
+        }
+
         #endregion
 
         #region Maintenance
