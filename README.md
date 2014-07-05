@@ -7,13 +7,11 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 
 1. Download [Visual Studio Express 2013 for Windows Desktop](http://msdn.microsoft.com/en-us/dn369242), in case you don't have a paid license for Visual Studio 2013. 
 
-2. Download .net Framework 4.5 from [here](http://www.microsoft.com/en-in/download/details.aspx?id=40779)
-
-3. Clone the repository
+2. Clone the repository
 
     ```git clone git@github.com:siddharth96/windows-tweaker.git```
 
-4. Create a new class called ```Keys.Local.cs```, and paste in the following code:-
+3. Create a new class called ```Keys.Local.cs```, and paste in the following code:-
 ```csharp
 namespace WindowsTweaker {
     internal static partial class Keys { }
