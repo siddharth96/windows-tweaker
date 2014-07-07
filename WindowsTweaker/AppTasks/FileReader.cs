@@ -71,7 +71,13 @@ namespace WindowsTweaker.AppTasks {
         }
 
         private FileItem GetFileItem(string filePath, bool isChecked, string name) {
-            FileInfo fInfo = new FileInfo(filePath);
+            FileInfo fInfo;
+            try {
+                fInfo = new FileInfo(filePath);
+            }
+            catch (ArgumentException) {
+                return null;
+            }
             if (fInfo.Exists) {
                 ImageSource imageSource = null;
                 try {

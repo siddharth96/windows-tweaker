@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -150,6 +151,31 @@ namespace WindowsTweaker.AppTasks {
                 throw new Win32Exception();
             }
             return wpfBitmap;
+        }
+
+        public static int? RepairAsNullableIntFromString(RegistryKey regKey, string keyName) {
+            try {
+                string strKeyVal = (string) regKey.GetValue(keyName);
+                int val = (int) Double.Parse(strKeyVal);
+                regKey.DeleteValue(keyName);
+                regKey.SetValue(keyName, val);
+                return val;
+            }
+            catch (InvalidCastException) {
+                return null;
+            }
+            catch (FormatException) {
+                return null;
+            }
+        }
+
+        public static string RepairAsStringFromInt(RegistryKey regKey, string keyName) {
+            // Data type is incorrect, repair it by changing from REG_DWORD to REG_SZ
+            int intVal = (int) regKey.GetValue(keyName);
+            string val = intVal.ToString(CultureInfo.InvariantCulture);
+            regKey.DeleteValue(keyName);
+            regKey.SetValue(keyName, val);
+            return val;
         }
     }
 }

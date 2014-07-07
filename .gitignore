@@ -9,3 +9,4 @@ WindowsTweaker/Keys.Local.cs
 UISearchTextBox/obj/*
 UISearchTextBox/bin/*
 *.db
+*.xls

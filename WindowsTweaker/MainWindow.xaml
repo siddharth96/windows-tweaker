@@ -4,7 +4,7 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:search="clr-namespace:UISearchTextBox;assembly=UISearchTextBox"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
-        Title="Windows Tweaker 5.0"
+        Title="Windows Tweaker 5.1"
         Icon="Images/mainIconBig.png"
         Style="{StaticResource MainWindowStyle}"
         MinHeight="200"

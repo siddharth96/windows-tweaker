@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -887,12 +888,22 @@ namespace WindowsTweaker {
                     rbtnShutdownImmediately.Visibility = Visibility.Collapsed;
                 }
 
-                val = (string) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
+                try {
+                    val = (string) hkcuDesktop.GetValue(Constants.WaitToKillAppTimeout);
+                }
+                catch (InvalidCastException) {
+                    val = Utils.RepairAsStringFromInt(hkcuDesktop, Constants.WaitToKillAppTimeout);
+                }
                 if (!String.IsNullOrEmpty(val)) {
                     try {
-                        nudAppKillTimeout.Value = Int32.Parse(val);
+                        nudAppKillTimeout.Value = (int) Double.Parse(val);
                     }
                     catch (InvalidCastException) {
+                        nudAppKillTimeout.Value = 4000;
+                    }
+                    catch (FormatException) {
+                        // Even if there's a format exception, then set it to default
+                        // Exception can happen, if there's a alpanumeric string as value o_O
                         nudAppKillTimeout.Value = 4000;
                     }
                     rbtnShutdownAfterWaiting.IsChecked = !rbtnShutdownImmediately.IsChecked;
@@ -936,10 +947,26 @@ namespace WindowsTweaker {
                         if (Uri.TryCreate("C:" + logoUrl, UriKind.Absolute, out uriLogo)) {
                             try {
                                 imgProperty.Source = new BitmapImage(uriLogo);
-                            } catch (FileNotFoundException) {
+                            }
+                            catch (FileNotFoundException) {
+                                imgProperty.Source = null;
+                            }
+                            catch (DirectoryNotFoundException) {
+                                imgProperty.Source = null;
+                            }
+                            catch (ArgumentException) {
                                 imgProperty.Source = null;
                             }
                         }
+                    }
+                    catch (FileNotFoundException) {
+                        imgProperty.Source = null;
+                    }
+                    catch (DirectoryNotFoundException) {
+                        imgProperty.Source = null;
+                    } 
+                    catch (ArgumentException) {
+                        imgProperty.Source = null;
                     }
                 }
             }
@@ -1075,7 +1102,13 @@ namespace WindowsTweaker {
 
             // Icon Title
             using (RegistryKey hkcuWinMet = _hkcu.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
-                string iconTitleWrapVal = (string) hkcuWinMet.GetValue(Constants.IconTitleWrap, "1");
+                string iconTitleWrapVal = null;
+                try {
+                    iconTitleWrapVal = (string) hkcuWinMet.GetValue(Constants.IconTitleWrap, "1");
+                }
+                catch (InvalidCastException) {
+                    iconTitleWrapVal = Utils.RepairAsStringFromInt(hkcuWinMet, Constants.IconTitleWrap);
+                }
                 switch (iconTitleWrapVal) {
                     case "0":
                         rbtnWrapText.IsChecked = true;
@@ -1292,8 +1325,12 @@ namespace WindowsTweaker {
                         Directory.CreateDirectory(godModeFolderPath);
                         _message.Success(GetResourceString("SuccessfullyFolderCreate") + " " + parentDir +
                                          ". " + GetResourceString("PleaseNoteWinRefresh"));
-                    } catch (UnauthorizedAccessException) {
+                    }
+                    catch (UnauthorizedAccessException) {
                         _message.Error(GetResourceString("PermissionDenied"));
+                    }
+                    catch (IOException ioe) {
+                        _message.Error(ioe.Message);
                     }
                 } else {
                     _message.Error(GetResourceString("YoCantMake") + " " + selectedFolderName + " . " + GetResourceString("AGodFolder") +
@@ -1541,7 +1578,7 @@ namespace WindowsTweaker {
                             key.SetValue("", Constants.OpenCmdPromptVal);
                         }
                     } else {
-                        hkcrDirShell.DeleteSubKey(@"Open Command Prompt here", false);
+                        hkcrDirShell.DeleteSubKeyTree(@"Open Command Prompt here", false);
                     }
                 }
             }
@@ -1555,7 +1592,7 @@ namespace WindowsTweaker {
                             key.Close();
                         }
                     } else {
-                        hkcrDriveShell.DeleteSubKey(@"Open Command Prompt here", false);
+                        hkcrDriveShell.DeleteSubKeyTree(@"Open Command Prompt here", false);
                     }
                 }
                 if (chkAddDefragInMenu.IsChecked == true) {
@@ -1615,7 +1652,7 @@ namespace WindowsTweaker {
                 _message.Error(GetResourceString("SendToAddDisabled"));
                 btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
             } catch (FileNotFoundException) {
-                _message.Error("InvalidFilePath");
+                _message.Error(GetResourceString("InvalidFilePath"));
             }
         }
 
@@ -1913,9 +1950,25 @@ namespace WindowsTweaker {
                 RegistryKey hkcuAutoplayHandlers = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers");
                 RegistryKey hklmCdRom = _hklm.CreateSubKey(@"SYSTEM\CurrentControlSet\services\cdrom");
 
-                int? driveAutoRunVal = (int?) hkcuExplorer.GetValue(Constants.NoDriveAutoPlay);
-                int? disableAutoPlayVal = (int?) hkcuAutoplayHandlers.GetValue(Constants.DisableAutoplay);
-                int? autoRunVal = (int?) hklmCdRom.GetValue(Constants.AutoRun);
+                int? driveAutoRunVal, disableAutoPlayVal, autoRunVal;
+                try {
+                    driveAutoRunVal = (int?) hkcuExplorer.GetValue(Constants.NoDriveAutoPlay);
+                }
+                catch (InvalidCastException) {
+                    driveAutoRunVal = Utils.RepairAsNullableIntFromString(hkcuExplorer, Constants.NoDriveAutoPlay);
+                }
+                try {
+                    disableAutoPlayVal = (int?) hkcuAutoplayHandlers.GetValue(Constants.DisableAutoplay);
+                }
+                catch (InvalidCastException) {
+                    disableAutoPlayVal = Utils.RepairAsNullableIntFromString(hkcuAutoplayHandlers, Constants.DisableAutoplay);
+                }
+                try {
+                    autoRunVal = (int?) hklmCdRom.GetValue(Constants.AutoRun);
+                }
+                catch (InvalidCastException) {
+                    autoRunVal = Utils.RepairAsNullableIntFromString(hklmCdRom, Constants.AutoRun);
+                }
                 if (driveAutoRunVal.HasValue && disableAutoPlayVal.HasValue && autoRunVal.HasValue) {
                     if (disableAutoPlayVal == 1 || autoRunVal == 0) {
                         rbtnDisableAutoPlay.IsChecked = true;
@@ -2393,11 +2446,11 @@ namespace WindowsTweaker {
         }
 
         private void StartUpdateCheck(bool failSilently) {
-            if (String.IsNullOrEmpty(Keys.UpdateApiUrl)) return;
+            if (String.IsNullOrEmpty(Keys.UpdateApiUrl) || _updateCheckBackgroundWorker.IsBusy) return;
             _updateCheckBackgroundWorker.RunWorkerAsync(failSilently);
         }
 
-        private TweakerUpdate GetLastestVersionInfo() {
+        private TweakerUpdate GetLatestVersionInfo() {
             String response = UpdateCheckTask.GetUpdateInfoFile();
             if (String.IsNullOrEmpty(response)) return null;
             TweakerUpdate tweakerUpdate = UpdateCheckTask.ReadTweakerUpdateInfo(response);
@@ -2433,7 +2486,7 @@ namespace WindowsTweaker {
         }
 
         private void OnUpdateWorkerStarted(object sender, DoWorkEventArgs e) {
-            TweakerUpdate result = GetLastestVersionInfo();
+            TweakerUpdate result = GetLatestVersionInfo();
             bool failSilently = (bool) e.Argument;
             e.Result = new Dictionary<string, object> {
                 {"result", result},
