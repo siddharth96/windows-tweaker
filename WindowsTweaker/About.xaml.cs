@@ -10,7 +10,7 @@ namespace WindowsTweaker {
         public About() {
             InitializeComponent();
             Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            txtVersion.Text = this.FindResource("Version") + " " + applicationVersion;
+            txtVersion.Text = this.FindResource("Version") + " " + applicationVersion.Major + "." + applicationVersion.Minor;
         }
 
         private void OnVisitUsLinkClick(object sender, RoutedEventArgs e) {
