@@ -402,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">weil es entweder eine Systemdatei oder ist keine gültige Verknüpfung</system:String>
     <system:String x:Key="ShutdwnConfig">Shutdown-Konfiguration</system:String>
     <system:String x:Key="MemLabel">Speicher</system:String>
-    <system:String x:Key="SearchHint">Suche (Minimum 3 Zeichen)</system:String>
+    <system:String x:Key="SearchHint">Suche (Strg + K zu konzentrieren, verwenden Sie Tab / Down-Pfeil um die Suchergebnisse, und drücken Sie die Eingabetaste, um zu navigieren)</system:String>
     <system:String x:Key="DisableNewAppNotify">Deaktivieren Sie "Sie haben neue Apps, die diese Art von Datei öffnen"-Benachrichtigung</system:String>
     <system:String x:Key="WarningMsgTitle">Sind Sie sicher?</system:String>
     <system:String x:Key="SomethingWrong">Sorry, aber etwas schief gegangen ist. Möchten Sie diesen Bericht?</system:String>
@@ -453,4 +453,5 @@
     <system:String x:Key="RestartBoxText">Ihre Einstellungen wurden angewendet. Doch einige Einstellungen möglicherweise nicht wirksam, bis Sie Ihr Windows neu zu starten</system:String>
     <system:String x:Key="RestartBoxOkBtnTxt">Starten Sie jetzt</system:String>
     <system:String x:Key="RestartBoxCancelTxt">Starten Sie später</system:String>
+    <system:String x:Key="Min3Chars">Bitte geben Sie mindestens 3 Buchstaben ein</system:String>
 </ResourceDictionary>

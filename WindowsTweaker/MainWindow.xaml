@@ -4,6 +4,7 @@
         xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:search="clr-namespace:UISearchTextBox;assembly=UISearchTextBox"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+        xmlns:local="clr-namespace:WindowsTweaker"
         Title="Windows Tweaker 5.1"
         Icon="Images/mainIconBig.png"
         Style="{StaticResource MainWindowStyle}"
@@ -16,6 +17,9 @@
         Height="750"
         ResizeMode="CanResizeWithGrip" 
         Name="mainWindow">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.FocusSearchCommand}" Executed="OnFocusSearchCmdExecuted"></CommandBinding>
+    </Window.CommandBindings>
     <Window.Resources>
         <cm:BackgroundWorker x:Key="sendToBackgroundWorker" RunWorkerCompleted="OnSendToWorkerCompleted"
                              WorkerSupportsCancellation="True" DoWork="OnSendToWorkerStarted"></cm:BackgroundWorker>
@@ -52,6 +56,7 @@
             <search:SearchTextBox  Background="White" HorizontalAlignment="Stretch" Margin="20, 5, 20, 0"
                                    Search="OnSearchEvent" Style="{StaticResource TxtBoxStyle}"
                                    SearchDismiss="OnSearchDismiss"
+                                   PreviewKeyDown="OnSearchTextBoxKeyDown"
                                    LabelText="{StaticResource SearchHint}" Name="stxtSearchInput"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="1">
@@ -4091,6 +4096,7 @@
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListBoxItem}">
                                     <EventSetter Event="PreviewMouseDown" Handler="OnSearchListItemMouseDown"></EventSetter>
+                                    <EventSetter Event="KeyDown" Handler="OnSearchListItemKeyDown"></EventSetter>
                                 </Style>
                             </ListBox.ItemContainerStyle>
                         </ListBox>

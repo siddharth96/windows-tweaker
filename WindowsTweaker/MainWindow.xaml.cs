@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -38,6 +37,8 @@ namespace WindowsTweaker {
             _updateCheckBackgroundWorker = (BackgroundWorker) this.FindResource("updateCheckBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
+            FocusSearchCommand.InputGestures.Add(new KeyGesture(Key.K, ModifierKeys.Control));
+            stxtSearchInput.Focus();
             _message.Hide();
             _hasTabLoadedDict = new Dictionary<string, bool>();
             UpdateLanguageMenu();
@@ -60,6 +61,8 @@ namespace WindowsTweaker {
         private readonly Searcher _searcher;
         private readonly Dictionary<string, bool> _hasTabLoadedDict;
         private readonly SendToTask _sendToTask;
+
+        public static RoutedCommand FocusSearchCommand = new RoutedCommand();
 
         #region MaximizeButtonHandling
 
@@ -262,6 +265,10 @@ namespace WindowsTweaker {
         #region Common Code
         private void OnTabLoaded(object sender, RoutedEventArgs e) {
             string tagVal = ((TabItem) sender).Tag.ToString();
+            LoadTab(tagVal);
+        }
+
+        private void LoadTab(string tagVal) {
             if (_hasTabLoadedDict.ContainsKey(tagVal) && _hasTabLoadedDict[tagVal])
                 return;
             _hasTabLoadedDict[tagVal] = true;
@@ -2260,6 +2267,17 @@ namespace WindowsTweaker {
 
         #region Search
 
+        private void OnSearchTextBoxKeyDown(object sender, KeyEventArgs e) {
+            if ((e.Key == Key.Down || e.Key == Key.Tab) && popupSearch.IsOpen) {
+                lstSearchResults.Focus();
+                e.Handled = true;
+            }
+        }
+
+        private void OnFocusSearchCmdExecuted(object sender, ExecutedRoutedEventArgs e) {
+            stxtSearchInput.Focus();
+        }
+
         private void OnSearchEvent(object sender, RoutedEventArgs e) {
             if (_searchBackgroundWorker.IsBusy) {
                 _searchBackgroundWorker.CancelAsync();
@@ -2269,8 +2287,10 @@ namespace WindowsTweaker {
         }
 
         private void Search(string searchTxt) {
+            if (String.IsNullOrEmpty(searchTxt)) return;
             searchTxt = searchTxt.Trim();
             if (searchTxt.Length < 3) {
+                _message.Error(GetResourceString("Min3Chars"));
                 return;
             }
             if (searchTxt.Length > 100) {
@@ -2315,6 +2335,14 @@ namespace WindowsTweaker {
             return searchItems;
         }
 
+        private void OnSearchListItemKeyDown(object sender, KeyEventArgs e) {
+            if (!(e.Key == Key.Enter || e.Key == Key.Return)) return;
+            ListBoxItem listBoxItem = (ListBoxItem)sender;
+            SearchItem searchItem = listBoxItem.Content as SearchItem;
+            if (searchItem == null) return;
+            NavigateTo(searchItem);
+        }
+
         private void OnSearchListItemMouseDown(object sender, MouseButtonEventArgs e) {
             ListBoxItem listBoxItem = (ListBoxItem) sender;
             SearchItem searchItem = listBoxItem.Content as SearchItem;
@@ -2328,6 +2356,10 @@ namespace WindowsTweaker {
             object subTabItemObj = this.FindName(searchItem.SubTab);
             if (mainTabItemObj == null || subTabControlObj == null || subTabItemObj == null) return;
             TabItem mainTabItem = (TabItem) mainTabItemObj;
+            string tagVal = mainTabItem.Tag as string;
+            if (!String.IsNullOrEmpty(tagVal)) {
+                LoadTab(tagVal);
+            }
             mainTab.SelectedItem = mainTabItem;
             TabControl subTabControl = (TabControl) subTabControlObj;
             TabItem subTabItem = (TabItem) subTabItemObj;
@@ -2519,5 +2551,6 @@ namespace WindowsTweaker {
             StartUpdateCheck(false);
         }
         #endregion
+
     }
 }
