@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStyle="ToolWindow"
         Icon="Images/mainIconBig.png"
-        WindowStartupLocation="CenterOwner"
-        Title="MoreInfo" Height="250" Width="600">
+        WindowStartupLocation="CenterScreen"
+        Title="{StaticResource MoreInfo}" Height="250" Width="600">
     <Grid Background="{StaticResource WindowBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

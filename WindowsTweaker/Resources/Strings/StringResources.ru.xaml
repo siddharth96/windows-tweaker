@@ -402,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">так как она либо файловая система или не является допустимым ярлык</system:String>
     <system:String x:Key="ShutdwnConfig">конфигурация выключение</system:String>
     <system:String x:Key="MemLabel">память</system:String>
-    <system:String x:Key="SearchHint">Поиск (Ctrl + K, чтобы сосредоточиться, использовать Tab / стрелку вниз, чтобы выбрать результатов поиска и нажмите Enter, чтобы перейти)</system:String>
+    <system:String x:Key="SearchHint">Поиск (Ctrl + F, чтобы сосредоточиться, использовать Tab / стрелку вниз, чтобы выбрать результатов поиска и нажмите Enter, чтобы перейти)</system:String>
     <system:String x:Key="DisableNewAppNotify">Отключить "у вас есть новые приложения, которые могут открыть этот тип файла" уведомление</system:String>
     <system:String x:Key="WarningMsgTitle">Вы уверены?</system:String>
     <system:String x:Key="SomethingWrong">Извините, но что-то пошло не так. Хотел бы сообщить об этом?</system:String>
@@ -454,4 +454,6 @@
     <system:String x:Key="RestartBoxOkBtnTxt">Перезагрузить сейчас</system:String>
     <system:String x:Key="RestartBoxCancelTxt">Перезагрузить позже</system:String>
     <system:String x:Key="Min3Chars">Пожалуйста введите не менее 3 букв</system:String>
+    <system:String x:Key="MoreInfo">Дополнительная информация</system:String>
+    <system:String x:Key="ViewMoreInfo">Посмотреть Дополнительная информация</system:String>
 </ResourceDictionary>

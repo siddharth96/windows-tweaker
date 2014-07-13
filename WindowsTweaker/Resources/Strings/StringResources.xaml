@@ -402,7 +402,7 @@
     <system:String x:Key="AreNotShortcuts">because it is either a system file or is not a valid shortcut</system:String>
     <system:String x:Key="ShutdwnConfig">shutdown configuration</system:String>
     <system:String x:Key="MemLabel">memory</system:String>
-    <system:String x:Key="SearchHint">Search (Ctrl+K to focus, use Tab/Down-Arrow to select search results &amp; press Enter to navigate)</system:String>
+    <system:String x:Key="SearchHint">Search (Ctrl+F to focus, use Tab/Down-Arrow to select search results &amp; press Enter to navigate)</system:String>
     <system:String x:Key="DisableNewAppNotify">Disable "you have new apps that can open this type of file" notification</system:String>
     <system:String x:Key="WarningMsgTitle">Are you sure?</system:String>
     <system:String x:Key="SomethingWrong">Sorry, but something has gone wrong. Would like to report this?</system:String>
@@ -454,4 +454,6 @@
     <system:String x:Key="RestartBoxOkBtnTxt">Restart Now</system:String>
     <system:String x:Key="RestartBoxCancelTxt">Restart Later</system:String>
     <system:String x:Key="Min3Chars">Please enter at least 3 letters</system:String>
+    <system:String x:Key="MoreInfo">More Information</system:String>
+    <system:String x:Key="ViewMoreInfo">View More Information</system:String>
 </ResourceDictionary>

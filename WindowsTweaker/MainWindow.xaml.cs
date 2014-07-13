@@ -37,7 +37,7 @@ namespace WindowsTweaker {
             _updateCheckBackgroundWorker = (BackgroundWorker) this.FindResource("updateCheckBackgroundWorker");
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
-            FocusSearchCommand.InputGestures.Add(new KeyGesture(Key.K, ModifierKeys.Control));
+            FocusSearchCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
             stxtSearchInput.Focus();
             _message.Hide();
             _hasTabLoadedDict = new Dictionary<string, bool>();

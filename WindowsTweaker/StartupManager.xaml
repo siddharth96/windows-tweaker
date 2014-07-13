@@ -109,7 +109,11 @@
                     </wpfSpark:ToggleSwitch.ThumbBorderBrush>
                 </wpfSpark:ToggleSwitch>
                 <Image Grid.Column="3" Width="24" Height="24" Margin="10, 0, 0, 0" Cursor="Hand" Tag="{Binding}"
-                       PreviewMouseDown="OnMoreInfoImageMouseDown" Source="Images/help.png"></Image>
+                       PreviewMouseDown="OnMoreInfoImageMouseDown" Source="Images/help.png">
+                    <Image.ToolTip>
+                        <ToolTip Content="{StaticResource ViewMoreInfo}"></ToolTip>
+                    </Image.ToolTip>
+                </Image>
             </Grid>
         </DataTemplate>
     </Window.Resources>
