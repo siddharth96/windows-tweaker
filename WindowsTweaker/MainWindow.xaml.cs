@@ -1196,6 +1196,7 @@ namespace WindowsTweaker {
         }
 
         private void OnButtonUseDefaultSelectionColorClick(object sender, RoutedEventArgs e) {
+            _selectionColor = _defaultSelectionColor;
             rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
         }
 
