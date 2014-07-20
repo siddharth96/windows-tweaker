@@ -900,7 +900,8 @@
                                             </Grid.RowDefinitions>
                                             <TextBlock HorizontalAlignment="Center"
                                                        Text="{StaticResource PresentImg}" Style="{StaticResource TxtStyle}" />
-                                            <Image Name="imgProperty" Grid.Row="1" Stretch="None" MaxHeight="200" />
+                                            <Image Name="imgProperty" Grid.Row="1" Stretch="Fill" MaxHeight="200"
+                                                   />
                                         </Grid>
                                     </Grid>
                                 </StackPanel>

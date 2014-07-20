@@ -964,16 +964,25 @@ namespace WindowsTweaker {
                             catch (ArgumentException) {
                                 imgProperty.Source = null;
                             }
+                            catch (NotSupportedException) {
+                                imgProperty.Source = null;
+                            }
                         }
                     }
                     catch (FileNotFoundException) {
                         imgProperty.Source = null;
+                        hklmOEM.DeleteValue(Constants.Logo);
                     }
                     catch (DirectoryNotFoundException) {
                         imgProperty.Source = null;
-                    } 
+                        hklmOEM.DeleteValue(Constants.Logo);
+                    }
                     catch (ArgumentException) {
                         imgProperty.Source = null;
+                    }
+                    catch (NotSupportedException) {
+                        imgProperty.Source = null;
+                        hklmOEM.DeleteValue(Constants.Logo);
                     }
                 }
             }
