@@ -69,12 +69,17 @@ namespace WindowsTweaker.AppTasks {
         /// <param name="minVal"></param>
         internal static void SetValueFromString(this IntegerUpDown iud, RegistryKey registryKey,
             string valueName, string defaultValStr, int? maxVal = null, int? minVal = null) {
-            int iudVal;
             int defaultVal = Int32.Parse(defaultValStr);
+            int iudVal;
             try {
                 iudVal = Int32.Parse((string) registryKey.GetValue(valueName, defaultVal));
-            } catch (FormatException) {
+            }
+            catch (FormatException) {
                 iudVal = defaultVal;
+            }
+            catch (InvalidCastException) {
+                string valStr = Utils.RepairAsStringFromInt(registryKey, valueName);
+                iudVal = !String.IsNullOrEmpty(valStr) ? Int32.Parse(valStr) : defaultVal;
             }
             iud.Value = iudVal <= maxVal &&  iudVal >= minVal  ? iudVal : defaultVal;
         }
