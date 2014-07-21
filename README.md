@@ -1,6 +1,6 @@
-Windows Tweaker 5.0 has been written in C# and WPF using .net Framework 4.5, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
+Windows Tweaker has been written in C# and WPF using .net Framework 4.5, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
 
-![Windows Tweaker Screenshot](https://tweaker.blob.core.windows.net/version5/2.PNG)
+![Windows Tweaker Screenshot](https://tweaker.blob.core.windows.net/version5-1/2.PNG)
 
 ## To Build
 Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-i-use-github "Lifehacker") if you don't know how to setup git on Windows.
@@ -26,4 +26,4 @@ namespace WindowsTweaker {
 1. Porter Stemmer 2 algorithm for stemming English words ([C# Implementation link](http://alski.net/post/2007/09/16/0a-Porter-Stemmer-2-C-implementation0a-0a-.aspx), [Python Implementation Link](https://pypi.python.org/pypi/stemming/1.0))
 2. Snowball Stemmer algorithm for stemming German and Russian words ([C# Implementation Link](http://www.iveonik.com/blog/2011/08/snowball-stemmers-on-csharp-free-download/), [Python Implementation Link](https://pypi.python.org/pypi/PyStemmer/1.0.1))
 
-Change the branch to ```v4.0```, if you want to build the previous stable release.
+Change the branch, if you want to build the previous stable release.
