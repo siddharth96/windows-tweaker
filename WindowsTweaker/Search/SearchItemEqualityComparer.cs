@@ -9,7 +9,7 @@ namespace WindowsTweaker.Search {
         }
 
         public int GetHashCode(SearchItem obj) {
-            return obj.MainTab.GetHashCode() ^ obj.SubTab.GetHashCode() ^ obj.SubTabControl.GetHashCode() ^ obj.UiElement.GetHashCode();
+            return obj.MainNavItem.GetHashCode() ^ obj.SubTab.GetHashCode() ^ obj.SubTabControl.GetHashCode() ^ obj.UiElement.GetHashCode();
         }
     }
 }

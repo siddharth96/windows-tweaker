@@ -81,7 +81,8 @@ namespace WindowsTweaker.Search {
             return matchedSearchItems;
         }
 
-        private Dictionary<string, List<SearchItem>> AddTextToSearchItems(Dictionary<string, List<SearchItem>> termUiDictionary) {
+        private Dictionary<string, List<SearchItem>> AddTextToSearchItems(
+            Dictionary<string, List<SearchItem>> termUiDictionary) {
             if (termUiDictionary == null || !termUiDictionary.Any())
                 return null;
             foreach (KeyValuePair<string, List<SearchItem>> keyValuePair in termUiDictionary) {
@@ -89,29 +90,39 @@ namespace WindowsTweaker.Search {
                 foreach (SearchItem searchItem in searchItemList) {
                     object uiControl = _window.FindName(searchItem.UiElement);
                     if (uiControl is CheckBox) {
-                        CheckBox chkBox = (CheckBox)uiControl;
+                        CheckBox chkBox = (CheckBox) uiControl;
                         if (chkBox.Content is TextBlock) {
                             searchItem.UiElementText = ((TextBlock) chkBox.Content).Text;
-                        } else if (!(chkBox.Content is StackPanel) && !(chkBox.Content is Grid)) {
+                        }
+                        else if (!(chkBox.Content is StackPanel) && !(chkBox.Content is Grid)) {
                             searchItem.UiElementText = chkBox.Content.ToString();
                         }
-                    } else if (uiControl is RadioButton) {
-                        RadioButton rbtn = (RadioButton)uiControl;
+                    }
+                    else if (uiControl is RadioButton) {
+                        RadioButton rbtn = (RadioButton) uiControl;
                         if (rbtn.Content is TextBlock) {
-                            searchItem.UiElementText = ((TextBlock)rbtn.Content).Text;
-                        } else if (!(rbtn.Content is StackPanel) && !(rbtn.Content is Grid)) {
+                            searchItem.UiElementText = ((TextBlock) rbtn.Content).Text;
+                        }
+                        else if (!(rbtn.Content is StackPanel) && !(rbtn.Content is Grid)) {
                             searchItem.UiElementText = rbtn.Content.ToString();
                         }
-                    } else if (uiControl is TextBlock) {
-                        searchItem.UiElementText = ((TextBlock)uiControl).Text;
-                    } else if (uiControl is TabItem) {
-                        searchItem.UiElementText = ((TabItem)uiControl).Header.ToString();
-                    } else if (uiControl is Hyperlink) {
+                    }
+                    else if (uiControl is TextBlock) {
+                        searchItem.UiElementText = ((TextBlock) uiControl).Text;
+                    }
+                    else if (uiControl is TabItem) {
+                        searchItem.UiElementText = ((TabItem) uiControl).Header.ToString();
+                    }
+                    else if (uiControl is Hyperlink) {
                         Hyperlink hyperlink = (Hyperlink) uiControl;
                         Run run = hyperlink.Inlines.FirstInline as Run;
                         searchItem.UiElementText = run != null ? run.Text : "";
-                    } else if (uiControl is Button) {
+                    }
+                    else if (uiControl is Button) {
                         searchItem.UiElementText = ((Button) uiControl).Content.ToString();
+                    }
+                    else if (uiControl is ListBoxItem) {
+                        searchItem.UiElementText = ((ListBoxItem) uiControl).Content.ToString();
                     }
                 }
             }

@@ -38,13 +38,14 @@ namespace WindowsTweaker {
             _selectionColor = _defaultSelectionColor;
             _searcher = new Searcher(this);
             FocusSearchCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
-            stxtSearchInput.Focus();
             _message.Hide();
             _hasTabLoadedDict = new Dictionary<string, bool>();
             UpdateLanguageMenu();
             _sendToTask = new SendToTask(this);
+
             mainWindow.SourceInitialized += new EventHandler(OnWindowSourceInitialized);
             cmboBxFileSizes.ItemsSource = CreateFileTask.SizeDataDict;
+            LoadTab(Constants.Explorer);
             CheckForUpdate();
         }
 
@@ -263,9 +264,17 @@ namespace WindowsTweaker {
         #endregion
 
         #region Common Code
-        private void OnTabLoaded(object sender, RoutedEventArgs e) {
-            string tagVal = ((TabItem) sender).Tag.ToString();
+
+        private void OnMainNavItemMouseDown(object sender, MouseButtonEventArgs e) {
+            string tagVal = ((ListBoxItem) sender).Tag.ToString();
             LoadTab(tagVal);
+        }
+
+        private void OnMainNavItemKeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Down) {
+                string tagVal = ((ListBoxItem) sender).Tag.ToString();
+                LoadTab(tagVal);
+            }
         }
 
         private void LoadTab(string tagVal) {
@@ -2277,6 +2286,24 @@ namespace WindowsTweaker {
 
         #region Search
 
+        private void OnShowSearchGridMouseDown(object sender, MouseButtonEventArgs e) {
+            ShowSearchView();
+        }
+
+        private void ShowSearchView() {
+            if (gridSearch.Visibility == Visibility.Visible) return;
+            gridSearch.Visibility = Visibility.Visible;
+            stxtSearchInput.Focus();
+        }
+
+        private void HideSearchView() {
+            gridSearch.Visibility = Visibility.Hidden;
+            popupSearch.IsOpen = false;
+            lstSearchResults.ItemsSource = null;
+            stxtSearchInput.Text = "";
+            _message.Hide();
+        }
+
         private void OnSearchTextBoxKeyDown(object sender, KeyEventArgs e) {
             if ((e.Key == Key.Down || e.Key == Key.Tab) && popupSearch.IsOpen) {
                 lstSearchResults.Focus();
@@ -2285,7 +2312,7 @@ namespace WindowsTweaker {
         }
 
         private void OnFocusSearchCmdExecuted(object sender, ExecutedRoutedEventArgs e) {
-            stxtSearchInput.Focus();
+            ShowSearchView();
         }
 
         private void OnSearchEvent(object sender, RoutedEventArgs e) {
@@ -2317,13 +2344,6 @@ namespace WindowsTweaker {
                 {"result", searchItems},
                 {"term", searchTxt}
             };
-        }
-
-        private void HideSearchResults() {
-            popupSearch.IsOpen = false;
-            lstSearchResults.ItemsSource = null;
-            stxtSearchInput.Text = "";
-            _message.Hide();
         }
 
         private void OnSearchWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
@@ -2361,24 +2381,24 @@ namespace WindowsTweaker {
         }
 
         private void NavigateTo(SearchItem searchItem) {
-            object mainTabItemObj = this.FindName(searchItem.MainTab);
+            object mainNavItemObj = this.FindName(searchItem.MainNavItem);
             object subTabControlObj = this.FindName(searchItem.SubTabControl);
             object subTabItemObj = this.FindName(searchItem.SubTab);
-            if (mainTabItemObj == null || subTabControlObj == null || subTabItemObj == null) return;
-            TabItem mainTabItem = (TabItem) mainTabItemObj;
-            string tagVal = mainTabItem.Tag as string;
+            if (mainNavItemObj == null || subTabControlObj == null || subTabItemObj == null) return;
+            ListBoxItem lstMainNavItem = (ListBoxItem) mainNavItemObj;
+            string tagVal = lstMainNavItem.Tag as string;
             if (!String.IsNullOrEmpty(tagVal)) {
                 LoadTab(tagVal);
             }
-            mainTab.SelectedItem = mainTabItem;
+            lstMainNav.SelectedItem = lstMainNavItem;
             TabControl subTabControl = (TabControl) subTabControlObj;
             TabItem subTabItem = (TabItem) subTabItemObj;
             subTabControl.SelectedItem = subTabItem;
-            HideSearchResults();
+            HideSearchView();
         }
 
         private void OnSearchDismiss(object sender, RoutedEventArgs e) {
-            HideSearchResults();
+            HideSearchView();
         }
 
         #endregion

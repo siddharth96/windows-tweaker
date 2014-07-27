@@ -80,7 +80,7 @@
 
     <ControlTemplate x:Key="WindowTemplate" TargetType="{x:Type Window}">
         <Border Name="windowBorder" BorderBrush="{StaticResource WindowBackgroundBrush}"
-                BorderThickness="0" Background="{StaticResource TitleBarBrush}" Margin="0" Padding="0">
+                BorderThickness="0" Background="{StaticResource WindowBackgroundBrush}" Margin="0" Padding="0">
             <Grid Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="36" />
@@ -95,7 +95,7 @@
                         <ColumnDefinition Width="28" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Style="{StaticResource H1}" Margin="20, 10, 10, 4" FontSize="21" HorizontalAlignment="Stretch" 
-                       Grid.Column="0" VerticalAlignment="Bottom" Text="{TemplateBinding Title}" />
+                       Grid.Column="0" VerticalAlignment="Bottom" Text="{TemplateBinding Title}" Foreground="White" />
                     <Button Margin="0" Template="{StaticResource MinimizeButtonTemplate}" Grid.Column="1"
                             Name="btnMin" Click="OnMinimizeButtonClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
                     <Button Margin="0" Template="{StaticResource MaximizeButtonTemplate}" Grid.Column="2"
@@ -130,7 +130,7 @@
     <Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
         <Setter Property="AllowsTransparency" Value="True" />
         <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}" />
         <Setter Property="Margin" Value="0"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Template" Value="{StaticResource WindowTemplate}" />

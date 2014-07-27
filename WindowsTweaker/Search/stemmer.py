@@ -24,7 +24,7 @@ EN = "en"
 DE = "de"
 RU = "ru"
 UI_ELEMENT_NAME = 0
-MAIN_TAB = 1
+MAIN_NAV_ITEM = 1
 SUB_TAB_CONTROL = 2
 SUB_TAB = 3
 
@@ -46,7 +46,7 @@ def stem_file(file_path, lang, output_file_path, indent, separator="=>"):
     term_and_ui_element_map = defaultdict(list)
     ui_element_map_for_term = lambda ui_element_row: \
         {"UiElement": ui_element_row[UI_ELEMENT_NAME].strip(),
-         "MainTab": ui_element_row[MAIN_TAB].strip(),
+         "MainNavItem": ui_element_row[MAIN_NAV_ITEM].strip(),
          "SubTabControl": ui_element_row[SUB_TAB_CONTROL].strip(),
          "SubTab": ui_element_row[SUB_TAB].strip()}
     stemmer_func = stemmer_meth(lang)

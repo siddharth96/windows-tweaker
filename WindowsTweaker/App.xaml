@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/MetroSkin.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/MaterialDesign.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/WindowDictionary.xaml"></ResourceDictionary>
 				<ResourceDictionary Source="Resources/AeroSkin.xaml"></ResourceDictionary>
 				<ResourceDictionary Source="Resources/Strings/StringResources.ru.xaml"></ResourceDictionary>
