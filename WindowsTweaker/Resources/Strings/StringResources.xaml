@@ -456,4 +456,5 @@
     <system:String x:Key="Min3Chars">Please enter at least 3 letters</system:String>
     <system:String x:Key="MoreInfo">More Information</system:String>
     <system:String x:Key="ViewMoreInfo">View More Information</system:String>
+    <system:String x:Key="DirNotExist">The specified folder doesn't exist</system:String>
 </ResourceDictionary>

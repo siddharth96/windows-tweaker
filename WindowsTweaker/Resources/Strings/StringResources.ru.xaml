@@ -456,4 +456,5 @@
     <system:String x:Key="Min3Chars">Пожалуйста введите не менее 3 букв</system:String>
     <system:String x:Key="MoreInfo">Дополнительная информация</system:String>
     <system:String x:Key="ViewMoreInfo">Посмотреть Дополнительная информация</system:String>
+    <system:String x:Key="DirNotExist">Указанная папка не существует</system:String>
 </ResourceDictionary>

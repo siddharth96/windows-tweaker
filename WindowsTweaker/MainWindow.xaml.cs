@@ -1332,6 +1332,10 @@ namespace WindowsTweaker {
             WPFFolderBrowserDialog folderBrowserDialog = new WPFFolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() != true) return;
             string selectedFolderName = folderBrowserDialog.FileName;
+            if (!Directory.Exists(selectedFolderName)) {
+                _message.Error(GetResourceString("DirNotExist"));
+                return;
+            }
             if (Utils.IsEmptyDirectory(selectedFolderName)) {
                 if (Directory.GetParent(selectedFolderName) != null) {
                     string godModeFolderPath = selectedFolderName + Constants.GodModeKey;
