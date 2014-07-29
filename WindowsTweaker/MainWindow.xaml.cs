@@ -1109,7 +1109,7 @@ namespace WindowsTweaker {
 
             // Explorer
             using (RegistryKey hkcrSharingHandler = _hkcr.CreateSubKey(@"Network\SharingHandler")) {
-                string sharingHandlerVal = (string)hkcrSharingHandler.GetValue("");
+                string sharingHandlerVal = hkcrSharingHandler.GetValue("") as string;
                 chkHandIcon.IsChecked = !String.IsNullOrEmpty(sharingHandlerVal) &&
                                         sharingHandlerVal == Constants.SharedFolderIcon;
             }
@@ -1265,7 +1265,7 @@ namespace WindowsTweaker {
                 string prgForNoExt = String.Empty;
                 using (RegistryKey hkcrOpen = hkcrNoEnd.OpenSubKey(@"shell\open\command")) {
                     if (hkcrOpen != null) {
-                        prgForNoExt = (string)hkcrOpen.GetValue("");
+                        prgForNoExt = hkcrOpen.GetValue("") as string;
                     }
                     if (!String.IsNullOrEmpty(prgForNoExt)) {
                         txtPrgForNoExt.Text = prgForNoExt;
@@ -1281,7 +1281,7 @@ namespace WindowsTweaker {
                 string prgForUnkownExt = String.Empty;
                 using (RegistryKey hkcrOpen = hkcrUnknown.OpenSubKey(@"shell\open\command")) {
                     if (hkcrOpen != null) {
-                        prgForUnkownExt = (string) hkcrOpen.GetValue("");
+                        prgForUnkownExt = hkcrOpen.GetValue("") as string;
                     }
                     if (!String.IsNullOrEmpty(prgForUnkownExt)) {
                         txtPrgForUnknownExt.Text = prgForUnkownExt;

@@ -75,7 +75,7 @@ namespace WindowsTweaker.AppTasks {
                             if (commandParentKey != null) {
                                 hkcrCmd = commandParentKey.OpenSubKey(Constants.Cmd);
                                 if (hkcrCmd != null) {
-                                    string fPath = (string) hkcrCmd.GetValue("");
+                                    string fPath = hkcrCmd.GetValue("") as string;
                                     if (fPath != null) {
                                         fPath = Utils.ExtractFilePath(fPath);
                                         if (fPath != null) {

@@ -67,9 +67,12 @@ namespace WindowsTweaker.AppTasks {
                 foreach (string subKeyName in hkcrDirShell.GetSubKeyNames()) {
                     if (subKeyName.Equals("cmd", StringComparison.InvariantCultureIgnoreCase))
                         continue;
+                    
                     RegistryKey regKey = hkcrDirShell.OpenSubKey(subKeyName + @"\command");
                     if (regKey == null) continue;
-                    string val = (string) regKey.GetValue("");
+                    string val = regKey.GetValue("") as string;
+                    if (String.IsNullOrEmpty(val)) continue;
+
                     if (val.ToLower().Contains(Constants.InternetExplorer)) {
                         val = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
                             @"Internet Explorer\" + Constants.InternetExplorer);
