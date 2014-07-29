@@ -128,7 +128,13 @@ namespace WindowsTweaker.AppTasks {
         }
 
         internal static string GetConfigFilePath() {
-            string folderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            folderPath = Path.Combine(folderPath, Constants.ConfigDirectoryName);
+            if (!Directory.Exists(folderPath)) {
+                try {
+                    Directory.CreateDirectory(folderPath);
+                } catch (IOException) { }
+            }
             return folderPath != null ? Path.Combine(folderPath, Constants.ConfigFileName) : null;
         }
 

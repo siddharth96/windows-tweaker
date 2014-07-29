@@ -15,6 +15,7 @@ namespace WindowsTweaker.Models {
         public const string Utilities = "utilities";
         public const byte HasUserInteracted = 1;
         public const string InternetExplorer = "iexplore.exe";
+        public const string ConfigDirectoryName = "Windows Tweaker";
         public const string ConfigFileName = "WindowsTweaker.config.xml";
         public const string EnglishSearchInputFileName = "WindowsTweaker.Search.englishTermAndUiElementMap.json";
         public const string GermanSearchInputFileName = "WindowsTweaker.Search.germanTermAndUiElementMap.json";
