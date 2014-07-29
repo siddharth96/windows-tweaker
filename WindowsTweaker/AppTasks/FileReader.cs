@@ -54,7 +54,7 @@ namespace WindowsTweaker.AppTasks {
             ObservableCollection<FileItem> fileItems = null;
             DirectoryInfo directory = new DirectoryInfo(this._folderPath);
             if (!directory.Exists)
-                throw new FileNotFoundException();
+                return null;
             fileItems = new ObservableCollection<FileItem>();
             foreach (FileInfo fileInfo in directory.GetFiles()) {
                 if (_ignoreExtensionList != null && _ignoreExtensionList.Contains(fileInfo.Extension)) {

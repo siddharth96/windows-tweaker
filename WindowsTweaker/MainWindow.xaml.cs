@@ -1649,7 +1649,10 @@ namespace WindowsTweaker {
 
         private void OnSendToWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             ObservableCollection<FileItem> sendToFileItems = e.Result as ObservableCollection<FileItem>;
-            if (sendToFileItems == null) return;
+            if (sendToFileItems == null) {
+                txtSendToLoading.Text = GetResourceString("EmptyData");
+                return;
+            }
             lstSendTo.ItemsSource = sendToFileItems;
             txtSendToLoading.Visibility = Visibility.Hidden;
             lstSendTo.Visibility = Visibility.Visible;
