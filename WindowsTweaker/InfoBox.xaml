@@ -19,7 +19,7 @@
             <TextBlock Margin="10" Foreground="Black"
                        Name="txtMsg" Grid.Column="1" FontSize="14" TextWrapping="Wrap" />
         </Grid>
-        <Grid Grid.Row="1" Background="{StaticResource WindowBackgroudBrushEnd}">
+        <Grid Grid.Row="1" Background="White">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{x:Null}" Name="btnOk" Margin="10" Padding="8 5" IsDefault="True" 
                         Click="OnOkButtonClick" />

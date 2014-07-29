@@ -4218,7 +4218,7 @@
                                       PreviewKeyDown="OnSearchTextBoxKeyDown"
                                       LabelText="{StaticResource SearchHint}" Name="stxtSearchInput" />
             </Grid>
-            <Grid Grid.Row="1" Background="#AA000000" />
+            <Grid Grid.Row="1" Background="#AA000000" MouseDown="OnGridSearchContentMouseDown" />
         </Grid>
         <Popup Name="popupAddToOpenWith" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=gridAddToOpenWith}" 
                 PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="10">

@@ -2393,6 +2393,12 @@ namespace WindowsTweaker {
         private void OnSearchDismiss(object sender, RoutedEventArgs e) {
             HideSearchView();
         }
+        
+        private void OnGridSearchContentMouseDown(object sender, MouseButtonEventArgs e) {
+            if (!popupSearch.IsOpen) {
+                HideSearchView();
+            }
+        }
 
         #endregion
 
@@ -2574,6 +2580,5 @@ namespace WindowsTweaker {
             StartUpdateCheck(false);
         }
         #endregion
-
     }
 }
