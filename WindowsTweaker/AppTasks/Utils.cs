@@ -177,7 +177,9 @@ namespace WindowsTweaker.AppTasks {
 
         public static string RepairAsStringFromInt(RegistryKey regKey, string keyName) {
             // Data type is incorrect, repair it by changing from REG_DWORD to REG_SZ
-            int intVal = (int) regKey.GetValue(keyName);
+            int? intValNullable = regKey.GetValue(keyName) as int?;
+            if (!intValNullable.HasValue) return null;
+            int intVal = (int)intValNullable;
             string val = intVal.ToString(CultureInfo.InvariantCulture);
             regKey.DeleteValue(keyName);
             regKey.SetValue(keyName, val);
