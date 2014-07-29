@@ -551,7 +551,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -604,7 +604,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -687,7 +687,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -757,7 +757,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -847,7 +847,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -952,7 +952,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1023,7 +1023,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1122,7 +1122,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1207,7 +1207,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1285,7 +1285,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1339,7 +1339,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1420,7 +1420,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1594,7 +1594,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1644,7 +1644,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1673,7 +1673,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30" Name="panelSetupGodMode">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30" Name="panelSetupGodMode">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Name="lblSetupGodMode" Text="{StaticResource SetupGodMode}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5"
@@ -1696,7 +1696,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1755,7 +1755,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Name="lblOpenWith" Text="{StaticResource OpenWithDescLine1}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5"
@@ -1826,7 +1826,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1848,7 +1848,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Name="lblPowerBtnAction" Text="{StaticResource PowerBtnAction}" />
                                 <ComboBox HorizontalAlignment="Left" IsReadOnly="True" Margin="30, 10, 5, 5"
@@ -1870,7 +1870,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1891,7 +1891,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Name="lblNoExt"
                                            Text="{StaticResource AppNoExt}" />
                                 <RadioButton Style="{StaticResource RbtnStyle}" Margin="30, 10, 5, 5"
@@ -1951,7 +1951,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -1980,7 +1980,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Text="{StaticResource StartupManagerLabel}" />
                                 <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5"
@@ -2052,7 +2052,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2112,7 +2112,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Text="{StaticResource ScheduleAction}" />
                                 <StackPanel Orientation="Horizontal" Margin="30, 20, 5, 5">
                                     <ComboBox SelectedIndex="0" Name="cmboBxShutdownAction" IsReadOnly="True">
@@ -2136,7 +2136,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2193,7 +2193,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Name="lblHideSysPrivileges" Text="{StaticResource UseOptionHideFileFolder}" />
                                 <StackPanel Orientation="Horizontal">
@@ -2230,7 +2230,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2273,7 +2273,7 @@
                                         Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5"
                                            Name="lblSpecialFolders" Text="{StaticResource CreateSpecialFolders}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5"
@@ -2322,7 +2322,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2389,7 +2389,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2426,7 +2426,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource ChooseCdDvdAction}" />
                                 <RadioButton Margin="30, 20, 5, 5" IsChecked="True"
                                                  Content="{StaticResource UseAutoplayForAll}" Name="rbtnEnableAutoPlay"
@@ -2484,7 +2484,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2532,7 +2532,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 5, 5, 30">
                                 <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource WinUpdateDesc}" />
                                 <ComboBox Margin="30, 5, 5, 5" SelectedIndex="0" Name="cmboBxWinUpdate">
                                     <ComboBoxItem Content="{StaticResource InstallAutomatically}" />
@@ -2575,7 +2575,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2597,7 +2597,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 5, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 5, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource AdminAccountLabel}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource AdminAccountDescLine1}" />
                                 <TextBlock Style="{StaticResource TxtStyle}" Margin="30, 10, 5, 5">
@@ -2616,7 +2616,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2658,7 +2658,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource DisableWinDvdBurner}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" Text="{StaticResource DisableWinDvdBurnerDescLine2}" />
                                 <CheckBox Style="{StaticResource ChkStyle}" Margin="30, 10, 5, 5" Click="OnCheckBoxClick"
@@ -2672,7 +2672,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="693" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                          Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2700,7 +2700,7 @@
                                             Width="166" Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                                 </Grid>
                             </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
                                 <TextBlock Style="{StaticResource H1}" Margin="30, 10, 5, 5" Text="{StaticResource ManageSystemBeeps}" />
                                 <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="30, 10, 5, 5" 
                                                Text="{StaticResource ManageSystemBeepsDescLine2}" />
@@ -2722,7 +2722,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2802,7 +2802,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2847,7 +2847,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2894,7 +2894,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2944,7 +2944,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -2992,7 +2992,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3051,7 +3051,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3207,7 +3207,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3267,7 +3267,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3360,7 +3360,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3414,7 +3414,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3457,7 +3457,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3561,7 +3561,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3626,7 +3626,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3716,7 +3716,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3830,7 +3830,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -3899,7 +3899,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
@@ -4006,7 +4006,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="225" Height="225" VerticalAlignment="Top"
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
                                      Margin="30, 30, 0, 30">
                                 <Grid>
                                     <Grid Width="256" Height="256">
