@@ -5,7 +5,7 @@
     <ControlTemplate x:Key="CloseButtonTemplate" TargetType="{x:Type Button}">
         <Border Name="CloseButtonBorder" Padding="6" Width="26" Height="26">
             <Canvas>
-                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" Name="Cross"
+                <Path Stroke="{StaticResource TitleBarBrush}" Name="Cross"
                       Fill="{StaticResource TitleBarBrush}" StrokeThickness="2">
                     <Path.Data>
                         <GeometryGroup>
@@ -31,7 +31,7 @@
     <ControlTemplate x:Key="MaximizeButtonTemplate" TargetType="{x:Type Button}">
         <Border Name="MaximizeButtonBorder" Padding="6" Width="26" Height="26">
             <Canvas>
-                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" StrokeThickness="2"
+                <Path Stroke="{StaticResource TitleBarBrush}" StrokeThickness="2"
                       Fill="{StaticResource TitleBarBrush}" Name="Cross">
                     <Path.Data>
                         <RectangleGeometry Rect="3,3 9,9" />
@@ -56,7 +56,7 @@
     <ControlTemplate x:Key="MinimizeButtonTemplate" TargetType="{x:Type Button}">
         <Border Name="MinimizeButtonBorder" Padding="6" Width="26" Height="26">
             <Canvas>
-                <Path Stroke="{StaticResource TabItemTextBrushUnselected}" StrokeThickness="2"
+                <Path Stroke="{StaticResource TitleBarBrush}" StrokeThickness="2"
                       Name="Cross">
                     <Path.Data>
                         <GeometryGroup>

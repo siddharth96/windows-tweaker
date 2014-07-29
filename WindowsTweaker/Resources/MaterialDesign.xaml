@@ -1,11 +1,28 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF00897B" />
+    <SolidColorBrush x:Key="VectorImageBackground" Color="#FF00897B" />
     <SolidColorBrush x:Key="ContentBackgroundBrush" Color="#FFEDEDED" />
-    <SolidColorBrush x:Key="ListItemSelectedBrush" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="TabHeaderForegroundUnselectedBrush" Color="#FF00796B"></SolidColorBrush>
-    <SolidColorBrush x:Key="TabHeaderForegroundSelectedBrush" Color="#FF004D40"></SolidColorBrush>
-    <SolidColorBrush x:Key="TabHeaderForegroundHoverBrush" Color="#FF26A69A"></SolidColorBrush>
+    <SolidColorBrush x:Key="ListItemSelectedBrush" Color="#FFDDDDDD" />
+    <SolidColorBrush x:Key="TabHeaderForegroundUnselectedBrush" Color="#FF00796B" />
+    <SolidColorBrush x:Key="TabHeaderForegroundSelectedBrush" Color="#FF004D40" />
+    <SolidColorBrush x:Key="TabHeaderForegroundHoverBrush" Color="#FF26A69A" />
+    <SolidColorBrush x:Key="PopupBorderBrush" Color="#887A8E8F" />
+    <SolidColorBrush x:Key="PrimaryTextColor" Color="#FF383F40" />
+    <SolidColorBrush x:Key="MainNavListItemForeground" Color="#FF444444" />
+    <SolidColorBrush x:Key="ButtonBackgroundHoverBrush" Color="#FFEDEDED" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressedBrush" Color="#FFDBDBDB" />
+    <SolidColorBrush x:Key="WhiteBackgroudBrush" Color="#FFF0F0F0" />
+    <SolidColorBrush x:Key="DarkSelectedBrush" Color="#FF070908" />
+    <SolidColorBrush x:Key="WindowTitleBarButtonPressed" Color="#FF4F7EC5" />
+    <SolidColorBrush x:Key="WindowTitleBarCloseButtonHover" Color="#FFB55551" />
+    <SolidColorBrush x:Key="WindowTitleBarCloseButtonPressed" Color="#FF7D4745" />
+    <SolidColorBrush x:Key="TitleBarBrush" Color="#FFF0F0F0" />
+    <SolidColorBrush x:Key="BlueShadeBackgroundBrush" Color="#FF149EC2" />
+    
+    <DropShadowEffect x:Key="ButtonDropShadow"  Color="#FFBBBBBB" Direction="270" ShadowDepth="4.5" Opacity="0.5" BlurRadius="14" />
+    <DropShadowEffect x:Key="ButtonPresssedDropShadow"  Color="#FFBBBBBB" Direction="270" ShadowDepth="9" Opacity="0.5" BlurRadius="14" />
 
     <Style TargetType="{x:Type TabControl}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -18,30 +35,36 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TabPanel IsItemsHost="True" />
-                        <ContentPresenter ContentSource="SelectedContent" Margin="5, 20, 5, 0" Grid.Row="1" />
+                        <ContentPresenter ContentSource="SelectedContent" Margin="5, 25, 5, 0" Grid.Row="1" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-        <Setter  Property="Foreground" Value="{StaticResource TabHeaderForegroundUnselectedBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TabHeaderForegroundUnselectedBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
+                    <Grid Height="35" VerticalAlignment="Bottom" Margin="10, 0, 0, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         <ContentPresenter x:Name="ContentSite"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
                                           ContentSource="Header"
                                           Margin="0"
-                                          RecognizesAccessKey="True" />
-                    </Border>
+                                          RecognizesAccessKey="True" Grid.Row="0" />
+                        <Border Name="Border" Grid.Row="1" BorderBrush="{StaticResource TabHeaderForegroundHoverBrush}"
+                                BorderThickness="0 0 0 4" Visibility="Collapsed"></Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="False">
                             <Setter Property="Panel.ZIndex" Value="90" />
@@ -52,7 +75,7 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Panel.ZIndex" Value="80" />
                             <Setter Property="TextBlock.Foreground"
-                                    Value="{StaticResource TabItemTextBrushDisabled}" />
+                                    Value="LightGray" />
                         </Trigger>
 
                         <MultiTrigger>
@@ -61,17 +84,199 @@
                                 <Condition Property="IsSelected" Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="99" />
-                            <Setter Property="TextBlock.Foreground" Value="{StaticResource TabHeaderForegroundHoverBrush}" />
+                            <Setter Property="TextBlock.Foreground"
+                                    Value="{StaticResource TabHeaderForegroundHoverBrush}" />
                         </MultiTrigger>
 
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Panel.ZIndex" Value="100" />
                             <Setter Property="TextBlock.Foreground"
                                     Value="{StaticResource TabHeaderForegroundSelectedBrush}" />
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="WhiteButtonStyle">
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border Name="Border" TextBlock.Foreground="Black" BorderThickness="1"
+                                Background="#FFDEDEDE" BorderBrush="#FFDEDEDE" CornerRadius="2" 
+                                Effect="{StaticResource ButtonDropShadow}">
+                        </Border>
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundHoverBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush"
+                                    Value="{StaticResource ButtonBackgroundHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource ButtonBackgroundPressedBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush"
+                                    Value="{StaticResource ButtonBackgroundPressedBrush}" />
+                            <Setter TargetName="Border" Property="Effect"
+                                    Value="{StaticResource ButtonPresssedDropShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="20, 0" />
+        <Setter Property="Padding" Value="35, 8" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border Name="Border" TextBlock.Foreground="White" BorderThickness="1"
+                                Background="{StaticResource WindowBackgroundBrush}" BorderBrush="{StaticResource WindowBackgroundBrush}"
+                                CornerRadius="2" Effect="{StaticResource ButtonDropShadow}">
+                        </Border>
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="#80CBC4" />
+                            <Setter TargetName="Border" Property="BorderBrush"
+                                    Value="#80CBC4" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background"
+                                    Value="#009688" />
+                            <Setter TargetName="Border" Property="BorderBrush"
+                                    Value="#009688" />
+                            <Setter TargetName="Border" Property="Effect"
+                                    Value="{StaticResource ButtonPresssedDropShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="20, 0" />
+        <Setter Property="Padding" Value="35, 8" />
+    </Style>
+
+    <Style TargetType="{x:Type Image}">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Margin" Value="6,2" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="5,2" />
+    </Style>
+
+    <Style TargetType="{x:Type StackPanel}">
+        <Setter Property="Margin" Value="3" />
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Padding" Value="6,4" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="H1">
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="H2">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="RbtnStyle">
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+
+    <Style TargetType="{x:Type RadioButton}" x:Key="SmallRbtnStyle" BasedOn="{StaticResource RbtnStyle}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="ChkStyle">
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="SmallChkStyle" BasedOn="{StaticResource ChkStyle}">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TxtStyle">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+    <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="/WindowsTweaker;component/Fonts/#Roboto" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="Background" Value="#FFDEDEDE" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+    <Style TargetType="{x:Type Hyperlink}">
+        <Setter Property="Foreground" Value="{StaticResource BlueShadeBackgroundBrush}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="SmallTxtStyle" BasedOn="{StaticResource TxtStyle}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="HelpTxtStyle" BasedOn="{StaticResource TxtStyle}">
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" x:Key="SmallPwBxStyle">
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="TxtBoxStyle">
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="21.333" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="SmallTxtBoxStyle" BasedOn="{StaticResource TxtBoxStyle}">
+        <Setter Property="FontSize" Value="16" />
     </Style>
 </ResourceDictionary>

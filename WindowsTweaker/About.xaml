@@ -4,7 +4,7 @@
         ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         Icon="Images/mainIconBig.png"
         Title="{StaticResource About}" WindowStartupLocation="CenterScreen">
-    <Grid Background="{StaticResource WindowBackgroundBrush}">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />

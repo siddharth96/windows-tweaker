@@ -265,20 +265,13 @@ namespace WindowsTweaker {
 
         #region Common Code
 
-        private void OnMainNavItemMouseDown(object sender, MouseButtonEventArgs e) {
-            string tagVal = ((ListBoxItem) sender).Tag.ToString();
-            LoadTab(tagVal);
-        }
-
-        private void OnMainNavItemKeyDown(object sender, KeyEventArgs e) {
-            if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Down) {
-                string tagVal = ((ListBoxItem) sender).Tag.ToString();
-                LoadTab(tagVal);
-            }
+        private void OnMainNavListSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            ListBoxItem listBoxItem = (ListBoxItem) lstMainNav.SelectedItem;
+            LoadTab(listBoxItem.Tag.ToString());
         }
 
         private void LoadTab(string tagVal) {
-            if (_hasTabLoadedDict.ContainsKey(tagVal) && _hasTabLoadedDict[tagVal])
+            if (_hasTabLoadedDict == null || (_hasTabLoadedDict.ContainsKey(tagVal) && _hasTabLoadedDict[tagVal]))
                 return;
             _hasTabLoadedDict[tagVal] = true;
             switch (tagVal) {
