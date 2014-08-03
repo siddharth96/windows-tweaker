@@ -14,7 +14,7 @@ namespace WindowsTweaker.AppTasks {
         private readonly TextBlock _txtMsg;
 
         internal void Hide() {
-            _msgContainer.Visibility = Visibility.Hidden;
+            _msgContainer.Visibility = Visibility.Collapsed;
             _txtMsg.Text = String.Empty;
         }
 

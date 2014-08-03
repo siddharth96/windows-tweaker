@@ -85,7 +85,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="36" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="4" />
                 </Grid.RowDefinitions>
                 <Grid MouseDown="OnTitlebarDoubleClick" Margin="0" MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown">
                     <Grid.ColumnDefinitions>
@@ -103,7 +102,7 @@
                     <Button Margin="0" Template="{StaticResource CloseButtonTemplate}" Grid.Column="3"
                             Name="btnClose" Click="OnButtonCloseClick" VerticalAlignment="Top" HorizontalAlignment="Right" />
                 </Grid>
-                <Border Grid.Row="1">
+                <Border Grid.Row="1" BorderThickness="0">
                     <AdornerDecorator>
                         <ContentPresenter />
                     </AdornerDecorator>
@@ -117,7 +116,6 @@
                 <Rectangle Grid.Row="2" Cursor="SizeNS" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                            Fill="Transparent" Height="5" MouseLeftButtonDown="OnWindowResizeInitiateNS"
                            MouseLeftButtonUp="OnWindowResizeEnd" MouseMove="OnWindowResizing" />
-                <Grid Grid.Row="2" Background="#FFD2D1D1" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>

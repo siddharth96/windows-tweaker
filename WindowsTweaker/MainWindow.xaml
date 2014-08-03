@@ -4149,7 +4149,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Menu Grid.Column="0" Margin="10, 5, 0, 0" VerticalAlignment="Center">
+            <Menu Grid.Column="0" Margin="10, 5, 0, 5" VerticalAlignment="Center">
                 <MenuItem Header="{StaticResource Options}" Style="{StaticResource MenuItemStyle}"
                         Padding="15, 5" Foreground="Black">
                     <MenuItem Header="{StaticResource Language}">
@@ -4167,7 +4167,8 @@
                     <MenuItem Header="{StaticResource CreateRestorePt}" Click="OnCreateRestorePtMenuClick"></MenuItem>
                 </MenuItem>
             </Menu>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" 
+                        VerticalAlignment="Center" Margin="0, 5">
                 <Button Style="{StaticResource WhiteButtonStyle}" Name="btnApply" Content="{StaticResource Save}" 
                         Click="OnApplyButtonClick" />
                 <Button Style="{StaticResource WhiteButtonStyle}" Name="btnOk" Content="{StaticResource SaveExit}" 
@@ -4177,7 +4178,7 @@
             </StackPanel>
         </Grid>
         <Grid HorizontalAlignment="Stretch" Margin="0"
-                  Grid.Row="3" Name="msgContainerBorder" Visibility="Hidden">
+                  Grid.Row="3" Name="msgContainerBorder" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -4204,7 +4205,7 @@
                 </Grid>
             </Viewbox>
         </Grid>
-        <Grid Grid.Row="0" Grid.RowSpan="4" Name="gridSearch" Visibility="Hidden">
+        <Grid Grid.Row="0" Grid.RowSpan="4" Name="gridSearch" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
