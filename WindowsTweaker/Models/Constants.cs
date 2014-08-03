@@ -131,6 +131,8 @@ namespace WindowsTweaker.Models {
         public const string NoDispScrSavPage = "NoDispScrSavPage";
         public const string DisableThumbnailCache = "DisableThumbnailCache";
         public const string DisAllowFlip_3D = "DisallowFlip3D";
+        public const string NoWinKeys = "NoWinKeys";
+        public const string DisablePasswordReveal = "DisablePasswordReveal";
         //Start Menu
         public const string NoClose = "NoClose";
         public const string NoRecentDocsMenu = "NoRecentDocsMenu";

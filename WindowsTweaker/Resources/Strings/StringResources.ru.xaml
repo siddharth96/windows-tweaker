@@ -457,4 +457,6 @@
     <system:String x:Key="MoreInfo">Дополнительная информация</system:String>
     <system:String x:Key="ViewMoreInfo">Посмотреть Дополнительная информация</system:String>
     <system:String x:Key="DirNotExist">Указанная папка не существует</system:String>
+    <system:String x:Key="NoWinKeys">Отключить все Сочетания клавиш Win + (Горячие клавиши)</system:String>
+    <system:String x:Key="DisableShowPasswd">Отключить "Показать пароль" Кнопка в ОС Windows и Internet Explorer</system:String>
 </ResourceDictionary>

@@ -3197,6 +3197,16 @@
                                                    Text="{StaticResource DisableFlip3D}" />
                                     </CheckBox.Content>
                                 </CheckBox>
+                                <CheckBox Margin="30, 10, 5, 5" Name="chkNoWinKeys" Click="OnCheckBoxClick">
+                                    <CheckBox.Content>
+                                        <TextBlock TextWrapping="Wrap" Text="{StaticResource NoWinKeys}" />
+                                    </CheckBox.Content>
+                                </CheckBox>
+                                <CheckBox Margin="30, 10, 5, 5" Name="chkDisableShowPasswd" Click="OnCheckBoxClick">
+                                    <CheckBox.Content>
+                                        <TextBlock TextWrapping="Wrap" Text="{StaticResource DisableShowPasswd}" Name="txtDisableShowPasswd" />
+                                    </CheckBox.Content>
+                                </CheckBox>
                             </StackPanel>
                         </Grid>
                     </TabItem>

@@ -457,4 +457,6 @@
     <system:String x:Key="MoreInfo">Weitere Informationen</system:String>
     <system:String x:Key="ViewMoreInfo">Sehen Sie mehr Informationen</system:String>
     <system:String x:Key="DirNotExist">Der angegebene Ordner existiert nicht</system:String>
+    <system:String x:Key="NoWinKeys">Deaktivieren Sie alle Win + Tastenkombinationen (Hotkeys)</system:String>
+    <system:String x:Key="DisableShowPasswd">Deaktivieren Sie "Kennwort anzeigen" Button in Windows und Internet Explorer</system:String>
 </ResourceDictionary>

@@ -457,4 +457,6 @@
     <system:String x:Key="MoreInfo">More Information</system:String>
     <system:String x:Key="ViewMoreInfo">View More Information</system:String>
     <system:String x:Key="DirNotExist">The specified folder doesn't exist</system:String>
+    <system:String x:Key="NoWinKeys">Disable all Win+Keyboard shortcuts (Hotkeys)</system:String>
+    <system:String x:Key="DisableShowPasswd">Disable "Show Password" Button in Windows and Internet Explorer</system:String>
 </ResourceDictionary>

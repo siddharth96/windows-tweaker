@@ -526,6 +526,7 @@ namespace WindowsTweaker {
                 chkHideFolderOpt.SetCheckedState(hkcuExplorer, Constants.NoFolderOption);
                 chkRightClick.SetCheckedState(hkcuExplorer, Constants.NoViewContextMenu);
                 chkTasbarAndStartMenuRightClick.SetCheckedState(hkcuExplorer, Constants.NoTrayContextMenu);
+                chkNoWinKeys.SetCheckedState(hkcuExplorer, Constants.NoWinKeys);
                 //START MENU          
                 chkHideShutDownOpt.SetCheckedState(hkcuExplorer, Constants.NoClose);
                 chkHideRecentDocs.SetCheckedState(hkcuExplorer, Constants.NoRecentDocsMenu);
@@ -578,6 +579,16 @@ namespace WindowsTweaker {
                 //System
                 chkDisableAdminShares.SetCheckedState(hklmParams, Constants.AutoShreWks, true);
             }
+
+            // Explorer -> Disable Show Password
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmCredUI = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\CredUI")) {
+                    chkDisableShowPasswd.SetCheckedState(hklmCredUI, Constants.DisablePasswordReveal);
+                }
+            } else {
+                chkDisableShowPasswd.IsEnabled = false;
+                txtDisableShowPasswd.Text += " " + GetResourceString("OnlyWin8AndOnwards");
+            }
         }
 
         private void UpdateRegistryFromRestrictions() {
@@ -588,6 +599,7 @@ namespace WindowsTweaker {
                 hkcuExplorer.SetValue(chkHideFolderOpt, Constants.NoFolderOption);
                 hkcuExplorer.SetValue(chkRightClick, Constants.NoViewContextMenu);
                 hkcuExplorer.SetValue(chkTasbarAndStartMenuRightClick, Constants.NoTrayContextMenu);
+                hkcuExplorer.SetValue(chkNoWinKeys, Constants.NoWinKeys);
                 //START MENU          
                 hkcuExplorer.SetValue(chkHideShutDownOpt, Constants.NoClose);
                 hkcuExplorer.SetValue(chkHideRecentDocs, Constants.NoRecentDocsMenu);
@@ -629,6 +641,13 @@ namespace WindowsTweaker {
             }
             using (RegistryKey hklmParams = _hklm.CreateSubKey(@"SYSTEM\CurrentControlSet\services\LanmanServer\Parameters")) {
                 hklmParams.SetValue(chkDisableAdminShares, Constants.AutoShreWks, true);
+            }
+
+            // Explorer -> Disable Show Password
+            if (_windowsOs >= WindowsVer.Windows.Eight) {
+                using (RegistryKey hklmCredUI = _hklm.CreateSubKey(@"Software\Policies\Microsoft\Windows\CredUI")) {
+                    hklmCredUI.SetValue(chkDisableShowPasswd, Constants.DisablePasswordReveal);
+                }
             }
         }
         #endregion
