@@ -54,7 +54,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <ListBox Grid.Column="0" Margin="5, 0" Background="{StaticResource ContentBackgroundBrush}" BorderThickness="0"
                      Name="lstMainNav" SelectionChanged="OnMainNavListSelectionChanged" SelectedIndex="0">
@@ -95,7 +94,7 @@
                 <ListBoxItem Content="{StaticResource LabelMaintenance}" FontSize="15" Tag="maintenance" Name="lstItemMaintenance" />
                 <ListBoxItem Content="{StaticResource LabelUtil}" FontSize="15" Tag="utilities" Name="lstItemUtilities" />
             </ListBox>
-            <Grid Grid.Column="1" Background="White" Margin="0, -60">
+            <Grid Grid.Column="1" Background="White" Margin="0, -60, 0, 0">
                 <TabControl Name="tabControlExplorer" Margin="0, 5, 0, 0"
                             Visibility="{Binding ElementName=lstItemExplorer, Path=IsSelected, Converter={StaticResource BooleanToVisibility}}">
                     <TabItem Header="{StaticResource DriveLetterDisplay}" Name="tabDriveLetterDisplay">
@@ -4145,7 +4144,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <Grid Grid.Row="2" Background="{StaticResource WindowBackgroundBrush}" Height="60" Margin="0, 0, 0, 0">
+        <Grid Grid.Row="2" Background="{StaticResource WindowBackgroundBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -4177,7 +4176,7 @@
                         Click="OnCancelButtonClick" />
             </StackPanel>
         </Grid>
-        <Grid HorizontalAlignment="Stretch" Margin="0" ZIndex="100"
+        <Grid HorizontalAlignment="Stretch" Margin="0"
                   Grid.Row="3" Name="msgContainerBorder" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
