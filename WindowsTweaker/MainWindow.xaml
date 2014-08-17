@@ -1184,7 +1184,7 @@
                                                       1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08
                                                       1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,
                                                       1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z"
-                                                Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
+                                                Stretch="Uniform" Fill="{StaticResource WindowBackgroundBrush}" Width="14" Height="14"
                                                 Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                                                 <Path.RenderTransform>
                                                     <TransformGroup>
@@ -1250,7 +1250,7 @@
                                                       1719.49 1356.48,1720.92 1355.97,1722 1355.45,1723.08
                                                       1355.22,1725.01 1355.27,1727.8z M1346.08,1741.41L1346.08,
                                                       1731.29 1356.2,1731.29 1356.2,1741.41 1346.08,1741.41z"
-                                                Stretch="Uniform" Fill="#FFA9A4A4" Width="14" Height="14"
+                                                Stretch="Uniform" Fill="{StaticResource WindowBackgroundBrush}" Width="14" Height="14"
                                                 Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                                                 <Path.RenderTransform>
                                                     <TransformGroup>
@@ -4251,7 +4251,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
                         <Button Name="btnAddToOpenWith" Padding="10, 5" Click="OnAddToOpenWithBtnClick" Content="{StaticResource Add}" />
-                        <Button Name="btnCloseOpenWith" Padding="10, 5" Click="OnCancelAddToOpenWithBtnClick" Content="{StaticResource Cancel}" />
+                        <Button Name="btnCloseOpenWith" Padding="10, 5" Click="OnCancelAddToOpenWithBtnClick" Content="{StaticResource Cancel}" Style="{StaticResource WhiteButtonStyle}" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -4281,7 +4281,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10, 5, 0, 0">
                         <Button Name="btnAddToStartup" Padding="10, 5" Click="OnAddToStartupBtnClick" Content="{StaticResource Add}" />
-                        <Button Name="btnCancelAddToStartup" Padding="10, 5" Click="OnCancelAddToStartupBtnClick" Content="{StaticResource Cancel}" />
+                        <Button Name="btnCancelAddToStartup" Padding="10, 5" Click="OnCancelAddToStartupBtnClick" Content="{StaticResource Cancel}" Style="{StaticResource WhiteButtonStyle}" />
                     </StackPanel>
                 </StackPanel>
             </Border>

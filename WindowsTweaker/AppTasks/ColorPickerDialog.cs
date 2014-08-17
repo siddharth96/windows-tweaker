@@ -13,10 +13,9 @@ namespace WindowsTweaker.AppTasks
         private DockPanel _colourPickerDockPanel;
         private Window _colourPickerWindow;
 
-        public ColorPickerDialog(Color selectedColour)
-        {
-            Title = "Choose Colour";
-            _selectedColour = selectedColour;
+        public ColorPickerDialog(Color selectedColor, string title) {
+            Title = title;
+            _selectedColour = selectedColor;
             Reset();
         }
 

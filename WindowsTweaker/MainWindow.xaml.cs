@@ -1238,7 +1238,7 @@ namespace WindowsTweaker {
         }
 
         private void ShowColorDialog() {
-            ColorPickerDialog colorPickerDialog = new ColorPickerDialog(_selectionColor);
+            ColorPickerDialog colorPickerDialog = new ColorPickerDialog(_selectionColor, GetResourceString("SelectColor"));
             if (colorPickerDialog.ShowDialog() == true) {
                 _selectionColor = colorPickerDialog.SelectedColour;
                 rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
