@@ -185,7 +185,7 @@
     <system:String x:Key="AdminAccountDescLine2">Activating this account grants you elevated privileges. However,it also exposes your computer to security risks. Hence, it is recommended to use this account only to perform special tasks and then de-activate it</system:String>
     <system:String x:Key="ActivateAdminAcc">Activate the built in Administrator account (Not recommended)</system:String>
     <system:String x:Key="DeActivateAdminAcc">De-activate the built in Administrator account</system:String>
-    <system:String x:Key="WinDvdBurner">Windows-dvd burner</system:String>
+    <system:String x:Key="WinDvdBurner">Windows-DVD burner</system:String>
     <system:String x:Key="DisableWinDvdBurner">Disable Windows DVD Burner</system:String>
     <system:String x:Key="DisableWinDvdBurnerDescLine2">You can disable Windows built-in DVD burner if you use any 3rd-party DVD burner</system:String>
     <system:String x:Key="UseWinDvdBurner">Use Windows built in DVD Burner</system:String>

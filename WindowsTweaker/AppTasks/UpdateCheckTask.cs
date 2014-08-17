@@ -11,7 +11,7 @@ namespace WindowsTweaker.AppTasks {
 
         internal const string Manual = "Manual";
         internal const string Auto = "Auto";
-        internal const long UpdateInterval = 21600; // 6 hours
+        internal const long UpdateInterval = 300; // 5 minutes
 
         internal static bool IsTimeToCheck(long lastUpdateChkVal) {
             if (lastUpdateChkVal <= 0) {

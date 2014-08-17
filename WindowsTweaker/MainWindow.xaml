@@ -2125,7 +2125,7 @@
                                     <Button Name="btnScheduleShutdown" Click="OnScheduleShutdownButtonClick"
                                             Content="{StaticResource Schedule}" />
                                     <Button Name="btnCancelShutdown" Click="OnCancelShutdownButtonClick"
-                                            Content="{StaticResource CancelScheduledAction}" />
+                                            Content="{StaticResource CancelScheduledAction}" Style="{StaticResource WhiteButtonStyle}" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

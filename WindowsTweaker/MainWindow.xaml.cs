@@ -2187,6 +2187,7 @@ namespace WindowsTweaker {
                     break;
             }
             InfoBox infoBox = new InfoBox(msg, GetResourceString("Ok"), GetResourceString("Help"), InfoBox.DialogType.Information);
+            infoBox.HideCancelButton();
             infoBox.ShowDialog();
         }
 
