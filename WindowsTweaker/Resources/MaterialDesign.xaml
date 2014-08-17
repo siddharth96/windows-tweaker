@@ -132,6 +132,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="MistyRose" />
                             <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -175,6 +176,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="Background" Value="MistyRose" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="MistyRose" />
                             <Setter TargetName="Border" Property="TextBlock.Foreground" Value="Gray" />
                         </Trigger>
                     </ControlTemplate.Triggers>

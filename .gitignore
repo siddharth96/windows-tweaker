@@ -10,3 +10,5 @@ UISearchTextBox/obj/*
 UISearchTextBox/bin/*
 *.db
 *.xls
+
+*.pfx

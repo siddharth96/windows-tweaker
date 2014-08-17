@@ -655,25 +655,30 @@ namespace WindowsTweaker {
         #region Explorer
         private void LoadExplorerTab() {
             //Drive Letters
-            using (RegistryKey hkcuCvExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
-                int showDriveLetterVal = (int) hkcuCvExplorer.GetValue(Constants.ShowDriveLetters, 0);
-                switch (showDriveLetterVal) {
-                    case 0:
-                        rbtnShowDriveLetterAfterName.IsChecked = true;
-                        break;
+            if (_windowsOs < WindowsVer.Windows.Blue) {
+                using (RegistryKey hkcuCvExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
+                    int showDriveLetterVal = (int)hkcuCvExplorer.GetValue(Constants.ShowDriveLetters, 0);
+                    switch (showDriveLetterVal) {
+                        case 0:
+                            rbtnShowDriveLetterAfterName.IsChecked = true;
+                            break;
 
-                    case 2:
-                        rbtnHideDriveLetter.IsChecked = true;
-                        break;
+                        case 2:
+                            rbtnHideDriveLetter.IsChecked = true;
+                            break;
 
-                    case 4:
-                        rbtnShowDriveLetterBeforeName.IsChecked = true;
-                        break;
+                        case 4:
+                            rbtnShowDriveLetterBeforeName.IsChecked = true;
+                            break;
 
-                    default:
-                        rbtnShowDriveLetterAfterName.IsChecked = true;
-                        break;
+                        default:
+                            rbtnShowDriveLetterAfterName.IsChecked = true;
+                            break;
+                    }
                 }
+            } else {
+                rbtnShowDriveLetterAfterName.IsEnabled = rbtnHideDriveLetter.IsEnabled = rbtnShowDriveLetterBeforeName.IsEnabled = false;
+                txtDriveLetterDisplay.Text += " " + GetResourceString("OnlyWin8AndBelow");
             }
 
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {
@@ -782,18 +787,20 @@ namespace WindowsTweaker {
 
         private void UpdateRegistryFromExplorer() {
             //Drive Letters
-            using (RegistryKey hkcuCvExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
-                int val = 0;
-                if (rbtnShowDriveLetterAfterName.IsChecked == true) {
-                    val = 0;
-                } else if (rbtnHideDriveLetter.IsChecked == true) {
-                    val = 2;
-                } else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
-                    val = 4;
-                } else {
-                    val = 0;
+            if (_windowsOs < WindowsVer.Windows.Blue) {
+                using (RegistryKey hkcuCvExplorer = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer")) {
+                    int val = 0;
+                    if (rbtnShowDriveLetterAfterName.IsChecked == true) {
+                        val = 0;
+                    } else if (rbtnHideDriveLetter.IsChecked == true) {
+                        val = 2;
+                    } else if (rbtnShowDriveLetterBeforeName.IsChecked == true) {
+                        val = 4;
+                    } else {
+                        val = 0;
+                    }
+                    hkcuCvExplorer.SetValue(Constants.ShowDriveLetters, val);
                 }
-                hkcuCvExplorer.SetValue(Constants.ShowDriveLetters, val);
             }
 
             using (RegistryKey hkcuExAdvanced = _hkcu.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced")) {

@@ -97,6 +97,52 @@
             <Grid Grid.Column="1" Background="White" Margin="0, -60, 0, 0">
                 <TabControl Name="tabControlExplorer" Margin="0, 5, 0, 0"
                             Visibility="{Binding ElementName=lstItemExplorer, Path=IsSelected, Converter={StaticResource BooleanToVisibility}}">
+                    <TabItem Header="{StaticResource Libraries}" Name="tabLibrary">
+                        <Grid Margin="10, 50, 0, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
+                                 Margin="30, 30, 0, 30">
+                                <Grid>
+                                    <Grid Width="256" Height="256">
+                                        <Ellipse Fill="#FFFFFFFF" />
+                                    </Grid>
+                                    <Path
+                                    Data="M18.698001,56.938L18.698001,59.728001 31.349,59.728001
+                                              31.349,56.938z M1.8610001,56.938L1.8610001,59.727997
+                                              11.535001,59.727997 11.535001,56.938z M59.898386,55.058998L45.885002,
+                                              57.419712 46.34852,60.171997 60.362001,57.811481z M52.786489,
+                                              12.724999L38.773001,15.086076 39.236515,17.838997 53.250002,15.477921z
+                                              M1.8610001,10.271L1.8610001,13.061001 11.535001,13.061001 11.535001,10.271z
+                                              M54.079065,9.757L62.307001,61.243523 45.055634,64 36.829,12.513545z
+                                              M0,5.21L13.394,5.21 13.394,64 0,64z M18.698001,4.9379997L18.698001,
+                                              7.7279997 31.349,7.7279997 31.349,4.9379997z M17.023001,0L33.023001,
+                                              0 33.023001,64 17.023001,64z"
+                                    Stretch="Uniform"
+                                    Fill="{StaticResource VectorImageBackground}" Width="166"
+                                    Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                                </Grid>
+                            </Viewbox>
+                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30" Name="panelLibraries">
+                                <TextBlock Style="{StaticResource H1}" Name="txtLibraries"
+                                       Text="{StaticResource ShowLibraries}" />
+                                <RadioButton Margin="30, 30, 5, 5"
+                                         Style="{StaticResource RbtnStyle}" Name="rbtnShowLibraries">
+                                    <RadioButton.Content>
+                                        <TextBlock Text="{StaticResource ShowLibrariesInNav}" TextWrapping="Wrap" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Margin="30, 30, 5, 5"
+                                         Style="{StaticResource RbtnStyle}" Name="rbtnHideLibraries">
+                                    <RadioButton.Content>
+                                        <TextBlock Text="{StaticResource HideLibrariesInNav}" TextWrapping="Wrap" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
                     <TabItem Header="{StaticResource DriveLetterDisplay}" Name="tabDriveLetterDisplay">
                         <Grid Margin="10, 50, 0, 10" Background="White">
                             <Grid.ColumnDefinitions>
@@ -129,7 +175,8 @@
                                 </Grid>
                             </Viewbox>
                             <StackPanel Grid.Column="1" Margin="5, 30, 5, 30">
-                                <TextBlock Style="{StaticResource H1}" Text="{StaticResource SpecifyDriveLetterDisplay}" />
+                                <TextBlock Style="{StaticResource H1}" Text="{StaticResource SpecifyDriveLetterDisplay}"
+                                           Name="txtDriveLetterDisplay" />
                                 <RadioButton Margin="30, 30, 5, 5" Style="{StaticResource RbtnStyle}"
                                          Name="rbtnShowDriveLetterBeforeName">
                                     <RadioButton.Content>
@@ -330,52 +377,6 @@
                                         <TextBlock Text="{StaticResource HideCustomize}" TextWrapping="Wrap" />
                                     </CheckBox.Content>
                                 </CheckBox>
-                            </StackPanel>
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="{StaticResource Libraries}" Name="tabLibrary">
-                        <Grid Margin="10, 50, 0, 10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" Width="128" Height="128" VerticalAlignment="Top"
-                                 Margin="30, 30, 0, 30">
-                                <Grid>
-                                    <Grid Width="256" Height="256">
-                                        <Ellipse Fill="#FFFFFFFF" />
-                                    </Grid>
-                                    <Path
-                                    Data="M18.698001,56.938L18.698001,59.728001 31.349,59.728001
-                                              31.349,56.938z M1.8610001,56.938L1.8610001,59.727997
-                                              11.535001,59.727997 11.535001,56.938z M59.898386,55.058998L45.885002,
-                                              57.419712 46.34852,60.171997 60.362001,57.811481z M52.786489,
-                                              12.724999L38.773001,15.086076 39.236515,17.838997 53.250002,15.477921z
-                                              M1.8610001,10.271L1.8610001,13.061001 11.535001,13.061001 11.535001,10.271z
-                                              M54.079065,9.757L62.307001,61.243523 45.055634,64 36.829,12.513545z
-                                              M0,5.21L13.394,5.21 13.394,64 0,64z M18.698001,4.9379997L18.698001,
-                                              7.7279997 31.349,7.7279997 31.349,4.9379997z M17.023001,0L33.023001,
-                                              0 33.023001,64 17.023001,64z"
-                                    Stretch="Uniform"
-                                    Fill="{StaticResource VectorImageBackground}" Width="166"
-                                    Height="166" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
-                                </Grid>
-                            </Viewbox>
-                            <StackPanel Grid.Column="1" Margin="5, 30, 5, 30" Name="panelLibraries">
-                                <TextBlock Style="{StaticResource H1}" Name="txtLibraries"
-                                       Text="{StaticResource ShowLibraries}" />
-                                <RadioButton Margin="30, 30, 5, 5"
-                                         Style="{StaticResource RbtnStyle}" Name="rbtnShowLibraries">
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{StaticResource ShowLibrariesInNav}" TextWrapping="Wrap" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-                                <RadioButton Margin="30, 30, 5, 5"
-                                         Style="{StaticResource RbtnStyle}" Name="rbtnHideLibraries">
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{StaticResource HideLibrariesInNav}" TextWrapping="Wrap" />
-                                    </RadioButton.Content>
-                                </RadioButton>
                             </StackPanel>
                         </Grid>
                     </TabItem>
@@ -4228,7 +4229,10 @@
                                       PreviewKeyDown="OnSearchTextBoxKeyDown"
                                       LabelText="{StaticResource SearchHint}" Name="stxtSearchInput" />
             </Grid>
-            <Grid Grid.Row="1" Background="#AA000000" MouseDown="OnGridSearchContentMouseDown" />
+            <Grid Grid.Row="1" Background="#AA000000" MouseDown="OnGridSearchContentMouseDown">
+                <TextBlock Style="{StaticResource H1}" Text="{StaticResource DismissSearch}" VerticalAlignment="Center"
+                           HorizontalAlignment="Center" Foreground="White" />
+            </Grid>
         </Grid>
         <Popup Name="popupAddToOpenWith" IsOpen="False" StaysOpen="True" PlacementTarget="{Binding ElementName=gridAddToOpenWith}" 
                 PopupAnimation="Scroll" AllowsTransparency="True" Placement="Bottom" VerticalOffset="10">

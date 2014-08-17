@@ -459,4 +459,6 @@
     <system:String x:Key="DirNotExist">The specified folder doesn't exist</system:String>
     <system:String x:Key="NoWinKeys">Disable all Win+Keyboard shortcuts (Hotkeys)</system:String>
     <system:String x:Key="DisableShowPasswd">Disable "Show Password" Button in Windows and Internet Explorer</system:String>
+    <system:String x:Key="OnlyWin8AndBelow">(Only for Windows 8 and below)</system:String>
+    <system:String x:Key="DismissSearch">Click here or press ESC to dismiss</system:String>
 </ResourceDictionary>
