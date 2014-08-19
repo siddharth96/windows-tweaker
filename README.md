@@ -11,7 +11,9 @@ Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-
 
     ```git clone git@github.com:siddharth96/windows-tweaker.git```
 
-3. Create a new class called ```Keys.Local.cs```, and paste in the following code:-
+3. Create a new file called ```Keys.Local.cs```, which is an extension to ```Keys.cs```. 
+On production build ```Keys.Local.cs``` contains the actual values for the parameters (which can't be checked into the repo for security reasons). 
+Put the following code in this file:-
 ```csharp
 namespace WindowsTweaker {
     internal static partial class Keys { }
