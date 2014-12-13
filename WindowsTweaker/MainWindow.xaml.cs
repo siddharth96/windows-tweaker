@@ -237,7 +237,7 @@ namespace WindowsTweaker {
                 return (this == (MRect) obj);
             }
 
-            /// <summary>Return the HashCode for this struct (not garanteed to be unique)</summary>
+            /// <summary>Return the HashCode for this struct (not guaranteed to be unique)</summary>
             public override int GetHashCode() {
                 return left.GetHashCode() + top.GetHashCode() + right.GetHashCode() + bottom.GetHashCode();
             }
@@ -1011,6 +1011,9 @@ namespace WindowsTweaker {
                     catch (NotSupportedException) {
                         imgProperty.Source = null;
                         hklmOEM.DeleteValue(Constants.Logo);
+                    } 
+                    catch (FileFormatException) {
+                        imgProperty.Source = null;
                     }
                 }
             }
@@ -1128,8 +1131,12 @@ namespace WindowsTweaker {
             // Selection Color
             using (RegistryKey hkcuColors = _hkcu.CreateSubKey(@"Control Panel\Colors")) {
                 string val = (string) hkcuColors.GetValue(Constants.SelectionColor);
-                string[] rgb = val.Split(' ');
-                _selectionColor = rgb.Length == 3 ? Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2])) : _defaultSelectionColor;
+                if (!String.IsNullOrEmpty(val)) {
+                    string[] rgb = val.Split(' ');
+                    _selectionColor = rgb.Length == 3 ? Color.FromRgb(Byte.Parse(rgb[0]), Byte.Parse(rgb[1]), Byte.Parse(rgb[2])) : _defaultSelectionColor;
+                } else {
+                    _selectionColor = _defaultSelectionColor;
+                }
                 rectSelectionColor.Fill = new SolidColorBrush(_selectionColor);
             }
 
@@ -1718,6 +1725,8 @@ namespace WindowsTweaker {
                 btnAddFileToSendTo.IsEnabled = btnAddFolderToSendTo.IsEnabled = false;
             } catch (FileNotFoundException) {
                 _message.Error(GetResourceString("InvalidFilePath"));
+            } catch (COMException) {
+                _message.Error(GetResourceString("RunTimeException"));
             }
         }
 
@@ -2355,6 +2364,7 @@ namespace WindowsTweaker {
             searchTxt = searchTxt.Trim();
             if (searchTxt.Length < 3) {
                 _message.Error(GetResourceString("Min3Chars"));
+                lstSearchResults.ItemsSource = null;
                 return;
             }
             if (searchTxt.Length > 100) {

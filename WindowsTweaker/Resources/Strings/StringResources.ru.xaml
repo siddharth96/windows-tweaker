@@ -461,4 +461,5 @@
     <system:String x:Key="DisableShowPasswd">Отключить "Показать пароль" Кнопка в ОС Windows и Internet Explorer</system:String>
     <system:String x:Key="OnlyWin8AndBelow">(Только для Windows 8 и ниже)</system:String>
     <system:String x:Key="DismissSearch">Нажмите здесь или нажмите ESC, чтобы закрыть</system:String>
+    <system:String x:Key="RunTimeException">Продолжительность произошло исключение, при выполнении операции. Пожалуйста, попробуйте позже.</system:String>
 </ResourceDictionary>

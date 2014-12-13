@@ -111,9 +111,6 @@ namespace UISearchTextBox {
             if (SearchMode == SearchMode.Instant) {
                 searchEventDelayTimer.Stop();
                 searchEventDelayTimer.Start();
-                if (!HasText) {
-                    RaiseSearchDismissEvent();
-                }
             }
         }
 
