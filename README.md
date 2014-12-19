@@ -1,6 +1,6 @@
 Windows Tweaker has been written in C# and WPF using .net Framework 4.5, to allow users to easily change every possible setting in Windows without having to dig deep into registry.
 
-![Windows Tweaker Screenshot](http://tweaker.blob.core.windows.net/version5-2/1.PNG)
+![Windows Tweaker Screenshot](http://tweaker.blob.core.windows.net/version5-3/1.PNG)
 
 ## To Build
 Head to this [Lifehacker article](http://lifehacker.com/5983680/how-the-heck-do-i-use-github "Lifehacker") if you don't know how to setup git on Windows.
