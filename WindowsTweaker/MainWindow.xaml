@@ -5,7 +5,7 @@
         xmlns:search="clr-namespace:UISearchTextBox;assembly=UISearchTextBox"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         xmlns:local="clr-namespace:WindowsTweaker"
-        Title="Windows Tweaker 5.2.1"
+        Title="Windows Tweaker 5.3"
         Icon="Images/mainIconBig.png"
         Style="{StaticResource MainWindowStyle}"
         MinHeight="600"
@@ -1407,6 +1407,40 @@
                                                VerticalAlignment="Center">
                                         (<Run Text="{StaticResource Default}" /> 3)
                                     </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{StaticResource ShortcutArrow}" Name="tabShortcutArrow">
+                        <Grid Margin="10, 50, 0, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" VerticalAlignment="Top"
+                                     Margin="30, 30, 0, 30">
+                                <Image  Width="128" Height="128"  Source="Images/my_computer.png" />
+                                <Image  Width="32" Height="32"  Source="Images/shortcut_arrow.png"
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="6,2"
+                                        Visibility="{Binding ElementName=rbtnShowShortcutArrow, Path=IsChecked, Converter={StaticResource BooleanToVisibility}}"/>
+                            </Grid>
+                            <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
+                                <TextBlock Style="{StaticResource H1}" Text="{StaticResource ShortcutArrowHeading}" />
+                                <Grid Margin="30, 10, 5, 5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <RadioButton Style="{StaticResource RbtnStyle}" Grid.Row="0"
+                                             Margin="30, 10, 5, 5"
+                                             GroupName="ShortcutArrow"
+                                             IsChecked="True" Name="rbtnShowShortcutArrow"
+                                             Content="{StaticResource Show}" />
+                                    <RadioButton Style="{StaticResource RbtnStyle}" Grid.Row="1" 
+                                             Margin="30, 8, 5, 5"
+                                             GroupName="ShortcutArrow"
+                                             Name="rbtnHideShortcutArrow"
+                                             Content="{StaticResource Hide}" />
                                 </Grid>
                             </StackPanel>
                         </Grid>

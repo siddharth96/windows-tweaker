@@ -1171,6 +1171,26 @@ namespace WindowsTweaker {
                         break;
                 }
             }
+
+            // Shortcut Arrow
+            using (RegistryKey hklmShellIcons = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons")) {
+                string shortcutIcon = (string)hklmShellIcons.GetValue(Constants.ShortcutArrowRegistryKey);
+                if (String.IsNullOrEmpty(shortcutIcon)) {
+                    rbtnShowShortcutArrow.IsChecked = true;
+                    rbtnHideShortcutArrow.IsChecked = false;
+                } else if (shortcutIcon.ToLower().Contains("blank")) {
+                    rbtnShowShortcutArrow.IsChecked = false;
+                    rbtnHideShortcutArrow.IsChecked = true;
+                } else {
+                    rbtnShowShortcutArrow.IsChecked = true;
+                    rbtnHideShortcutArrow.IsChecked = false;
+                }
+
+                // If rbtnHideShortcutArrow is checked, but blank.ico doesn't exists, create it
+                if (rbtnHideShortcutArrow.IsChecked == true && !File.Exists(shortcutIcon)) {
+                    Utils.CreateBlankIconFile();
+                }
+            }
         }
 
         private void UpdateRegistryFromDisplay() {
@@ -1214,6 +1234,22 @@ namespace WindowsTweaker {
             using (RegistryKey hkcuWinMet = _hkcu.CreateSubKey(@"Control Panel\Desktop\WindowMetrics")) {
                 string val = rbtnWrapText.IsChecked == true ? "0" : "1";
                 hkcuWinMet.SetValue(Constants.IconTitleWrap, val);
+            }
+
+            // Shortcut Arrow
+            using (RegistryKey hklmShellIcons = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons")) {
+                string filePath = Utils.GetBlankShortcutIconPath();
+                if (rbtnShowShortcutArrow.IsChecked == true) {
+                    hklmShellIcons.DeleteValue(Constants.ShortcutArrowRegistryKey, false);
+                    if (File.Exists(filePath)) {
+                        File.Delete(filePath);
+                    }
+                } else {
+                    if (!File.Exists(filePath)) {
+                        Utils.CreateBlankIconFile();
+                    }
+                    hklmShellIcons.SetValue(Constants.ShortcutArrowRegistryKey, filePath);
+                }
             }
         }
 

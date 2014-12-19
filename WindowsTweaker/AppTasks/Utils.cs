@@ -185,5 +185,19 @@ namespace WindowsTweaker.AppTasks {
             regKey.SetValue(keyName, val);
             return val;
         }
+
+        public static void CreateBlankIconFile() {
+            String filePath = Utils.GetBlankShortcutIconPath();
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(Constants.BlankIconResourceName)) {
+                using (FileStream resourceFile = new FileStream(filePath, FileMode.CreateNew)) {
+                    stream.CopyTo(resourceFile);
+                }
+            }
+        }
+
+        public static string GetBlankShortcutIconPath() {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Windows Tweaker",
+                        "blank.ico");
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace WindowsTweaker.Models {
         public const string EnglishSearchInputFileName = "WindowsTweaker.Search.englishTermAndUiElementMap.json";
         public const string GermanSearchInputFileName = "WindowsTweaker.Search.germanTermAndUiElementMap.json";
         public const string RussianSearchInputFileName = "WindowsTweaker.Search.russianTermAndUiElementMap.json";
+        public const string BlankIconResourceName = "WindowsTweaker.Images.blank.ico";
 
         // Explorer Tab Keys/Value
         // Drive Letter Display
@@ -98,6 +99,8 @@ namespace WindowsTweaker.Models {
         public const string SwitchRows = "CoolSwitchRows";
         // Selection Color
         public const string SelectionColor = "HotTrackingColor";
+        // Shortcut Arrow
+        public const string ShortcutArrowRegistryKey = "29";
 
         // Right Click Keys/Values
         // General

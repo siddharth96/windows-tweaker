@@ -462,4 +462,6 @@
     <system:String x:Key="OnlyWin8AndBelow">(Only for Windows 8 and below)</system:String>
     <system:String x:Key="DismissSearch">Click here or press ESC to dismiss</system:String>
     <system:String x:Key="RunTimeException">Runtime exception occurred, while performing the operation. Please try later.</system:String>
+    <system:String x:Key="ShortcutArrow">Shortcut Arrow</system:String>
+    <system:String x:Key="ShortcutArrowHeading">Show/Hide shortcut arrow</system:String>
 </ResourceDictionary>
