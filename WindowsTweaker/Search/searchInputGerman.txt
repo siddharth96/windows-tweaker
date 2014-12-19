@@ -49,6 +49,7 @@ Der horizontale Abstand zwischen Desktop Icons => lblHorzSpace,lstItemDisplay,ta
 Vertikaler Abstand zwischen Desktop Icons => lblVertSpace,lstItemDisplay,tabControlDisplay,tabDisplaySettings
 Zeigen Sie Hand Symbol über gemeinsam genutzte Ressourcen => chkHandIcon,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
 Anzeige von Dateien mit alten Stil Datei Sortieralgorithmus => chkOldStyleFileSort,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
+Anzeigen oder verbergen Verknüpfung Pfeil => txtShortcutArrowHeading,lstItemDisplay,tabControlDisplay,tabShortcutArrow
 Verhalten für die Verpackung der Titel Symbol => lblWrapIconTitle,lstItemDisplay,tabControlDisplay,tabIconTitle
 Split langen Linien Namen in mehrere kleine Linien => rbtnWrapText,lstItemDisplay,tabControlDisplay,tabIconTitle
 Nur eine Zeile und abschneiden wenn es zu lange => rbtnTruncateText,lstItemDisplay,tabControlDisplay,tabIconTitle

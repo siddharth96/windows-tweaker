@@ -1425,7 +1425,8 @@
                                         Visibility="{Binding ElementName=rbtnShowShortcutArrow, Path=IsChecked, Converter={StaticResource BooleanToVisibility}}"/>
                             </Grid>
                             <StackPanel Grid.Column="1" Margin="30, 30, 5, 30">
-                                <TextBlock Style="{StaticResource H1}" Text="{StaticResource ShortcutArrowHeading}" />
+                                <TextBlock Style="{StaticResource H1}" Text="{StaticResource ShortcutArrowHeading}"
+                                           Name="txtShortcutArrowHeading"/>
                                 <Grid Margin="30, 10, 5, 5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />

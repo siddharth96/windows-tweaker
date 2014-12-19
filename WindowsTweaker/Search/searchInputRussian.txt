@@ -49,6 +49,7 @@ ID продукта => lblProductId,lstItemSystem,tabControlSystem,tabReg
 Вертикали между значки на рабочем столе => lblVertSpace,lstItemDisplay,tabControlDisplay,tabDisplaySettings
 Показать значок руки над общим ресурсам => chkHandIcon,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
 Показать файлы используя старый стиль алгоритм файл сортировки => chkOldStyleFileSort,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
+Показать скрыть ярлык стрелки => txtShortcutArrowHeading,lstItemDisplay,tabControlDisplay,tabShortcutArrow
 Поведение для упаковки титул значка => lblWrapIconTitle,lstItemDisplay,tabControlDisplay,tabIconTitle
 Сплит длинные очереди имена на несколько небольших линий => rbtnWrapText,lstItemDisplay,tabControlDisplay,tabIconTitle
 Показать только одну строку и обрезать его когда слишком долго => rbtnTruncateText,lstItemDisplay,tabControlDisplay,tabIconTitle

@@ -49,6 +49,7 @@ Horizontal Spacing Between Desktop => lblHorzSpace,lstItemDisplay,tabControlDisp
 Vertical Spacing Between Desktop Icons => lblVertSpace,lstItemDisplay,tabControlDisplay,tabDisplaySettings
 Show hand icon over shared resources => chkHandIcon,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
 Display files using old style file sorting algorithm => chkOldStyleFileSort,lstItemDisplay,tabControlDisplay,tabDisplayExplorer
+Show hide shortcut short cut arrow => txtShortcutArrowHeading,lstItemDisplay,tabControlDisplay,tabShortcutArrow
 Wrap icon title behaviour => lblWrapIconTitle,lstItemDisplay,tabControlDisplay,tabIconTitle
 Split long lines names into several small lines => rbtnWrapText,lstItemDisplay,tabControlDisplay,tabIconTitle
 Show only one line and truncate it when too long => rbtnTruncateText,lstItemDisplay,tabControlDisplay,tabIconTitle
