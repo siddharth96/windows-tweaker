@@ -1174,7 +1174,7 @@ namespace WindowsTweaker {
 
             // Shortcut Arrow
             using (RegistryKey hklmShellIcons = _hklm.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons")) {
-                string shortcutIcon = (string)hklmShellIcons.GetValue(Constants.ShortcutArrowRegistryKey);
+                string shortcutIcon = (string) hklmShellIcons.GetValue(Constants.ShortcutArrowRegistryKey);
                 if (String.IsNullOrEmpty(shortcutIcon)) {
                     rbtnShowShortcutArrow.IsChecked = true;
                     rbtnHideShortcutArrow.IsChecked = false;
@@ -1189,6 +1189,8 @@ namespace WindowsTweaker {
                 // If rbtnHideShortcutArrow is checked, but blank.ico doesn't exists, create it
                 if (rbtnHideShortcutArrow.IsChecked == true && !File.Exists(shortcutIcon)) {
                     Utils.CreateBlankIconFile();
+                    // Also set the icon file in registry
+                    hklmShellIcons.SetValue(Constants.ShortcutArrowRegistryKey, Utils.GetBlankShortcutIconPath());
                 }
             }
         }
