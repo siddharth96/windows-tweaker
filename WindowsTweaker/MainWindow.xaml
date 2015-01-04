@@ -4202,6 +4202,7 @@
                         <MenuItem Header="English" IsCheckable="True" Name="menuItemEnglish" Click="OnLanguageMenuItemClick" Tag="en-US"></MenuItem>
                         <MenuItem Header="Deutsch" IsCheckable="True" Name="menuItemGerman" Click="OnLanguageMenuItemClick" Tag="de-DE"></MenuItem>
                         <MenuItem Header="русский" IsCheckable="True" Name="menuItemRussian" Click="OnLanguageMenuItemClick" Tag="ru-RU"></MenuItem>
+                        <MenuItem Header="Français" IsCheckable="True" Name="menuItemFrench" Click="OnLanguageMenuItemClick" Tag="fr-FR"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="{StaticResource Contact}" Click="OnContactMenuClick"></MenuItem>
                     <MenuItem Header="{StaticResource About}" Click="OnAboutMenuItemClick"></MenuItem>

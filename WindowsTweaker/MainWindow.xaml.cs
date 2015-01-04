@@ -2515,24 +2515,29 @@ namespace WindowsTweaker {
             ConfigHandler.Language language = ConfigHandler.GetCurrentLanguage();
             switch (language) {
                 case ConfigHandler.Language.English:
-                    SetLanguageMenuState(true, false, false);
+                    SetLanguageMenuState(true, false, false, false);
                     break;
                 case ConfigHandler.Language.German:
-                    SetLanguageMenuState(false, true, false);
+                    SetLanguageMenuState(false, true, false, false);
                     break;
                 case ConfigHandler.Language.Russian:
-                    SetLanguageMenuState(false, false, true);
+                    SetLanguageMenuState(false, false, true, false);
+                    break;
+                case ConfigHandler.Language.French:
+                    SetLanguageMenuState(false, false, false, true);
                     break;
                 default:
-                    SetLanguageMenuState(true, false, false);
+                    SetLanguageMenuState(true, false, false, false);
                     break;
             }
         }
 
-        private void SetLanguageMenuState(bool englishMenuState, bool germanMenuState, bool russianMenuState) {
+        private void SetLanguageMenuState(bool englishMenuState, bool germanMenuState, bool russianMenuState, 
+                                          bool frenchMenuState) {
             menuItemEnglish.IsChecked = englishMenuState;
             menuItemGerman.IsChecked = germanMenuState;
             menuItemRussian.IsChecked = russianMenuState;
+            menuItemFrench.IsChecked = frenchMenuState;
         }
 
         private void OnLanguageMenuItemClick(object sender, RoutedEventArgs e) {

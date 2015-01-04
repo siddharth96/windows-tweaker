@@ -212,6 +212,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Strings\StringResources.fr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Strings\StringResources.ru.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

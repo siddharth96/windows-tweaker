@@ -7,7 +7,7 @@ using WindowsTweaker.Models;
 namespace WindowsTweaker.AppTasks {
     internal static class ConfigHandler {
 
-        internal enum Language { English, German, Russian }
+        internal enum Language { English, German, Russian, French }
 
         private static Config _config;
 
@@ -26,6 +26,8 @@ namespace WindowsTweaker.AppTasks {
                     return Language.German;
                 case "ru-RU":
                     return Language.Russian;
+                case "fr-FR":
+                    return Language.French;
                 default:
                     return Language.English;
             }
@@ -39,6 +41,8 @@ namespace WindowsTweaker.AppTasks {
                     return "de-DE";
                 case Language.Russian:
                     return "ru-RU";
+                case Language.French:
+                    return "fr-FR";
                 default:
                     return "en-US";
             }
