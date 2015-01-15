@@ -99,7 +99,6 @@
     <system:String x:Key="AddCopyToFolder">Ajouter "Copier vers…" au menu contextuel de chaque fichier et dossier</system:String>
     <system:String x:Key="AddMoveToFolder">Ajouter "Déplacer vers…" au menu contextuel de chaque fichier et dossier</system:String>
     <system:String x:Key="AddSendToFolder">Ajouter "Envoyer vers…" au menu contextuel de chaque fichier et dossier</system:String>
-    <system:String x:Key="AddCopyAllContents">Ajouter "Copier tout le contenu" au menu contextuel des tous les fichiers texte</system:String>
     <system:String x:Key="AddEncDec">Ajouter "Crypter et Décrypter" au menu contextuel de chaque fichier et dossier</system:String>
     <system:String x:Key="AddOpenWithNotepad">Ajouter "Ouvrir avec le Bloc-Notes" au menu contextuel de chaque fichier</system:String>
     <system:String x:Key="AddControlPanel">Ajouter "Panneau de configuration" au menu contextuel du bureau</system:String>
@@ -272,7 +271,7 @@
     <system:String x:Key="CompMgmt">Gestionnaire de l'ordinateur</system:String>
     <system:String x:Key="DxDiag">Problèmes avec DirectX</system:String>
     <system:String x:Key="SecPol">Réglages de la sécurité locale</system:String>
-    <system:String x:Key="Regedit">Editeur du Registre Windows</system:String>
+    <system:String x:Key="Regedit">Éditeur du Registre Windows</system:String>
     <system:String x:Key="SysConfigEdit">Editeur de la configuration système</system:String>
     <system:String x:Key="SysInfo">Information du système</system:String>
     <system:String x:Key="OldCmdPrmpt">Ancienne fenêtre de commande</system:String>

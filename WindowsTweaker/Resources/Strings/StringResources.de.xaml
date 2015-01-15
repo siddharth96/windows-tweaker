@@ -99,7 +99,6 @@
     <system:String x:Key="AddCopyToFolder">»In Ordner kopieren« zum Kontextmenü von Ordnern und Dateien hinzufügen</system:String>
     <system:String x:Key="AddMoveToFolder">»In Ordner verschieben« zum Kontextmenü von Ordnern und Dateien hinzufügen</system:String>
     <system:String x:Key="AddSendToFolder">»An Ordner senden« zum Kontextmenü von Ordnern und Dateien hinzufügen</system:String>
-    <system:String x:Key="AddCopyAllContents">»Alle Inhalte kopieren« zum Kontextmenü von Textdateien hinzufügen</system:String>
     <system:String x:Key="AddEncDec">»Verschlüsseln« und »Entschlüsseln« zum Kontextmenü hizufügen</system:String>
     <system:String x:Key="AddOpenWithNotepad">»Mit Notepad öffnen« zum Kontextmenü von Dateien hinzufügen</system:String>
     <system:String x:Key="AddControlPanel">»Systemsteuerung« dem Kontextmenü des Desktops hinzufügen</system:String>

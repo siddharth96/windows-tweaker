@@ -260,6 +260,7 @@
     <EmbeddedResource Include="Search\englishTermAndUiElementMap.json" />
     <EmbeddedResource Include="Search\germanTermAndUiElementMap.json" />
     <EmbeddedResource Include="Search\russianTermAndUiElementMap.json" />
+    <EmbeddedResource Include="Search\frenchTermAndUiElementMap.json" />
     <None Include="WindowsTweaker.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +389,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\blank.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Search\searchInputFrench.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

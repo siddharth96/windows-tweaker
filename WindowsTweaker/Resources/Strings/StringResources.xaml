@@ -99,7 +99,6 @@
     <system:String x:Key="AddCopyToFolder">Add &quot;Copy to Folder&quot; to Right-Click menu of every file &amp; folder</system:String>
     <system:String x:Key="AddMoveToFolder">Add &quot;Move to Folder&quot; to Right-Click menu of every file &amp; folder</system:String>
     <system:String x:Key="AddSendToFolder">Add &quot;Send to Folder&quot; to Right-Click menu of every file &amp; folder</system:String>
-    <system:String x:Key="AddCopyAllContents">Add &quot;Copy all Contents&quot; to Right-Click menu of all text files</system:String>
     <system:String x:Key="AddEncDec">Add &quot;Encrypt&quot; &amp; &quot;Decrypt&quot; to Right-Click menu of every file &amp; folder</system:String>
     <system:String x:Key="AddOpenWithNotepad">Add Open with Notepad to Right-Click menu for all files</system:String>
     <system:String x:Key="AddControlPanel">Add Control Panel to the Desktop Right-Click Menu</system:String>

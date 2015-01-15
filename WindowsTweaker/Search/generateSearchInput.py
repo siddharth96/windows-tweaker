@@ -1,6 +1,10 @@
 import subprocess
 
 
+def generate_french_json():
+    subprocess.call(['python', 'stemmer.py', '--input',  'searchInputFrench.txt',
+                               '--output', 'frenchTermAndUiElementMap.json', '--lang=fr'])
+
 def generate_russian_json():
     subprocess.call(['python', 'stemmer.py', '--input',  'searchInputRussian.txt',
                                '--output', 'russianTermAndUiElementMap.json', '--lang=ru'])
@@ -19,3 +23,4 @@ if __name__ == '__main__':
     generate_english_json()
     generate_german_json()
     generate_russian_json()
+    generate_french_json()

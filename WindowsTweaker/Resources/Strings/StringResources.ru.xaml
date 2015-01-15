@@ -99,7 +99,6 @@
     <system:String x:Key="AddCopyToFolder">Добавить "Копировать в папку" в меню правой кнопки мыши каждого файла и папки</system:String>
     <system:String x:Key="AddMoveToFolder">Добавить "Переместить в папку" в меню правой кнопки мыши каждого файла и папки</system:String>
     <system:String x:Key="AddSendToFolder">Добавить "Отправить в папку" в меню правой кнопки мыши каждого файла и папки</system:String>
-    <system:String x:Key="AddCopyAllContents">Добавить "Копировать все Содержание» в меню правой кнопки мыши всех текстовых файлов</system:String>
     <system:String x:Key="AddEncDec">Добавить "Зашифровать" и "Расшифровать" щелкнуть правой кнопкой мыши меню каждого файла и папки</system:String>
     <system:String x:Key="AddOpenWithNotepad">Добавить Открыть с помощью блокнота щелкнуть правой кнопкой мыши меню для всех файлов</system:String>
     <system:String x:Key="AddControlPanel">Добавить Панель управления на рабочем столе правой кнопкой мыши меню</system:String>

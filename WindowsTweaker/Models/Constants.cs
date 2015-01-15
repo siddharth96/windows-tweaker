@@ -20,6 +20,7 @@ namespace WindowsTweaker.Models {
         public const string EnglishSearchInputFileName = "WindowsTweaker.Search.englishTermAndUiElementMap.json";
         public const string GermanSearchInputFileName = "WindowsTweaker.Search.germanTermAndUiElementMap.json";
         public const string RussianSearchInputFileName = "WindowsTweaker.Search.russianTermAndUiElementMap.json";
+        public const string FrenchSearchInputFileName = "WindowsTweaker.Search.frenchTermAndUiElementMap.json";
         public const string BlankIconResourceName = "WindowsTweaker.Images.blank.ico";
 
         // Explorer Tab Keys/Value

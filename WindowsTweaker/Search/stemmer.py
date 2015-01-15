@@ -23,6 +23,7 @@ from stemming import porter2
 EN = "en"
 DE = "de"
 RU = "ru"
+FR = "fr"
 UI_ELEMENT_NAME = 0
 MAIN_NAV_ITEM = 1
 SUB_TAB_CONTROL = 2
@@ -39,6 +40,9 @@ def stemmer_meth(lang):
     if lang == RU:
         print 'Returning russian stem'
         return Stemmer.Stemmer('russian').stemWord
+    if lang == FR:
+        print 'Returning french stem'
+        return Stemmer.Stemmer('french').stemWord
     return lambda x: x
 
 

@@ -65,6 +65,9 @@ namespace WindowsTweaker.Search {
                 case ConfigHandler.Language.Russian:
                     RussianStemmer russianStemmer = new RussianStemmer();
                     return russianStemmer.Stem(massagedTerm);
+                case ConfigHandler.Language.French:
+                    FrenchStemmer frenchStemmer = new FrenchStemmer();
+                    return frenchStemmer.Stem(massagedTerm);
                 default:
                     return massagedTerm;
             }
@@ -158,6 +161,8 @@ namespace WindowsTweaker.Search {
                     return Constants.GermanSearchInputFileName;
                 case ConfigHandler.Language.Russian:
                     return Constants.RussianSearchInputFileName;
+                case ConfigHandler.Language.French:
+                    return Constants.FrenchSearchInputFileName;
                 default:
                     return Constants.EnglishSearchInputFileName;
             }
