@@ -199,5 +199,11 @@ namespace WindowsTweaker.AppTasks {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Windows Tweaker",
                         "blank.ico");
         }
+
+        public static string GetAppVersion() {
+            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            return applicationVersion.Major + "." + applicationVersion.Minor + 
+                (applicationVersion.Build > 0 ? ("." + applicationVersion.Build) : "");
+        }
     }
 }

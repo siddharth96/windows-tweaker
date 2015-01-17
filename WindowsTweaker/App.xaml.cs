@@ -21,6 +21,10 @@ namespace WindowsTweaker {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
             }
             DoLocalization();
+            Splash splash = new Splash();
+            splash.Show();
+            new MainWindow().Show();
+            splash.Close();
         }
 
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs) {

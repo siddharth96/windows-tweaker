@@ -161,6 +161,9 @@
     <Compile Include="Search\Searcher.cs" />
     <Compile Include="Search\SearchItem.cs" />
     <Compile Include="Search\SearchItemEqualityComparer.cs" />
+    <Compile Include="Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartupManager.xaml.cs">
       <DependentUpon>StartupManager.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\WindowDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Splash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,9 +384,6 @@
       <Project>{a8e2bbc4-63b4-497d-bde6-f6b8a27e45c0}</Project>
       <Name>UISearchTextBox</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SplashScreen Include="Images\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\my_computer.png" />

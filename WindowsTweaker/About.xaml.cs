@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using WindowsTweaker.AppTasks;
 
 namespace WindowsTweaker {
     /// <summary>
@@ -9,9 +10,7 @@ namespace WindowsTweaker {
     public partial class About : Window {
         public About() {
             InitializeComponent();
-            Version applicationVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            txtVersion.Text = this.FindResource("Version") + " " + applicationVersion.Major + "." + applicationVersion.Minor
-                + (applicationVersion.Build > 0 ? ("." + applicationVersion.Build) : "");
+            txtVersion.Text = this.FindResource("Version") + " " + Utils.GetAppVersion();
         }
 
         private void OnVisitUsLinkClick(object sender, RoutedEventArgs e) {
