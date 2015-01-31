@@ -463,4 +463,5 @@
     <system:String x:Key="RunTimeException">Runtime exception occurred, while performing the operation. Please try later.</system:String>
     <system:String x:Key="ShortcutArrow">Shortcut Arrow</system:String>
     <system:String x:Key="ShortcutArrowHeading">Show/Hide shortcut arrow</system:String>
+    <system:String x:Key="Translators" xml:space="preserve">German Translation : Partly by Tim Mammitzsch and rest by Google Translate&#13;&#10;&#13;&#10;French Translation : dee.pee &amp; Colok&#13;&#10;(www.colok-traductions.com)&#13;&#10;&#13;&#10;Russian Translation: Google Translate</system:String>
 </ResourceDictionary>

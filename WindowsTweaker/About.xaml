@@ -4,36 +4,47 @@
         ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         Icon="Images/mainIconBig.png"
         Title="{StaticResource About}" WindowStartupLocation="CenterScreen">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <StackPanel Margin="20, 10" Grid.Row="0">
-            <Image Source="Images/mainIconBig.png" Stretch="Uniform"
+
+    <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Style="{x:Null}">
+        <TabItem Header="About" Style="{x:Null}">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Margin="20, 10" Grid.Row="0">
+                    <Image Source="Images/mainIconBig.png" Stretch="Uniform"
                    Height="48" Width="48"
                    HorizontalAlignment="Center" Margin="0, 10, 0, 0" />
-            <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 10, 0, 0"
+                    <TextBlock Style="{StaticResource TxtStyle}" Margin="0, 10, 0, 0"
                        HorizontalAlignment="Center">
                 Windows Tweaker
-            </TextBlock>
-            <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="0, 10, 0, 0"
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource SmallTxtStyle}" Margin="0, 10, 0, 0"
                        HorizontalAlignment="Center" Name="txtVersion"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
+                    <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
                 <Hyperlink Click="OnVisitUsLinkClick">
                     <Run Text="{StaticResource VisitUs}" />
                 </Hyperlink>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
                 <Hyperlink Click="OnLikeOnFacebookClick">
                     <Run Text="{StaticResource LikeOnFb}" />
                 </Hyperlink>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Margin="0, 10, 0, 0" FontSize="14">
                 <Hyperlink Click="OnViewSourceClick">
                     <Run Text="{StaticResource ViewSource}" />
                 </Hyperlink>
-            </TextBlock>
-        </StackPanel>
-    </Grid>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Translators" Style="{x:Null}">
+            <Grid Background="White">
+                <TextBox IsReadOnly="True" Text="{StaticResource Translators}"
+                         Style="{StaticResource SmallTxtBoxStyle}" Padding="10"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
