@@ -129,9 +129,9 @@
     <system:String x:Key="OpenWithDescLine2">Quand vous cliquez sur "Ouvrir vers…" vous verrez une liste de programmes à choisir</system:String>
     <system:String x:Key="OpenWithDescLine3">Utiliser cette option pour ajouter un autre programme qui apparaîtra dans la liste afin d' éviter de "Naviguer vers…" à chaque fois</system:String>
     <system:String x:Key="CustomizeOpenWith">Personnaliser "Ouvrir avec…"</system:String>
-    <system:String x:Key="PowerBtn">Bouton  "Arréter</system:String>
-    <system:String x:Key="PowerBtnAction">Action du bouton "Arréter" dans le menu Démarrer</system:String>
-    <system:String x:Key="Shutdown">Arréter</system:String>
+    <system:String x:Key="PowerBtn">Bouton  "Arrêter</system:String>
+    <system:String x:Key="PowerBtnAction">Action du bouton "Arrêter" dans le menu Démarrer</system:String>
+    <system:String x:Key="Shutdown">Arrêter</system:String>
     <system:String x:Key="Hibernate">Mettre en veille prolongée</system:String>
     <system:String x:Key="Sleep">Mettre en veille</system:String>
     <system:String x:Key="Restart">Redémarrer</system:String>
@@ -199,7 +199,7 @@
     <system:String x:Key="Password">Mot de passe</system:String>
     <system:String x:Key="DomainName">Nom de domaine</system:String>
     <system:String x:Key="PreventShiftOverride">Eviter de stopper l'Ouverture de session automatique en pressant la touche "Majuscule"</system:String>
-    <system:String x:Key="LogonAfterLogoff">Rouverture de session automatique après une déconnexion</system:String>
+    <system:String x:Key="LogonAfterLogoff">Réouverture de session automatique après une déconnexion</system:String>
     <system:String x:Key="StartupSound">Son du démarrage</system:String>
     <system:String x:Key="StartupSoundDesc">Spécifier quel son Windows devra jouer au démarrage</system:String>
     <system:String x:Key="PlaySoundOnStart">Jouer un son quand Windows démarre</system:String>
@@ -260,7 +260,7 @@
     <system:String x:Key="ShowBsod">Afficher un message d'erreur (BSOD = écran bleu)</system:String>
     <system:String x:Key="RecordInSysLog">Enregistrer l'évènement dans le rapport d'évènement</system:String>
     <system:String x:Key="GroupPolicyEdit">Editeur de Groupe de stratégie</system:String>
-    <system:String x:Key="CompServices">Services de omposants</system:String>
+    <system:String x:Key="CompServices">Services de composants</system:String>
     <system:String x:Key="DevMgmt">Gestionnaire de périphériques</system:String>
     <system:String x:Key="EvtVwr">Observateur d'évènements</system:String>
     <system:String x:Key="LuserMgr">Groupes &amp; Utilisateurs locaux</system:String>
@@ -286,13 +286,13 @@
     <system:String x:Key="CrtSharedFldr">Créer un dossier partagé</system:String>
     <system:String x:Key="RmtDesktop">Bureau à distance</system:String>
     <system:String x:Key="PhoneDialer">Numérotation téléphonique</system:String>
-    <system:String x:Key="WinTransfer">Windows Easy Transfer</system:String>
+    <system:String x:Key="WinTransfer">Transfert de fichiers Windows</system:String>
     <system:String x:Key="ShrdFldr">Dossier partagé</system:String>
     <system:String x:Key="RmtPhoneBuk">Carnet d'adresse à distance</system:String>
     <system:String x:Key="NetworkConns">Connexions au réseau</system:String>
     <system:String x:Key="CharMap">Tableau des caractères</system:String>
     <system:String x:Key="DrvrVerfiy">Outil de vérification des pilotes</system:String>
-    <system:String x:Key="InstallCreatr">Assistant de Créateur d'installation</system:String>
+    <system:String x:Key="InstallCreatr">Assistant de créateur d'installation</system:String>
     <system:String x:Key="WinAddrBook">Carnet d'adresse Windows</system:String>
     <system:String x:Key="PvtCharEdit">Editeur de caractères personnels</system:String>
     <system:String x:Key="SigVerfiy">Outil de vérification de siignature de fichiers</system:String>
