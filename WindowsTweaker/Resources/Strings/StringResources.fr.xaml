@@ -295,7 +295,7 @@
     <system:String x:Key="InstallCreatr">Assistant de créateur d'installation</system:String>
     <system:String x:Key="WinAddrBook">Carnet d'adresse Windows</system:String>
     <system:String x:Key="PvtCharEdit">Editeur de caractères personnels</system:String>
-    <system:String x:Key="SigVerfiy">Outil de vérification de siignature de fichiers</system:String>
+    <system:String x:Key="SigVerfiy">Outil de vérification de signature de fichiers</system:String>
     <system:String x:Key="RegSettings">Réglages des paramètres régionaux</system:String>
     <system:String x:Key="AddrBookImpUtil">Outil d'importation de carnet d'adresses</system:String>
     <system:String x:Key="AdAcCntrolPanel">Panneau de contrôle avancé des Comptes d'utilisateurs</system:String>
